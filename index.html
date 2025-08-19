@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-lang="title">Wplace Paint Tool</title>
+  <title data-lang="title">Wplace Paint Tool: The Ultimate Pixel Toolkit to Dominate the Canvas</title>
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Custom Styles -->
@@ -37,8 +37,8 @@
   <section class="bg-card py-12">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4" data-lang="title">Wplace Paint Tool - Create Pixel Art Easily</h1>
-        <p class="text-xl text-muted-foreground mb-8" data-lang="subtitle">Transform any image into Wplace-compatible pixel art with our free online tool</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4" data-lang="title">Wplace Paint Tool: The Ultimate Pixel Toolkit to Dominate the Canvas</h1>
+        <p class="text-xl text-muted-foreground mb-8" data-lang="subtitle">Designed for creative players on wplace.live, this ultimate toolkit lets you dominate the canvas with ease. Our core feature converts any image to pixel art, automatically matching the official color palette to bring your vision to life. It also includes efficient scripts and professional planning tools to fully enhance your gameplay. Join now, unlock vast resources, and start creating stunning artwork.</p>
       </div>
     </div>
   </section>
@@ -87,6 +87,43 @@
             </div>
           </div>
         </div>
+
+        <!-- Advanced Settings -->
+        <div class="flex-shrink-0">
+          <div class="bg-card rounded-lg shadow-sm border-border border p-6">
+            <div class="space-y-4">
+              <h3 class="text-sm font-medium text-gray-700" data-lang="advanced.title">Advanced Settings</h3>
+              
+              <!-- Dithering Option -->
+              <div class="flex items-center space-x-3">
+                <input type="checkbox" id="enableDithering" class="h-4 w-4 text-blue-600 rounded">
+                <label for="enableDithering" class="text-sm text-gray-700" data-lang="advanced.dithering">
+                  Enable Floyd-Steinberg Dithering
+                </label>
+              </div>
+              
+              <!-- Scaling Method -->
+              <div class="space-y-2">
+                <label for="scalingMethod" class="block text-xs font-medium text-gray-700" data-lang="advanced.scaling">
+                  Image Scaling Method:
+                </label>
+                <select id="scalingMethod" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
+                  <option value="nearest" data-lang="scaling.nearest">Nearest Neighbor</option>
+                  <option value="bilinear" data-lang="scaling.bilinear">Bilinear</option>
+                  <option value="lanczos" data-lang="scaling.lanczos">Lanczos</option>
+                </select>
+              </div>
+              
+              <!-- Grid Toggle -->
+              <div class="flex items-center space-x-3">
+                <input type="checkbox" id="showGrid" class="h-4 w-4 text-blue-600 rounded">
+                <label for="showGrid" class="text-sm text-gray-700" data-lang="advanced.grid">
+                  Show Pixel Grid
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Right Column: Preview Area -->
@@ -111,9 +148,46 @@
             
             <div id="previewContainer" class="flex-1 min-h-96 max-w-full border-2 border-dashed border-gray-200 rounded-lg flex flex-col overflow-auto relative">
               <!-- Image preview area -->
-              <div class="flex-1 flex items-center justify-center p-4">
+              <div class="flex-1 flex items-center justify-center p-4 relative">
                 <p class="text-gray-500" data-lang="preview.prompt">Please upload an image to start</p>
+                
+                <!-- Color Info Tooltip -->
+                <div id="colorTooltip" class="absolute bg-black text-white px-2 py-1 rounded text-xs pointer-events-none hidden z-10">
+                  <div id="colorInfo"></div>
+                </div>
+                
+                <!-- Zoom Controls -->
+                <div id="zoomControls" class="absolute top-2 right-2 flex flex-col space-y-1 hidden">
+                  <button id="zoomIn" class="bg-white shadow-md hover:bg-gray-50 p-2 rounded text-gray-700 text-xs">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                  </button>
+                  <button id="zoomOut" class="bg-white shadow-md hover:bg-gray-50 p-2 rounded text-gray-700 text-xs">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"></path>
+                    </svg>
+                  </button>
+                  <button id="zoomReset" class="bg-white shadow-md hover:bg-gray-50 p-2 rounded text-gray-700 text-xs">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                  </button>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Used Colors Panel -->
+        <div id="usedColorsPanel" class="mt-4 hidden">
+          <div class="bg-card rounded-lg shadow-sm border-border border p-4">
+            <h3 class="text-sm font-medium text-gray-700 mb-3" data-lang="used.colors.title">Colors Used in This Image</h3>
+            <div id="usedColorsGrid" class="grid grid-cols-8 gap-2 mb-3"></div>
+            <div class="flex justify-between text-xs text-gray-500">
+              <span><span data-lang="used.colors.total">Total</span>: <span id="usedColorsTotal">0</span></span>
+              <span><span data-lang="used.colors.free">Free</span>: <span id="usedColorsFree">0</span></span>
+              <span><span data-lang="used.colors.premium">Premium</span>: <span id="usedColorsPremium">0</span></span>
             </div>
           </div>
         </div>

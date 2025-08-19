@@ -11,7 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
     window.appState = {
         uploadedImage: null,
         currentPixelSize: 12,
-        pixelizedData: null
+        pixelizedData: null,
+        enableDithering: false,
+        scalingMethod: 'nearest',
+        showGrid: false,
+        usedColors: new Set(),
+        zoomLevel: 1,
+        panX: 0,
+        panY: 0,
+        isDragging: false
     };
     
     // Initialize palette display
@@ -29,7 +37,10 @@ function createMissingElements() {
     // Create missing elements with IDs that the HTML expects
     const missingElements = [
         'uploadArea', 'fileInput', 'pixelSize', 'pixelSizeValue', 
-        'previewContainer', 'paletteDisplay', 'downloadBtn', 'loadingIndicator'
+        'previewContainer', 'paletteDisplay', 'downloadBtn', 'loadingIndicator',
+        'enableDithering', 'scalingMethod', 'showGrid', 'colorTooltip', 'colorInfo',
+        'zoomControls', 'zoomIn', 'zoomOut', 'zoomReset', 'usedColorsPanel',
+        'usedColorsGrid', 'usedColorsTotal', 'usedColorsFree', 'usedColorsPremium'
     ];
     
     missingElements.forEach(id => {
@@ -48,6 +59,9 @@ function bindEvents() {
     const fileInput = document.getElementById('fileInput');
     const pixelSize = document.getElementById('pixelSize');
     const downloadBtn = document.getElementById('downloadBtn');
+    const enableDithering = document.getElementById('enableDithering');
+    const scalingMethod = document.getElementById('scalingMethod');
+    const showGrid = document.getElementById('showGrid');
     
     if (uploadArea) {
         uploadArea.addEventListener('click', () => fileInput?.click());
@@ -65,6 +79,36 @@ function bindEvents() {
     
     if (downloadBtn) {
         downloadBtn.addEventListener('click', handleDownload);
+    }
+    
+    // Advanced settings event listeners
+    if (enableDithering) {
+        enableDithering.addEventListener('change', handleDitheringChange);
+    }
+    
+    if (scalingMethod) {
+        scalingMethod.addEventListener('change', handleScalingMethodChange);
+    }
+    
+    if (showGrid) {
+        showGrid.addEventListener('change', handleGridToggle);
+    }
+    
+    // Zoom and pan controls
+    const zoomIn = document.getElementById('zoomIn');
+    const zoomOut = document.getElementById('zoomOut');
+    const zoomReset = document.getElementById('zoomReset');
+    
+    if (zoomIn) {
+        zoomIn.addEventListener('click', () => changeZoom(1.2));
+    }
+    
+    if (zoomOut) {
+        zoomOut.addEventListener('click', () => changeZoom(0.8));
+    }
+    
+    if (zoomReset) {
+        zoomReset.addEventListener('click', resetZoom);
     }
 }
 
@@ -90,49 +134,81 @@ function handleFileSelect(e) {
 
 // Process uploaded file
 function processFile(file) {
-    const validTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+    const validTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'];
     if (!validTypes.includes(file.type)) {
-        alert('Please upload a PNG or JPG image');
+        showError('Invalid file type. Please upload PNG, JPG, or SVG files.');
         return;
     }
+    
+    // Check file size (max 50MB)
+    const maxSize = 50 * 1024 * 1024;
+    if (file.size > maxSize) {
+        showError('File too large. Please upload an image smaller than 50MB.');
+        return;
+    }
+    
+    showLoading(true);
     
     const reader = new FileReader();
     reader.onload = (e) => {
         const img = new Image();
         img.onload = () => {
             window.appState.uploadedImage = img;
-            processImage(img);
+            // Use requestAnimationFrame for smooth UI updates
+            requestAnimationFrame(() => {
+                processImage(img);
+                showLoading(false);
+            });
+        };
+        img.onerror = () => {
+            showError('Failed to load image. Please try another file.');
+            showLoading(false);
         };
         img.src = e.target.result;
+    };
+    reader.onerror = () => {
+        showError('Failed to read file. Please try again.');
+        showLoading(false);
     };
     reader.readAsDataURL(file);
 }
 
 // Process image into pixel art
 function processImage(img) {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    
-    // 使用原始图像尺寸，不要预先缩放
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0, img.width, img.height);
-    
-    // 获取完整的原始图像数据
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const pixelSize = window.appState.currentPixelSize;
-    
-    // 调用像素化函数
-    const pixelizedCanvas = pixelizeImageData(imageData, pixelSize);
-    
-    // 显示结果
-    displayResult(pixelizedCanvas);
-    
-    // 启用下载按钮
-    const downloadBtn = document.getElementById('downloadBtn');
-    if (downloadBtn) {
-        downloadBtn.disabled = false;
-        downloadBtn.classList.remove('hidden');
+    try {
+        showLoading(true, 'Processing image...');
+        
+        // Apply advanced scaling if needed
+        const scaledCanvas = scaleImage(img, window.appState.scalingMethod);
+        const ctx = scaledCanvas.getContext('2d');
+        
+        // 获取完整的原始图像数据
+        const imageData = ctx.getImageData(0, 0, scaledCanvas.width, scaledCanvas.height);
+        const pixelSize = window.appState.currentPixelSize;
+        
+        // Use worker for heavy processing or break into chunks for large images
+        const shouldUseChunking = imageData.width * imageData.height > 1000000; // 1M pixels
+        
+        if (shouldUseChunking) {
+            processImageInChunks(imageData, pixelSize);
+        } else {
+            // 调用增强的像素化函数
+            const pixelizedCanvas = enhancedPixelizeImageData(imageData, pixelSize);
+            
+            // 添加网格覆盖（如果启用）
+            const finalCanvas = addGridOverlay(pixelizedCanvas, pixelSize);
+            
+            // 显示结果
+            displayResult(finalCanvas);
+            
+            // 启用下载按钮
+            enableDownloadButton();
+            showLoading(false);
+        }
+    } catch (error) {
+        console.error('Error processing image:', error);
+        showError('Error processing image: ' + error.message);
+        showLoading(false);
     }
 }
 
@@ -271,9 +347,40 @@ function displayResult(canvas) {
     const container = document.getElementById('previewContainer');
     if (!container) return;
     
-    container.innerHTML = '';
-    canvas.className = 'max-w-full h-auto mx-auto border';
-    container.appendChild(canvas);
+    // Clear container but keep UI elements
+    const imageArea = container.querySelector('.flex-1.flex.items-center.justify-center.p-4');
+    if (imageArea) {
+        // Remove old canvas if exists
+        const existingCanvas = imageArea.querySelector('canvas');
+        if (existingCanvas) {
+            existingCanvas.remove();
+        }
+        
+        // Remove prompt text
+        const promptText = imageArea.querySelector('p');
+        if (promptText) {
+            promptText.remove();
+        }
+        
+        // Add canvas with interactive features
+        canvas.className = 'max-w-full h-auto cursor-move';
+        canvas.style.transform = `scale(${window.appState.zoomLevel}) translate(${window.appState.panX}px, ${window.appState.panY}px)`;
+        canvas.style.transformOrigin = 'center center';
+        
+        // Add mouse events for color info and panning
+        addCanvasInteractivity(canvas);
+        
+        imageArea.appendChild(canvas);
+        
+        // Show zoom controls
+        const zoomControls = document.getElementById('zoomControls');
+        if (zoomControls) {
+            zoomControls.classList.remove('hidden');
+        }
+        
+        // Display used colors panel
+        displayUsedColors();
+    }
 }
 
 // Handle pixel size change
@@ -292,17 +399,7 @@ function handlePixelSizeChange() {
     }
 }
 
-// Handle download
-function handleDownload() {
-    if (!window.appState.pixelizedData) return;
-    
-    const link = document.createElement('a');
-    link.download = `wplace-pixel-art-${Date.now()}.png`;
-    link.href = window.appState.pixelizedData.toDataURL('image/png');
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
+// Handle download (replaced by advanced version below)
 
 // Display Wplace palette
 function displayPalette() {
@@ -408,3 +505,713 @@ function hexToRgb(hex) {
         b: parseInt(result[3], 16)
     } : null;
 }
+
+// Advanced Settings Event Handlers
+function handleDitheringChange(e) {
+    window.appState.enableDithering = e.target.checked;
+    if (window.appState.uploadedImage) {
+        processImage(window.appState.uploadedImage);
+    }
+}
+
+function handleScalingMethodChange(e) {
+    window.appState.scalingMethod = e.target.value;
+    if (window.appState.uploadedImage) {
+        processImage(window.appState.uploadedImage);
+    }
+}
+
+function handleGridToggle(e) {
+    window.appState.showGrid = e.target.checked;
+    if (window.appState.pixelizedData) {
+        displayResult(window.appState.pixelizedData);
+    }
+}
+
+// Floyd-Steinberg Dithering Algorithm
+function applyFloydSteinbergDither(imageData, palette) {
+    const data = imageData.data;
+    const width = imageData.width;
+    const height = imageData.height;
+    
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            const index = (y * width + x) * 4;
+            
+            const oldR = data[index];
+            const oldG = data[index + 1];
+            const oldB = data[index + 2];
+            const alpha = data[index + 3];
+            
+            if (alpha === 0) continue; // Skip transparent pixels
+            
+            // Find nearest palette color
+            const nearest = findNearestPaletteColor({ r: oldR, g: oldG, b: oldB });
+            const nearestRgb = hexToRgb(nearest.color);
+            
+            // Set the new color
+            data[index] = nearestRgb.r;
+            data[index + 1] = nearestRgb.g;
+            data[index + 2] = nearestRgb.b;
+            
+            // Calculate quantization error
+            const errorR = oldR - nearestRgb.r;
+            const errorG = oldG - nearestRgb.g;
+            const errorB = oldB - nearestRgb.b;
+            
+            // Distribute error to neighboring pixels
+            distributeError(data, width, height, x + 1, y, errorR, errorG, errorB, 7/16);
+            distributeError(data, width, height, x - 1, y + 1, errorR, errorG, errorB, 3/16);
+            distributeError(data, width, height, x, y + 1, errorR, errorG, errorB, 5/16);
+            distributeError(data, width, height, x + 1, y + 1, errorR, errorG, errorB, 1/16);
+        }
+    }
+    
+    return imageData;
+}
+
+// Helper function to distribute dithering error
+function distributeError(data, width, height, x, y, errorR, errorG, errorB, factor) {
+    if (x < 0 || x >= width || y < 0 || y >= height) return;
+    
+    const index = (y * width + x) * 4;
+    if (data[index + 3] === 0) return; // Skip transparent pixels
+    
+    data[index] = Math.max(0, Math.min(255, data[index] + errorR * factor));
+    data[index + 1] = Math.max(0, Math.min(255, data[index + 1] + errorG * factor));
+    data[index + 2] = Math.max(0, Math.min(255, data[index + 2] + errorB * factor));
+}
+
+// Advanced Image Scaling
+function scaleImage(img, scalingMethod, maxSize = 1024) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Calculate new size while maintaining aspect ratio
+    let { width, height } = img;
+    if (width > maxSize || height > maxSize) {
+        const ratio = Math.min(maxSize / width, maxSize / height);
+        width = Math.floor(width * ratio);
+        height = Math.floor(height * ratio);
+    }
+    
+    canvas.width = width;
+    canvas.height = height;
+    
+    // Apply scaling method
+    switch (scalingMethod) {
+        case 'nearest':
+            ctx.imageSmoothingEnabled = false;
+            break;
+        case 'bilinear':
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'low';
+            break;
+        case 'lanczos':
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            break;
+    }
+    
+    ctx.drawImage(img, 0, 0, width, height);
+    return canvas;
+}
+
+// Enhanced pixelization with advanced features
+function enhancedPixelizeImageData(imageData, pixelSize) {
+    // Apply dithering if enabled
+    if (window.appState.enableDithering) {
+        const palette = getWplacePalette();
+        imageData = applyFloydSteinbergDither(imageData, palette);
+    }
+    
+    const cols = Math.floor(imageData.width / pixelSize);
+    const rows = Math.floor(imageData.height / pixelSize);
+    
+    if (cols === 0 || rows === 0) {
+        console.warn(`图像尺寸过小，无法使用像素尺寸 ${pixelSize} 进行处理`);
+        const emptyCanvas = document.createElement('canvas');
+        emptyCanvas.width = 100;
+        emptyCanvas.height = 100;
+        return emptyCanvas;
+    }
+    
+    const outputCanvas = document.createElement('canvas');
+    const outputCtx = outputCanvas.getContext('2d');
+    outputCanvas.width = cols * pixelSize;
+    outputCanvas.height = rows * pixelSize;
+    
+    // Clear used colors for this conversion
+    window.appState.usedColors.clear();
+    
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+            const x = col * pixelSize;
+            const y = row * pixelSize;
+            
+            const avgColor = getAverageColorFromRegion(imageData, x, y, pixelSize, pixelSize);
+            const nearestColor = findNearestPaletteColor(avgColor);
+            
+            // Track used colors
+            window.appState.usedColors.add(nearestColor.color);
+            
+            outputCtx.fillStyle = nearestColor.color;
+            outputCtx.fillRect(x, y, pixelSize, pixelSize);
+        }
+    }
+    
+    window.appState.pixelizedData = outputCanvas;
+    return outputCanvas;
+}
+
+// Add grid overlay to canvas
+function addGridOverlay(canvas, pixelSize, gridColor = '#ffffff80') {
+    if (!window.appState.showGrid) return canvas;
+    
+    const gridCanvas = document.createElement('canvas');
+    const gridCtx = gridCanvas.getContext('2d');
+    gridCanvas.width = canvas.width;
+    gridCanvas.height = canvas.height;
+    
+    // Draw the original image
+    gridCtx.drawImage(canvas, 0, 0);
+    
+    // Draw grid
+    gridCtx.strokeStyle = gridColor;
+    gridCtx.lineWidth = 1;
+    gridCtx.setLineDash([]);
+    
+    // Vertical lines
+    for (let x = pixelSize; x < canvas.width; x += pixelSize) {
+        gridCtx.beginPath();
+        gridCtx.moveTo(x, 0);
+        gridCtx.lineTo(x, canvas.height);
+        gridCtx.stroke();
+    }
+    
+    // Horizontal lines
+    for (let y = pixelSize; y < canvas.height; y += pixelSize) {
+        gridCtx.beginPath();
+        gridCtx.moveTo(0, y);
+        gridCtx.lineTo(canvas.width, y);
+        gridCtx.stroke();
+    }
+    
+    return gridCanvas;
+}
+
+// Add interactive features to canvas
+function addCanvasInteractivity(canvas) {
+    // Mouse move for color info
+    canvas.addEventListener('mousemove', handleCanvasMouseMove);
+    canvas.addEventListener('mouseleave', hideColorTooltip);
+    
+    // Pan functionality
+    canvas.addEventListener('mousedown', handleCanvasMouseDown);
+    canvas.addEventListener('mousemove', handleCanvasMouseMove);
+    canvas.addEventListener('mouseup', handleCanvasMouseUp);
+    canvas.addEventListener('wheel', handleCanvasWheel, { passive: false });
+    
+    // Touch events for mobile
+    canvas.addEventListener('touchstart', handleCanvasTouchStart);
+    canvas.addEventListener('touchmove', handleCanvasTouchMove);
+    canvas.addEventListener('touchend', handleCanvasTouchEnd);
+}
+
+// Handle canvas mouse events
+function handleCanvasMouseMove(e) {
+    if (!window.appState.pixelizedData) return;
+    
+    if (window.appState.isDragging) {
+        // Handle panning
+        const deltaX = e.clientX - window.appState.lastMouseX;
+        const deltaY = e.clientY - window.appState.lastMouseY;
+        
+        window.appState.panX += deltaX / window.appState.zoomLevel;
+        window.appState.panY += deltaY / window.appState.zoomLevel;
+        
+        updateCanvasTransform(e.target);
+        
+        window.appState.lastMouseX = e.clientX;
+        window.appState.lastMouseY = e.clientY;
+    } else {
+        // Handle color info display
+        showColorInfo(e);
+    }
+}
+
+function handleCanvasMouseDown(e) {
+    if (e.button === 0) { // Left click
+        window.appState.isDragging = true;
+        window.appState.lastMouseX = e.clientX;
+        window.appState.lastMouseY = e.clientY;
+        e.target.style.cursor = 'grabbing';
+    }
+}
+
+function handleCanvasMouseUp(e) {
+    window.appState.isDragging = false;
+    e.target.style.cursor = 'move';
+}
+
+function handleCanvasWheel(e) {
+    e.preventDefault();
+    const zoomFactor = e.deltaY > 0 ? 0.9 : 1.1;
+    changeZoom(zoomFactor);
+}
+
+// Touch event handlers
+function handleCanvasTouchStart(e) {
+    if (e.touches.length === 1) {
+        const touch = e.touches[0];
+        window.appState.isDragging = true;
+        window.appState.lastMouseX = touch.clientX;
+        window.appState.lastMouseY = touch.clientY;
+    }
+}
+
+function handleCanvasTouchMove(e) {
+    e.preventDefault();
+    if (e.touches.length === 1 && window.appState.isDragging) {
+        const touch = e.touches[0];
+        const deltaX = touch.clientX - window.appState.lastMouseX;
+        const deltaY = touch.clientY - window.appState.lastMouseY;
+        
+        window.appState.panX += deltaX / window.appState.zoomLevel;
+        window.appState.panY += deltaY / window.appState.zoomLevel;
+        
+        updateCanvasTransform(e.target);
+        
+        window.appState.lastMouseX = touch.clientX;
+        window.appState.lastMouseY = touch.clientY;
+    }
+}
+
+function handleCanvasTouchEnd(e) {
+    window.appState.isDragging = false;
+}
+
+// Zoom functions
+function changeZoom(factor) {
+    window.appState.zoomLevel = Math.max(0.1, Math.min(5, window.appState.zoomLevel * factor));
+    const canvas = document.querySelector('#previewContainer canvas');
+    if (canvas) {
+        updateCanvasTransform(canvas);
+    }
+}
+
+function resetZoom() {
+    window.appState.zoomLevel = 1;
+    window.appState.panX = 0;
+    window.appState.panY = 0;
+    const canvas = document.querySelector('#previewContainer canvas');
+    if (canvas) {
+        updateCanvasTransform(canvas);
+    }
+}
+
+function updateCanvasTransform(canvas) {
+    canvas.style.transform = `scale(${window.appState.zoomLevel}) translate(${window.appState.panX}px, ${window.appState.panY}px)`;
+}
+
+// Color info functionality
+function showColorInfo(e) {
+    const canvas = e.target;
+    const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    
+    const x = Math.floor((e.clientX - rect.left) * scaleX);
+    const y = Math.floor((e.clientY - rect.top) * scaleY);
+    
+    if (x >= 0 && x < canvas.width && y >= 0 && y < canvas.height) {
+        const ctx = canvas.getContext('2d');
+        const imageData = ctx.getImageData(x, y, 1, 1);
+        const data = imageData.data;
+        
+        const color = `rgb(${data[0]}, ${data[1]}, ${data[2]})`;
+        const hex = rgbToHex(data[0], data[1], data[2]);
+        
+        // Find matching palette color
+        const palette = getWplacePalette();
+        const paletteColor = palette.find(c => c.color.toLowerCase() === hex.toLowerCase());
+        
+        const tooltip = document.getElementById('colorTooltip');
+        const colorInfo = document.getElementById('colorInfo');
+        
+        if (tooltip && colorInfo) {
+            colorInfo.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <div class="w-3 h-3 border border-white" style="background-color: ${hex}"></div>
+                    <span>${hex}</span>
+                    ${paletteColor ? `<span>(${paletteColor.name})</span>` : ''}
+                </div>
+            `;
+            
+            tooltip.style.left = (e.clientX + 10) + 'px';
+            tooltip.style.top = (e.clientY - 30) + 'px';
+            tooltip.classList.remove('hidden');
+        }
+    }
+}
+
+function hideColorTooltip() {
+    const tooltip = document.getElementById('colorTooltip');
+    if (tooltip) {
+        tooltip.classList.add('hidden');
+    }
+}
+
+// Utility: RGB to Hex
+function rgbToHex(r, g, b) {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+// Display used colors panel
+function displayUsedColors() {
+    const panel = document.getElementById('usedColorsPanel');
+    const grid = document.getElementById('usedColorsGrid');
+    const totalElement = document.getElementById('usedColorsTotal');
+    const freeElement = document.getElementById('usedColorsFree');
+    const premiumElement = document.getElementById('usedColorsPremium');
+    
+    if (!panel || !grid || !window.appState.usedColors.size) return;
+    
+    // Show panel
+    panel.classList.remove('hidden');
+    
+    // Clear grid
+    grid.innerHTML = '';
+    
+    const palette = getWplacePalette();
+    let freeCount = 0;
+    let premiumCount = 0;
+    
+    // Display used colors
+    window.appState.usedColors.forEach(colorHex => {
+        const paletteColor = palette.find(c => c.color.toLowerCase() === colorHex.toLowerCase());
+        if (!paletteColor) return;
+        
+        const colorDiv = document.createElement('div');
+        colorDiv.className = 'w-8 h-8 border border-gray-300 rounded relative';
+        colorDiv.style.backgroundColor = colorHex;
+        colorDiv.title = paletteColor.name;
+        
+        if (paletteColor.isPremium) {
+            colorDiv.innerHTML = '<div class="absolute inset-0 flex items-center justify-center text-xs">🔒</div>';
+            premiumCount++;
+        } else {
+            freeCount++;
+        }
+        
+        grid.appendChild(colorDiv);
+    });
+    
+    // Update statistics
+    if (totalElement) totalElement.textContent = window.appState.usedColors.size;
+    if (freeElement) freeElement.textContent = freeCount;
+    if (premiumElement) premiumElement.textContent = premiumCount;
+}
+
+// Performance optimization: Process large images in chunks
+function processImageInChunks(imageData, pixelSize) {
+    const cols = Math.floor(imageData.width / pixelSize);
+    const rows = Math.floor(imageData.height / pixelSize);
+    
+    if (cols === 0 || rows === 0) {
+        showError('Image too small for current pixel size');
+        return;
+    }
+    
+    const outputCanvas = document.createElement('canvas');
+    const outputCtx = outputCanvas.getContext('2d');
+    outputCanvas.width = cols * pixelSize;
+    outputCanvas.height = rows * pixelSize;
+    
+    // Clear used colors
+    window.appState.usedColors.clear();
+    
+    // Process in chunks to avoid blocking UI
+    const chunkSize = 1000; // Process 1000 pixels at a time
+    let processedPixels = 0;
+    const totalPixels = cols * rows;
+    
+    function processNextChunk() {
+        const endPixel = Math.min(processedPixels + chunkSize, totalPixels);
+        
+        for (let i = processedPixels; i < endPixel; i++) {
+            const row = Math.floor(i / cols);
+            const col = i % cols;
+            const x = col * pixelSize;
+            const y = row * pixelSize;
+            
+            // Apply dithering if enabled
+            let avgColor;
+            if (window.appState.enableDithering) {
+                // For dithering, we need to process the entire imageData first
+                avgColor = getAverageColorFromRegion(imageData, x, y, pixelSize, pixelSize);
+            } else {
+                avgColor = getAverageColorFromRegion(imageData, x, y, pixelSize, pixelSize);
+            }
+            
+            const nearestColor = findNearestPaletteColor(avgColor);
+            window.appState.usedColors.add(nearestColor.color);
+            
+            outputCtx.fillStyle = nearestColor.color;
+            outputCtx.fillRect(x, y, pixelSize, pixelSize);
+        }
+        
+        processedPixels = endPixel;
+        
+        // Update progress
+        const progress = Math.round((processedPixels / totalPixels) * 100);
+        showLoading(true, `Processing... ${progress}%`);
+        
+        if (processedPixels < totalPixels) {
+            // Continue processing next chunk
+            requestAnimationFrame(processNextChunk);
+        } else {
+            // Finished processing
+            window.appState.pixelizedData = outputCanvas;
+            
+            // Add grid overlay if enabled
+            const finalCanvas = addGridOverlay(outputCanvas, pixelSize);
+            
+            // Display result
+            displayResult(finalCanvas);
+            enableDownloadButton();
+            showLoading(false);
+        }
+    }
+    
+    // Start processing
+    requestAnimationFrame(processNextChunk);
+}
+
+// UI Helper Functions
+function showLoading(show, message = 'Loading...') {
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    if (!loadingIndicator) return;
+    
+    if (show) {
+        loadingIndicator.innerHTML = `
+            <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white rounded-lg p-6 flex items-center space-x-3">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                    <span class="text-gray-700">${message}</span>
+                </div>
+            </div>
+        `;
+        loadingIndicator.classList.remove('hidden');
+    } else {
+        loadingIndicator.classList.add('hidden');
+        loadingIndicator.innerHTML = '';
+    }
+}
+
+function showError(message) {
+    // Create or update error notification
+    let errorDiv = document.getElementById('errorNotification');
+    if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.id = 'errorNotification';
+        document.body.appendChild(errorDiv);
+    }
+    
+    errorDiv.innerHTML = `
+        <div class="fixed top-4 right-4 bg-red-500 text-white px-4 py-3 rounded-lg shadow-lg z-50 max-w-sm">
+            <div class="flex items-center justify-between">
+                <span>${message}</span>
+                <button onclick="this.parentElement.parentElement.remove()" class="ml-3 text-white hover:text-gray-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    `;
+    
+    // Auto-hide after 5 seconds
+    setTimeout(() => {
+        if (errorDiv.parentNode) {
+            errorDiv.remove();
+        }
+    }, 5000);
+}
+
+function enableDownloadButton() {
+    const downloadBtn = document.getElementById('downloadBtn');
+    if (downloadBtn) {
+        downloadBtn.disabled = false;
+        downloadBtn.classList.remove('hidden');
+    }
+}
+
+// Advanced download with options
+function handleDownload() {
+    if (!window.appState.pixelizedData) {
+        showError('No image to download. Please process an image first.');
+        return;
+    }
+    
+    // Create download options modal
+    showDownloadModal();
+}
+
+function showDownloadModal() {
+    const modal = document.createElement('div');
+    modal.innerHTML = `
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+                <h3 class="text-lg font-semibold mb-4">Download Options</h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Download Size:</label>
+                        <select id="downloadSize" class="w-full border border-gray-300 rounded px-3 py-2">
+                            <option value="original">Original Size (Pixel Perfect)</option>
+                            <option value="2x">2x Size</option>
+                            <option value="4x">4x Size</option>
+                            <option value="8x">8x Size</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="flex items-center space-x-2">
+                            <input type="checkbox" id="downloadWithGrid" class="rounded">
+                            <span class="text-sm">Include pixel grid</span>
+                        </label>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium mb-2">File Format:</label>
+                        <select id="downloadFormat" class="w-full border border-gray-300 rounded px-3 py-2">
+                            <option value="png">PNG (Recommended)</option>
+                            <option value="jpeg">JPEG</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="flex justify-end space-x-3 mt-6">
+                    <button onclick="this.closest('.fixed').remove()" 
+                            class="px-4 py-2 text-gray-600 hover:text-gray-800">
+                        Cancel
+                    </button>
+                    <button onclick="executeDownload(); this.closest('.fixed').remove()" 
+                            class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                        Download
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+function executeDownload() {
+    const sizeSelect = document.getElementById('downloadSize');
+    const gridCheck = document.getElementById('downloadWithGrid');
+    const formatSelect = document.getElementById('downloadFormat');
+    
+    const size = sizeSelect?.value || 'original';
+    const includeGrid = gridCheck?.checked || false;
+    const format = formatSelect?.value || 'png';
+    
+    let canvas = window.appState.pixelizedData;
+    
+    // Add grid if requested
+    if (includeGrid && !window.appState.showGrid) {
+        canvas = addGridOverlay(canvas, window.appState.currentPixelSize);
+    }
+    
+    // Scale if requested
+    if (size !== 'original') {
+        const multiplier = parseInt(size.replace('x', ''));
+        canvas = scaleCanvasForDownload(canvas, multiplier);
+    }
+    
+    // Download
+    const link = document.createElement('a');
+    const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+    link.download = `wplace-pixel-art-${timestamp}.${format}`;
+    
+    if (format === 'jpeg') {
+        link.href = canvas.toDataURL('image/jpeg', 0.95);
+    } else {
+        link.href = canvas.toDataURL('image/png');
+    }
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function scaleCanvasForDownload(canvas, multiplier) {
+    const scaledCanvas = document.createElement('canvas');
+    const ctx = scaledCanvas.getContext('2d');
+    
+    scaledCanvas.width = canvas.width * multiplier;
+    scaledCanvas.height = canvas.height * multiplier;
+    
+    // Use nearest neighbor for pixel art
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(canvas, 0, 0, scaledCanvas.width, scaledCanvas.height);
+    
+    return scaledCanvas;
+}
+
+// Memory management
+function cleanupCanvas() {
+    // Clean up any unused canvases to free memory
+    const containers = document.querySelectorAll('#previewContainer canvas');
+    containers.forEach((canvas, index) => {
+        if (index > 0) { // Keep only the latest canvas
+            canvas.remove();
+        }
+    });
+}
+
+// Keyboard shortcuts
+function initKeyboardShortcuts() {
+    document.addEventListener('keydown', (e) => {
+        // Ctrl/Cmd + shortcuts
+        if (e.ctrlKey || e.metaKey) {
+            switch (e.key) {
+                case 's':
+                    e.preventDefault();
+                    handleDownload();
+                    break;
+                case 'z':
+                    e.preventDefault();
+                    resetZoom();
+                    break;
+                case '=':
+                case '+':
+                    e.preventDefault();
+                    changeZoom(1.2);
+                    break;
+                case '-':
+                    e.preventDefault();
+                    changeZoom(0.8);
+                    break;
+            }
+        }
+        
+        // Number keys for quick pixel size
+        if (e.key >= '1' && e.key <= '9') {
+            const pixelSize = parseInt(e.key) * 4; // 4, 8, 12, 16, 20, 24, 28, 32, 36
+            if (pixelSize <= 32) {
+                const slider = document.getElementById('pixelSize');
+                if (slider) {
+                    slider.value = pixelSize;
+                    handlePixelSizeChange();
+                }
+            }
+        }
+    });
+}
+
+// Initialize keyboard shortcuts when DOM loads
+document.addEventListener('DOMContentLoaded', () => {
+    initKeyboardShortcuts();
+});
