@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Wplace Tool - Learn Pixel Art Techniques</title>
+  <link rel="canonical" href="https://wplacetool.app/blog.html" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous"></script>
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body class="bg-background text-foreground min-h-screen">
+  <!-- Header Navigation -->
+  <header class="bg-card shadow-sm border-border border-b sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 relative">
+        <!-- Logo and Brand -->
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-sm">W</span>
+          </div>
+          <h2 class="text-xl font-bold text-card-foreground">Wplace Tool</h2>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="hidden md:flex items-center space-x-6 ml-auto">
+          <a href="index.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Home</a>
+          <a href="color-converter.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Converter</a>
+          <a href="blog.html" class="text-blue-600 px-3 py-2 text-sm font-medium border-b-2 border-blue-600">Blog</a>
+          <a href="about.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">About</a>
+          <a href="privacy.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Privacy</a>
+          <a href="terms.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Terms</a>
+        </nav>
+
+        <!-- Mobile Menu Button & Language Selector -->
+        <div class="flex items-center space-x-3">
+          <!-- Mobile menu button -->
+          <button id="mobileMenuButton" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+          
+          <!-- Language Selector -->
+          <div class="bg-muted rounded-lg border-border border p-1">
+            <select id="languageSelector" class="bg-transparent border-none focus:outline-none cursor-pointer text-sm font-medium px-2 py-1">
+              <option value="en" selected>English</option>
+              <option value="zh">中文</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="md:hidden bg-white border-t border-gray-200 hidden">
+      <div class="px-4 py-3 space-y-2">
+        <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Home</a>
+        <a href="color-converter.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Converter</a>
+        <a href="blog.html" class="block px-3 py-2 text-blue-600 text-sm font-medium">Blog</a>
+        <a href="about.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">About</a>
+        <a href="privacy.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Privacy</a>
+        <a href="terms.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Terms</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Blog</h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Unlock your creative potential on the Wplace canvas. Our blog is your go-to resource for mastering pixel art techniques, enhancing your Wplace painting skills, and making the most of our powerful tools through in-depth guides and inspiring tutorials.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Articles -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="space-y-12">
+      
+      <!-- Article 1 -->
+      <article class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div class="p-8">
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <time datetime="2024-12-15">December 15, 2024</time>
+            <span class="mx-2">•</span>
+            <span>5 min read</span>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Getting Started: Your Essential Guide to the Wplace Tool</h2>
+          <p class="text-gray-600 mb-6 leading-relaxed">Embark on your pixel art journey with our comprehensive beginner's guide. Learn to effortlessly transform any image into stunning Wplace-compatible pixel art, covering everything from initial uploads to advanced color palette matching and optimization techniques.</p>
+          <a href="blog/beginner-guide.html" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+            Read more
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div class="p-8">
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <time datetime="2024-12-10">December 10, 2024</time>
+            <span class="mx-2">•</span>
+            <span>7 min read</span>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Mastering Color: Advanced Palette Strategies for Wplace Artists</h2>
+          <p class="text-gray-600 mb-6 leading-relaxed">Elevate your pixel art with expert insights into color theory and palette customization. Discover professional strategies to achieve perfect color harmony, create vibrant compositions, and make your artwork truly stand out on the Wplace canvas.</p>
+          <a href="blog/color-palette-strategies.html" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+            Read more
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div class="p-8">
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <time datetime="2024-12-05">December 5, 2024</time>
+            <span class="mx-2">•</span>
+            <span>4 min read</span>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Pixel Perfect Scaling: A Deep Dive into Image Resampling</h2>
+          <p class="text-gray-600 mb-6 leading-relaxed">Demystify image scaling with our detailed explanation of Nearest Neighbor, Bilinear, and Lanczos methods. Understand their practical implications for pixel art, ensuring you choose the optimal technique to preserve quality and achieve crisp results.</p>
+          <a href="blog/image-resampling.html" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+            Read more
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          
+        </div>
+      </article>
+
+      <!-- Article 4 -->
+      <article class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div class="p-8">
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <time datetime="2024-11-28">November 28, 2024</time>
+            <span class="mx-2">•</span>
+            <span>6 min read</span>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">Enhancing Detail: The Art and Science of Dithering in Pixel Art</h2>
+          <p class="text-gray-600 mb-6 leading-relaxed">Uncover the power of dithering, including Floyd-Steinberg, to achieve smoother color gradients and richer textures in your pixel art. Learn how these techniques can enhance detail, reduce banding, and contribute to an authentic retro aesthetic.</p>
+          <a href="blog/dithering-techniques.html" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+            Read more
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h3 class="text-2xl font-bold mb-6">About Wplace Tool</h3>
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8">
+          <a href="about.html" class="text-gray-400 hover:text-white text-sm">About</a>
+          <a href="privacy.html" class="text-gray-400 hover:text-white text-sm">Privacy</a>
+          <a href="terms.html" class="text-gray-400 hover:text-white text-sm">Terms</a>
+          <a href="blog.html" class="text-gray-400 hover:text-white text-sm">Blog</a>
+          <a href="index.html" class="text-gray-400 hover:text-white text-sm">Home</a>
+          <a href="color-converter.html" class="text-gray-400 hover:text-white text-sm">Wplace Color Converter</a>
+        </div>
+        
+        <!-- Independent Fan Site Notice -->
+        <div class="bg-blue-900 rounded-lg p-4 mb-6 text-sm">
+          <div class="flex items-center justify-center mb-2">
+            <svg class="w-5 h-5 text-blue-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+            </svg>
+            <span class="font-semibold text-blue-400">Independent Fan Site</span>
+          </div>
+          <p class="text-gray-300">This is an unofficial, independent fan-made website created to address community pixel needs. We are not affiliated with or endorsed by the official Wplace platform. This tool was developed by fans, for fans, to enhance the pixel art creation experience.</p>
+        </div>
+        
+        <p class="text-gray-400 text-sm">© 2025 Wplace Tool - Help Wplace Player Paint Easily - Free to use, no ownership claimed on generated artwork<br>Client-side processing protects your privacy</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Core App Logic -->
+  <script type="module" src="js/app-final.js" defer></script>
+</body>
+</html>
