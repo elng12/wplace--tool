@@ -10,6 +10,465 @@ let isProcessing = false;
 let batchQueue = [];
 let batchResults = [];
 
+// 多语言全局变量
+let currentLanguage = 'zh';
+let translations = {};
+
+// 内置翻译数据 - 避免CORS问题
+const BUILTIN_TRANSLATIONS = {
+    'zh': {
+        "title": "Wplace 像素艺术转换器 | 将图像转换为像素艺术",
+        "subtitle": "终极的 Wplace 像素艺术转换器，几秒钟内将任何图像转换为惊艳的像素艺术。我们的免费在线工具自动匹配 Wplace 官方 64 色调色板，立即为您提供专业效果。完美适用于 Wplace.live 玩家和像素艺术爱好者。",
+        "nav.home": "首页",
+        "nav.blog": "博客", 
+        "nav.about": "关于",
+        "nav.privacy": "隐私政策",
+        "nav.terms": "服务条款",
+        "upload.main": "点击上传或拖拽图片至此",
+        "upload.sub": "支持 PNG, JPG 格式（最大 4MB）",
+        "pixel.size": "像素尺寸",
+        "pixel.desc": "调整滑块时自动转换",
+        "advanced.title": "高级设置",
+        "advanced.dithering": "启用 Floyd-Steinberg 抖动算法",
+        "advanced.scaling": "图像缩放方式：",
+        "advanced.grid": "显示像素网格",
+        "scaling.nearest": "最近邻插值",
+        "scaling.bilinear": "双线性插值",
+        "scaling.lanczos": "Lanczos 算法",
+        "preview.title": "Wplace 像素画预览",
+        "preview.prompt": "请上传一张图片开始",
+        "btn.download": "下载",
+        "loading": "处理中...",
+        "used.colors.title": "此图像使用的颜色",
+        "used.colors.total": "总计",
+        "used.colors.free": "免费",
+        "used.colors.premium": "付费",
+        "palette.title": "Wplace 64 色调色板",
+        "palette.free": "免费 (32)",
+        "palette.premium": "付费 (32)",
+        "palette.info": "官方 Wplace 调色板",
+        "features.special.title": "什么让我们的 Wplace 图像转换器特别？",
+        "features.unlimited.desc": "上传任意尺寸的图片。Wplace 像素艺术转换器高效处理一切。",
+        "howto.step4.desc": "选择像素完美或大尺寸版本。您的 Wplace 像素艺术已准备就绪！",
+        "faq.a6": "是的！使用 Wplace 像素艺术转换器创作的艺术品您可以自由用于个人或商业项目。我们对您的创作不主张任何所有权。",
+        "testimonials.q6": "清晰的预览和一键下载为我提供了干净的参考。我只需打开 Wplace 然后绘画——无需猜测。",
+        "footer.main": "© 2025 Wplace 像素艺术转换器 - 免费使用，对生成的艺术品不主张所有权",
+        "footer.privacy": "客户端处理保护您的隐私",
+        "progress.highPerformance": "使用高性能模式处理",
+        "progress.nearlyFinished": "即将完成",
+        "progress.almostThere": "马上就好",
+        "language.switched": "语言已切换"
+    },
+    
+    'en': {
+        "title": "Wplace Pixel Art Converter | Convert Images to Pixel Art",
+        "subtitle": "The ultimate Wplace pixel art converter that transforms any image into stunning pixel art in seconds. Our free online tool automatically matches the official Wplace 64-color palette, giving you professional results instantly. Perfect for Wplace.live players and pixel art enthusiasts.",
+        "nav.home": "Home",
+        "nav.blog": "Blog",
+        "nav.about": "About",
+        "nav.privacy": "Privacy Policy",
+        "nav.terms": "Terms of Service",
+        "upload.main": "Click to upload or drag image here",
+        "upload.sub": "Supports PNG, JPG formats (Max 4MB)",
+        "pixel.size": "Pixel Size",
+        "pixel.desc": "Auto-converts as you adjust slider",
+        "advanced.title": "Advanced Settings",
+        "advanced.dithering": "Enable Floyd-Steinberg Dithering",
+        "advanced.scaling": "Image Scaling Method:",
+        "advanced.grid": "Show Pixel Grid",
+        "scaling.nearest": "Nearest Neighbor",
+        "scaling.bilinear": "Bilinear",
+        "scaling.lanczos": "Lanczos",
+        "preview.title": "Wplace Pixel Paint Preview",
+        "preview.prompt": "Please upload an image to start",
+        "btn.download": "Download",
+        "loading": "Processing...",
+        "used.colors.title": "Colors Used in This Image",
+        "used.colors.total": "Total",
+        "used.colors.free": "Free",
+        "used.colors.premium": "Premium",
+        "palette.title": "Wplace 64-Color Palette",
+        "palette.free": "Free (32)",
+        "palette.premium": "Premium (32)",
+        "palette.info": "Official Wplace Color Palette",
+        "language.switched": "Language switched"
+    },
+    
+    'fr': {
+        "title": "Convertisseur Art Pixel Wplace | Convertir Images en Art Pixel",
+        "subtitle": "Le convertisseur d'art pixel Wplace ultime qui transforme n'importe quelle image en art pixel époustouflant en quelques secondes.",
+        "nav.home": "Accueil",
+        "nav.blog": "Blog",
+        "nav.about": "À propos",
+        "nav.privacy": "Confidentialité",
+        "nav.terms": "Conditions",
+        "upload.main": "Cliquez pour télécharger ou glissez l'image ici",
+        "upload.sub": "Supporte PNG, JPG (Max 4MB)",
+        "pixel.size": "Taille Pixel",
+        "pixel.desc": "Conversion automatique en ajustant le curseur",
+        "advanced.title": "Paramètres Avancés",
+        "advanced.dithering": "Activer le tramage Floyd-Steinberg",
+        "advanced.scaling": "Méthode de mise à l'échelle:",
+        "advanced.grid": "Afficher la grille de pixels",
+        "scaling.nearest": "Plus proche voisin",
+        "scaling.bilinear": "Bilinéaire",
+        "scaling.lanczos": "Lanczos",
+        "preview.title": "Aperçu Wplace Pixel Paint",
+        "preview.prompt": "Veuillez télécharger une image pour commencer",
+        "btn.download": "Télécharger",
+        "loading": "Traitement...",
+        "used.colors.title": "Couleurs utilisées dans cette image",
+        "used.colors.total": "Total",
+        "used.colors.free": "Gratuit",
+        "used.colors.premium": "Premium",
+        "palette.title": "Palette 64 couleurs Wplace",
+        "palette.free": "Gratuit (32)",
+        "palette.premium": "Premium (32)",
+        "palette.info": "Palette officielle Wplace",
+        "language.switched": "Langue changée"
+    },
+    
+    'es': {
+        "title": "Convertidor Arte Pixel Wplace | Convertir Imágenes a Arte Pixel",
+        "subtitle": "El convertidor de arte pixel Wplace definitivo que transforma cualquier imagen en arte pixel impresionante en segundos.",
+        "nav.home": "Inicio",
+        "nav.blog": "Blog",
+        "nav.about": "Acerca de",
+        "nav.privacy": "Privacidad",
+        "nav.terms": "Términos",
+        "upload.main": "Haz clic para subir o arrastra la imagen aquí",
+        "upload.sub": "Soporta PNG, JPG (Máx 4MB)",
+        "pixel.size": "Tamaño Pixel",
+        "pixel.desc": "Auto-convierte al ajustar el deslizador",
+        "advanced.title": "Configuración Avanzada",
+        "advanced.dithering": "Habilitar difuminado Floyd-Steinberg",
+        "advanced.scaling": "Método de escalado de imagen:",
+        "advanced.grid": "Mostrar cuadrícula de píxeles",
+        "scaling.nearest": "Vecino más cercano",
+        "scaling.bilinear": "Bilineal",
+        "scaling.lanczos": "Lanczos",
+        "preview.title": "Vista previa Wplace Pixel Paint",
+        "preview.prompt": "Por favor sube una imagen para comenzar",
+        "btn.download": "Descargar",
+        "loading": "Procesando...",
+        "used.colors.title": "Colores usados en esta imagen",
+        "used.colors.total": "Total",
+        "used.colors.free": "Gratis",
+        "used.colors.premium": "Premium",
+        "palette.title": "Paleta 64 colores Wplace",
+        "palette.free": "Gratis (32)",
+        "palette.premium": "Premium (32)",
+        "palette.info": "Paleta oficial Wplace",
+        "language.switched": "Idioma cambiado"
+    },
+    
+    'de': {
+        "title": "Wplace Pixel Art Konverter | Bilder zu Pixel Art konvertieren",
+        "subtitle": "Der ultimative Wplace Pixel Art Konverter, der jedes Bild in Sekunden in beeindruckende Pixel Art verwandelt.",
+        "nav.home": "Startseite",
+        "nav.blog": "Blog",
+        "nav.about": "Über uns",
+        "nav.privacy": "Datenschutz",
+        "nav.terms": "Nutzungsbedingungen",
+        "upload.main": "Klicken Sie zum Hochladen oder ziehen Sie das Bild hierher",
+        "upload.sub": "Unterstützt PNG, JPG-Formate (Max 4MB)",
+        "pixel.size": "Pixelgröße",
+        "pixel.desc": "Automatische Konvertierung beim Anpassen des Schiebereglers",
+        "advanced.title": "Erweiterte Einstellungen",
+        "advanced.dithering": "Floyd-Steinberg-Dithering aktivieren",
+        "advanced.scaling": "Bildskalierungsmethode:",
+        "advanced.grid": "Pixelraster anzeigen",
+        "scaling.nearest": "Nächster Nachbar",
+        "scaling.bilinear": "Bilinear",
+        "scaling.lanczos": "Lanczos",
+        "preview.title": "Wplace Pixel Paint Ergebnis",
+        "preview.prompt": "Bitte laden Sie ein Bild hoch, um zu beginnen",
+        "btn.download": "Herunterladen",
+        "loading": "Verarbeitung...",
+        "used.colors.title": "In diesem Bild verwendete Farben",
+        "used.colors.total": "Gesamt",
+        "used.colors.free": "Kostenlos",
+        "used.colors.premium": "Premium",
+        "palette.title": "Wplace 64-Farben-Palette",
+        "palette.free": "Kostenlos (32)",
+        "palette.premium": "Premium (32)",
+        "palette.info": "Offizielle Wplace-Farbpalette",
+        "language.switched": "Sprache gewechselt"
+    },
+    
+    'ja': {
+        "title": "Wplace ピクセルアート変換器 | 画像をピクセルアートに変換",
+        "subtitle": "あらゆる画像を数秒で素晴らしいピクセルアートに変換する究極のWplaceピクセルアート変換器。",
+        "nav.home": "ホーム",
+        "nav.blog": "ブログ",
+        "nav.about": "概要",
+        "nav.privacy": "プライバシー",
+        "nav.terms": "利用規約",
+        "upload.main": "クリックしてアップロードするか、画像をここにドラッグ",
+        "upload.sub": "PNG、JPGフォーマットをサポート（最大4MB）",
+        "pixel.size": "ピクセルサイズ",
+        "pixel.desc": "スライダーを調整すると自動変換",
+        "advanced.title": "詳細設定",
+        "advanced.dithering": "Floyd-Steinbergディザリングを有効にする",
+        "advanced.scaling": "画像スケーリング方法：",
+        "advanced.grid": "ピクセルグリッドを表示",
+        "scaling.nearest": "最近傍補間",
+        "scaling.bilinear": "バイリニア",
+        "scaling.lanczos": "Lanczos",
+        "preview.title": "Wplaceピクセルペイント結果",
+        "preview.prompt": "開始するには画像をアップロードしてください",
+        "btn.download": "ダウンロード",
+        "loading": "処理中...",
+        "used.colors.title": "この画像で使用された色",
+        "used.colors.total": "合計",
+        "used.colors.free": "無料",
+        "used.colors.premium": "プレミアム",
+        "palette.title": "Wplace 64色パレット",
+        "palette.free": "無料 (32)",
+        "palette.premium": "プレミアム (32)",
+        "palette.info": "公式Wplaceカラーパレット",
+        "language.switched": "言語が切り替わりました"
+    },
+    
+    'pt': {
+        "title": "Conversor de Arte Pixel Wplace | Converter Imagens em Arte Pixel",
+        "subtitle": "O conversor de arte pixel Wplace definitivo que transforma qualquer imagem em arte pixel impressionante em segundos.",
+        "nav.home": "Início",
+        "nav.blog": "Blog",
+        "nav.about": "Sobre",
+        "nav.privacy": "Privacidade",
+        "nav.terms": "Termos",
+        "upload.main": "Clique para enviar ou arraste a imagem aqui",
+        "upload.sub": "Suporta PNG, JPG (Máx 4MB)",
+        "pixel.size": "Tamanho do Pixel",
+        "pixel.desc": "Converte automaticamente ao ajustar o controle deslizante",
+        "advanced.title": "Configurações Avançadas",
+        "advanced.dithering": "Ativar pontilhamento Floyd-Steinberg",
+        "advanced.scaling": "Método de redimensionamento de imagem:",
+        "advanced.grid": "Mostrar grade de pixels",
+        "scaling.nearest": "Vizinho mais próximo",
+        "scaling.bilinear": "Bilinear",
+        "scaling.lanczos": "Lanczos",
+        "preview.title": "Visualização Wplace Pixel Paint",
+        "preview.prompt": "Por favor, envie uma imagem para começar",
+        "btn.download": "Baixar",
+        "loading": "Processando...",
+        "used.colors.title": "Cores usadas nesta imagem",
+        "used.colors.total": "Total",
+        "used.colors.free": "Grátis",
+        "used.colors.premium": "Premium",
+        "palette.title": "Paleta de 64 cores Wplace",
+        "palette.free": "Grátis (32)",
+        "palette.premium": "Premium (32)",
+        "palette.info": "Paleta oficial Wplace",
+        "language.switched": "Idioma alterado"
+    },
+    
+    'th': {
+        "title": "เครื่องมือแปลงภาพเป็นพิกเซลอาร์ต Wplace | แปลงภาพเป็นพิกเซลอาร์ต",
+        "subtitle": "เครื่องมือแปลงพิกเซลอาร์ต Wplace ที่สมบูรณ์แบบที่สามารถแปลงภาพใดๆ เป็นพิกเซลอาร์ตที่น่าทึ่งในไม่กี่วินาที",
+        "nav.home": "หน้าแรก",
+        "nav.blog": "บล็อก",
+        "nav.about": "เกี่ยวกับ",
+        "nav.privacy": "ความเป็นส่วนตัว",
+        "nav.terms": "เงื่อนไข",
+        "upload.main": "คลิกเพื่ออัปโหลดหรือลากภาพมาที่นี่",
+        "upload.sub": "รองรับ PNG, JPG (สูงสุด 4MB)",
+        "pixel.size": "ขนาดพิกเซล",
+        "pixel.desc": "แปลงอัตโนมัติเมื่อปรับแถบเลื่อน",
+        "advanced.title": "การตั้งค่าขั้นสูง",
+        "advanced.dithering": "เปิดใช้งาน Floyd-Steinberg Dithering",
+        "advanced.scaling": "วิธีการปรับขนาดภาพ:",
+        "advanced.grid": "แสดงกริดพิกเซล",
+        "scaling.nearest": "เพื่อนบ้านที่ใกล้ที่สุด",
+        "scaling.bilinear": "ไบลิเนียร์",
+        "scaling.lanczos": "Lanczos",
+        "preview.title": "ตัวอย่าง Wplace Pixel Paint",
+        "preview.prompt": "กรุณาอัปโหลดภาพเพื่อเริ่มต้น",
+        "btn.download": "ดาวน์โหลด",
+        "loading": "กำลังประมวลผล...",
+        "used.colors.title": "สีที่ใช้ในภาพนี้",
+        "used.colors.total": "รวม",
+        "used.colors.free": "ฟรี",
+        "used.colors.premium": "พรีเมียม",
+        "palette.title": "พาเลต 64 สี Wplace",
+        "palette.free": "ฟรี (32)",
+        "palette.premium": "พรีเมียม (32)",
+        "palette.info": "พาเลตสีอย่างเป็นทางการ Wplace",
+        "language.switched": "เปลี่ยนภาษาแล้ว"
+    },
+    
+    'mi': {
+        "title": "Wplace Pixel Art Tawhiri | Huringa Whakaahua ki Pixel Art",
+        "subtitle": "Te tawhiri pixel art Wplace mutunga rawa e huringa ai tetahi whakaahua ki te pixel art atahua i roto i nga hekona.",
+        "nav.home": "Kāinga",
+        "nav.blog": "Purongo",
+        "nav.about": "Mō",
+        "nav.privacy": "Taupua",
+        "nav.terms": "Ritenga",
+        "upload.main": "Pāwhiri hei tikiake rānei whakakino te whakaahua ki konei",
+        "upload.sub": "Tautoko PNG, JPG (Mutunga 4MB)",
+        "pixel.size": "Rahi Pixel",
+        "pixel.desc": "Huringa aunoa i a koe ka whakakā i te whakakino",
+        "advanced.title": "Tautuhinga Matatau",
+        "advanced.dithering": "Whakangāwari Floyd-Steinberg Dithering",
+        "advanced.scaling": "Tikanga Whakanui Whakaahua:",
+        "advanced.grid": "Whakaatu Grid Pixel",
+        "scaling.nearest": "Hoa Tata",
+        "scaling.bilinear": "Bilinear",
+        "scaling.lanczos": "Lanczos",
+        "preview.title": "Whakaatu Wplace Pixel Paint",
+        "preview.prompt": "Tēnā koa tikiake he whakaahua kia tīmata",
+        "btn.download": "Tikiake",
+        "loading": "E mahi ana...",
+        "used.colors.title": "Ngā tae i whakamahia i tēnei whakaahua",
+        "used.colors.total": "Tapeke",
+        "used.colors.free": "Kore utu",
+        "used.colors.premium": "Premium",
+        "palette.title": "Wplace 64-tae Palette",
+        "palette.free": "Kore utu (32)",
+        "palette.premium": "Premium (32)",
+        "palette.info": "Wplace Palette ōkawa",
+        "language.switched": "Reo huringa"
+    },
+    
+    'tr': {
+        "title": "Wplace Piksel Sanatı Dönüştürücü | Resimleri Piksel Sanatına Dönüştür",
+        "subtitle": "Herhangi bir resmi saniyeler içinde çarpıcı piksel sanatına dönüştüren nihai Wplace piksel sanatı dönüştürücü.",
+        "nav.home": "Ana Sayfa",
+        "nav.blog": "Blog",
+        "nav.about": "Hakkında",
+        "nav.privacy": "Gizlilik",
+        "nav.terms": "Şartlar",
+        "upload.main": "Yüklemek için tıklayın veya resmi buraya sürükleyin",
+        "upload.sub": "PNG, JPG destekler (Maks 4MB)",
+        "pixel.size": "Piksel Boyutu",
+        "pixel.desc": "Kaydırıcıyı ayarlarken otomatik dönüştürür",
+        "advanced.title": "Gelişmiş Ayarlar",
+        "advanced.dithering": "Floyd-Steinberg Titreşimi etkinleştir",
+        "advanced.scaling": "Resim Ölçekleme Yöntemi:",
+        "advanced.grid": "Piksel Izgarasını Göster",
+        "scaling.nearest": "En Yakın Komşu",
+        "scaling.bilinear": "Bilinear",
+        "scaling.lanczos": "Lanczos",
+        "preview.title": "Wplace Piksel Boyama Önizlemesi",
+        "preview.prompt": "Başlamak için lütfen bir resim yükleyin",
+        "btn.download": "İndir",
+        "loading": "İşleniyor...",
+        "used.colors.title": "Bu resimde kullanılan renkler",
+        "used.colors.total": "Toplam",
+        "used.colors.free": "Ücretsiz",
+        "used.colors.premium": "Premium",
+        "palette.title": "Wplace 64-Renk Paleti",
+        "palette.free": "Ücretsiz (32)",
+        "palette.premium": "Premium (32)",
+        "palette.info": "Resmi Wplace Renk Paleti",
+        "language.switched": "Dil değiştirildi"
+    },
+    
+    'gn': {
+        "title": "Wplace Pixel Art Moambue | Moambue ta'anga Pixel Art-pe",
+        "subtitle": "Wplace pixel art moambue ipyahuvéva omoambuéva oimeraẽ ta'anga pixel art porãitépe aravo'i mboyve.",
+        "nav.home": "Ñepyrũ",
+        "nav.blog": "Blog",
+        "nav.about": "Rehegua",
+        "nav.privacy": "Ñemiguáva",
+        "nav.terms": "Ñemboguata",
+        "upload.main": "Ejesareko ehupi térã embojere ta'anga ko'ápe",
+        "upload.sub": "Oipytyvõ PNG, JPG (Máx 4MB)",
+        "pixel.size": "Pixel Tuichakue",
+        "pixel.desc": "Oñemoambue ijeheguiete reñembopyahu jave slider",
+        "advanced.title": "Ñemboheko Aranduvéva",
+        "advanced.dithering": "Emyendy Floyd-Steinberg Dithering",
+        "advanced.scaling": "Ta'anga Ñembotuicha Mba'éichapa:",
+        "advanced.grid": "Ehechauka Pixel Grid",
+        "scaling.nearest": "Tovaicha Oîva",
+        "scaling.bilinear": "Bilinear",
+        "scaling.lanczos": "Lanczos",
+        "preview.title": "Wplace Pixel Paint Jehechauka",
+        "preview.prompt": "Ikatúpiko embojepy peteĩ ta'anga eñepyrũ hag̃ua",
+        "btn.download": "Emboguejy",
+        "loading": "Oñembosako'i...",
+        "used.colors.title": "Sa'y ojepuru ko ta'ángape",
+        "used.colors.total": "Opavave",
+        "used.colors.free": "Reiguáva",
+        "used.colors.premium": "Premium",
+        "palette.title": "Wplace 64-sa'y Paleta",
+        "palette.free": "Reiguáva (32)",
+        "palette.premium": "Premium (32)",
+        "palette.info": "Wplace Sa'y Paleta Oficial",
+        "language.switched": "Ñe'ẽ oñemoambue"
+    },
+    
+    'vi': {
+        "title": "Bộ Chuyển Đổi Pixel Art Wplace | Chuyển Đổi Hình Ảnh Thành Pixel Art",
+        "subtitle": "Bộ chuyển đổi pixel art Wplace tối ưu biến đổi bất kỳ hình ảnh nào thành pixel art tuyệt đẹp trong vài giây.",
+        "nav.home": "Trang Chủ",
+        "nav.blog": "Blog",
+        "nav.about": "Giới Thiệu",
+        "nav.privacy": "Quyền Riêng Tư",
+        "nav.terms": "Điều Khoản",
+        "upload.main": "Nhấp để tải lên hoặc kéo hình ảnh vào đây",
+        "upload.sub": "Hỗ trợ PNG, JPG (Tối đa 4MB)",
+        "pixel.size": "Kích Thước Pixel",
+        "pixel.desc": "Tự động chuyển đổi khi bạn điều chỉnh thanh trượt",
+        "advanced.title": "Cài Đặt Nâng Cao",
+        "advanced.dithering": "Bật Floyd-Steinberg Dithering",
+        "advanced.scaling": "Phương Pháp Chia Tỷ Lệ Hình Ảnh:",
+        "advanced.grid": "Hiển Thị Lưới Pixel",
+        "scaling.nearest": "Láng Giềng Gần Nhất",
+        "scaling.bilinear": "Song Tuyến",
+        "scaling.lanczos": "Lanczos",
+        "preview.title": "Xem Trước Wplace Pixel Paint",
+        "preview.prompt": "Vui lòng tải lên một hình ảnh để bắt đầu",
+        "btn.download": "Tải Xuống",
+        "loading": "Đang xử lý...",
+        "used.colors.title": "Màu được sử dụng trong hình ảnh này",
+        "used.colors.total": "Tổng",
+        "used.colors.free": "Miễn Phí",
+        "used.colors.premium": "Cao Cấp",
+        "palette.title": "Bảng Màu 64 Màu Wplace",
+        "palette.free": "Miễn Phí (32)",
+        "palette.premium": "Cao Cấp (32)",
+        "palette.info": "Bảng Màu Chính Thức Wplace",
+        "language.switched": "Đã chuyển đổi ngôn ngữ"
+    },
+    
+    'pl': {
+        "title": "Konwerter Pixel Art Wplace | Konwertuj Obrazy na Pixel Art",
+        "subtitle": "Najlepszy konwerter pixel art Wplace, który przekształca dowolny obraz w oszałamiający pixel art w kilka sekund.",
+        "nav.home": "Strona Główna",
+        "nav.blog": "Blog",
+        "nav.about": "O Nas",
+        "nav.privacy": "Prywatność",
+        "nav.terms": "Warunki",
+        "upload.main": "Kliknij, aby przesłać lub przeciągnij obraz tutaj",
+        "upload.sub": "Obsługuje PNG, JPG (Maks 4MB)",
+        "pixel.size": "Rozmiar Piksela",
+        "pixel.desc": "Automatycznie konwertuje podczas dostosowywania suwaka",
+        "advanced.title": "Ustawienia Zaawansowane",
+        "advanced.dithering": "Włącz dithering Floyd-Steinberg",
+        "advanced.scaling": "Metoda Skalowania Obrazu:",
+        "advanced.grid": "Pokaż Siatkę Pikseli",
+        "scaling.nearest": "Najbliższy Sąsiad",
+        "scaling.bilinear": "Dwuliniowy",
+        "scaling.lanczos": "Lanczos",
+        "preview.title": "Podgląd Wplace Pixel Paint",
+        "preview.prompt": "Proszę przesłać obraz, aby rozpocząć",
+        "btn.download": "Pobierz",
+        "loading": "Przetwarzanie...",
+        "used.colors.title": "Kolory użyte w tym obrazie",
+        "used.colors.total": "Łącznie",
+        "used.colors.free": "Darmowe",
+        "used.colors.premium": "Premium",
+        "palette.title": "Paleta 64 Kolorów Wplace",
+        "palette.free": "Darmowe (32)",
+        "palette.premium": "Premium (32)",
+        "palette.info": "Oficjalna Paleta Kolorów Wplace",
+        "language.switched": "Język został zmieniony"
+    }
+};
+
 // Wplace 64色调色板 (基于官方调色板)
 const WPLACE_PALETTE = [
     // 免费颜色 (0-31)
@@ -994,6 +1453,9 @@ function initApp() {
     // 初始化调色板显示
     initializePaletteDisplay();
     
+    // 初始化多语言支持
+    initializeI18n();
+    
     console.log('✅ 应用初始化完成！');
     showToast('Wplace 像素画转换器已准备就绪！', 'success');
 }
@@ -1015,5 +1477,170 @@ window.wplaceApp = {
     downloadImage,
     resetApp
 };
+// 多语言支持函数
+// 加载语言文件
+async function loadLanguage(languageCode) {
+    console.log(`🌐 加载语言: ${languageCode}`);
+    
+    // 首先检查内置翻译
+    if (BUILTIN_TRANSLATIONS[languageCode]) {
+        translations = BUILTIN_TRANSLATIONS[languageCode];
+        currentLanguage = languageCode;
+        console.log(`✅ 使用内置翻译: ${languageCode}`);
+        return true;
+    }
+    
+    // 如果没有内置翻译，尝试从文件加载（仅在HTTP(S)环境下）
+    if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
+        try {
+            console.log(`🌐 尝试从文件加载语言: ${languageCode}.json`);
+            const response = await fetch(`./lang/${languageCode}.json`);
+            
+            if (response.ok) {
+                const data = await response.json();
+                translations = data;
+                currentLanguage = languageCode;
+                console.log(`✅ 成功从文件加载语言: ${languageCode}`);
+                return true;
+            }
+        } catch (error) {
+            console.warn(`❌ 无法从文件加载语言 ${languageCode}:`, error);
+        }
+    }
+    
+    // 降级到默认语言
+    console.log(`🔄 降级到默认中文翻译`);
+    translations = BUILTIN_TRANSLATIONS['zh'] || getDefaultTranslations();
+    currentLanguage = 'zh';
+    return false;
+}
 
-console.log('📱 简化版本加载完成！');
+// 多语言初始化
+async function initializeI18n() {
+    try {
+            // 从localStorage获取保存的语言设置
+        const savedLanguage = localStorage.getItem('wplace-language') || 'zh';
+        
+        // 加载当前语言的翻译
+        await loadLanguage(savedLanguage);
+        
+        // 设置语言选择器
+        const languageSelector = document.getElementById('languageSelector');
+        if (languageSelector) {
+            languageSelector.value = currentLanguage;
+            languageSelector.addEventListener('change', async (e) => {
+                const newLanguage = e.target.value;
+                await switchLanguage(newLanguage);
+            });
+        }
+        
+        // 更新页面文本
+        updatePageText();
+        
+        console.log('✅ 多语言初始化成功，当前语言:', currentLanguage);
+        
+    } catch (error) {
+        console.log('❌ 多语言初始化失败:', error);
+        
+        // 降级到默认语言
+        currentLanguage = 'zh';
+        translations = getDefaultTranslations();
+    }
+}
+
+// 切换语言
+async function switchLanguage(languageCode) {
+    const success = await loadLanguage(languageCode);
+    
+    if (success || languageCode === 'zh') {
+        // 保存语言设置
+        localStorage.setItem('wplace-language', currentLanguage);
+        
+        // 更新页面文本
+        updatePageText();
+        
+        // 更新语言选择器
+        const languageSelector = document.getElementById('languageSelector');
+        if (languageSelector) {
+            languageSelector.value = currentLanguage;
+        }
+        
+        console.log('✅ 语言已切换到:', currentLanguage);
+        showToast(t('language.switched', '语言已切换'), 'success');
+    }
+}
+
+// 翻译函数
+function t(key, defaultValue = '') {
+    const keys = key.split('.');
+    let value = translations;
+    
+    for (const k of keys) {
+        if (value && typeof value === 'object' && k in value) {
+            value = value[k];
+        } else {
+            return defaultValue || key;
+        }
+    }
+    
+    return typeof value === 'string' ? value : (defaultValue || key);
+}
+
+// 更新页面文本
+function updatePageText() {
+    console.log(`🔄 开始更新页面文本，当前语言: ${currentLanguage}`);
+    
+    let updatedCount = 0;
+    
+    // 更新所有带有 data-i18n 属性的元素
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        const translation = t(key);
+        
+        if (translation !== key) { // 只在翻译存在时更新
+            if (element.tagName === 'INPUT' && (element.type === 'button' || element.type === 'submit')) {
+                element.value = translation;
+            } else if (element.placeholder !== undefined) {
+                element.placeholder = translation;
+            } else {
+                element.textContent = translation;
+            }
+            updatedCount++;
+        }
+    });
+    
+    // 更新所有带有 data-lang 属性的元素
+    document.querySelectorAll('[data-lang]').forEach(element => {
+        const key = element.getAttribute('data-lang');
+        const translation = t(key);
+        
+        if (translation !== key) { // 只在翻译存在时更新
+            if (element.tagName === 'INPUT' && (element.type === 'button' || element.type === 'submit')) {
+                element.value = translation;
+            } else if (element.placeholder !== undefined) {
+                element.placeholder = translation;
+            } else {
+                element.textContent = translation;
+            }
+            updatedCount++;
+        }
+    });
+    
+    // 更新页面标题
+    const titleElement = document.querySelector('title');
+    const titleKey = titleElement?.getAttribute('data-i18n');
+    if (titleKey) {
+        const titleTranslation = t(titleKey);
+        if (titleTranslation !== titleKey) {
+            document.title = titleTranslation;
+            updatedCount++;
+        }
+    }
+    
+    console.log(`✅ 页面文本更新完成，更新了 ${updatedCount} 个元素`);
+}
+
+// 获取默认翻译（中文）
+function getDefaultTranslations() {
+    return BUILTIN_TRANSLATIONS['zh'] || {};
+}
