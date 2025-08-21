@@ -1,0 +1,500 @@
+/**
+ * 多语言国际化系统 - 完全按照参考代码实现
+ */
+
+// 备用翻译数据 - 用于解决CORS问题
+const FALLBACK_TRANSLATIONS = {
+    en: {
+        "title": "Wplace Tool: The Ultimate Pixel Art Tool and Image Tool",
+        "subtitle": "Effortlessly create pixel art for Wplace. Our generator converts any image into a Wplace-compatible pixel grid, automatically matching the official color palette. Perfect for all players!",
+        "nav.home": "Home",
+        "nav.converter": "Converter", 
+        "nav.blog": "Blog",
+        "nav.about": "About",
+        "nav.privacy": "Privacy",
+        "nav.terms": "Terms",
+        "hero.wplace.text": "Visit Wplace Official Site",
+        "upload.main": "Click to upload or drag image here",
+        "upload.sub": "Supports PNG, JPG formats (no size limit)",
+        "pixel.size": "Pixel Size",
+        "pixel.desc": "Auto-converts as you adjust the slider",
+        "advanced.title": "Advanced Settings",
+        "preview.title": "Wplace Pixel Paint Result",
+        "preview.prompt": "Please upload an image to start",
+        "btn.download": "Download"
+    },
+    zh: {
+        "title": "Wplace 工具：终极像素艺术工具和图像工具",
+        "subtitle": "轻松为 Wplace 创建像素艺术。我们的生成器将任何图像转换为与 Wplace 兼容的像素网格，自动匹配官方调色板。完美适合所有玩家！",
+        "nav.home": "首页",
+        "nav.converter": "转换器",
+        "nav.blog": "博客", 
+        "nav.about": "关于",
+        "nav.privacy": "隐私政策",
+        "nav.terms": "服务条款",
+        "hero.wplace.text": "访问 Wplace 官方网站",
+        "upload.main": "点击上传或拖拽图片至此",
+        "upload.sub": "支持 PNG, JPG 格式（无大小限制）",
+        "pixel.size": "像素尺寸",
+        "pixel.desc": "调整滑块时自动转换",
+        "advanced.title": "高级设置",
+        "preview.title": "Wplace 像素画结果",
+        "preview.prompt": "请上传一张图片开始",
+        "btn.download": "下载",
+        // 调色板相关
+        "palette.title": "Wplace 64色调色板",
+        "palette.info": "官方 Wplace 调色板",
+        "palette.free": "免费",
+        "palette.premium": "高级",
+        "colors.title": "Wplace 64色调色板",
+        "colors.free": "免费 (32)",
+        "colors.premium": "高级 (32)",
+        "colors.total": "总计",
+        // 功能特性
+        "features.title": "是什么让我们的 Wplace 工具与众不同？",
+        "features.unlimited.desc": "上传任何尺寸的图片。我们的工具能高效处理一切。",
+        // 使用步骤
+        "howTo.step1.title": "上传您的图片",
+        "howTo.step1.description": "点击上传区域或拖放您的 PNG、JPG 或 SVG 文件。我们的转换器支持所有常见图片格式。",
+        "howTo.step2.title": "调整像素大小",
+        "howTo.step2.description": "使用滑块控制像素大小。较小的值创建更详细的艺术，较大的值产生块状、抽象的像素艺术。",
+        "howTo.step4.description": "选择像素完美版本或放大版本。您的 Wplace 像素艺术已准备就绪！",
+        // UI控件
+        "ui.controls.loading": "处理中...",
+        "ui.advanced.dithering": "启用 Floyd-Steinberg 抖动",
+        "ui.advanced.grid": "显示像素网格",
+        "ui.advanced.scaling": "图像缩放方式：",
+        "ui.scaling.nearest": "最近邻",
+        "ui.scaling.bilinear": "双线性",
+        "ui.scaling.lanczos": "Lanczos",
+        // 页脚
+        "footer.main": "© 2025 Wplace 工具 - 免费使用，不对生成的艺术作品主张所有权",
+        "footer.privacy": "客户端处理保护您的隐私",
+        // 功能描述
+        "features.free.title": "完全免费的 Wplace 绘画工具",
+        "features.free.desc": "我们的 Wplace 工具完全免费使用。这个像素艺术工具提供无限次转换，没有任何费用。",
+        "features.privacy.title": "隐私保护",
+        "features.privacy.desc": "一切都在您的浏览器中本地处理。您的图片保留在您的设备上 - 我们从不上传、存储或访问您的内容。",
+        "features.easy.title": "轻松转换",
+        "features.easy.desc": "无需复杂设置或技术知识。只需上传您的图片，立即观看它转换成美丽的像素艺术。",
+        "features.unlimited.title": "欢迎任何尺寸",
+        // 使用指南
+        "howto.title": "如何使用 Wplace 工具",
+        "howto.subtitle": "通过4个简单步骤使用我们的像素艺术工具",
+        // 其他
+        "progress.highPerformance": "高性能模式",
+        "faq.answer6": "转换后的像素艺术可以直接在 Wplace 平台上使用。",
+        "testimonials.quote6": "这个工具让我的创作过程变得轻松愉快。"
+    },
+    "pt-BR": {
+        "title": "Conversor de Arte Pixel Wplace | Transforme Imagens em Arte Pixel",
+        "subtitle": "O conversor de arte pixel Wplace definitivo que transforma qualquer imagem em arte pixel impressionante em segundos.",
+        "nav.home": "Início",
+        "nav.converter": "Conversor",
+        "nav.blog": "Blog",
+        "nav.about": "Sobre",
+        "nav.privacy": "Privacidade",
+        "nav.terms": "Termos",
+        "hero.wplace.text": "Visite o Site Oficial do Wplace",
+        "upload.main": "Clique para carregar ou arraste a imagem aqui",
+        "upload.sub": "Suporta formatos PNG, JPG (máx 4MB)",
+        "pixel.size": "Tamanho do Pixel",
+        "pixel.desc": "Converte automaticamente ao ajustar o controle",
+        "advanced.title": "Configurações Avançadas",
+        "preview.title": "Resultado da Pintura Pixel Wplace",
+        "preview.prompt": "Por favor, carregue uma imagem para começar",
+        "btn.download": "Baixar"
+    },
+    he: {
+        "title": "Wplace כלי אמנות פיקסלים | הפוך תמונות לאמנות פיקסלים",
+        "subtitle": "כלי המרת אמנות פיקסלים הטוב ביותר של Wplace שהופך כל תמונה לאמנות פיקסלים מדהימה בשניות.",
+        "nav.home": "בית",
+        "nav.converter": "ממיר",
+        "nav.blog": "בלוג",
+        "nav.about": "אודות",
+        "nav.privacy": "פרטיות",
+        "nav.terms": "תנאים",
+        "hero.wplace.text": "בקר באתר הרשמי של Wplace",
+        "upload.main": "לחץ להעלאה או גרור תמונה לכאן",
+        "upload.sub": "תומך בפורמטים PNG, JPG (מקס 4MB)",
+        "pixel.size": "גודל פיקסל",
+        "pixel.desc": "ממיר אוטומטית כשמתאים את המחוון",
+        "advanced.title": "הגדרות מתקדמות",
+        "preview.title": "תוצאת צבע פיקסל Wplace",
+        "preview.prompt": "אנא העלה תמונה כדי להתחיל",
+        "btn.download": "הורד"
+    },
+    // 临时使用英文作为其他语言的备用
+    fr: {
+        "title": "Wplace Tool: The Ultimate Pixel Art Tool",
+        "subtitle": "Create pixel art for Wplace",
+        "nav.home": "Accueil",
+        "nav.converter": "Convertisseur",
+        "nav.blog": "Blog",
+        "nav.about": "À propos",
+        "nav.privacy": "Confidentialité",
+        "nav.terms": "Conditions",
+        "hero.wplace.text": "Visitez le site officiel de Wplace",
+        "upload.main": "Cliquez pour télécharger ou glissez l'image ici",
+        "upload.sub": "Supporte les formats PNG, JPG",
+        "pixel.size": "Taille du pixel",
+        "pixel.desc": "Conversion automatique",
+        "advanced.title": "Paramètres avancés",
+        "preview.title": "Résultat Wplace",
+        "preview.prompt": "Veuillez télécharger une image",
+        "btn.download": "Télécharger"
+    },
+    de: {
+        "title": "Wplace Tool: The Ultimate Pixel Art Tool",
+        "subtitle": "Create pixel art for Wplace",
+        "nav.home": "Startseite",
+        "nav.converter": "Konverter",
+        "nav.blog": "Blog",
+        "nav.about": "Über",
+        "nav.privacy": "Datenschutz",
+        "nav.terms": "Bedingungen",
+        "hero.wplace.text": "Besuchen Sie die offizielle Wplace-Website",
+        "upload.main": "Klicken Sie zum Hochladen oder ziehen Sie das Bild hierher",
+        "upload.sub": "Unterstützt PNG, JPG-Formate",
+        "pixel.size": "Pixelgröße",
+        "pixel.desc": "Automatische Konvertierung",
+        "advanced.title": "Erweiterte Einstellungen",
+        "preview.title": "Wplace Ergebnis",
+        "preview.prompt": "Bitte laden Sie ein Bild hoch",
+        "btn.download": "Herunterladen"
+    },
+    es: {
+        "title": "Wplace Tool: The Ultimate Pixel Art Tool",
+        "subtitle": "Create pixel art for Wplace",
+        "nav.home": "Inicio",
+        "nav.converter": "Convertidor",
+        "nav.blog": "Blog",
+        "nav.about": "Acerca de",
+        "nav.privacy": "Privacidad",
+        "nav.terms": "Términos",
+        "hero.wplace.text": "Visita el sitio oficial de Wplace",
+        "upload.main": "Haz clic para cargar o arrastra la imagen aquí",
+        "upload.sub": "Soporta formatos PNG, JPG",
+        "pixel.size": "Tamaño de píxel",
+        "pixel.desc": "Conversión automática",
+        "advanced.title": "Configuración avanzada",
+        "preview.title": "Resultado Wplace",
+        "preview.prompt": "Por favor carga una imagen",
+        "btn.download": "Descargar"
+    },
+    ja: {
+        "title": "Wplace Tool: The Ultimate Pixel Art Tool",
+        "subtitle": "Create pixel art for Wplace",
+        "nav.home": "ホーム",
+        "nav.converter": "コンバーター",
+        "nav.blog": "ブログ",
+        "nav.about": "について",
+        "nav.privacy": "プライバシー",
+        "nav.terms": "利用規約",
+        "hero.wplace.text": "Wplace公式サイトを訪問",
+        "upload.main": "クリックしてアップロードまたは画像をドラッグ",
+        "upload.sub": "PNG、JPG形式をサポート",
+        "pixel.size": "ピクセルサイズ",
+        "pixel.desc": "自動変換",
+        "advanced.title": "詳細設定",
+        "preview.title": "Wplace結果",
+        "preview.prompt": "画像をアップロードしてください",
+        "btn.download": "ダウンロード"
+    }
+};
+
+// Simple i18n system
+class I18n {
+    constructor() {
+        this.currentLang = 'en';
+        this.translations = {};
+        this.loadingPromises = {}; // 防止重复请求
+        // 立即加载所有备用翻译，确保翻译数据总是可用的
+        Object.keys(FALLBACK_TRANSLATIONS).forEach(lang => {
+            this.translations[lang] = FALLBACK_TRANSLATIONS[lang];
+        });
+        this.loadSavedLanguage();
+    }
+
+    async loadLanguage(lang) {
+        // 如果已经加载过，直接使用缓存
+        if (this.translations[lang]) {
+            this.currentLang = lang;
+            this.updateDOM();
+            this.saveLanguage();
+            return;
+        }
+        
+        // 如果没有该语言的翻译，回退到英文
+        if (!FALLBACK_TRANSLATIONS[lang] && !this.translations[lang]) {
+            console.warn(`⚠️ 语言 '${lang}' 暂不支持，使用英文`);
+            this.currentLang = 'en';
+            this.updateDOM();
+            this.saveLanguage();
+            return;
+        }
+        
+        // 如果正在加载中，等待加载完成
+        if (this.loadingPromises[lang]) {
+            await this.loadingPromises[lang];
+            return;
+        }
+        
+        // 开始加载
+        this.loadingPromises[lang] = this._loadLanguageFile(lang);
+        await this.loadingPromises[lang];
+        delete this.loadingPromises[lang];
+    }
+    
+    async _loadLanguageFile(lang) {
+        try {
+            // 通过追加时间戳参数与禁止缓存，避免翻译文件被浏览器长期缓存，导致新键显示为键名
+            const url = `lang/${lang}.json?v=${Date.now()}`;
+            const response = await fetch(url, {
+                cache: 'no-cache'
+            });
+            if (!response.ok) throw new Error(`Failed to load ${lang}.json`);
+            this.translations[lang] = await response.json();
+            this.currentLang = lang;
+            this.updateDOM();
+            this.saveLanguage();
+        } catch (error) {
+            console.warn('Failed to load language file, trying fallback:', error);
+            
+            // 使用备用翻译数据（用于解决CORS问题）
+            if (FALLBACK_TRANSLATIONS[lang]) {
+                console.log(`✅ 使用备用翻译: ${lang}`);
+                this.translations[lang] = FALLBACK_TRANSLATIONS[lang];
+                this.currentLang = lang;
+                this.updateDOM();
+                this.saveLanguage();
+                return;
+            }
+            
+            // 如果没有备用翻译，尝试英文
+            if (lang !== 'en') {
+                console.log('🔄 回退到英文');
+                if (FALLBACK_TRANSLATIONS['en']) {
+                    this.translations['en'] = FALLBACK_TRANSLATIONS['en'];
+                    this.currentLang = 'en';
+                    this.updateDOM();
+                    this.saveLanguage();
+                    return;
+                }
+            }
+            
+            console.error('❌ 无法加载任何翻译数据');
+        }
+    }
+
+    t(key, ...args) {
+        // 优先当前语言 → 其次英文 → 最后返回键名
+        const langDict = this.translations[this.currentLang] || {};
+        const enDict = this.translations['en'] || {};
+        const text = (langDict[key] ?? enDict[key] ?? key);
+        return args.length > 0 ? this.formatString(text, ...args) : text;
+    }
+
+    formatString(template, ...args) {
+        return template.replace(/{(\d+)}/g, (match, number) => {
+            return typeof args[number] !== 'undefined' ? args[number] : match;
+        });
+    }
+
+    updateDOM() {
+        // Update document title and lang attribute
+        document.title = this.t('title');
+        document.documentElement.lang = this.currentLang;
+
+        // Update meta description
+        const metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) {
+            metaDescription.setAttribute('content', this.t('subtitle'));
+        }
+
+        // Update Open Graph meta tags
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) {
+            ogTitle.setAttribute('content', this.t('title'));
+        }
+        
+        const ogDescription = document.querySelector('meta[property="og:description"]');
+        if (ogDescription) {
+            ogDescription.setAttribute('content', this.t('subtitle'));
+        }
+
+        // Update Twitter meta tags
+        const twitterTitle = document.querySelector('meta[property="twitter:title"]');
+        if (twitterTitle) {
+            twitterTitle.setAttribute('content', this.t('title'));
+        }
+        
+        const twitterDescription = document.querySelector('meta[property="twitter:description"]');
+        if (twitterDescription) {
+            twitterDescription.setAttribute('content', this.t('subtitle'));
+        }
+
+        // Update text content - 同时处理 data-lang 和 data-i18n
+        document.querySelectorAll('[data-lang], [data-i18n]').forEach(element => {
+            // Skip language option buttons to prevent translation
+            if (element.classList.contains('language-option')) {
+                return;
+            }
+            const key = element.getAttribute('data-lang') || element.getAttribute('data-i18n');
+            const text = this.t(key);
+            // 处理换行符，将 \n 转换为 <br>
+            if (text.includes('\n')) {
+                element.innerHTML = text.replace(/\n/g, '<br>');
+            } else {
+                element.textContent = text;
+            }
+        });
+
+        // Update aria-label attributes
+        document.querySelectorAll('[data-lang-aria]').forEach(element => {
+            const key = element.getAttribute('data-lang-aria');
+            element.setAttribute('aria-label', this.t(key));
+        });
+
+        // Update preview prompt if it's showing default text
+        const previewContainer = document.getElementById('previewContainer');
+        if (previewContainer && previewContainer.querySelector('p')) {
+            const promptElement = previewContainer.querySelector('p[data-lang="preview.prompt"]');
+            if (promptElement) {
+                promptElement.textContent = this.t('preview.prompt');
+            }
+        }
+
+        // Update custom palette title if it exists
+        if (typeof updatePaletteTitle === 'function') {
+            updatePaletteTitle();
+        }
+    }
+
+    loadSavedLanguage() {
+        const saved = localStorage.getItem('wplace-language');
+        if (saved && this.translations[saved]) {
+            this.currentLang = saved;
+            const languageSelector = document.getElementById('languageSelector');
+            if (languageSelector) {
+                languageSelector.value = saved;
+            }
+            // 如果有保存的语言且翻译数据已存在，立即更新DOM
+            if (document.readyState !== 'loading') {
+                this.updateDOM();
+            }
+        }
+    }
+
+    saveLanguage() {
+        localStorage.setItem('wplace-language', this.currentLang);
+    }
+}
+
+// Initialize i18n
+const i18n = new I18n();
+
+// Mobile menu functionality
+const initializeMobileMenu = () => {
+    const menuIcon = document.getElementById('menuIcon');
+    const languageIcon = document.getElementById('languageIcon');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const languageMenu = document.getElementById('languageMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const closeLanguageMenu = document.getElementById('closeLanguageMenu');
+    const languageOptions = document.querySelectorAll('.language-option');
+
+    // Menu toggle
+    menuIcon?.addEventListener('click', () => {
+        mobileMenu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    });
+
+    closeMenu?.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+    });
+
+    // Language menu toggle
+    languageIcon?.addEventListener('click', () => {
+        languageMenu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    });
+
+    closeLanguageMenu?.addEventListener('click', () => {
+        languageMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+    });
+
+    // Close menus when clicking outside
+    mobileMenu?.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+    });
+
+    languageMenu?.addEventListener('click', (e) => {
+        if (e.target === languageMenu) {
+            languageMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Language selection
+    languageOptions.forEach(option => {
+        option.addEventListener('click', async () => {
+            const lang = option.getAttribute('data-lang');
+            if (i18n) {
+                await i18n.loadLanguage(lang);
+            }
+            languageMenu.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+    });
+};
+
+// Initialize immediately when script loads (since using defer)
+async function initializeI18n() {
+    try {
+        // Load initial language with fallback support
+        const savedLang = localStorage.getItem('wplace-language') || 'en';
+        await i18n.loadLanguage(savedLang);
+        console.log(`🌐 多语言系统初始化完成，当前语言: ${i18n.currentLang}`);
+    } catch (error) {
+        console.warn('多语言初始化失败，使用默认设置:', error);
+        // 确保至少有英文备用翻译
+        if (FALLBACK_TRANSLATIONS['en']) {
+            i18n.translations['en'] = FALLBACK_TRANSLATIONS['en'];
+            i18n.currentLang = 'en';
+            i18n.updateDOM();
+        }
+    }
+    
+    // Initialize mobile menu
+    initializeMobileMenu();
+    
+    // Language selector event
+    const languageSelector = document.getElementById('languageSelector');
+    if (languageSelector) {
+        // 设置当前选中的语言
+        languageSelector.value = i18n.currentLang;
+        
+        languageSelector.addEventListener('change', async (e) => {
+            await i18n.loadLanguage(e.target.value);
+        });
+    }
+}
+
+// Export for global access
+window.i18n = i18n;
+window.initializeI18n = initializeI18n;
+window.initializeMobileMenu = initializeMobileMenu;
+
+// Auto-init when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeI18n);
+} else {
+    // DOM already loaded
+    initializeI18n();
+}

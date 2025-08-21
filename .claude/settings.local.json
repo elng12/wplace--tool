@@ -3,7 +3,14 @@
     "allow": [
       "Bash(rm:*)",
       "Bash(find:*)",
-      "WebFetch(domain:wplacetool.app)"
+      "WebFetch(domain:wplacetool.app)",
+      "Bash(cp:*)",
+      "Bash(python3:*)",
+      "Bash(cd:*)",
+      "Bash(curl:*)",
+      "Bash(cd:*)",
+      "Bash(cd:*)",
+      "Bash(cd:*)"
     ],
     "deny": [],
     "ask": []

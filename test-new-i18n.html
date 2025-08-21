@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试新多语言系统</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .test-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        .test-section h2 {
+            color: #495057;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        .lang-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+        button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        button.active {
+            background: #28a745;
+            box-shadow: 0 0 20px rgba(40, 167, 69, 0.4);
+        }
+        .test-element {
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #dee2e6;
+        }
+        .test-element strong {
+            color: #667eea;
+            display: inline-block;
+            width: 150px;
+        }
+        .status {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        .status-value {
+            font-weight: bold;
+            color: #667eea;
+        }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+        .warning { color: #ffc107; }
+        #console {
+            background: #1e1e1e;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        .clear-btn {
+            background: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌐 新多语言系统测试控制台</h1>
+        
+        <div class="test-section">
+            <h2>📝 测试翻译元素</h2>
+            <div class="test-element">
+                <strong>标题:</strong> <span data-lang="title">等待加载...</span>
+            </div>
+            <div class="test-element">
+                <strong>首页:</strong> <span data-lang="nav.home">等待加载...</span>
+            </div>
+            <div class="test-element">
+                <strong>像素大小:</strong> <span data-lang="pixel.size">等待加载...</span>
+            </div>
+            <div class="test-element">
+                <strong>上传提示:</strong> <span data-lang="upload.main">等待加载...</span>
+            </div>
+            <div class="test-element">
+                <strong>高级设置:</strong> <span data-lang="advanced.title">等待加载...</span>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🌍 语言切换测试</h2>
+            <div class="lang-buttons">
+                <button onclick="testLanguage('en')">🇬🇧 English</button>
+                <button onclick="testLanguage('zh')">🇨🇳 中文</button>
+                <button onclick="testLanguage('es')">🇪🇸 Español</button>
+                <button onclick="testLanguage('fr')">🇫🇷 Français</button>
+                <button onclick="testLanguage('de')">🇩🇪 Deutsch</button>
+                <button onclick="testLanguage('ja')">🇯🇵 日本語</button>
+                <button onclick="testLanguage('pt-BR')">🇧🇷 Português</button>
+                <button onclick="testLanguage('ru')">🇷🇺 Русский</button>
+                <button onclick="testLanguage('he')">🇮🇱 עברית</button>
+                <button onclick="testLanguage('tr')">🇹🇷 Türkçe</button>
+                <button onclick="testLanguage('th')">🇹🇭 ไทย</button>
+                <button onclick="testLanguage('vi')">🇻🇳 Tiếng Việt</button>
+                <button onclick="testLanguage('pl')">🇵🇱 Polski</button>
+                <button onclick="testLanguage('mi')">🇳🇿 Māori</button>
+                <button onclick="testLanguage('gn')">🇵🇾 Guaraní</button>
+                <button onclick="testLanguage('invalid')">❌ 无效语言</button>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📊 系统状态</h2>
+            <div class="status" id="status">
+                <div class="status-item">
+                    <span>当前语言:</span>
+                    <span class="status-value" id="currentLang">-</span>
+                </div>
+                <div class="status-item">
+                    <span>LocalStorage 保存:</span>
+                    <span class="status-value" id="savedLang">-</span>
+                </div>
+                <div class="status-item">
+                    <span>页面 lang 属性:</span>
+                    <span class="status-value" id="htmlLang">-</span>
+                </div>
+                <div class="status-item">
+                    <span>系统状态:</span>
+                    <span class="status-value" id="systemStatus">初始化中...</span>
+                </div>
+            </div>
+            <button onclick="clearStorage()" class="clear-btn">🗑️ 清除 LocalStorage</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>💻 控制台输出</h2>
+            <div id="console"></div>
+        </div>
+    </div>
+    
+    <script src="js/i18n.js"></script>
+    <script>
+        const consoleDiv = document.getElementById('console');
+        let lastActiveButton = null;
+        
+        function log(message, type = 'info') {
+            const time = new Date().toLocaleTimeString();
+            const typeIcon = {
+                'success': '✅',
+                'error': '❌',
+                'warning': '⚠️',
+                'info': 'ℹ️'
+            }[type] || 'ℹ️';
+            
+            const line = document.createElement('div');
+            line.innerHTML = `[${time}] ${typeIcon} ${message}`;
+            line.className = type;
+            consoleDiv.appendChild(line);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+        
+        async function testLanguage(lang) {
+            log(`切换语言: ${lang}`, 'info');
+            
+            // 更新按钮状态
+            const buttons = document.querySelectorAll('.lang-buttons button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            try {
+                if (window.loadTranslations) {
+                    await window.loadTranslations(lang);
+                    log(`✅ 成功加载语言: ${lang}`, 'success');
+                } else if (window.setLanguage) {
+                    window.setLanguage(lang);
+                    log(`✅ 成功设置语言: ${lang}`, 'success');
+                } else {
+                    throw new Error('多语言系统未初始化');
+                }
+                updateStatus();
+            } catch (error) {
+                log(`❌ 加载失败: ${error.message}`, 'error');
+                updateStatus();
+            }
+        }
+        
+        function updateStatus() {
+            document.getElementById('currentLang').textContent = 
+                document.documentElement.lang || '未设置';
+            
+            document.getElementById('savedLang').textContent = 
+                localStorage.getItem('language') || 
+                localStorage.getItem('wplace-language') || 
+                '无';
+            
+            document.getElementById('htmlLang').textContent = 
+                document.documentElement.lang || '未设置';
+            
+            // 检查翻译是否生效
+            const testElement = document.querySelector('[data-lang="title"]');
+            if (testElement && testElement.textContent !== '等待加载...' && testElement.textContent !== 'title') {
+                document.getElementById('systemStatus').innerHTML = 
+                    '<span class="success">✅ 正常工作</span>';
+            } else {
+                document.getElementById('systemStatus').innerHTML = 
+                    '<span class="warning">⚠️ 翻译未生效</span>';
+            }
+        }
+        
+        function clearStorage() {
+            localStorage.removeItem('language');
+            localStorage.removeItem('wplace-language');
+            log('✅ LocalStorage 已清除', 'success');
+            updateStatus();
+            setTimeout(() => {
+                log('🔄 刷新页面以应用更改...', 'info');
+                location.reload();
+            }, 1000);
+        }
+        
+        // 初始化
+        window.addEventListener('DOMContentLoaded', () => {
+            log('🚀 多语言系统测试控制台已启动', 'success');
+            setTimeout(() => {
+                updateStatus();
+                
+                // 自动检测问题
+                const savedLang = localStorage.getItem('language') || localStorage.getItem('wplace-language');
+                if (savedLang && savedLang !== document.documentElement.lang) {
+                    log(`⚠️ 检测到语言不一致: 保存=${savedLang}, 当前=${document.documentElement.lang}`, 'warning');
+                }
+                
+                // 检查翻译文件是否可访问
+                fetch('/locales/en.json')
+                    .then(r => r.json())
+                    .then(data => {
+                        log(`✅ 翻译文件可访问，包含 ${Object.keys(data).length} 个键`, 'success');
+                    })
+                    .catch(err => {
+                        log(`❌ 无法访问翻译文件: ${err.message}`, 'error');
+                    });
+            }, 500);
+        });
+        
+        // 监听语言变化
+        const observer = new MutationObserver(() => {
+            updateStatus();
+        });
+        observer.observe(document.documentElement, { 
+            attributes: true, 
+            attributeFilter: ['lang'] 
+        });
+    </script>
+</body>
+</html>

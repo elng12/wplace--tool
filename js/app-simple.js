@@ -949,6 +949,11 @@ function handleFileUpload(files) {
             setProgress(100, '上传完成');
             showToast('图片上传成功！', 'success');
             
+            // 自动生成像素艺术预览
+            setTimeout(() => {
+                debouncePreview();
+            }, 500); // 给上传完成动画一些时间
+            
         };
         img.onerror = function() {
             showToast('图片加载失败', 'error');
@@ -1626,7 +1631,7 @@ function initApp() {
     initializePaletteDisplay();
     
     // 初始化多语言支持
-    initializeI18n();
+    // 多语言初始化现在由 i18n.js 自动处理
     
     console.log('✅ 应用初始化完成！');
     showToast('Wplace 像素画转换器已准备就绪！', 'success');
@@ -1649,192 +1654,13 @@ window.wplaceApp = {
     downloadImage,
     resetApp
 };
-// 多语言支持函数
-// 加载语言文件
-async function loadLanguage(languageCode) {
-    console.log(`🌐 加载语言: ${languageCode}`);
-    
-    // 首先检查内置翻译
-    if (BUILTIN_TRANSLATIONS[languageCode]) {
-        translations = BUILTIN_TRANSLATIONS[languageCode];
-        currentLanguage = languageCode;
-        console.log(`✅ 使用内置翻译: ${languageCode}`);
-        return true;
-    }
-    
-    // 如果没有内置翻译，尝试从文件加载（仅在HTTP(S)环境下）
-    if (window.location.protocol === 'http:' || window.location.protocol === 'https:') {
-        try {
-            console.log(`🌐 尝试从文件加载语言: ${languageCode}.json`);
-            const response = await fetch(`./lang/${languageCode}.json`);
-            
-            if (response.ok) {
-                const data = await response.json();
-                translations = data;
-                currentLanguage = languageCode;
-                console.log(`✅ 成功从文件加载语言: ${languageCode}`);
-                return true;
-            }
-        } catch (error) {
-            console.warn(`❌ 无法从文件加载语言 ${languageCode}:`, error);
-        }
-    }
-    
-    // 降级到默认语言
-    console.log(`🔄 降级到默认中文翻译`);
-    translations = BUILTIN_TRANSLATIONS['zh'] || getDefaultTranslations();
-    currentLanguage = 'zh';
-    return false;
-}
-
-// 多语言初始化
-async function initializeI18n() {
-    // Check if custom i18n is disabled in favor of GTranslate
-    if (window.disableCustomI18n) {
-        console.log('🌍 自定义多语言系统已禁用，使用 GTranslate');
-        
-        // Hide the original language selector when using GTranslate
-        const languageSelector = document.getElementById('languageSelector');
-        if (languageSelector && languageSelector.parentElement) {
-            languageSelector.parentElement.style.display = 'none';
-        }
-        
-        return;
-    }
-    
-    try {
-            // 从localStorage获取保存的语言设置
-        const savedLanguage = localStorage.getItem('wplace-language') || 'zh';
-        
-        // 加载当前语言的翻译
-        await loadLanguage(savedLanguage);
-        
-        // 设置语言选择器
-        const languageSelector = document.getElementById('languageSelector');
-        if (languageSelector) {
-            languageSelector.value = currentLanguage;
-            languageSelector.addEventListener('change', async (e) => {
-                const newLanguage = e.target.value;
-                await switchLanguage(newLanguage);
-            });
-        }
-        
-        // 更新页面文本
-        updatePageText();
-        
-        console.log('✅ 多语言初始化成功，当前语言:', currentLanguage);
-        
-    } catch (error) {
-        console.log('❌ 多语言初始化失败:', error);
-        
-        // 降级到默认语言
-        currentLanguage = 'zh';
-        translations = getDefaultTranslations();
-    }
-}
-
-// 切换语言
-async function switchLanguage(languageCode) {
-    const success = await loadLanguage(languageCode);
-    
-    if (success || languageCode === 'zh') {
-        // 保存语言设置
-        localStorage.setItem('wplace-language', currentLanguage);
-        
-        // 更新页面文本
-        updatePageText();
-        
-        // 更新语言选择器
-        const languageSelector = document.getElementById('languageSelector');
-        if (languageSelector) {
-            languageSelector.value = currentLanguage;
-        }
-        
-        console.log('✅ 语言已切换到:', currentLanguage);
-        showToast(t('language.switched', '语言已切换'), 'success');
-    }
-}
-
-// 翻译函数
+// 多语言系统现在由独立的 i18n.js 文件处理
+// 保持 t() 函数以兼容现有代码
 function t(key, defaultValue = '') {
-    const keys = key.split('.');
-    let value = translations;
-    
-    for (const k of keys) {
-        if (value && typeof value === 'object' && k in value) {
-            value = value[k];
-        } else {
-            return defaultValue || key;
-        }
+    if (window.i18n && typeof window.i18n.t === 'function') {
+        return window.i18n.t(key, defaultValue);
     }
-    
-    return typeof value === 'string' ? value : (defaultValue || key);
+    return defaultValue || key;
 }
 
-// 更新页面文本
-function updatePageText() {
-    console.log(`🔄 开始更新页面文本，当前语言: ${currentLanguage}`);
-    console.log('🔍 当前翻译对象keys:', Object.keys(translations).slice(0, 10)); // 显示前10个翻译键
-    
-    let updatedCount = 0;
-    let failedTranslations = [];
-    
-    // 更新所有带有 data-i18n 属性的元素
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        const translation = t(key);
-        
-        if (translation !== key) { // 只在翻译存在时更新
-            if (element.tagName === 'INPUT' && (element.type === 'button' || element.type === 'submit')) {
-                element.value = translation;
-            } else if (element.placeholder !== undefined) {
-                element.placeholder = translation;
-            } else {
-                element.textContent = translation;
-            }
-            updatedCount++;
-        } else {
-            failedTranslations.push(key);
-        }
-    });
-    
-    // 更新所有带有 data-lang 属性的元素
-    document.querySelectorAll('[data-lang]').forEach(element => {
-        const key = element.getAttribute('data-lang');
-        const translation = t(key);
-        
-        if (translation !== key) { // 只在翻译存在时更新
-            if (element.tagName === 'INPUT' && (element.type === 'button' || element.type === 'submit')) {
-                element.value = translation;
-            } else if (element.placeholder !== undefined) {
-                element.placeholder = translation;
-            } else {
-                element.textContent = translation;
-            }
-            updatedCount++;
-        } else {
-            failedTranslations.push(key);
-        }
-    });
-    
-    // 更新页面标题
-    const titleElement = document.querySelector('title');
-    const titleKey = titleElement?.getAttribute('data-i18n');
-    if (titleKey) {
-        const titleTranslation = t(titleKey);
-        if (titleTranslation !== titleKey) {
-            document.title = titleTranslation;
-            updatedCount++;
-        }
-    }
-    
-    console.log(`✅ 页面文本更新完成，更新了 ${updatedCount} 个元素`);
-    if (failedTranslations.length > 0) {
-        console.log('❌ 未找到翻译的键:', failedTranslations);
-    }
-}
-
-// 获取默认翻译（中文）
-function getDefaultTranslations() {
-    return BUILTIN_TRANSLATIONS['zh'] || {};
-}
+// updatePageText 函数现在由 i18n.js 处理
