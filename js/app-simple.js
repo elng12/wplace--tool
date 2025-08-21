@@ -48,6 +48,10 @@ const BUILTIN_TRANSLATIONS = {
         "palette.premium": "付费 (32)",
         "palette.info": "兼容 Wplace 调色板",
         "features.special.title": "什么让我们的 Wplace 图像转换器特别？",
+        "howto.step1.title": "调整像素大小",
+        "howto.step1.desc": "使用滑块控制像素大小。较小的值创建更详细的艺术，较大的值产生块状的抽象像素艺术。",
+        "howto.step2.title": "转换为像素艺术",
+        "howto.step2.desc": "观看您的图像使用我们的先进转换器技术转换为令人惊艳的像素艺术。实时预览更新。",
         "features.unlimited.desc": "上传任意尺寸的图片。Wplace 像素艺术转换器高效处理一切。",
         "howto.step4.desc": "选择像素完美或大尺寸版本。您的 Wplace 像素艺术已准备就绪！",
         "faq.a6": "是的！使用 Wplace 像素艺术转换器创作的艺术品您可以自由用于个人或商业项目。我们对您的创作不主张任何所有权。",
@@ -91,6 +95,18 @@ const BUILTIN_TRANSLATIONS = {
         "palette.free": "Free (32)",
         "palette.premium": "Premium (32)",
         "palette.info": "Wplace Compatible Palette",
+        "features.unlimited.desc": "Upload any size image. Our Wplace pixel art converter handles everything efficiently.",
+        "howto.step4.desc": "Choose pixel-perfect or large-scale version. Your Wplace pixel art is ready!",
+        "faq.a6": "Yes! Artwork created with our Wplace pixel art converter is yours to use freely for personal or commercial projects. We claim no ownership of your creations.",
+        "testimonials.q6": "Clean previews and one-click downloads give me perfect references. I just open Wplace and paint - no guesswork needed.",
+        "footer.main": "© 2025 Wplace Pixel Art Converter - Free to use, no ownership claimed on generated artwork",
+        "footer.privacy": "Client-side processing protects your privacy",
+        "progress.highPerformance": "Processing with high-performance mode",
+        "features.special.title": "What Makes Our Wplace Tool Special?",
+        "howto.step1.title": "Adjust Pixel Size",
+        "howto.step1.desc": "Use the slider to control the pixel size. Smaller values create more detailed art, larger values produce chunky, abstract pixel art.",
+        "howto.step2.title": "Convert to Pixel Art",
+        "howto.step2.desc": "Watch your image transform into stunning pixel art using our advanced converter technology. Preview updates in real-time.",
         "language.switched": "Language switched"
     },
     
@@ -125,6 +141,16 @@ const BUILTIN_TRANSLATIONS = {
         "palette.free": "Gratuit (32)",
         "palette.premium": "Premium (32)",
         "palette.info": "Palette officielle Wplace",
+        "features.unlimited.desc": "Téléchargez une image de n'importe quelle taille. Notre convertisseur d'art pixel Wplace gère tout efficacement.",
+        "howto.step4.desc": "Choisissez une version pixel-parfaite ou grande échelle. Votre art pixel Wplace est prêt!",
+        "faq.a6": "Oui! Les œuvres d'art créées avec notre convertisseur d'art pixel Wplace sont les vôtres à utiliser librement pour des projets personnels ou commerciaux. Nous ne revendiquons aucune propriété sur vos créations.",
+        "testimonials.q6": "Des aperçus clairs et des téléchargements en un clic me donnent des références parfaites. J'ouvre juste Wplace et je peins - pas de devinettes nécessaires.",
+        "footer.main": "© 2025 Convertisseur Art Pixel Wplace - Libre d'utilisation, aucune propriété revendiquée sur les œuvres générées",
+        "footer.privacy": "Le traitement côté client protège votre vie privée",
+        "progress.highPerformance": "Traitement en mode haute performance",
+        "features.special.title": "Qu'est-ce qui rend notre outil Wplace spécial?",
+        "howto.step1.title": "Ajuster la taille des pixels",
+        "howto.step2.title": "Convertir en art pixel",
         "language.switched": "Langue changée"
     },
     
@@ -159,6 +185,16 @@ const BUILTIN_TRANSLATIONS = {
         "palette.free": "Gratis (32)",
         "palette.premium": "Premium (32)",
         "palette.info": "Paleta oficial Wplace",
+        "features.unlimited.desc": "Sube una imagen de cualquier tamaño. Nuestro convertidor de arte pixel Wplace maneja todo eficientemente.",
+        "howto.step4.desc": "Elige versión pixel-perfecta o gran escala. ¡Tu arte pixel Wplace está listo!",
+        "faq.a6": "¡Sí! Las obras de arte creadas con nuestro convertidor de arte pixel Wplace son tuyas para usar libremente en proyectos personales o comerciales. No reclamamos ninguna propiedad sobre tus creaciones.",
+        "testimonials.q6": "Las vistas previas claras y descargas de un clic me dan referencias perfectas. Solo abro Wplace y pinto - no necesito adivinar.",
+        "footer.main": "© 2025 Convertidor Arte Pixel Wplace - Libre de usar, no se reclama propiedad sobre las obras generadas",
+        "footer.privacy": "El procesamiento del lado del cliente protege tu privacidad",
+        "progress.highPerformance": "Procesando con modo de alto rendimiento",
+        "features.special.title": "¿Qué hace especial nuestra herramienta Wplace?",
+        "howto.step1.title": "Ajustar tamaño de píxel",
+        "howto.step2.title": "Convertir a arte píxel",
         "language.switched": "Idioma cambiado"
     },
     
@@ -193,6 +229,16 @@ const BUILTIN_TRANSLATIONS = {
         "palette.free": "Kostenlos (32)",
         "palette.premium": "Premium (32)",
         "palette.info": "Offizielle Wplace-Farbpalette",
+        "features.unlimited.desc": "Laden Sie ein Bild beliebiger Größe hoch. Unser Wplace Pixel Art Konverter bewältigt alles effizient.",
+        "howto.step4.desc": "Wählen Sie die pixel-perfekte oder großformatige Version. Ihre Wplace Pixel Art ist bereit!",
+        "faq.a6": "Ja! Mit unserem Wplace Pixel Art Konverter erstellte Kunstwerke gehören Ihnen zur freien Nutzung für persönliche oder kommerzielle Projekte. Wir beanspruchen kein Eigentum an Ihren Kreationen.",
+        "testimonials.q6": "Klare Vorschauen und Ein-Klick-Downloads geben mir perfekte Referenzen. Ich öffne einfach Wplace und male - kein Rätselraten nötig.",
+        "footer.main": "© 2025 Wplace Pixel Art Konverter - Kostenlos zu verwenden, kein Eigentumsanspruch auf generierte Kunstwerke",
+        "footer.privacy": "Client-seitige Verarbeitung schützt Ihre Privatsphäre",
+        "progress.highPerformance": "Verarbeitung im Hochleistungsmodus",
+        "features.special.title": "Was macht unser Wplace-Tool besonders?",
+        "howto.step1.title": "Pixelgröße anpassen",
+        "howto.step2.title": "In Pixel Art konvertieren",
         "language.switched": "Sprache gewechselt"
     },
     
@@ -227,6 +273,18 @@ const BUILTIN_TRANSLATIONS = {
         "palette.free": "無料 (32)",
         "palette.premium": "プレミアム (32)",
         "palette.info": "公式Wplaceカラーパレット",
+        "features.unlimited.desc": "任意のサイズの画像をアップロード。Wplaceピクセルアートコンバーターがすべてを効率的に処理します。",
+        "howto.step4.desc": "ピクセルパーフェクトまたは大型スケール版を選択。Wplaceピクセルアートの準備完了！",
+        "faq.a6": "はい！Wplaceピクセルアートコンバーターで作成したアートワークは、個人または商業プロジェクトで自由にご利用いただけます。お客様の作品の所有権を主張することはありません。",
+        "testimonials.q6": "クリアなプレビューとワンクリックダウンロードで完璧な参考資料を提供。Wplaceを開いてペイントするだけ - 推測の必要はありません。",
+        "footer.main": "© 2025 Wplaceピクセルアートコンバーター - 無料でご利用いただけ、生成されたアートワークの所有権は主張しません",
+        "footer.privacy": "クライアントサイド処理でプライバシーを保護",
+        "progress.highPerformance": "高性能モードで処理中",
+        "features.special.title": "Wplaceツールの特別な点は何ですか？",
+        "howto.step1.title": "ピクセルサイズを調整",
+        "howto.step1.desc": "スライダーを使用してピクセルサイズを制御します。小さい値はより詳細なアートを作成し、大きい値は塊状で抽象的なピクセルアートを生成します。",
+        "howto.step2.title": "ピクセルアートに変換",
+        "howto.step2.desc": "私たちの高度なコンバーター技術を使用して、画像が素晴らしいピクセルアートに変換される様子をご覧ください。プレビューはリアルタイムで更新されます。",
         "language.switched": "言語が切り替わりました"
     },
     
@@ -261,6 +319,16 @@ const BUILTIN_TRANSLATIONS = {
         "palette.free": "Grátis (32)",
         "palette.premium": "Premium (32)",
         "palette.info": "Paleta oficial Wplace",
+        "features.unlimited.desc": "Carregue uma imagem de qualquer tamanho. Nosso conversor de arte pixel Wplace lida com tudo eficientemente.",
+        "howto.step4.desc": "Escolha a versão pixel-perfeita ou em grande escala. Sua arte pixel Wplace está pronta!",
+        "faq.a6": "Sim! As obras de arte criadas com nosso conversor de arte pixel Wplace são suas para usar livremente em projetos pessoais ou comerciais. Não reivindicamos propriedade sobre suas criações.",
+        "testimonials.q6": "Visualizações claras e downloads com um clique me dão referências perfeitas. Apenas abro o Wplace e pinto - sem necessidade de adivinhar.",
+        "footer.main": "© 2025 Conversor de Arte Pixel Wplace - Livre para usar, nenhuma propriedade reivindicada sobre as obras geradas",
+        "footer.privacy": "Processamento do lado do cliente protege sua privacidade",
+        "progress.highPerformance": "Processando com modo de alta performance",
+        "features.special.title": "O que torna nossa ferramenta Wplace especial?",
+        "howto.step1.title": "Ajustar tamanho do pixel",
+        "howto.step2.title": "Converter para arte pixel",
         "language.switched": "Idioma alterado"
     },
     
@@ -295,6 +363,16 @@ const BUILTIN_TRANSLATIONS = {
         "palette.free": "ฟรี (32)",
         "palette.premium": "พรีเมียม (32)",
         "palette.info": "พาเลตสีอย่างเป็นทางการ Wplace",
+        "features.unlimited.desc": "อัปโหลดภาพขนาดใดก็ได้ เครื่องมือแปลงพิกเซลอาร์ต Wplace ของเราจัดการทุกอย่างอย่างมีประสิทธิภาพ",
+        "howto.step4.desc": "เลือกเวอร์ชันพิกเซลที่สมบูรณ์แบบหรือขนาดใหญ่ พิกเซลอาร์ต Wplace ของคุณพร้อมแล้ว!",
+        "faq.a6": "ใช่! งานศิลปะที่สร้างด้วยเครื่องมือแปลงพิกเซลอาร์ต Wplace ของเราเป็นของคุณที่จะใช้ได้อย่างอิสระสำหรับโครงการส่วนตัวหรือเชิงพาณิชย์ เราไม่อ้างสิทธิ์ในงานสร้างสรรค์ของคุณ",
+        "testimonials.q6": "การแสดงตัวอย่างที่ชัดเจนและการดาวน์โหลดด้วยคลิกเดียวให้ข้อมูลอ้างอิงที่สมบูรณ์แบบแก่ฉัน ฉันแค่เปิด Wplace และระบายสี - ไม่จำเป็นต้องเดา",
+        "footer.main": "© 2025 เครื่องมือแปลงพิกเซลอาร์ต Wplace - ใช้งานฟรี ไม่อ้างสิทธิ์ในงานศิลปะที่สร้างขึ้น",
+        "footer.privacy": "การประมวลผลฝั่งไคลเอ็นต์ปกป้องความเป็นส่วนตัวของคุณ",
+        "progress.highPerformance": "กำลังประมวลผลด้วยโหมดประสิทธิภาพสูง",
+        "features.special.title": "อะไรที่ทำให้เครื่องมือ Wplace ของเราพิเศษ?",
+        "howto.step1.title": "ปรับขนาดพิกเซล",
+        "howto.step2.title": "แปลงเป็นพิกเซลอาร์ต",
         "language.switched": "เปลี่ยนภาษาแล้ว"
     },
     
@@ -329,6 +407,16 @@ const BUILTIN_TRANSLATIONS = {
         "palette.free": "Kore utu (32)",
         "palette.premium": "Premium (32)",
         "palette.info": "Wplace Palette ōkawa",
+        "features.unlimited.desc": "Tikiake he whakaahua rahi katoa. Tō mātou Wplace pixel art tawhiri e whakahaere ana i ngā mea katoa haumāmā.",
+        "howto.step4.desc": "Whiriwhiri i te pixel-tika rānei i te putanga nui rānei. Tō Wplace pixel art kua reri!",
+        "faq.a6": "Ae! Ko ngā toi i hangaia e tō mātou Wplace pixel art tawhiri he mea māu hei whakamahi kore utu mō ngā kaupapa whaiaro rānei rānei rawa. Kāore mātou e whakatau tiketike ki ō hanga.",
+        "testimonials.q6": "He mārama ngā arokite me ngā tango-pāwhiri kotahi hei whakawhanui tohutoro pai ki a au. Me whakatuwhera noa a Wplace me te peita - kāore he mate whakaaroa.",
+        "footer.main": "© 2025 Wplace Pixel Art Tawhiri - Kore utu hei whakamahi, kāore he tiketike i whakaarotia ki ngā toi i whakaputa",
+        "footer.privacy": "Te whakatutuki-kiritaki ka tiaki i tō taupua",
+        "progress.highPerformance": "E whakahaere ana i te āhua mahi teitei",
+        "features.special.title": "He aha a mātou taputapu Wplace rerekē?",
+        "howto.step1.title": "Whakakore Pixel Rahi",
+        "howto.step2.title": "Huringa ki Pixel Toi",
         "language.switched": "Reo huringa"
     },
     
@@ -363,6 +451,16 @@ const BUILTIN_TRANSLATIONS = {
         "palette.free": "Ücretsiz (32)",
         "palette.premium": "Premium (32)",
         "palette.info": "Resmi Wplace Renk Paleti",
+        "features.unlimited.desc": "Herhangi bir boyutta resim yükleyin. Wplace piksel sanat dönüştürücümüz her şeyi verimli bir şekilde işler.",
+        "howto.step4.desc": "Piksel-mükemmel veya büyük ölçekli sürümü seçin. Wplace piksel sanatınız hazır!",
+        "faq.a6": "Evet! Wplace piksel sanat dönüştürücümüz ile oluşturulan sanat eserleri kişisel veya ticari projeler için özgürce kullanmanıza aittir. Yaratımlarınızda hiçbir mülkiyet hakkı iddia etmiyoruz.",
+        "testimonials.q6": "Temiz önizlemeler ve tek tıkla indirmeler bana mükemmel referanslar veriyor. Sadece Wplace'i açıp boyuyorum - tahmine gerek yok.",
+        "footer.main": "© 2025 Wplace Piksel Sanat Dönüştürücü - Kullanmak ücretsiz, üretilen sanat eserlerinde mülkiyet hakkı iddia edilmez",
+        "footer.privacy": "İstemci tarafı işleme gizliliğinizi korur",
+        "progress.highPerformance": "Yüksek performans moduyla işleniyor",
+        "features.special.title": "Wplace aracımızı özel yapan nedir?",
+        "howto.step1.title": "Piksel boyutunu ayarla",
+        "howto.step2.title": "Piksel sanatına dönüştür",
         "language.switched": "Dil değiştirildi"
     },
     
@@ -397,6 +495,16 @@ const BUILTIN_TRANSLATIONS = {
         "palette.free": "Reiguáva (32)",
         "palette.premium": "Premium (32)",
         "palette.info": "Wplace Sa'y Paleta Oficial",
+        "features.unlimited.desc": "Embojepy peteĩ ta'anga oimeraẽva tuichakue. Ore Wplace pixel art moambue omba'apo katupyry katua.",
+        "howto.step4.desc": "Eiporavo pixel-porã térã tuichakue versión. Nde Wplace pixel art oĩmbáma!",
+        "faq.a6": "Héehe! Umi tembiapo ojejapo ore Wplace pixel art moambuére ndehegua ojepuru hag̃ua libre proyectos personales térã comerciales. Ndoreivindicakuái mbaevérã nde rembiapo rehe.",
+        "testimonials.q6": "Jehecha porã ha mboguejy peteĩ jekutúpe ome'ẽ chéve referencia porã. Aipe'a Wplace ha amboesarai - natekotevẽi aikuaase'ỹ.",
+        "footer.main": "© 2025 Wplace Pixel Art Moambue - Reiguáva ojepuru hag̃ua, natekotevẽi ñemandaje umi tembiapo ojejapo rehe",
+        "footer.privacy": "Ñembosako'i ñemuhára rekove oñangareko nde ñemiguávare",
+        "progress.highPerformance": "Oñembosako'i katupyry yvate rógape",
+        "features.special.title": "Mba'épa ojapo ore Wplace rembipuru iporeve?",
+        "howto.step1.title": "Emoambue Pixel Tuichakue",
+        "howto.step2.title": "Emoambue Pixel Art-pe",
         "language.switched": "Ñe'ẽ oñemoambue"
     },
     
@@ -431,6 +539,16 @@ const BUILTIN_TRANSLATIONS = {
         "palette.free": "Miễn Phí (32)",
         "palette.premium": "Cao Cấp (32)",
         "palette.info": "Bảng Màu Chính Thức Wplace",
+        "features.unlimited.desc": "Tải lên hình ảnh có kích thước bất kỳ. Bộ chuyển đổi pixel art Wplace của chúng tôi xử lý mọi thứ một cách hiệu quả.",
+        "howto.step4.desc": "Chọn phiên bản pixel-hoàn hảo hoặc quy mô lớn. Pixel art Wplace của bạn đã sẵn sàng!",
+        "faq.a6": "Có! Các tác phẩm nghệ thuật được tạo bằng bộ chuyển đổi pixel art Wplace của chúng tôi là của bạn để sử dụng tự do cho các dự án cá nhân hoặc thương mại. Chúng tôi không tuyên bố quyền sở hữu đối với các sáng tạo của bạn.",
+        "testimonials.q6": "Xem trước rõ ràng và tải xuống một cú nhấp chuột cho tôi những tham chiếu hoàn hảo. Tôi chỉ cần mở Wplace và vẽ - không cần đoán.",
+        "footer.main": "© 2025 Bộ Chuyển Đổi Pixel Art Wplace - Miễn phí sử dụng, không tuyên bố quyền sở hữu đối với tác phẩm nghệ thuật được tạo ra",
+        "footer.privacy": "Xử lý phía máy khách bảo vệ quyền riêng tư của bạn",
+        "progress.highPerformance": "Đang xử lý với chế độ hiệu suất cao",
+        "features.special.title": "Điều gì làm cho công cụ Wplace của chúng tôi đặc biệt?",
+        "howto.step1.title": "Chuyển đổi kích thước pixel",
+        "howto.step2.title": "Chuyển đổi thành pixel art",
         "language.switched": "Đã chuyển đổi ngôn ngữ"
     },
     
@@ -465,7 +583,61 @@ const BUILTIN_TRANSLATIONS = {
         "palette.free": "Darmowe (32)",
         "palette.premium": "Premium (32)",
         "palette.info": "Oficjalna Paleta Kolorów Wplace",
+        "features.unlimited.desc": "Prześlij obraz dowolnego rozmiaru. Nasz konwerter pixel art Wplace obsługuje wszystko wydajnie.",
+        "howto.step4.desc": "Wybierz wersję pixel-perfekcyjną lub wieloskalową. Twoja pixel art Wplace jest gotowa!",
+        "faq.a6": "Tak! Dzieła sztuki stworzone za pomocą naszego konwertera pixel art Wplace należą do Ciebie i możesz je swobodnie używać w projektach osobistych lub komercyjnych. Nie rościmy sobie żadnych praw do Twoich kreacji.",
+        "testimonials.q6": "Przejrzyste podglądy i pobieranie jednym kliknięciem dają mi doskonałe referencje. Po prostu otwieram Wplace i maluję - nie ma potrzeby zgadywania.",
+        "footer.main": "© 2025 Konwerter Pixel Art Wplace - Darmowy do użytku, żadne prawa własności nie są roszczone do wygenerowanych dzieł sztuki",
+        "footer.privacy": "Przetwarzanie po stronie klienta chroni Twoją prywatność",
+        "progress.highPerformance": "Przetwarzanie w trybie wysokiej wydajności",
+        "features.special.title": "Co czyni nasze narzędzie Wplace wyjątkowym?",
+        "howto.step1.title": "Dostosuj rozmiar pikseli",
+        "howto.step2.title": "Przekonwertuj na pixel art",
         "language.switched": "Język został zmieniony"
+    },
+    
+    'ru': {
+        "title": "Wplace Конвертер Пиксель Арта | Превратите изображения в пиксель арт",
+        "subtitle": "Идеальный конвертер Wplace пиксель арта, который превращает любое изображение в потрясающий пиксель арт за секунды. Наш бесплатный онлайн инструмент автоматически подбирает официальную 64-цветную палитру Wplace.",
+        "nav.home": "Главная",
+        "nav.blog": "Блог",
+        "nav.about": "О нас",
+        "nav.privacy": "Конфиденциальность",
+        "nav.terms": "Условия",
+        "upload.main": "Нажмите для загрузки или перетащите изображение сюда",
+        "upload.sub": "Поддерживает форматы PNG, JPG (макс. 4МБ)",
+        "pixel.size": "Размер пикселя",
+        "pixel.desc": "Автоматическое преобразование при настройке ползунка",
+        "advanced.title": "Расширенные настройки",
+        "advanced.dithering": "Включить дизеринг Флойда-Штейнберга",
+        "advanced.scaling": "Метод масштабирования изображения:",
+        "advanced.grid": "Показать пиксельную сетку",
+        "scaling.nearest": "Ближайший сосед",
+        "scaling.bilinear": "Билинейный",
+        "scaling.lanczos": "Lanczos",
+        "preview.title": "Результат Wplace Pixel Paint",
+        "preview.prompt": "Пожалуйста, загрузите изображение для начала",
+        "btn.download": "Скачать",
+        "loading": "Обработка...",
+        "used.colors.title": "Цвета, использованные в этом изображении",
+        "used.colors.total": "Всего",
+        "used.colors.free": "Бесплатные",
+        "used.colors.premium": "Премиум",
+        "palette.title": "64-цветная палитра Wplace",
+        "palette.free": "Бесплатные (32)",
+        "palette.premium": "Премиум (32)",
+        "palette.info": "Официальная палитра Wplace",
+        "features.unlimited.desc": "Загрузите изображение любого размера. Наш конвертер пиксель арта Wplace обрабатывает все эффективно.",
+        "howto.step4.desc": "Выберите пиксель-идеальную или крупномасштабную версию. Ваш пиксель арт Wplace готов!",
+        "faq.a6": "Да! Произведения искусства, созданные с помощью нашего конвертера пиксель арта Wplace, принадлежат вам для свободного использования в личных или коммерческих проектах. Мы не претендуем на права собственности на ваши творения.",
+        "testimonials.q6": "Четкие превью и загрузки одним кликом дают мне идеальные справочные материалы. Я просто открываю Wplace и рисую - никаких догадок не требуется.",
+        "footer.main": "© 2025 Конвертер Пиксель Арта Wplace - Бесплатен для использования, никаких прав собственности на созданные произведения искусства не заявляется",
+        "footer.privacy": "Клиентская обработка защищает вашу конфиденциальность",
+        "progress.highPerformance": "Обработка в режиме высокой производительности",
+        "features.special.title": "Что делает наш инструмент Wplace особенным?",
+        "howto.step1.title": "Настройка размера пикселя",
+        "howto.step2.title": "Преобразование в пиксель арт",
+        "language.switched": "Язык изменен"
     }
 };
 
@@ -1517,6 +1689,19 @@ async function loadLanguage(languageCode) {
 
 // 多语言初始化
 async function initializeI18n() {
+    // Check if custom i18n is disabled in favor of GTranslate
+    if (window.disableCustomI18n) {
+        console.log('🌍 自定义多语言系统已禁用，使用 GTranslate');
+        
+        // Hide the original language selector when using GTranslate
+        const languageSelector = document.getElementById('languageSelector');
+        if (languageSelector && languageSelector.parentElement) {
+            languageSelector.parentElement.style.display = 'none';
+        }
+        
+        return;
+    }
+    
     try {
             // 从localStorage获取保存的语言设置
         const savedLanguage = localStorage.getItem('wplace-language') || 'zh';
@@ -1589,8 +1774,10 @@ function t(key, defaultValue = '') {
 // 更新页面文本
 function updatePageText() {
     console.log(`🔄 开始更新页面文本，当前语言: ${currentLanguage}`);
+    console.log('🔍 当前翻译对象keys:', Object.keys(translations).slice(0, 10)); // 显示前10个翻译键
     
     let updatedCount = 0;
+    let failedTranslations = [];
     
     // 更新所有带有 data-i18n 属性的元素
     document.querySelectorAll('[data-i18n]').forEach(element => {
@@ -1606,6 +1793,8 @@ function updatePageText() {
                 element.textContent = translation;
             }
             updatedCount++;
+        } else {
+            failedTranslations.push(key);
         }
     });
     
@@ -1623,6 +1812,8 @@ function updatePageText() {
                 element.textContent = translation;
             }
             updatedCount++;
+        } else {
+            failedTranslations.push(key);
         }
     });
     
@@ -1638,6 +1829,9 @@ function updatePageText() {
     }
     
     console.log(`✅ 页面文本更新完成，更新了 ${updatedCount} 个元素`);
+    if (failedTranslations.length > 0) {
+        console.log('❌ 未找到翻译的键:', failedTranslations);
+    }
 }
 
 // 获取默认翻译（中文）

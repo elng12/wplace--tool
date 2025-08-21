@@ -152,11 +152,21 @@ export class InternationalizationManager {
             currency: 'PLN',
             region: 'PL'
         });
+
+        this.supportedLanguages.set('ru', {
+            name: 'Russian',
+            nativeName: 'Русский',
+            direction: 'ltr',
+            dateFormat: 'DD.MM.YYYY',
+            timeFormat: 'HH:mm:ss',
+            currency: 'RUB',
+            region: 'RU'
+        });
     }
 
     async initializeTranslations() {
         // 动态加载翻译文件
-        const languageCodes = ['zh', 'en', 'pt', 'fr', 'de', 'es', 'ja', 'th', 'mi', 'tr', 'gn', 'vi', 'pl'];
+        const languageCodes = ['zh', 'en', 'pt', 'fr', 'de', 'es', 'ja', 'th', 'mi', 'tr', 'gn', 'vi', 'pl', 'ru'];
         
         for (const code of languageCodes) {
             try {
