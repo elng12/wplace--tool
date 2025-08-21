@@ -17,8 +17,8 @@ let translations = {};
 // 内置翻译数据 - 避免CORS问题
 const BUILTIN_TRANSLATIONS = {
     'zh': {
-        "title": "Wplace 像素艺术转换器 | 将图像转换为像素艺术",
-        "subtitle": "终极的 Wplace 像素艺术转换器，几秒钟内将任何图像转换为惊艳的像素艺术。我们的免费在线工具自动匹配 Wplace 官方 64 色调色板，立即为您提供专业效果。完美适用于 Wplace.live 玩家和像素艺术爱好者。",
+        "title": "PixelCraft 像素艺术生成器 | 将图像转换为像素艺术",
+        "subtitle": "专业的像素艺术生成工具，几秒钟内将任何图像转换为惊艳的像素艺术。我们的免费在线工具自动匹配兼容 Wplace 的 64 色调色板，为您提供专业效果。",
         "nav.home": "首页",
         "nav.blog": "博客", 
         "nav.about": "关于",
@@ -43,10 +43,10 @@ const BUILTIN_TRANSLATIONS = {
         "used.colors.total": "总计",
         "used.colors.free": "免费",
         "used.colors.premium": "付费",
-        "palette.title": "Wplace 64 色调色板",
+        "palette.title": "64 色调色板",
         "palette.free": "免费 (32)",
         "palette.premium": "付费 (32)",
-        "palette.info": "官方 Wplace 调色板",
+        "palette.info": "兼容 Wplace 调色板",
         "features.special.title": "什么让我们的 Wplace 图像转换器特别？",
         "features.unlimited.desc": "上传任意尺寸的图片。Wplace 像素艺术转换器高效处理一切。",
         "howto.step4.desc": "选择像素完美或大尺寸版本。您的 Wplace 像素艺术已准备就绪！",
@@ -61,8 +61,8 @@ const BUILTIN_TRANSLATIONS = {
     },
     
     'en': {
-        "title": "Wplace Pixel Art Converter | Convert Images to Pixel Art",
-        "subtitle": "The ultimate Wplace pixel art converter that transforms any image into stunning pixel art in seconds. Our free online tool automatically matches the official Wplace 64-color palette, giving you professional results instantly. Perfect for Wplace.live players and pixel art enthusiasts.",
+        "title": "Wplace Paint Tool: The Ultimate Pixel Toolkit to Dominate the Canvas",
+        "subtitle": "Designed for creative players on wplace.live, this ultimate toolkit lets you dominate the canvas with ease.",
         "nav.home": "Home",
         "nav.blog": "Blog",
         "nav.about": "About",
@@ -87,10 +87,10 @@ const BUILTIN_TRANSLATIONS = {
         "used.colors.total": "Total",
         "used.colors.free": "Free",
         "used.colors.premium": "Premium",
-        "palette.title": "Wplace 64-Color Palette",
+        "palette.title": "64-Color Palette",
         "palette.free": "Free (32)",
         "palette.premium": "Premium (32)",
-        "palette.info": "Official Wplace Color Palette",
+        "palette.info": "Wplace Compatible Palette",
         "language.switched": "Language switched"
     },
     

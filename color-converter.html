@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Image to Pixel Art Converter | Wplace Tool</title>
+  <title>Image to Pixel Art Converter | Wplace Paint Tool</title>
   <link rel="canonical" href="https://wplacetool.app/color-converter.html" />
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -13,13 +13,22 @@
   <link rel="stylesheet" href="css/main.css" />
 </head>
 <body class="bg-background text-foreground min-h-screen">
+  <!-- 免责声明横幅 -->
+  <div style="position:fixed;top:0;left:0;right:0;background:#ffea00;color:#000;z-index:9999;text-align:center;padding:6px;font-size:13px;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+    本网站（wplacetool.app）与 wplace.org 官方及其关联公司无任何隶属、赞助或授权关系。所有商标归其各自权利人所有。<br>
+    This site is not affiliated with, endorsed by, or sponsored by wplace.org.
+  </div>
+  <!-- 为横幅预留空间 -->
+  <div style="height:50px;"></div>
   <!-- Header Navigation -->
   <header class="bg-card shadow-sm border-border border-b sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 relative">
         <!-- Logo and Brand -->
         <div class="flex items-center space-x-3">
-          <div class="w-8 h-8 bg-blue-500 rounded-full"></div>
+          <div class="w-8 h-8 bg-orange-500 flex items-center justify-center" style="border-radius:2px;background:linear-gradient(45deg, #f97316 0%, #ea580c 50%, #dc2626 100%);">
+            <span class="text-white font-bold text-sm" style="font-family:monospace;">W</span>
+          </div>
           <h2 class="text-xl font-bold text-card-foreground">Wplace Paint Tool</h2>
         </div>
 
@@ -335,7 +344,7 @@
   <section class="bg-white py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Choose Wplace Tool?</h2>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Choose Wplace Paint Tool?</h2>
         <p class="text-xl text-gray-600">The ultimate image to pixel art converter for Wplace</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -383,7 +392,7 @@
   <section class="bg-gray-50 py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">How to Use Wplace Tool?</h2>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">How to Use Wplace Paint Tool?</h2>
         <p class="text-xl text-gray-600">Convert images to pixel art in 4 simple steps</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -423,7 +432,7 @@
   <footer class="bg-gray-900 text-white py-12">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
-        <h3 class="text-2xl font-bold mb-6">About Wplace Tool</h3>
+        <h3 class="text-2xl font-bold mb-6">About Wplace Paint Tool</h3>
         <p class="text-gray-400 text-sm">This is an unofficial, independent fan-made website created to address community pixel needs. We are not affiliated with or endorsed by the official Wplace platform. This converter was developed by fans, for fans to enhance the pixel art creation experience.</p>
         <p class="text-gray-400 text-sm mt-4" data-i18n="footer.main"></p>
         <p class="text-gray-400 text-sm" data-i18n="footer.privacy"></p>

@@ -65,19 +65,28 @@
   </style>
 </head>
 <body class="bg-background text-foreground min-h-screen">
+  <!-- 免责声明横幅 -->
+  <div style="position:fixed;top:0;left:0;right:0;background:#ffea00;color:#000;z-index:9999;text-align:center;padding:6px;font-size:13px;box-shadow:0 2px 4px rgba(0,0,0,0.1);">
+    本网站（wplacetool.app）与 wplace.org 官方及其关联公司无任何隶属、赞助或授权关系。所有商标归其各自权利人所有。<br>
+    This site is not affiliated with, endorsed by, or sponsored by wplace.org.
+  </div>
+  <!-- 为横幅预留空间 -->
+  <div style="height:50px;"></div>
   <!-- Header Navigation -->
   <header class="bg-card shadow-sm border-border border-b sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 relative">
         <!-- Logo and Brand -->
         <div class="flex items-center space-x-3">
-          <div class="w-8 h-8 bg-blue-500 rounded-full"></div>
-          <h2 class="text-xl font-bold text-card-foreground">Wplace Tool</h2>
+          <div class="w-8 h-8 bg-orange-500 flex items-center justify-center" style="border-radius:2px;background:linear-gradient(45deg, #f97316 0%, #ea580c 50%, #dc2626 100%);">
+            <span class="text-white font-bold text-sm" style="font-family:monospace;">W</span>
+          </div>
+          <h2 class="text-xl font-bold text-gray-800">Wplace Paint Tool</h2>
         </div>
 
         <!-- Navigation Menu -->
         <nav class="hidden md:flex items-center space-x-6 ml-auto">
-          <a href="index.html" class="text-blue-600 px-3 py-2 text-sm font-medium border-b-2 border-blue-600">Home</a>
+          <a href="index.html" class="text-orange-600 px-3 py-2 text-sm font-medium border-b-2 border-orange-600">Home</a>
           <a href="color-converter.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Converter</a>
           <a href="blog.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Blog</a>
           <a href="about.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">About</a>
@@ -416,7 +425,7 @@
           <h2 class="text-md font-semibold text-foreground mb-2 sm:mb-0" data-lang="palette.title">Wplace 64-Color Palette</h2>
           <div class="flex items-center space-x-2 text-xs text-muted-foreground">
             <div class="flex items-center space-x-1">
-              <div class="w-3 h-3 bg-green-500 rounded-sm"></div>
+              <div class="w-3 h-3 bg-orange-500 rounded-sm"></div>
               <span data-lang="palette.free">Free (32)</span>
             </div>
             <div class="flex items-center space-x-1">
@@ -452,7 +461,7 @@
   <section class="bg-white py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4" data-lang="features.special.title">What Makes Our Wplace Image Converter Special?</h2>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4" data-lang="features.special.title">What Makes Our Pixel Art Generator Special?</h2>
         <p class="text-xl text-gray-600">Transform any image into stunning pixel art designed for Wplace</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -500,7 +509,7 @@
   <section class="bg-gray-50 py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">How to Use Wplace Tool</h2>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">How to Use Wplace Paint Tool</h2>
         <p class="text-xl text-gray-600">Convert images to pixel art in 4 simple steps</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -541,38 +550,38 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
-        <p class="text-xl text-gray-600">Everything you need to know about our Wplace Tool</p>
+        <p class="text-xl text-gray-600">Everything you need to know about our Wplace Paint Tool</p>
       </div>
       
       <div class="max-w-4xl mx-auto space-y-8">
         <!-- FAQ Item 1 -->
         <div class="bg-gray-50 rounded-lg p-6">
-                  <h3 class="text-xl font-semibold text-gray-900 mb-4">What makes this Wplace Tool different from other pixel art converters?</h3>
-        <p class="text-gray-700 leading-relaxed">Our Wplace Tool is specifically designed for the Wplace community and uses the official 64-color palette from wplace.org. Unlike generic pixel art converters, this tool ensures perfect color compatibility with the Wplace platform. The Wplace Tool features advanced algorithms that automatically match your images to the exact colors available on Wplace, eliminating guesswork and ensuring your artwork will display correctly when uploaded to the platform.</p>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-4">What makes this Wplace Paint Tool different from other pixel art converters?</h3>
+        <p class="text-gray-700 leading-relaxed">Our Wplace Paint Tool is specifically designed for the Wplace community and uses the official 64-color palette from wplace.org. Unlike generic pixel art converters, this tool ensures perfect color compatibility with the Wplace platform. The Wplace Paint Tool features advanced algorithms that automatically match your images to the exact colors available on Wplace, eliminating guesswork and ensuring your artwork will display correctly when uploaded to the platform.</p>
         </div>
 
         <!-- FAQ Item 2 -->
         <div class="bg-gray-50 rounded-lg p-6">
-                  <h3 class="text-xl font-semibold text-gray-900 mb-4">Is the Wplace Tool completely free to use?</h3>
-        <p class="text-gray-700 leading-relaxed">Yes, our Wplace Tool is completely free with no hidden costs, subscriptions, or usage limits. We believe every Wplace player should have access to professional-quality pixel art conversion tools. The Wplace Tool processes everything locally in your browser, which means we don't have server costs to maintain, allowing us to offer this service at no charge. You can convert unlimited images and download them without any watermarks or restrictions.</p>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-4">Is the Wplace Paint Tool completely free to use?</h3>
+        <p class="text-gray-700 leading-relaxed">Yes, our Wplace Paint Tool is completely free with no hidden costs, subscriptions, or usage limits. We believe every Wplace player should have access to professional-quality pixel art conversion tools. The Wplace Paint Tool processes everything locally in your browser, which means we don't have server costs to maintain, allowing us to offer this service at no charge. You can convert unlimited images and download them without any watermarks or restrictions.</p>
         </div>
 
         <!-- FAQ Item 3 -->
         <div class="bg-gray-50 rounded-lg p-6">
-                  <h3 class="text-xl font-semibold text-gray-900 mb-4">How does the Wplace Tool ensure my privacy and data security?</h3>
-        <p class="text-gray-700 leading-relaxed">Privacy is a core feature of our Wplace Tool. All image processing happens entirely within your browser using client-side JavaScript technology. Your images never leave your device - they are not uploaded to our servers, stored in databases, or transmitted anywhere. The Wplace Tool works offline once loaded, and we cannot access, view, or collect any of your images. This local processing approach ensures complete privacy while delivering fast, secure pixel art conversion for Wplace players.</p>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-4">How does the Wplace Paint Tool ensure my privacy and data security?</h3>
+        <p class="text-gray-700 leading-relaxed">Privacy is a core feature of our Wplace Paint Tool. All image processing happens entirely within your browser using client-side JavaScript technology. Your images never leave your device - they are not uploaded to our servers, stored in databases, or transmitted anywhere. The Wplace Paint Tool works offline once loaded, and we cannot access, view, or collect any of your images. This local processing approach ensures complete privacy while delivering fast, secure pixel art conversion for Wplace players.</p>
         </div>
 
         <!-- FAQ Item 4 -->
         <div class="bg-gray-50 rounded-lg p-6">
-                  <h3 class="text-xl font-semibold text-gray-900 mb-4">What image formats and sizes does the Wplace Tool support?</h3>
-        <p class="text-gray-700 leading-relaxed">The Wplace Tool accepts all standard image formats including PNG, JPG, JPEG, and supports images of virtually any size. Whether you're working with small icons or large artwork, our tool can handle it efficiently. The Wplace Tool automatically optimizes processing based on your image size and selected pixel density. For best results with the Wplace Tool, we recommend using high-quality source images, as the tool will preserve and enhance the details that matter most for pixel art creation.</p>
+                  <h3 class="text-xl font-semibold text-gray-900 mb-4">What image formats and sizes does the Wplace Paint Tool support?</h3>
+        <p class="text-gray-700 leading-relaxed">The Wplace Paint Tool accepts all standard image formats including PNG, JPG, JPEG, and supports images of virtually any size. Whether you're working with small icons or large artwork, our Wplace Paint Tool can handle it efficiently. The Wplace Paint Tool automatically optimizes processing based on your image size and selected pixel density. For best results with the Wplace Paint Tool, we recommend using high-quality source images, as the tool will preserve and enhance the details that matter most for pixel art creation.</p>
         </div>
 
         <!-- FAQ Item 5 -->
         <div class="bg-gray-50 rounded-lg p-6">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">Can I adjust the pixel size and quality settings in the Wplace Tool?</h3>
-          <p class="text-gray-700 leading-relaxed">Absolutely! The Wplace Tool offers comprehensive customization options. You can adjust pixel sizes from 1 to 32, with smaller values creating more detailed artwork and larger values producing bold, abstract designs. The tool includes advanced features like Floyd-Steinberg dithering for smoother color transitions, multiple scaling algorithms (Nearest Neighbor, Bilinear, and Lanczos), and grid overlay options. These professional-grade features make our Wplace Tool suitable for both beginners and experienced digital artists working on Wplace projects.</p>
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Can I adjust the pixel size and quality settings in the Wplace Paint Tool?</h3>
+          <p class="text-gray-700 leading-relaxed">Absolutely! The Wplace Paint Tool offers comprehensive customization options. You can adjust pixel sizes from 1 to 32, with smaller values creating more detailed artwork and larger values producing bold, abstract designs. The tool includes advanced features like Floyd-Steinberg dithering for smoother color transitions, multiple scaling algorithms (Nearest Neighbor, Bilinear, and Lanczos), and grid overlay options. These professional-grade features make our Wplace Paint Tool suitable for both beginners and experienced digital artists working on Wplace projects.</p>
         </div>
 
         <!-- FAQ Item 6 -->
@@ -588,8 +597,8 @@
   <section class="bg-gray-50 py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">What Users Say About Wplace Tool</h2>
-        <p class="text-xl text-gray-600">Real feedback from creators using Wplace Tool</p>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">What Users Say About Wplace Paint Tool</h2>
+        <p class="text-xl text-gray-600">Real feedback from creators using Wplace Paint Tool</p>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -605,7 +614,7 @@
               <p class="text-sm text-gray-500">Wplace Veteran Player</p>
             </div>
           </div>
-          <p class="text-gray-700 leading-relaxed">"This Wplace Tool has completely transformed how I approach pixel art on the platform. Before discovering this converter, I spent hours manually converting images with color mismatches. Now I can upload any image and instantly see how it will look with the official palette."</p>
+          <p class="text-gray-700 leading-relaxed">"This Wplace Paint Tool has completely transformed how I approach pixel art on the platform."</p>
           <div class="mt-4 flex text-yellow-400">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -627,7 +636,7 @@
               <p class="text-sm text-gray-500">Digital Art Enthusiast</p>
             </div>
           </div>
-          <p class="text-gray-700 leading-relaxed">"I've tried many pixel art converters, but this Wplace Tool is by far the most accurate and user-friendly. The automatic color matching feature ensures my artwork looks exactly as intended when I place it on the canvas."</p>
+          <p class="text-gray-700 leading-relaxed">"The automatic color matching feature ensures my artwork looks exactly as intended."</p>
           <div class="mt-4 flex text-yellow-400">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -649,7 +658,7 @@
               <p class="text-sm text-gray-500">Community Leader</p>
             </div>
           </div>
-          <p class="text-gray-700 leading-relaxed">"Our entire team relies on this Wplace Tool for coordinating large-scale community art projects. The precision and reliability make it indispensable for planning complex designs. The grid overlays help us coordinate pixel placement across multiple contributors."</p>
+          <p class="text-gray-700 leading-relaxed">"Our entire team relies on this Wplace Paint Tool for coordinating large-scale community art projects. The precision and reliability make it indispensable for planning complex designs. The grid overlays help us coordinate pixel placement across multiple contributors."</p>
           <div class="mt-4 flex text-yellow-400">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -670,7 +679,7 @@
               <p class="text-sm text-gray-500">Creative Designer</p>
             </div>
           </div>
-          <p class="text-gray-700 leading-relaxed">"As someone who creates detailed artwork for Wplace, this wplace tool has revolutionized my creative process. The advanced features like dithering and scaling options make it incredibly versatile for converting photographs, logos, and original artwork."</p>
+          <p class="text-gray-700 leading-relaxed">"As someone who creates detailed artwork for Wplace, this Wplace Paint Tool has revolutionized my creative process. The advanced features like dithering and scaling options make it incredibly versatile for converting photographs, logos, and original artwork."</p>
           <div class="mt-4 flex text-yellow-400">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -692,7 +701,7 @@
               <p class="text-sm text-gray-500">Wplace Strategist</p>
             </div>
           </div>
-          <p class="text-gray-700 leading-relaxed">"This wplace tool has become my secret weapon for creating strategic artwork on the platform. The speed and accuracy allow me to quickly test different design concepts before committing pixels on the actual canvas."</p>
+          <p class="text-gray-700 leading-relaxed">"This Wplace Paint Tool has become my secret weapon for creating strategic artwork on the platform. The speed and accuracy allow me to quickly test different design concepts before committing pixels on the actual canvas."</p>
           <div class="mt-4 flex text-yellow-400">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
@@ -729,15 +738,15 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
             <div class="text-3xl font-bold text-blue-600 mb-2">10,000+</div>
-            <p class="text-gray-600">Images converted with our wplace tool</p>
+            <p class="text-gray-600">Images converted with our Wplace Paint Tool</p>
           </div>
           <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
             <div class="text-3xl font-bold text-green-600 mb-2">5,000+</div>
-            <p class="text-gray-600">Active users of the wplace tool</p>
+            <p class="text-gray-600">Active users of the Wplace Paint Tool</p>
           </div>
           <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
             <div class="text-3xl font-bold text-purple-600 mb-2">99.9%</div>
-            <p class="text-gray-600">Satisfaction rate with our wplace tool</p>
+            <p class="text-gray-600">Satisfaction rate with our Wplace Paint Tool</p>
           </div>
         </div>
       </div>
@@ -748,14 +757,14 @@
   <footer class="bg-gray-900 text-white py-12">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
-        <h3 class="text-2xl font-bold mb-6">About Wplace Tool</h3>
+        <h3 class="text-2xl font-bold mb-6">About Wplace Paint Tool</h3>
         <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8">
           <a href="about.html" class="text-gray-400 hover:text-white text-sm">About</a>
           <a href="privacy.html" class="text-gray-400 hover:text-white text-sm">Privacy</a>
           <a href="terms.html" class="text-gray-400 hover:text-white text-sm">Terms</a>
           <a href="blog.html" class="text-gray-400 hover:text-white text-sm">Blog</a>
           <a href="index.html" class="text-gray-400 hover:text-white text-sm">Home</a>
-          <a href="color-converter.html" class="text-gray-400 hover:text-white text-sm">Wplace Color Converter</a>
+          <a href="color-converter.html" class="text-gray-400 hover:text-white text-sm">Color Converter</a>
         </div>
         
         <!-- Independent Fan Site Notice -->
@@ -766,7 +775,7 @@
             </svg>
             <span class="font-semibold text-blue-400">Independent Fan Site</span>
           </div>
-          <p class="text-gray-300">This website is an independent, fan-run project built to serve the community's pixel art needs. We are not connected with, sponsored by, or approved by the official Wplace platform. Made by fans for fans, this Wplace Tool aims to make pixel creation easier and more enjoyable.</p>
+          <p class="text-gray-300">This website is an independent, fan-run project built to serve the community's pixel art needs. We are not connected with, sponsored by, or approved by the official Wplace platform. Made by fans for fans, this Wplace Paint Tool aims to make pixel creation easier and more enjoyable.</p>
         </div>
         
         <p class="text-gray-400 text-sm" data-i18n="footer.main"></p>
