@@ -1,0 +1,165 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const languageSelector = document.getElementById('languageSelector');
+  const languageIcon = document.getElementById('languageIcon');
+  const languageMenu = document.getElementById('languageMenu');
+  const closeLanguageMenu = document.getElementById('closeLanguageMenu');
+
+  // 从 localStorage 获取保存的语言，或者根据浏览器语言检测，默认为英语
+  const savedLang = localStorage.getItem('language') || navigator.language.split('-')[0] || 'en';
+
+  /**
+   * 异步加载并应用翻译
+   * @param {string} lang - 语言代码 (例如 'en', 'zh')
+   */
+  const loadTranslations = async (lang) => {
+    try {
+      // 检查语言是否有效，如果无效则退回 'en'
+      const supportedLangs = ['en', 'pt-BR', 'zh', 'fr', 'de', 'es', 'ja', 'he', 'mi', 'tr', 'gn', 'ru', 'th', 'vi', 'pl', 'pt'];
+      const effectiveLang = supportedLangs.includes(lang) ? lang : 'en';
+      
+      const response = await fetch(`/locales/${effectiveLang}.json`);
+      if (!response.ok) {
+        throw new Error(`Could not load translation file for ${effectiveLang}`);
+      }
+      const translations = await response.json();
+      
+      applyTranslations(translations);
+
+      // 更新页面和选择器的状态
+      document.documentElement.lang = effectiveLang;
+      if (languageSelector) {
+        languageSelector.value = effectiveLang;
+      }
+      localStorage.setItem('language', effectiveLang);
+
+    } catch (error) {
+      console.error('Failed to load translations:', error);
+      // 如果加载失败，尝试加载默认的英语
+      if (lang !== 'en') {
+        loadTranslations('en');
+      }
+    }
+  };
+
+  /**
+   * 将翻译应用到页面元素上
+   * @param {object} translations - 包含翻译键值对的对象
+   */
+  const applyTranslations = (translations) => {
+    // 统一处理 data-lang 和 data-i18n 属性
+    document.querySelectorAll('[data-lang], [data-i18n]').forEach(element => {
+      const key = element.getAttribute('data-lang') || element.getAttribute('data-i18n');
+      if (translations[key]) {
+        // 检查是否是特殊属性，例如 title 或 aria-label
+        if (element.hasAttribute('data-lang-aria')) {
+          element.setAttribute('aria-label', translations[key]);
+        } else if (element.tagName === 'TITLE') {
+          document.title = translations[key];
+        }
+        else {
+          element.textContent = translations[key];
+        }
+      }
+    });
+
+    // 更新 document title
+    if (translations['title']) {
+      document.title = translations['title'];
+    }
+
+    // 更新 meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription && translations['subtitle']) {
+      metaDescription.setAttribute('content', translations['subtitle']);
+    }
+
+    // 更新 Open Graph meta tags
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle && translations['title']) {
+      ogTitle.setAttribute('content', translations['title']);
+    }
+    
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription && translations['subtitle']) {
+      ogDescription.setAttribute('content', translations['subtitle']);
+    }
+
+    // 更新 Twitter meta tags
+    const twitterTitle = document.querySelector('meta[property="twitter:title"]');
+    if (twitterTitle && translations['title']) {
+      twitterTitle.setAttribute('content', translations['title']);
+    }
+    
+    const twitterDescription = document.querySelector('meta[property="twitter:description"]');
+    if (twitterDescription && translations['subtitle']) {
+      twitterDescription.setAttribute('content', translations['subtitle']);
+    }
+  };
+
+  /**
+   * 设置语言的函数
+   * @param {string} lang 
+   */
+  const setLanguage = (lang) => {
+    loadTranslations(lang);
+    if (languageMenu && languageMenu.classList.contains('hidden') === false) {
+      languageMenu.classList.add('hidden');
+    }
+    document.body.style.overflow = '';
+  };
+
+  // --- 事件监听器 ---
+
+  // 桌面版语言选择器
+  if (languageSelector) {
+    languageSelector.addEventListener('change', (event) => {
+      setLanguage(event.target.value);
+    });
+  }
+
+  // 移动版语言图标
+  if (languageIcon) {
+    languageIcon.addEventListener('click', () => {
+      if (languageMenu) {
+        languageMenu.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  }
+
+  // 关闭移动版语言菜单
+  if (closeLanguageMenu) {
+    closeLanguageMenu.addEventListener('click', () => {
+      if (languageMenu) {
+        languageMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // 移动版语言选项按钮
+  document.querySelectorAll('.language-option').forEach(button => {
+    button.addEventListener('click', () => {
+      const lang = button.getAttribute('data-lang');
+      setLanguage(lang);
+    });
+  });
+
+  // 点击菜单外部关闭
+  if (languageMenu) {
+    languageMenu.addEventListener('click', (e) => {
+      if (e.target === languageMenu) {
+        languageMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // --- 初始化 ---
+  // 页面加载时，立即加载保存的或检测到的语言
+  loadTranslations(savedLang);
+
+  // 导出全局函数供外部使用
+  window.setLanguage = setLanguage;
+  window.loadTranslations = loadTranslations;
+});
