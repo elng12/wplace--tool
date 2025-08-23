@@ -28,12 +28,12 @@
 
         <!-- Navigation Menu -->
         <nav class="hidden md:flex items-center space-x-6 ml-auto">
-          <a href="index.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Home</a>
-          <a href="color-converter.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Converter</a>
-          <a href="blog.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Blog</a>
-          <a href="about.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">About</a>
-          <a href="privacy.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Privacy</a>
-          <a href="terms.html" class="text-blue-600 px-3 py-2 text-sm font-medium border-b-2 border-blue-600">Terms</a>
+          <a href="index.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.home">Home</a>
+          <a href="color-converter.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.converter">Converter</a>
+          <a href="blog.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.blog">Blog</a>
+          <a href="about.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.about">About</a>
+          <a href="privacy.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.privacy">Privacy</a>
+          <a href="terms.html" class="text-blue-600 px-3 py-2 text-sm font-medium border-b-2 border-blue-600" data-lang="nav.terms">Terms</a>
         </nav>
 
         <!-- Mobile Menu Button & Language Selector -->
@@ -59,12 +59,12 @@
     <!-- Mobile Navigation Menu -->
     <div id="mobileMenu" class="md:hidden bg-white border-t border-gray-200 hidden">
       <div class="px-4 py-3 space-y-2">
-        <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Home</a>
-        <a href="color-converter.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Converter</a>
-        <a href="blog.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Blog</a>
-        <a href="about.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">About</a>
-        <a href="privacy.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Privacy</a>
-        <a href="terms.html" class="block px-3 py-2 text-blue-600 text-sm font-medium">Terms</a>
+        <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.home">Home</a>
+        <a href="color-converter.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.converter">Converter</a>
+        <a href="blog.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.blog">Blog</a>
+        <a href="about.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.about">About</a>
+        <a href="privacy.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.privacy">Privacy</a>
+        <a href="terms.html" class="block px-3 py-2 text-blue-600 text-sm font-medium" data-lang="nav.terms">Terms</a>
       </div>
     </div>
   </header>
@@ -73,14 +73,14 @@
   <section class="bg-white py-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Terms of Service</h1>
-        <p class="text-xl text-gray-600">Simple, fair terms for using Wplace Tool. Free to use with full ownership of your creations.</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6" data-lang="terms.title">Terms of Service</h1>
+        <p class="text-xl text-gray-600" data-lang="terms.subtitle">Simple, fair terms for using Wplace Tool. Free to use with full ownership of your creations.</p>
         <div class="mt-6">
           <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
             <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            Last updated: August 1, 2025
+            <span data-lang="terms.lastupdated">Last updated: August 1, 2025</span>
           </span>
         </div>
       </div>
@@ -91,9 +91,9 @@
     
     <!-- Acceptance of Terms -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Acceptance of Terms</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.acceptance.title">Acceptance of Terms</h2>
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p class="text-gray-600 leading-relaxed">
+        <p class="text-gray-600 leading-relaxed" data-lang="terms.acceptance.desc">
           By accessing or using the Wplace Tool, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the service.
         </p>
       </div>
@@ -101,80 +101,80 @@
 
     <!-- Description of Service -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Description of Service</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.service.title">Description of Service</h2>
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p class="text-gray-600 leading-relaxed mb-4">
+        <p class="text-gray-600 leading-relaxed mb-4" data-lang="terms.service.desc">
           The Wplace Tool is an online utility that converts images into pixel art using the color palette from the Wplace game. The service provides:
         </p>
         <ul class="list-disc list-inside text-gray-600 space-y-2 ml-4">
-          <li>In-browser image transformation</li>
-          <li>On-device image processing</li>
-          <li>Client-side pixel art generation</li>
-          <li>Capability to download created pixel art</li>
-          <li>No necessity for registration or account setup</li>
+          <li data-lang="terms.service.item1">In-browser image transformation</li>
+          <li data-lang="terms.service.item2">On-device image processing</li>
+          <li data-lang="terms.service.item3">Client-side pixel art generation</li>
+          <li data-lang="terms.service.item4">Capability to download created pixel art</li>
+          <li data-lang="terms.service.item5">No necessity for registration or account setup</li>
         </ul>
       </div>
     </section>
 
     <!-- Permitted Use -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Permitted Use</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.permitted.title">Permitted Use</h2>
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p class="text-gray-600 leading-relaxed mb-4">
+        <p class="text-gray-600 leading-relaxed mb-4" data-lang="terms.permitted.desc">
           Our service is authorized for the following applications:
         </p>
         <ul class="list-disc list-inside text-gray-600 space-y-2 ml-4">
-          <li>Development of creative endeavors</li>
-          <li>Production of artwork for Wplace gaming</li>
-          <li>Commercial undertakings (with appropriate acknowledgment)</li>
-          <li>Academic and instructional objectives</li>
-          <li>Dissemination of produced visual content</li>
+          <li data-lang="terms.permitted.item1">Development of creative endeavors</li>
+          <li data-lang="terms.permitted.item2">Production of artwork for Wplace gaming</li>
+          <li data-lang="terms.permitted.item3">Commercial undertakings (with appropriate acknowledgment)</li>
+          <li data-lang="terms.permitted.item4">Academic and instructional objectives</li>
+          <li data-lang="terms.permitted.item5">Dissemination of produced visual content</li>
         </ul>
       </div>
     </section>
 
     <!-- Prohibited Activities -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Prohibited Activities</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.prohibited.title">Prohibited Activities</h2>
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p class="text-gray-600 leading-relaxed mb-4">
+        <p class="text-gray-600 leading-relaxed mb-4" data-lang="terms.prohibited.desc">
           You agree not to use the service for any of the following prohibited activities:
         </p>
         <ul class="list-disc list-inside text-gray-600 space-y-2 ml-4">
-          <li>Engaging in any illegal activities</li>
-          <li>Uploading harmful, offensive, or inappropriate content</li>
-          <li>Attempting to reverse-engineer the service or its algorithms</li>
-          <li>Overloading our infrastructure with automated requests</li>
-          <li>Distributing copyrighted material without permission</li>
-          <li>Transmitting viruses, malware, or other malicious code</li>
+          <li data-lang="terms.prohibited.item1">Engaging in any illegal activities</li>
+          <li data-lang="terms.prohibited.item2">Uploading harmful, offensive, or inappropriate content</li>
+          <li data-lang="terms.prohibited.item3">Attempting to reverse-engineer the service or its algorithms</li>
+          <li data-lang="terms.prohibited.item4">Overloading our infrastructure with automated requests</li>
+          <li data-lang="terms.prohibited.item5">Distributing copyrighted material without permission</li>
+          <li data-lang="terms.prohibited.item6">Transmitting viruses, malware, or other malicious code</li>
         </ul>
       </div>
     </section>
 
     <!-- Intellectual Property & Ownership -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Intellectual Property & Ownership</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.ip.title">Intellectual Property & Ownership</h2>
       
       <!-- Your Content -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-gray-900 mb-3">Your Content</h3>
-        <p class="text-gray-600 leading-relaxed">
+        <h3 class="text-lg font-semibold text-gray-900 mb-3" data-lang="terms.ip.content.title">Your Content</h3>
+        <p class="text-gray-600 leading-relaxed" data-lang="terms.ip.content.desc">
           You retain full ownership of the images you upload and the pixel art you create. We claim no rights to your content or the resulting artwork.
         </p>
       </div>
 
       <!-- Generated Artwork -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h3 class="text-lg font-semibold text-gray-900 mb-3">Produced Visuals</h3>
-        <p class="text-gray-600 leading-relaxed">
+        <h3 class="text-lg font-semibold text-gray-900 mb-3" data-lang="terms.ip.generated.title">Produced Visuals</h3>
+        <p class="text-gray-600 leading-relaxed" data-lang="terms.ip.generated.desc">
           All pixel art created by our application belongs solely to you. You are free to utilize it for any objective, including commercial ventures, without the need for acknowledgment (though recognition is valued).
         </p>
       </div>
 
       <!-- Our Service -->
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h3 class="text-lg font-semibold text-gray-900 mb-3">Our Service</h3>
-        <p class="text-gray-600 leading-relaxed">
+        <h3 class="text-lg font-semibold text-gray-900 mb-3" data-lang="terms.ip.service.title">Our Service</h3>
+        <p class="text-gray-600 leading-relaxed" data-lang="terms.ip.service.desc">
           The Wplace Tool software, algorithms, and design are our intellectual property. However, the service is provided to the community free of charge, and we waive any licensing fees for its use.
         </p>
       </div>
@@ -182,52 +182,52 @@
 
     <!-- Disclaimer of Warranties -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Disclaimer of Warranties</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.disclaimer.title">Disclaimer of Warranties</h2>
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p class="text-gray-600 leading-relaxed mb-4">
+        <p class="text-gray-600 leading-relaxed mb-4" data-lang="terms.disclaimer.desc">
           The Wplace Tool is furnished on an "as-is" basis, devoid of any explicit or implicit guarantees. We do not warrant:
         </p>
         <ul class="list-disc list-inside text-gray-600 space-y-2 ml-4">
-          <li>Uninterrupted accessibility or operational continuity</li>
-          <li>Flawless pixel alignment or precision</li>
-          <li>Absence of defects or inaccuracies</li>
-          <li>Universal compatibility across all devices or web browsers</li>
-          <li>Seamless or faultless operation</li>
+          <li data-lang="terms.disclaimer.item1">Uninterrupted accessibility or operational continuity</li>
+          <li data-lang="terms.disclaimer.item2">Flawless pixel alignment or precision</li>
+          <li data-lang="terms.disclaimer.item3">Absence of defects or inaccuracies</li>
+          <li data-lang="terms.disclaimer.item4">Universal compatibility across all devices or web browsers</li>
+          <li data-lang="terms.disclaimer.item5">Seamless or faultless operation</li>
         </ul>
       </div>
     </section>
 
     <!-- Limitation of Liability -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Limitation of Liability</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.liability.title">Limitation of Liability</h2>
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p class="text-gray-600 leading-relaxed mb-4">
+        <p class="text-gray-600 leading-relaxed mb-4" data-lang="terms.liability.desc">
           Given that our service is offered entirely free of charge, we disclaim responsibility for any losses or harm incurred, encompassing, yet not confined to:
         </p>
         <ul class="list-disc list-inside text-gray-600 space-y-2 ml-4">
-          <li>Compromise of data or degradation in image conversion fidelity</li>
-          <li>Any immediate, remote, or resultant detriments</li>
-          <li>Disruptions or cessation of service availability</li>
-          <li>Outcomes failing to align with your anticipations</li>
+          <li data-lang="terms.liability.item1">Compromise of data or degradation in image conversion fidelity</li>
+          <li data-lang="terms.liability.item2">Any immediate, remote, or resultant detriments</li>
+          <li data-lang="terms.liability.item3">Disruptions or cessation of service availability</li>
+          <li data-lang="terms.liability.item4">Outcomes failing to align with your anticipations</li>
         </ul>
       </div>
     </section>
 
     <!-- Privacy -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Privacy</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.privacy.title">Privacy</h2>
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p class="text-gray-600 leading-relaxed">
-          Your personal data is safeguarded through our client-side processing methodology. For comprehensive details regarding our data management practices, kindly consult our <a href="privacy.html" class="text-blue-600 hover:text-blue-700 underline">Privacy Policy</a>.
+        <p class="text-gray-600 leading-relaxed" data-lang="terms.privacy.desc">
+          Your personal data is safeguarded through our client-side processing methodology. For comprehensive details regarding our data management practices, kindly consult our <a href="privacy.html" class="text-blue-600 hover:text-blue-700 underline" data-lang="terms.privacy.link">Privacy Policy</a>.
         </p>
       </div>
     </section>
 
     <!-- Modifications to Service -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Modifications to Service</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.modifications.title">Modifications to Service</h2>
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p class="text-gray-600 leading-relaxed">
+        <p class="text-gray-600 leading-relaxed" data-lang="terms.modifications.desc">
           We retain the prerogative to alter, temporarily halt, or cease any segment of our service at our discretion. While we endeavor to apprise users of substantial revisions, such notification is not a mandatory commitment.
         </p>
       </div>
@@ -235,9 +235,9 @@
 
     <!-- Termination -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Termination</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.termination.title">Termination</h2>
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p class="text-gray-600 leading-relaxed">
+        <p class="text-gray-600 leading-relaxed" data-lang="terms.termination.desc">
           As no registration is mandated, no accounts exist for cessation. You are at liberty to discontinue service usage whenever you choose. Access may be withheld from individuals found to be in breach of these stipulations.
         </p>
       </div>
@@ -245,9 +245,9 @@
 
     <!-- Governing Law -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Governing Law</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.governing.title">Governing Law</h2>
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p class="text-gray-600 leading-relaxed">
+        <p class="text-gray-600 leading-relaxed" data-lang="terms.governing.desc">
           This agreement shall be construed and regulated in conformity with pertinent international and digital service protocols. Any disagreements arising will be settled via sincere dialogue.
         </p>
       </div>
@@ -255,9 +255,9 @@
 
     <!-- Changes to Terms -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Changes to Terms</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.changes.title">Changes to Terms</h2>
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p class="text-gray-600 leading-relaxed">
+        <p class="text-gray-600 leading-relaxed" data-lang="terms.changes.desc">
           These provisions may be revised periodically. Amendments will be published on this page, accompanied by a revised "Last updated" timestamp. Your ongoing engagement with the service signifies your assent to any new stipulations.
         </p>
       </div>
@@ -265,14 +265,14 @@
 
     <!-- Contact Information -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.contact.title">Contact Information</h2>
       <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <p class="text-gray-600 leading-relaxed mb-4">
+        <p class="text-gray-600 leading-relaxed mb-4" data-lang="terms.contact.desc">
           For inquiries regarding these terms or to report any issues, kindly reach out to us via:
         </p>
         <div class="bg-gray-50 rounded-lg p-4">
           <p class="text-gray-700">
-            <strong>Electronic Mail:</strong> <a href="mailto:support@wplacetool.com" class="text-blue-600 hover:text-blue-700">support@wplacetool.com</a>
+            <strong data-lang="terms.contact.email.label">Electronic Mail:</strong> <a href="mailto:support@wplacetool.com" class="text-blue-600 hover:text-blue-700">support@wplacetool.com</a>
           </p>
         </div>
       </div>
@@ -280,7 +280,7 @@
 
     <!-- Key Points Summary -->
     <section class="mb-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-6">Key Points Summary</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="terms.summary.title">Key Points Summary</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         <!-- 100% Free -->
@@ -289,9 +289,9 @@
             <svg class="w-6 h-6 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            <h3 class="text-lg font-semibold text-green-900">100% Free</h3>
+            <h3 class="text-lg font-semibold text-green-900" data-lang="terms.summary.free.title">100% Free</h3>
           </div>
-          <p class="text-green-700 text-sm">Completely free of charge, with no subscription costs, concealed fees, or restrictions on conversions or downloads.</p>
+          <p class="text-green-700 text-sm" data-lang="terms.summary.free.desc">Completely free of charge, with no subscription costs, concealed fees, or restrictions on conversions or downloads.</p>
         </div>
 
         <!-- You Own Everything -->
@@ -300,9 +300,9 @@
             <svg class="w-6 h-6 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 0h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
             </svg>
-            <h3 class="text-lg font-semibold text-blue-900">You Own Everything</h3>
+            <h3 class="text-lg font-semibold text-blue-900" data-lang="terms.summary.ownership.title">You Own Everything</h3>
           </div>
-          <p class="text-blue-700 text-sm">Retain absolute proprietorship over all uploaded images and generated pixel art. Commercial utilization is permitted without constraints.</p>
+          <p class="text-blue-700 text-sm" data-lang="terms.summary.ownership.desc">Retain absolute proprietorship over all uploaded images and generated pixel art. Commercial utilization is permitted without constraints.</p>
         </div>
 
         <!-- Complete Privacy -->
@@ -311,9 +311,9 @@
             <svg class="w-6 h-6 text-purple-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 0h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
             </svg>
-            <h3 class="text-lg font-semibold text-purple-900">Complete Privacy</h3>
+            <h3 class="text-lg font-semibold text-purple-900" data-lang="terms.summary.privacy.title">Complete Privacy</h3>
           </div>
-          <p class="text-purple-700 text-sm">Every operation is executed locally on your device. Your visual data remains exclusively within your browser, ensuring total confidentiality.</p>
+          <p class="text-purple-700 text-sm" data-lang="terms.summary.privacy.desc">Every operation is executed locally on your device. Your visual data remains exclusively within your browser, ensuring total confidentiality.</p>
         </div>
 
         <!-- Commercial Use OK -->
@@ -322,9 +322,9 @@
             <svg class="w-6 h-6 text-orange-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
             </svg>
-            <h3 class="text-lg font-semibold text-orange-900">Commercial Use OK</h3>
+            <h3 class="text-lg font-semibold text-orange-900" data-lang="terms.summary.commercial.title">Commercial Use OK</h3>
           </div>
-          <p class="text-orange-700 text-sm">Generated pixel art may be employed for commercial ventures without mandatory acknowledgment (though recognition is valued).</p>
+          <p class="text-orange-700 text-sm" data-lang="terms.summary.commercial.desc">Generated pixel art may be employed for commercial ventures without mandatory acknowledgment (though recognition is valued).</p>
         </div>
 
       </div>
@@ -336,13 +336,13 @@
   <footer class="bg-gray-900 text-white py-12">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
-        <h3 class="text-2xl font-bold mb-6">About Wplace Paint Tool</h3>
+        <h3 class="text-2xl font-bold mb-6" data-lang="footer.title">About Wplace Paint Tool</h3>
         <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8">
-          <a href="about.html" class="text-gray-400 hover:text-white text-sm">About</a>
-          <a href="privacy.html" class="text-gray-400 hover:text-white text-sm">Privacy</a>
-          <a href="terms.html" class="text-gray-400 hover:text-white text-sm">Terms</a>
-          <a href="blog.html" class="text-gray-400 hover:text-white text-sm">Blog</a>
-          <a href="index.html" class="text-gray-400 hover:text-white text-sm">Home</a>
+          <a href="about.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.about">About</a>
+          <a href="privacy.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.privacy">Privacy</a>
+          <a href="terms.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.terms">Terms</a>
+          <a href="blog.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.blog">Blog</a>
+          <a href="index.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.home">Home</a>
           <a href="color-converter.html" class="text-gray-400 hover:text-white text-sm">Wplace Color Converter</a>
         </div>
         
@@ -352,18 +352,270 @@
             <svg class="w-5 h-5 text-blue-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
             </svg>
-            <span class="font-semibold text-blue-400">Independent Fan Site</span>
+            <span class="font-semibold text-blue-400" data-lang="footer.disclaimer.title">Independent Fan Site</span>
           </div>
-          <p class="text-gray-300">This is an unofficial, independent fan-made website created to address community pixel needs. We are not affiliated with or endorsed by the official Wplace platform. This tool was developed by fans, for fans, to enhance the pixel art creation experience.</p>
+          <p class="text-gray-300" data-lang="footer.disclaimer.text">This is an unofficial, independent fan-made website created to address community pixel needs. We are not affiliated with or endorsed by the official Wplace platform. This tool was developed by fans, for fans, to enhance the pixel art creation experience.</p>
         </div>
         
-        <p class="text-gray-400 text-sm">© 2025 Wplace Paint Tool - Help Wplace Player Paint Easily - Free to use, no ownership claimed on generated artwork<br>Client-side processing protects your privacy</p>
+        <p class="text-gray-400 text-sm"><span data-lang="footer.main">© 2025 Wplace Paint Tool - Help Wplace Player Paint Easily - Free to use, no ownership claimed on generated artwork</span><br><span data-lang="footer.privacy">Client-side processing protects your privacy</span></p>
       </div>
     </div>
   </footer>
 
-  <!-- Core App Logic -->
-  <script src="js/app-simple.js"></script>
+  <!-- Internationalization Script -->
+  <script>
+    // Translation data  
+    const translations = {
+      en: {
+        'nav.home': 'Home',
+        'nav.converter': 'Converter', 
+        'nav.blog': 'Blog',
+        'nav.about': 'About',
+        'nav.privacy': 'Privacy',
+        'nav.terms': 'Terms',
+        'terms.title': 'Terms of Service',
+        'terms.subtitle': 'Simple, fair terms for using Wplace Tool. Free to use with full ownership of your creations.',
+        'terms.lastupdated': 'Last updated: August 1, 2025',
+        'terms.acceptance.title': 'Acceptance of Terms',
+        'terms.acceptance.desc': 'By accessing or using the Wplace Tool, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the service.',
+        'terms.service.title': 'Description of Service',
+        'terms.service.desc': 'The Wplace Tool is an online utility that converts images into pixel art using the color palette from the Wplace game. The service provides:',
+        'terms.service.item1': 'In-browser image transformation',
+        'terms.service.item2': 'On-device image processing',
+        'terms.service.item3': 'Client-side pixel art generation',
+        'terms.service.item4': 'Capability to download created pixel art',
+        'terms.service.item5': 'No necessity for registration or account setup',
+        'terms.permitted.title': 'Permitted Use',
+        'terms.permitted.desc': 'Our service is authorized for the following applications:',
+        'terms.permitted.item1': 'Development of creative endeavors',
+        'terms.permitted.item2': 'Production of artwork for Wplace gaming',
+        'terms.permitted.item3': 'Commercial undertakings (with appropriate acknowledgment)',
+        'terms.permitted.item4': 'Academic and instructional objectives',
+        'terms.permitted.item5': 'Dissemination of produced visual content',
+        'terms.prohibited.title': 'Prohibited Activities',
+        'terms.prohibited.desc': 'You agree not to use the service for any of the following prohibited activities:',
+        'terms.prohibited.item1': 'Engaging in any illegal activities',
+        'terms.prohibited.item2': 'Uploading harmful, offensive, or inappropriate content',
+        'terms.prohibited.item3': 'Attempting to reverse-engineer the service or its algorithms',
+        'terms.prohibited.item4': 'Overloading our infrastructure with automated requests',
+        'terms.prohibited.item5': 'Distributing copyrighted material without permission',
+        'terms.prohibited.item6': 'Transmitting viruses, malware, or other malicious code',
+        'terms.ip.title': 'Intellectual Property & Ownership',
+        'terms.ip.content.title': 'Your Content',
+        'terms.ip.content.desc': 'You retain full ownership of the images you upload and the pixel art you create. We claim no rights to your content or the resulting artwork.',
+        'terms.ip.generated.title': 'Produced Visuals',
+        'terms.ip.generated.desc': 'All pixel art created by our application belongs solely to you. You are free to utilize it for any objective, including commercial ventures, without the need for acknowledgment (though recognition is valued).',
+        'terms.ip.service.title': 'Our Service',
+        'terms.ip.service.desc': 'The Wplace Tool software, algorithms, and design are our intellectual property. However, the service is provided to the community free of charge, and we waive any licensing fees for its use.',
+        'terms.warranty.title': 'Disclaimer of Warranties',
+        'terms.warranty.desc': 'The Wplace Tool is furnished on an "as-is" basis, devoid of any explicit or implicit guarantees. We do not warrant:',
+        'terms.liability.title': 'Limitation of Liability',
+        'terms.liability.desc': 'Given that our service is offered entirely free of charge, we disclaim responsibility for any losses or harm incurred, encompassing, yet not confined to:',
+        'terms.privacy.title': 'Privacy',
+        'terms.privacy.desc': 'Your personal data is safeguarded through our client-side processing methodology. For comprehensive details regarding our data management practices, kindly consult our',
+        'terms.privacy.link': 'Privacy Policy',
+        'terms.modifications.title': 'Modifications to Service',
+        'terms.modifications.desc': 'We retain the prerogative to alter, temporarily halt, or cease any segment of our service at our discretion. While we endeavor to apprise users of substantial revisions, such notification is not a mandatory commitment.',
+        'terms.termination.title': 'Termination',
+        'terms.termination.desc': 'As no registration is mandated, no accounts exist for cessation. You are at liberty to discontinue service usage whenever you choose. Access may be withheld from individuals found to be in breach of these stipulations.',
+        'terms.law.title': 'Governing Law',
+        'terms.law.desc': 'This agreement shall be construed and regulated in conformity with pertinent international and digital service protocols. Any disagreements arising will be settled via sincere dialogue.',
+        'terms.changes.title': 'Changes to Terms',
+        'terms.changes.desc': 'These provisions may be revised periodically. Amendments will be published on this page, accompanied by a revised "Last updated" timestamp. Your ongoing engagement with the service signifies your assent to any new stipulations.',
+        'terms.contact.title': 'Contact Information',
+        'terms.contact.desc': 'For inquiries regarding these terms or to report any issues, kindly reach out to us via:',
+        'terms.contact.email': 'Electronic Mail:',
+        'terms.summary.title': 'Key Points Summary',
+        'terms.summary.free.title': '100% Free',
+        'terms.summary.free.desc': 'Completely free of charge, with no subscription costs, concealed fees, or restrictions on conversions or downloads.',
+        'terms.summary.ownership.title': 'You Own Everything',
+        'terms.summary.ownership.desc': 'Retain absolute proprietorship over all uploaded images and generated pixel art. Commercial utilization is permitted without constraints.',
+        'terms.summary.privacy.title': 'Complete Privacy',
+        'terms.summary.privacy.desc': 'Every operation is executed locally on your device. Your visual data remains exclusively within your browser, ensuring total confidentiality.',
+        'terms.summary.commercial.title': 'Commercial Use OK',
+        'terms.summary.commercial.desc': 'Generated pixel art may be employed for commercial ventures without mandatory acknowledgment (though recognition is valued).',
+        'terms.disclaimer.title': 'Disclaimer of Warranties',
+        'terms.disclaimer.desc': 'The Wplace Tool is furnished on an "as-is" basis, devoid of any explicit or implicit guarantees. We do not warrant:',
+        'terms.disclaimer.item1': 'Uninterrupted accessibility or operational continuity',
+        'terms.disclaimer.item2': 'Flawless pixel alignment or precision',
+        'terms.disclaimer.item3': 'Absence of defects or inaccuracies',
+        'terms.disclaimer.item4': 'Universal compatibility across all devices or web browsers',
+        'terms.disclaimer.item5': 'Seamless or faultless operation',
+        'terms.liability.title': 'Limitation of Liability',
+        'terms.liability.desc': 'Given that our service is offered entirely free of charge, we disclaim responsibility for any losses or harm incurred, encompassing, yet not confined to:',
+        'terms.liability.item1': 'Compromise of data or degradation in image conversion fidelity',
+        'terms.liability.item2': 'Any immediate, remote, or resultant detriments',
+        'terms.liability.item3': 'Disruptions or cessation of service availability',
+        'terms.liability.item4': 'Outcomes failing to align with your anticipations',
+        'terms.privacy.title': 'Privacy',
+        'terms.privacy.desc': 'Your personal data is safeguarded through our client-side processing methodology. For comprehensive details regarding our data management practices, kindly consult our',
+        'terms.privacy.link': 'Privacy Policy',
+        'terms.modifications.title': 'Modifications to Service',
+        'terms.modifications.desc': 'We retain the prerogative to alter, temporarily halt, or cease any segment of our service at our discretion. While we endeavor to apprise users of substantial revisions, such notification is not a mandatory commitment.',
+        'terms.termination.title': 'Termination',
+        'terms.termination.desc': 'As no registration is mandated, no accounts exist for cessation. You are at liberty to discontinue service usage whenever you choose. Access may be withheld from individuals found to be in breach of these stipulations.',
+        'terms.governing.title': 'Governing Law',
+        'terms.governing.desc': 'This agreement shall be construed and regulated in conformity with pertinent international and digital service protocols. Any disagreements arising will be settled via sincere dialogue.',
+        'terms.changes.title': 'Changes to Terms',
+        'terms.changes.desc': 'These provisions may be revised periodically. Amendments will be published on this page, accompanied by a revised "Last updated" timestamp. Your ongoing engagement with the service signifies your assent to any new stipulations.',
+        'terms.contact.title': 'Contact Information',
+        'terms.contact.desc': 'For inquiries regarding these terms or to report any issues, kindly reach out to us via:',
+        'terms.contact.email.label': 'Electronic Mail:',
+        'footer.title': 'About Wplace Paint Tool',
+        'footer.disclaimer.title': 'Independent Fan Site',
+        'footer.disclaimer.text': 'This is an unofficial, independent fan-made website created to address community pixel needs. We are not affiliated with or endorsed by the official Wplace platform. This tool was developed by fans, for fans, to enhance the pixel art creation experience.',
+        'footer.main': '© 2025 Wplace Paint Tool - Help Wplace Player Paint Easily - Free to use, no ownership claimed on generated artwork',
+        'footer.privacy': 'Client-side processing protects your privacy'
+      },
+      zh: {
+        'nav.home': '首页',
+        'nav.converter': '转换器',
+        'nav.blog': '博客',
+        'nav.about': '关于',
+        'nav.privacy': '隐私',
+        'nav.terms': '条款',
+        'terms.title': '服务条款',
+        'terms.subtitle': '使用Wplace工具的简单、公平条款。免费使用，您拥有创作的完全所有权。',
+        'terms.lastupdated': '最后更新：2025年8月1日',
+        'terms.acceptance.title': '接受条款',
+        'terms.acceptance.desc': '通过访问或使用Wplace工具，您同意受这些服务条款的约束。如果您不同意这些条款，请不要使用本服务。',
+        'terms.service.title': '服务描述',
+        'terms.service.desc': 'Wplace工具是一个在线实用程序，使用Wplace游戏的调色板将图像转换为像素艺术。该服务提供：',
+        'terms.service.item1': '浏览器内图像转换',
+        'terms.service.item2': '设备上图像处理',
+        'terms.service.item3': '客户端像素艺术生成',
+        'terms.service.item4': '下载创建的像素艺术的能力',
+        'terms.service.item5': '无需注册或账户设置',
+        'terms.permitted.title': '允许的使用',
+        'terms.permitted.desc': '我们的服务被授权用于以下应用：',
+        'terms.permitted.item1': '创意努力的发展',
+        'terms.permitted.item2': '为Wplace游戏制作艺术品',
+        'terms.permitted.item3': '商业事业（需适当致谢）',
+        'terms.permitted.item4': '学术和教学目标',
+        'terms.permitted.item5': '传播制作的视觉内容',
+        'terms.prohibited.title': '禁止的活动',
+        'terms.prohibited.desc': '您同意不将服务用于以下任何禁止的活动：',
+        'terms.prohibited.item1': '从事任何非法活动',
+        'terms.prohibited.item2': '上传有害、冒犯性或不当内容',
+        'terms.prohibited.item3': '试图逆向工程服务或其算法',
+        'terms.prohibited.item4': '通过自动请求使我们的基础设施过载',
+        'terms.prohibited.item5': '未经许可分发受版权保护的材料',
+        'terms.prohibited.item6': '传输病毒、恶意软件或其他恶意代码',
+        'terms.ip.title': '知识产权和所有权',
+        'terms.ip.content.title': '您的内容',
+        'terms.ip.content.desc': '您保留对上传图像和创建的像素艺术的完全所有权。我们不声明对您的内容或生成的艺术作品拥有任何权利。',
+        'terms.ip.generated.title': '生成的视觉作品',
+        'terms.ip.generated.desc': '我们应用程序创建的所有像素艺术完全属于您。您可以自由地将其用于任何目标，包括商业企业，无需确认（尽管认可是有价值的）。',
+        'terms.ip.service.title': '我们的服务',
+        'terms.ip.service.desc': 'Wplace工具软件、算法和设计是我们的知识产权。然而，该服务免费提供给社区，我们放弃使用它的任何许可费用。',
+        'terms.warranty.title': '免责声明',
+        'terms.warranty.desc': 'Wplace工具按"原样"提供，不提供任何明示或暗示的保证。我们不保证：',
+        'terms.liability.title': '责任限制',
+        'terms.liability.desc': '鉴于我们的服务完全免费提供，我们对所发生的任何损失或伤害不承担责任，包括但不限于：',
+        'terms.privacy.title': '隐私',
+        'terms.privacy.desc': '您的个人数据通过我们的客户端处理方法得到保护。有关我们数据管理实践的详细信息，请查阅我们的',
+        'terms.privacy.link': '隐私政策',
+        'terms.modifications.title': '服务修改',
+        'terms.modifications.desc': '我们保留随时更改、暂时停止或停止我们服务任何部分的权利。虽然我们努力通知用户重大修订，但这种通知不是强制性承诺。',
+        'terms.termination.title': '终止',
+        'terms.termination.desc': '由于不需要注册，因此不存在要终止的账户。您可以随时自由停止使用服务。对于被发现违反这些规定的个人，可能会拒绝访问。',
+        'terms.law.title': '适用法律',
+        'terms.law.desc': '本协议应根据相关国际和数字服务协议进行解释和管理。任何分歧都将通过诚恳的对话解决。',
+        'terms.changes.title': '条款变更',
+        'terms.changes.desc': '这些条款可能会定期修订。修改将在此页面上发布，并附有修订的"最后更新"时间戳。您继续使用服务表示您同意任何新规定。',
+        'terms.contact.title': '联系信息',
+        'terms.contact.desc': '如对这些条款有疑问或报告任何问题，请通过以下方式联系我们：',
+        'terms.contact.email': '电子邮件：',
+        'terms.summary.title': '要点摘要',
+        'terms.summary.free.title': '100%免费',
+        'terms.summary.free.desc': '完全免费，没有订阅费用、隐藏费用或转换或下载限制。',
+        'terms.summary.ownership.title': '您拥有一切',
+        'terms.summary.ownership.desc': '保留对所有上传图像和生成像素艺术的绝对所有权。允许商业利用而无约束。',
+        'terms.summary.privacy.title': '完全隐私',
+        'terms.summary.privacy.desc': '每个操作都在您的设备上本地执行。您的视觉数据完全保留在您的浏览器中，确保完全保密。',
+        'terms.summary.commercial.title': '商业使用许可',
+        'terms.summary.commercial.desc': '生成的像素艺术可用于商业企业，无需强制确认（尽管认可是有价值的）。',
+        'terms.disclaimer.title': '免责声明',
+        'terms.disclaimer.desc': 'Wplace工具按"现状"提供，不提供任何明示或暗示的保证。我们不保证：',
+        'terms.disclaimer.item1': '不间断的可访问性或操作连续性',
+        'terms.disclaimer.item2': '完美的像素对齐或精度',
+        'terms.disclaimer.item3': '没有缺陷或不准确之处',
+        'terms.disclaimer.item4': '在所有设备或网络浏览器上的通用兼容性',
+        'terms.disclaimer.item5': '无缝或无故障运行',
+        'terms.liability.title': '责任限制',
+        'terms.liability.desc': '鉴于我们的服务完全免费提供，我们对任何损失或伤害不承担责任，包括但不限于：',
+        'terms.liability.item1': '数据泄露或图像转换保真度降低',
+        'terms.liability.item2': '任何直接、间接或后果性损害',
+        'terms.liability.item3': '服务可用性中断或停止',
+        'terms.liability.item4': '结果未能达到您的期望',
+        'terms.privacy.title': '隐私',
+        'terms.privacy.desc': '您的个人数据通过我们的客户端处理方法得到保护。有关我们数据管理实践的详细信息，请查阅我们的',
+        'terms.privacy.link': '隐私政策',
+        'terms.modifications.title': '服务修改',
+        'terms.modifications.desc': '我们保留自行决定更改、暂时停止或终止服务任何部分的权利。虽然我们努力通知用户重大修改，但这种通知不是强制性承诺。',
+        'terms.termination.title': '终止',
+        'terms.termination.desc': '由于不需要注册，因此不存在需要终止的帐户。您可以随时自由停止使用服务。可能会拒绝违反这些规定的个人访问。',
+        'terms.governing.title': '管辖法律',
+        'terms.governing.desc': '本协议应根据相关国际和数字服务协议进行解释和管理。任何产生的分歧将通过真诚对话解决。',
+        'terms.changes.title': '条款变更',
+        'terms.changes.desc': '这些条款可能会定期修订。修改将在此页面上发布，并附有修订的"最后更新"时间戳。您继续使用服务即表示您同意任何新规定。',
+        'terms.contact.title': '联系信息',
+        'terms.contact.desc': '如对这些条款有疑问或报告任何问题，请通过以下方式联系我们：',
+        'terms.contact.email.label': '电子邮件：',
+        'footer.title': '关于Wplace画图工具',
+        'footer.disclaimer.title': '独立粉丝网站',
+        'footer.disclaimer.text': '这是一个非官方的、独立的粉丝制作网站，旨在解决社区像素需求。我们与官方Wplace平台无关，也未获得其认可。此工具由粉丝开发，为粉丝服务，旨在增强像素艺术创作体验。',
+        'footer.main': '© 2025 Wplace画图工具 - 帮助Wplace玩家轻松绘画 - 免费使用，不声明对生成作品的所有权',
+        'footer.privacy': '客户端处理保护您的隐私'
+      }
+    };
+
+    // Translation functions
+    function translatePage(lang) {
+      const elements = document.querySelectorAll('[data-lang]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-lang');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      
+      // Update page title
+      if (translations[lang]['terms.title']) {
+        document.title = translations[lang]['terms.title'] + ' | Wplace Paint Tool';
+      }
+      
+      // Save language preference
+      localStorage.setItem('preferredLanguage', lang);
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      const languageSelector = document.getElementById('languageSelector');
+      const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+      
+      // Set initial language
+      languageSelector.value = savedLang;
+      translatePage(savedLang);
+      
+      // Language change handler
+      languageSelector.addEventListener('change', function() {
+        translatePage(this.value);
+      });
+      
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+    });
+  </script>
+  <!-- Universal Internationalization System -->
+  <script src="js/i18n.js"></script>
 </body>
 </html>
 

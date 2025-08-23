@@ -15,16 +15,42 @@
   <!-- Header Navigation (Simplified for blog post) -->
   <header class="bg-card shadow-sm border-border border-b sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
+      <div class="flex items-center justify-between h-16 relative">
         <!-- Logo and Brand -->
         <div class="flex items-center space-x-3">
           <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
             <span class="text-white font-bold text-sm">W</span>
           </div>
-          <h2 class="text-xl font-bold text-card-foreground">Wplace Paint Tool</h2>
+          <h2 class="text-xl font-bold text-card-foreground" data-lang="brand.name">Wplace Paint Tool</h2>
         </div>
-        <!-- Back to Blog Button -->
-        <a href="../blog.html" class="text-blue-600 hover:text-blue-700 text-sm font-medium">Back to Blog</a>
+
+        <!-- Mobile Menu Button & Language Selector -->
+        <div class="flex items-center space-x-3">
+          <!-- Mobile menu button -->
+          <button id="mobileMenuButton" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+
+          <!-- Language Selector -->
+          <div class="bg-muted rounded-lg border-border border p-1">
+            <select id="languageSelector" class="bg-transparent border-none focus:outline-none cursor-pointer text-sm font-medium px-2 py-1">
+              <option value="en" selected>English</option>
+              <option value="zh">中文</option>
+            </select>
+          </div>
+
+          <!-- Back to Blog Button -->
+          <a href="../blog.html" class="text-blue-600 hover:text-blue-700 text-sm font-medium" data-lang="nav.back_to_blog">Back to Blog</a>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg hidden md:hidden">
+          <div class="px-4 py-3 space-y-2">
+            <a href="../blog.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.back_to_blog">Back to Blog</a>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -32,40 +58,40 @@
   <!-- Article Content -->
   <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Enhancing Detail: The Art and Science of Dithering in Pixel Art</h1>
-      <p class="text-gray-700 mb-6 leading-relaxed">Dithering is a powerful technique in pixel art that allows you to create the illusion of more colors and smoother gradients than your limited palette actually provides. This guide will explore the art and science behind dithering, focusing on its application in Wplace pixel art.</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6" data-lang="blog.dithering.title">Enhancing Detail: The Art and Science of Dithering in Pixel Art</h1>
+      <p class="text-gray-700 mb-6 leading-relaxed" data-lang="blog.dithering.intro">Dithering is a powerful technique in pixel art that allows you to create the illusion of more colors and smoother gradients than your limited palette actually provides. This guide will explore the art and science behind dithering, focusing on its application in Wplace pixel art.</p>
 
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">What is Dithering?</h2>
-      <p class="text-gray-700 mb-6 leading-relaxed">Dithering is the intentional application of noise to randomize quantization error, preventing large-scale patterns such as color banding. In pixel art, it's used to simulate colors not available in the palette by strategically placing pixels of available colors.</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.dithering.what_is.title">What is Dithering?</h2>
+      <p class="text-gray-700 mb-6 leading-relaxed" data-lang="blog.dithering.what_is.desc">Dithering is the intentional application of noise to randomize quantization error, preventing large-scale patterns such as color banding. In pixel art, it's used to simulate colors not available in the palette by strategically placing pixels of available colors.</p>
 
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">Floyd-Steinberg Dithering</h2>
-      <p class="text-gray-700 mb-4 leading-relaxed">Floyd-Steinberg is one of the most common and effective dithering algorithms. It works by propagating the quantization error of each pixel to its neighboring pixels, creating a smooth and natural-looking gradient.</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.dithering.floyd_steinberg.title">Floyd-Steinberg Dithering</h2>
+      <p class="text-gray-700 mb-4 leading-relaxed" data-lang="blog.dithering.floyd_steinberg.desc">Floyd-Steinberg is one of the most common and effective dithering algorithms. It works by propagating the quantization error of each pixel to its neighboring pixels, creating a smooth and natural-looking gradient.</p>
       <ul class="list-disc list-inside text-gray-700 mb-6 leading-relaxed">
-        <li><strong>How it Works:</strong> Error is distributed to the right, bottom-left, bottom, and bottom-right pixels.</li>
-        <li><strong>Benefits:</strong> Produces excellent results with minimal banding, ideal for achieving smooth transitions with limited palettes.</li>
-        <li><strong>Application:</strong> Our Wplace Paint Tool offers an option to enable Floyd-Steinberg dithering for enhanced color blending.</li>
+        <li data-lang="blog.dithering.floyd_steinberg.how_it_works"><strong>How it Works:</strong> Error is distributed to the right, bottom-left, bottom, and bottom-right pixels.</li>
+        <li data-lang="blog.dithering.floyd_steinberg.benefits"><strong>Benefits:</strong> Produces excellent results with minimal banding, ideal for achieving smooth transitions with limited palettes.</li>
+        <li data-lang="blog.dithering.floyd_steinberg.application"><strong>Application:</strong> Our Wplace Paint Tool offers an option to enable Floyd-Steinberg dithering for enhanced color blending.</li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">Other Dithering Techniques</h2>
-      <p class="text-gray-700 mb-4 leading-relaxed">While Floyd-Steinberg is popular, other methods exist:</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.dithering.other_techniques.title">Other Dithering Techniques</h2>
+      <p class="text-gray-700 mb-4 leading-relaxed" data-lang="blog.dithering.other_techniques.desc">While Floyd-Steinberg is popular, other methods exist:</p>
       <ul class="list-disc list-inside text-gray-700 mb-6 leading-relaxed">
-        <li><strong>Ordered Dithering:</strong> Uses a fixed pattern to determine where to place pixels. Can create a more stylized, grainy look.</li>
-        <li><strong>Random Dithering:</strong> Simply adds random noise. Less effective at smoothing gradients but can be used for specific artistic effects.</li>
+        <li data-lang="blog.dithering.other_techniques.ordered"><strong>Ordered Dithering:</strong> Uses a fixed pattern to determine where to place pixels. Can create a more stylized, grainy look.</li>
+        <li data-lang="blog.dithering.other_techniques.random"><strong>Random Dithering:</strong> Simply adds random noise. Less effective at smoothing gradients but can be used for specific artistic effects.</li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">Balancing Detail and Aesthetic</h2>
-      <p class="text-gray-700 mb-6 leading-relaxed">The key to effective dithering is finding the right balance. Too much dithering can make an image look noisy, while too little can result in harsh color banding. Experimentation is crucial to achieve the desired effect for your Wplace pixel art.</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.dithering.balancing.title">Balancing Detail and Aesthetic</h2>
+      <p class="text-gray-700 mb-6 leading-relaxed" data-lang="blog.dithering.balancing.desc">The key to effective dithering is finding the right balance. Too much dithering can make an image look noisy, while too little can result in harsh color banding. Experimentation is crucial to achieve the desired effect for your Wplace pixel art.</p>
 
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">Tips for Using Dithering</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.dithering.tips.title">Tips for Using Dithering</h2>
       <ul class="list-disc list-inside text-gray-700 mb-6 leading-relaxed">
-        <li><strong>Subtle is Key:</strong> Often, a subtle application of dithering is more effective than an aggressive one.</li>
-        <li><strong>Consider the Palette:</strong> Dithering is most useful when working with very limited color palettes.</li>
-        <li><strong>Preview Regularly:</strong> Always check your dithered image in the Wplace Paint Tool's preview to ensure it meets your expectations.</li>
+        <li data-lang="blog.dithering.tips.subtle"><strong>Subtle is Key:</strong> Often, a subtle application of dithering is more effective than an aggressive one.</li>
+        <li data-lang="blog.dithering.tips.consider_palette"><strong>Consider the Palette:</strong> Dithering is most useful when working with very limited color palettes.</li>
+        <li data-lang="blog.dithering.tips.preview"><strong>Preview Regularly:</strong> Always check your dithered image in the Wplace Paint Tool's preview to ensure it meets your expectations.</li>
       </ul>
 
       <div class="mt-8 pt-8 border-t border-gray-200 text-center text-gray-600">
-        <p>Master dithering to add depth and richness to your Wplace pixel art!</p>
-        <p><a href="../blog.html" class="text-blue-600 hover:text-blue-700 font-medium">Back to Blog</a></p>
+        <p data-lang="blog.dithering.closing">Master dithering to add depth and richness to your Wplace pixel art!</p>
+        <p><a href="../blog.html" class="text-blue-600 hover:text-blue-700 font-medium" data-lang="nav.back_to_blog">Back to Blog</a></p>
       </div>
     </article>
   </main>
@@ -73,8 +99,110 @@
   <!-- Footer (Simplified for blog post) -->
   <footer class="bg-gray-900 text-white py-6 mt-12">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p class="text-gray-400 text-sm">© 2025 Wplace Paint Tool - Independent Fan Site</p>
+      <p class="text-gray-400 text-sm" data-lang="footer.main">© 2025 Wplace Paint Tool - Independent Fan Site</p>
     </div>
   </footer>
+
+  <script>
+    // Translations for dithering techniques
+    const translations = {
+      en: {
+        'brand.name': 'Wplace Paint Tool',
+        'nav.back_to_blog': 'Back to Blog',
+        'blog.dithering.title': 'Enhancing Detail: The Art and Science of Dithering in Pixel Art',
+        'blog.dithering.intro': 'Dithering is a powerful technique in pixel art that allows you to create the illusion of more colors and smoother gradients than your limited palette actually provides. This guide will explore the art and science behind dithering, focusing on its application in Wplace pixel art.',
+        'blog.dithering.what_is.title': 'What is Dithering?',
+        'blog.dithering.what_is.desc': 'Dithering is the intentional application of noise to randomize quantization error, preventing large-scale patterns such as color banding. In pixel art, it\'s used to simulate colors not available in the palette by strategically placing pixels of available colors.',
+        'blog.dithering.floyd_steinberg.title': 'Floyd-Steinberg Dithering',
+        'blog.dithering.floyd_steinberg.desc': 'Floyd-Steinberg is one of the most common and effective dithering algorithms. It works by propagating the quantization error of each pixel to its neighboring pixels, creating a smooth and natural-looking gradient.',
+        'blog.dithering.floyd_steinberg.how_it_works': 'How it Works: Error is distributed to the right, bottom-left, bottom, and bottom-right pixels.',
+        'blog.dithering.floyd_steinberg.benefits': 'Benefits: Produces excellent results with minimal banding, ideal for achieving smooth transitions with limited palettes.',
+        'blog.dithering.floyd_steinberg.application': 'Application: Our Wplace Paint Tool offers an option to enable Floyd-Steinberg dithering for enhanced color blending.',
+        'blog.dithering.other_techniques.title': 'Other Dithering Techniques',
+        'blog.dithering.other_techniques.desc': 'While Floyd-Steinberg is popular, other methods exist:',
+        'blog.dithering.other_techniques.ordered': 'Ordered Dithering: Uses a fixed pattern to determine where to place pixels. Can create a more stylized, grainy look.',
+        'blog.dithering.other_techniques.random': 'Random Dithering: Simply adds random noise. Less effective at smoothing gradients but can be used for specific artistic effects.',
+        'blog.dithering.balancing.title': 'Balancing Detail and Aesthetic',
+        'blog.dithering.balancing.desc': 'The key to effective dithering is finding the right balance. Too much dithering can make an image look noisy, while too little can result in harsh color banding. Experimentation is crucial to achieve the desired effect for your Wplace pixel art.',
+        'blog.dithering.tips.title': 'Tips for Using Dithering',
+        'blog.dithering.tips.subtle': 'Subtle is Key: Often, a subtle application of dithering is more effective than an aggressive one.',
+        'blog.dithering.tips.consider_palette': 'Consider the Palette: Dithering is most useful when working with very limited color palettes.',
+        'blog.dithering.tips.preview': 'Preview Regularly: Always check your dithered image in the Wplace Paint Tool\'s preview to ensure it meets your expectations.',
+        'blog.dithering.closing': 'Master dithering to add depth and richness to your Wplace pixel art!',
+        'footer.main': '© 2025 Wplace Paint Tool - Independent Fan Site'
+      },
+      zh: {
+        'brand.name': 'Wplace画图工具',
+        'nav.back_to_blog': '返回博客',
+        'blog.dithering.title': '增强细节：像素艺术中抖动技术的艺术与科学',
+        'blog.dithering.intro': '抖动是像素艺术中的一项强大技术，可以让您创造出比有限调色板实际提供的更多颜色和更平滑渐变的错觉。本指南将探索抖动背后的艺术与科学，重点关注其在Wplace像素艺术中的应用。',
+        'blog.dithering.what_is.title': '什么是抖动？',
+        'blog.dithering.what_is.desc': '抖动是有意应用噪声来随机化量化误差，防止大规模图案如色带的出现。在像素艺术中，它通过策略性地放置可用颜色的像素来模拟调色板中不可用的颜色。',
+        'blog.dithering.floyd_steinberg.title': 'Floyd-Steinberg抖动',
+        'blog.dithering.floyd_steinberg.desc': 'Floyd-Steinberg是最常见且最有效的抖动算法之一。它通过将每个像素的量化误差传播到相邻像素来工作，创造出平滑自然的渐变效果。',
+        'blog.dithering.floyd_steinberg.how_it_works': '工作原理：误差分布到右侧、左下方、下方和右下方的像素。',
+        'blog.dithering.floyd_steinberg.benefits': '优势：产生出色的效果，色带最少，非常适合在有限调色板下实现平滑过渡。',
+        'blog.dithering.floyd_steinberg.application': '应用：我们的Wplace画图工具提供启用Floyd-Steinberg抖动的选项，以增强颜色混合效果。',
+        'blog.dithering.other_techniques.title': '其他抖动技术',
+        'blog.dithering.other_techniques.desc': '虽然Floyd-Steinberg很受欢迎，但还存在其他方法：',
+        'blog.dithering.other_techniques.ordered': '有序抖动：使用固定模式来确定像素放置位置。可以创造更具风格化、颗粒感的外观。',
+        'blog.dithering.other_techniques.random': '随机抖动：简单地添加随机噪声。在平滑渐变方面效果较差，但可用于特定的艺术效果。',
+        'blog.dithering.balancing.title': '平衡细节与美学',
+        'blog.dithering.balancing.desc': '有效抖动的关键是找到合适的平衡。过多的抖动会使图像看起来嘈杂，而过少则可能导致严重的色带。实验对于为您的Wplace像素艺术实现理想效果至关重要。',
+        'blog.dithering.tips.title': '使用抖动的技巧',
+        'blog.dithering.tips.subtle': '细腻是关键：通常，细腻的抖动应用比激进的应用更有效。',
+        'blog.dithering.tips.consider_palette': '考虑调色板：抖动在使用非常有限的调色板时最有用。',
+        'blog.dithering.tips.preview': '定期预览：始终在Wplace画图工具的预览中检查抖动后的图像，确保符合您的期望。',
+        'blog.dithering.closing': '掌握抖动技术，为您的Wplace像素艺术增添深度和丰富性！',
+        'footer.main': '© 2025 Wplace画图工具 - 独立粉丝网站'
+      }
+    };
+
+    // Translation functions
+    function translatePage(lang) {
+      const elements = document.querySelectorAll('[data-lang]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-lang');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      
+      // Update page title
+      if (translations[lang]['blog.dithering.title']) {
+        document.title = translations[lang]['blog.dithering.title'] + ' | Wplace Paint Tool';
+      }
+      
+      // Save language preference
+      localStorage.setItem('preferredLanguage', lang);
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      const languageSelector = document.getElementById('languageSelector');
+      const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+      
+      // Set initial language
+      languageSelector.value = savedLang;
+      translatePage(savedLang);
+      
+      // Language change handler
+      languageSelector.addEventListener('change', function() {
+        translatePage(this.value);
+      });
+      
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+    });
+  </script>
+  <!-- Translation System -->
+  <script src="../js/i18n.js"></script>
 </body>
 </html>

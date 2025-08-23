@@ -15,16 +15,42 @@
   <!-- Header Navigation (Simplified for blog post) -->
   <header class="bg-card shadow-sm border-border border-b sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
+      <div class="flex items-center justify-between h-16 relative">
         <!-- Logo and Brand -->
         <div class="flex items-center space-x-3">
           <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
             <span class="text-white font-bold text-sm">W</span>
           </div>
-          <h2 class="text-xl font-bold text-card-foreground">Wplace Paint Tool</h2>
+          <h2 class="text-xl font-bold text-card-foreground" data-lang="brand.name">Wplace Paint Tool</h2>
         </div>
-        <!-- Back to Blog Button -->
-        <a href="../blog.html" class="text-blue-600 hover:text-blue-700 text-sm font-medium">Back to Blog</a>
+
+        <!-- Mobile Menu Button & Language Selector -->
+        <div class="flex items-center space-x-3">
+          <!-- Mobile menu button -->
+          <button id="mobileMenuButton" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+
+          <!-- Language Selector -->
+          <div class="bg-muted rounded-lg border-border border p-1">
+            <select id="languageSelector" class="bg-transparent border-none focus:outline-none cursor-pointer text-sm font-medium px-2 py-1">
+              <option value="en" selected>English</option>
+              <option value="zh">中文</option>
+            </select>
+          </div>
+
+          <!-- Back to Blog Button -->
+          <a href="../blog.html" class="text-blue-600 hover:text-blue-700 text-sm font-medium" data-lang="nav.back_to_blog">Back to Blog</a>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg hidden md:hidden">
+          <div class="px-4 py-3 space-y-2">
+            <a href="../blog.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.back_to_blog">Back to Blog</a>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -32,42 +58,42 @@
   <!-- Article Content -->
   <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Pixel Perfect Scaling: A Deep Dive into Image Resampling</h1>
-      <p class="text-gray-700 mb-6 leading-relaxed">Image scaling is a crucial aspect of pixel art, especially when preparing your creations for platforms like Wplace. This guide will demystify the different resampling methods and help you choose the best one to maintain the integrity and crispness of your pixel art.</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6" data-lang="blog.resampling.title">Pixel Perfect Scaling: A Deep Dive into Image Resampling</h1>
+      <p class="text-gray-700 mb-6 leading-relaxed" data-lang="blog.resampling.intro">Image scaling is a crucial aspect of pixel art, especially when preparing your creations for platforms like Wplace. This guide will demystify the different resampling methods and help you choose the best one to maintain the integrity and crispness of your pixel art.</p>
 
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">Understanding Image Resampling</h2>
-      <p class="text-gray-700 mb-6 leading-relaxed">Resampling refers to the process of changing the dimensions of an image. When you scale a pixel art image, new pixels are either added or removed. The method used for this process significantly impacts the final look of your artwork.</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.resampling.understanding.title">Understanding Image Resampling</h2>
+      <p class="text-gray-700 mb-6 leading-relaxed" data-lang="blog.resampling.understanding.desc">Resampling refers to the process of changing the dimensions of an image. When you scale a pixel art image, new pixels are either added or removed. The method used for this process significantly impacts the final look of your artwork.</p>
 
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">1. Nearest Neighbor (The Pixel Artist's Choice)</h2>
-      <p class="text-gray-700 mb-4 leading-relaxed">Nearest Neighbor is the simplest and often preferred method for pixel art. It works by simply duplicating or removing pixels without any interpolation. This results in sharp, blocky edges, preserving the distinct pixelated look.</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.resampling.nearest.title">1. Nearest Neighbor (The Pixel Artist's Choice)</h2>
+      <p class="text-gray-700 mb-4 leading-relaxed" data-lang="blog.resampling.nearest.desc">Nearest Neighbor is the simplest and often preferred method for pixel art. It works by simply duplicating or removing pixels without any interpolation. This results in sharp, blocky edges, preserving the distinct pixelated look.</p>
       <ul class="list-disc list-inside text-gray-700 mb-6 leading-relaxed">
-        <li><strong>Pros:</strong> Maintains pixel crispness, no blurring, ideal for upscaling pixel art.</li>
-        <li><strong>Cons:</strong> Can create jagged lines and "staircasing" effects if not used carefully, especially when downscaling.</li>
-        <li><strong>When to Use:</strong> Always for upscaling pixel art. Often for downscaling if maintaining sharp edges is paramount.</li>
+        <li data-lang="blog.resampling.nearest.pros"><strong>Pros:</strong> Maintains pixel crispness, no blurring, ideal for upscaling pixel art.</li>
+        <li data-lang="blog.resampling.nearest.cons"><strong>Cons:</strong> Can create jagged lines and "staircasing" effects if not used carefully, especially when downscaling.</li>
+        <li data-lang="blog.resampling.nearest.when_to_use"><strong>When to Use:</strong> Always for upscaling pixel art. Often for downscaling if maintaining sharp edges is paramount.</li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">2. Bilinear Interpolation (Smoother, but Blurry)</h2>
-      <p class="text-gray-700 mb-4 leading-relaxed">Bilinear interpolation considers the four nearest pixels to determine the color of a new pixel. This results in a smoother, less pixelated appearance, but can introduce blurring, which is generally undesirable for pixel art.</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.resampling.bilinear.title">2. Bilinear Interpolation (Smoother, but Blurry)</h2>
+      <p class="text-gray-700 mb-4 leading-relaxed" data-lang="blog.resampling.bilinear.desc">Bilinear interpolation considers the four nearest pixels to determine the color of a new pixel. This results in a smoother, less pixelated appearance, but can introduce blurring, which is generally undesirable for pixel art.</p>
       <ul class="list-disc list-inside text-gray-700 mb-6 leading-relaxed">
-        <li><strong>Pros:</strong> Smoother transitions, less jagged edges.</li>
-        <li><strong>Cons:</strong> Introduces blurring, destroys pixel crispness, not recommended for pixel art upscaling.</li>
-        <li><strong>When to Use:</strong> Rarely for pixel art. More suitable for photographic images.</li>
+        <li data-lang="blog.resampling.bilinear.pros"><strong>Pros:</strong> Smoother transitions, less jagged edges.</li>
+        <li data-lang="blog.resampling.bilinear.cons"><strong>Cons:</strong> Introduces blurring, destroys pixel crispness, not recommended for pixel art upscaling.</li>
+        <li data-lang="blog.resampling.bilinear.when_to_use"><strong>When to Use:</strong> Rarely for pixel art. More suitable for photographic images.</li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">3. Lanczos Resampling (High Quality, but Complex)</h2>
-      <p class="text-gray-700 mb-4 leading-relaxed">Lanczos is a more complex resampling algorithm that produces high-quality results, especially for downscaling photographic images. It uses a sinc function to calculate the value of new pixels, leading to sharper results than bilinear, but still introduces some level of interpolation that can soften pixel art.</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.resampling.lanczos.title">3. Lanczos Resampling (High Quality, but Complex)</h2>
+      <p class="text-gray-700 mb-4 leading-relaxed" data-lang="blog.resampling.lanczos.desc">Lanczos is a more complex resampling algorithm that produces high-quality results, especially for downscaling photographic images. It uses a sinc function to calculate the value of new pixels, leading to sharper results than bilinear, but still introduces some level of interpolation that can soften pixel art.</p>
       <ul class="list-disc list-inside text-gray-700 mb-6 leading-relaxed">
-        <li><strong>Pros:</strong> Good for downscaling photographic images, sharper than bilinear.</li>
-        <li><strong>Cons:</strong> Can still soften pixel art, computationally more intensive.</li>
-        <li><strong>When to Use:</strong> Generally not for pixel art, unless a slight softening is desired or for very specific downscaling scenarios.</li>
+        <li data-lang="blog.resampling.lanczos.pros"><strong>Pros:</strong> Good for downscaling photographic images, sharper than bilinear.</li>
+        <li data-lang="blog.resampling.lanczos.cons"><strong>Cons:</strong> Can still soften pixel art, computationally more intensive.</li>
+        <li data-lang="blog.resampling.lanczos.when_to_use"><strong>When to Use:</strong> Generally not for pixel art, unless a slight softening is desired or for very specific downscaling scenarios.</li>
       </ul>
 
-      <h2 class="text-2xl font-bold text-gray-900 mb-4">Choosing the Right Method for Wplace</h2>
-      <p class="text-gray-700 mb-6 leading-relaxed">For Wplace pixel art, <strong>Nearest Neighbor</strong> is almost always the recommended scaling method. It ensures that your pixels remain crisp and distinct, preserving the intended aesthetic. Our Wplace Paint Tool offers Nearest Neighbor as a primary option for this very reason.</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.resampling.choosing.title">Choosing the Right Method for Wplace</h2>
+      <p class="text-gray-700 mb-6 leading-relaxed" data-lang="blog.resampling.choosing.desc">For Wplace pixel art, <strong>Nearest Neighbor</strong> is almost always the recommended scaling method. It ensures that your pixels remain crisp and distinct, preserving the intended aesthetic. Our Wplace Paint Tool offers Nearest Neighbor as a primary option for this very reason.</p>
 
       <div class="mt-8 pt-8 border-t border-gray-200 text-center text-gray-600">
-        <p>Master your scaling for pixel-perfect Wplace creations!</p>
-        <p><a href="../blog.html" class="text-blue-600 hover:text-blue-700 font-medium">Back to Blog</a></p>
+        <p data-lang="blog.resampling.closing">Master your scaling for pixel-perfect Wplace creations!</p>
+        <p><a href="../blog.html" class="text-blue-600 hover:text-blue-700 font-medium" data-lang="nav.back_to_blog">Back to Blog</a></p>
       </div>
     </article>
   </main>
@@ -75,8 +101,114 @@
   <!-- Footer (Simplified for blog post) -->
   <footer class="bg-gray-900 text-white py-6 mt-12">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p class="text-gray-400 text-sm">© 2025 Wplace Paint Tool - Independent Fan Site</p>
+      <p class="text-gray-400 text-sm" data-lang="footer.main">© 2025 Wplace Paint Tool - Independent Fan Site</p>
     </div>
   </footer>
+
+  <script>
+    // Translations for image resampling
+    const translations = {
+      en: {
+        'brand.name': 'Wplace Paint Tool',
+        'nav.back_to_blog': 'Back to Blog',
+        'blog.resampling.title': 'Pixel Perfect Scaling: A Deep Dive into Image Resampling',
+        'blog.resampling.intro': 'Image scaling is a crucial aspect of pixel art, especially when preparing your creations for platforms like Wplace. This guide will demystify the different resampling methods and help you choose the best one to maintain the integrity and crispness of your pixel art.',
+        'blog.resampling.understanding.title': 'Understanding Image Resampling',
+        'blog.resampling.understanding.desc': 'Resampling refers to the process of changing the dimensions of an image. When you scale a pixel art image, new pixels are either added or removed. The method used for this process significantly impacts the final look of your artwork.',
+        'blog.resampling.nearest.title': '1. Nearest Neighbor (The Pixel Artist\'s Choice)',
+        'blog.resampling.nearest.desc': 'Nearest Neighbor is the simplest and often preferred method for pixel art. It works by simply duplicating or removing pixels without any interpolation. This results in sharp, blocky edges, preserving the distinct pixelated look.',
+        'blog.resampling.nearest.pros': 'Pros: Maintains pixel crispness, no blurring, ideal for upscaling pixel art.',
+        'blog.resampling.nearest.cons': 'Cons: Can create jagged lines and "staircasing" effects if not used carefully, especially when downscaling.',
+        'blog.resampling.nearest.when_to_use': 'When to Use: Always for upscaling pixel art. Often for downscaling if maintaining sharp edges is paramount.',
+        'blog.resampling.bilinear.title': '2. Bilinear Interpolation (Smoother, but Blurry)',
+        'blog.resampling.bilinear.desc': 'Bilinear interpolation considers the four nearest pixels to determine the color of a new pixel. This results in a smoother, less pixelated appearance, but can introduce blurring, which is generally undesirable for pixel art.',
+        'blog.resampling.bilinear.pros': 'Pros: Smoother transitions, less jagged edges.',
+        'blog.resampling.bilinear.cons': 'Cons: Introduces blurring, destroys pixel crispness, not recommended for pixel art upscaling.',
+        'blog.resampling.bilinear.when_to_use': 'When to Use: Rarely for pixel art. More suitable for photographic images.',
+        'blog.resampling.lanczos.title': '3. Lanczos Resampling (High Quality, but Complex)',
+        'blog.resampling.lanczos.desc': 'Lanczos is a more complex resampling algorithm that produces high-quality results, especially for downscaling photographic images. It uses a sinc function to calculate the value of new pixels, leading to sharper results than bilinear, but still introduces some level of interpolation that can soften pixel art.',
+        'blog.resampling.lanczos.pros': 'Pros: Good for downscaling photographic images, sharper than bilinear.',
+        'blog.resampling.lanczos.cons': 'Cons: Can still soften pixel art, computationally more intensive.',
+        'blog.resampling.lanczos.when_to_use': 'When to Use: Generally not for pixel art, unless a slight softening is desired or for very specific downscaling scenarios.',
+        'blog.resampling.choosing.title': 'Choosing the Right Method for Wplace',
+        'blog.resampling.choosing.desc': 'For Wplace pixel art, Nearest Neighbor is almost always the recommended scaling method. It ensures that your pixels remain crisp and distinct, preserving the intended aesthetic. Our Wplace Paint Tool offers Nearest Neighbor as a primary option for this very reason.',
+        'blog.resampling.closing': 'Master your scaling for pixel-perfect Wplace creations!',
+        'footer.main': '© 2025 Wplace Paint Tool - Independent Fan Site'
+      },
+      zh: {
+        'brand.name': 'Wplace画图工具',
+        'nav.back_to_blog': '返回博客',
+        'blog.resampling.title': '像素完美缩放：深入探讨图像重采样',
+        'blog.resampling.intro': '图像缩放是像素艺术的重要方面，特别是在为Wplace等平台准备创作时。本指南将揭开不同重采样方法的神秘面纱，帮助您选择最佳方法来保持像素艺术的完整性和清晰度。',
+        'blog.resampling.understanding.title': '理解图像重采样',
+        'blog.resampling.understanding.desc': '重采样是指改变图像尺寸的过程。当您缩放像素艺术图像时，新的像素要么被添加要么被移除。此过程使用的方法会显著影响您作品的最终效果。',
+        'blog.resampling.nearest.title': '1. 最邻近算法（像素艺术家的选择）',
+        'blog.resampling.nearest.desc': '最邻近算法是最简单且通常是像素艺术首选的方法。它通过简单地复制或移除像素而无需任何插值来工作。这会产生锐利的块状边缘，保持独特的像素化外观。',
+        'blog.resampling.nearest.pros': '优点：保持像素清晰度，无模糊，非常适合放大像素艺术。',
+        'blog.resampling.nearest.cons': '缺点：如果不小心使用可能会产生锯齿线和"阶梯"效果，特别是在缩小时。',
+        'blog.resampling.nearest.when_to_use': '何时使用：总是用于放大像素艺术。如果保持锐利边缘至关重要，通常也用于缩小。',
+        'blog.resampling.bilinear.title': '2. 双线性插值（更平滑，但模糊）',
+        'blog.resampling.bilinear.desc': '双线性插值考虑最近的四个像素来确定新像素的颜色。这会产生更平滑、不那么像素化的外观，但可能引入模糊，这对像素艺术通常是不可取的。',
+        'blog.resampling.bilinear.pros': '优点：过渡更平滑，锯齿边缘较少。',
+        'blog.resampling.bilinear.cons': '缺点：引入模糊，破坏像素清晰度，不建议用于像素艺术放大。',
+        'blog.resampling.bilinear.when_to_use': '何时使用：很少用于像素艺术。更适合摄影图像。',
+        'blog.resampling.lanczos.title': '3. Lanczos重采样（高质量，但复杂）',
+        'blog.resampling.lanczos.desc': 'Lanczos是一种更复杂的重采样算法，能产生高质量的结果，特别适合缩小摄影图像。它使用sinc函数来计算新像素的值，比双线性插值产生更锐利的结果，但仍会引入一定程度的插值，可能会软化像素艺术。',
+        'blog.resampling.lanczos.pros': '优点：适合缩小摄影图像，比双线性插值更锐利。',
+        'blog.resampling.lanczos.cons': '缺点：仍可能软化像素艺术，计算量更大。',
+        'blog.resampling.lanczos.when_to_use': '何时使用：通常不用于像素艺术，除非希望稍微软化或用于非常特定的缩小场景。',
+        'blog.resampling.choosing.title': '为Wplace选择合适的方法',
+        'blog.resampling.choosing.desc': '对于Wplace像素艺术，最邻近算法几乎总是推荐的缩放方法。它确保您的像素保持清晰和独特，保留预期的美学效果。我们的Wplace画图工具正是基于这个原因将最邻近算法作为主要选项。',
+        'blog.resampling.closing': '掌握缩放技术，创造像素完美的Wplace作品！',
+        'footer.main': '© 2025 Wplace画图工具 - 独立粉丝网站'
+      }
+    };
+
+    // Translation functions
+    function translatePage(lang) {
+      const elements = document.querySelectorAll('[data-lang]');
+      elements.forEach(el => {
+        const key = el.getAttribute('data-lang');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      
+      // Update page title
+      if (translations[lang]['blog.resampling.title']) {
+        document.title = translations[lang]['blog.resampling.title'] + ' | Wplace Paint Tool';
+      }
+      
+      // Save language preference
+      localStorage.setItem('preferredLanguage', lang);
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      const languageSelector = document.getElementById('languageSelector');
+      const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+      
+      // Set initial language
+      languageSelector.value = savedLang;
+      translatePage(savedLang);
+      
+      // Language change handler
+      languageSelector.addEventListener('change', function() {
+        translatePage(this.value);
+      });
+      
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+      
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', function() {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+    });
+  </script>
+  <!-- Translation System -->
+  <script src="../js/i18n.js"></script>
 </body>
 </html>

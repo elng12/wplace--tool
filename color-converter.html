@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Convert any image to Wplace pixel art instantly! Our free converter transforms photos into pixel art using the official Wplace color palette. Perfect pixel art maker for beginners and pros." />
-  <title>Wplace Paint Tool & Color Converter - Ultimate Pixel Art Toolkit for Wplace Players</title>
+  <title>Wplace Color Converter | Ultimate Pixel Art Toolkit for Wplace Players</title>
   <link rel="canonical" href="https://wplacetool.app/color-converter.html" />
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -20,18 +20,20 @@
       <div class="flex items-center justify-between h-16 relative">
         <!-- Logo and Brand -->
         <div class="flex items-center space-x-3">
-          <div class="w-8 h-8 bg-blue-500 rounded-full"></div>
-          <h2 class="text-xl font-bold text-card-foreground">Wplace Paint Tool</h2>
+          <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-sm">W</span>
+          </div>
+          <h2 class="text-xl font-bold text-card-foreground" data-lang="brand.name">Wplace Paint Tool</h2>
         </div>
 
         <!-- Navigation Menu -->
         <nav class="hidden md:flex items-center space-x-6 ml-auto">
-          <a href="index.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Home</a>
-          <a href="color-converter.html" class="text-blue-600 px-3 py-2 text-sm font-medium border-b-2 border-blue-600">Converter</a>
-          <a href="blog.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Blog</a>
-          <a href="about.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">About</a>
-          <a href="privacy.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Privacy</a>
-          <a href="terms.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium">Terms</a>
+          <a href="index.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.home">Home</a>
+          <a href="color-converter.html" class="text-blue-600 px-3 py-2 text-sm font-medium border-b-2 border-blue-600" data-lang="nav.converter">Converter</a>
+          <a href="blog.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.blog">Blog</a>
+          <a href="about.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.about">About</a>
+          <a href="privacy.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.privacy">Privacy</a>
+          <a href="terms.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.terms">Terms</a>
         </nav>
 
         <!-- Mobile Menu Button & Language Selector -->
@@ -57,370 +59,173 @@
     <!-- Mobile Navigation Menu -->
     <div id="mobileMenu" class="md:hidden bg-white border-t border-gray-200 hidden">
       <div class="px-4 py-3 space-y-2">
-        <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Home</a>
-        <a href="color-converter.html" class="block px-3 py-2 text-blue-600 text-sm font-medium">Wplace Color Converter</a>
-        <a href="blog.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Blog</a>
-        <a href="about.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">About</a>
-        <a href="privacy.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Privacy</a>
-        <a href="terms.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium">Terms</a>
+        <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.home">Home</a>
+        <a href="color-converter.html" class="block px-3 py-2 text-blue-600 text-sm font-medium" data-lang="nav.converter">Converter</a>
+        <a href="blog.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.blog">Blog</a>
+        <a href="about.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.about">About</a>
+        <a href="privacy.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.privacy">Privacy</a>
+        <a href="terms.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.terms">Terms</a>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="bg-card py-12">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4">Image to Pixel Art Converter</h1>
-        <p class="text-xl text-muted-foreground mb-8">Convert any image to Wplace pixel art instantly! Our free online converter transforms photos into beautiful pixel art using Wplace's official 64-color palette. The best Wplace pixel art maker and image converter tool.</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6" data-lang="hero.title">Wplace Color Converter: Perfect Pixel Art Generation Tool</h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-lang="hero.subtitle">The most accurate Wplace color converter on the web. Transform any image into stunning pixel art using the official Wplace 64-color palette.</p>
       </div>
     </div>
   </section>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- Two Column Layout -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-      <!-- Left Column: Upload Area and Controls -->
-      <div class="flex flex-col space-y-6">
-        <!-- Upload Area -->
-        <div class="flex-1">
-          <div class="bg-card rounded-lg shadow-sm border-2 border-dashed border-border hover:border-primary transition-colors duration-300 h-full">
-            <div id="uploadArea" class="p-8 text-center cursor-pointer h-full flex flex-col justify-center">
-              <div class="space-y-4">
-                <div class="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                  <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-lg font-medium text-gray-900" data-lang="upload.main">Click to upload or drag image here</p>
-                  <p class="text-sm text-gray-500" data-lang="upload.sub">Supports PNG, JPG formats (max 4MB)</p>
-                </div>
-              </div>
-              <input type="file" id="file-input" accept=".png,.jpg,.jpeg" class="hidden">
-            </div>
-          </div>
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Color Tools Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center" data-lang="tools.title">Wplace Color Tools</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4" data-lang="tools.converter.title">Image to Pixel Art Converter</h3>
+          <p class="text-gray-600" data-lang="tools.converter.desc">Transform any image into stunning Wplace-compatible pixel art instantly</p>
         </div>
-
-        <!-- Pixel Size Control -->
-        <div class="flex-shrink-0">
-          <div class="bg-card rounded-lg shadow-sm border-border border p-6">
-            <div class="space-y-4">
-              <label for="size-slider" class="block text-sm font-medium text-gray-700">
-                <span data-lang="pixel.size">Pixel Size</span>: <span id="size-value" class="font-bold text-blue-600">8</span>
-              </label>
-              <input 
-                type="range" 
-                id="size-slider" 
-                min="1" 
-                max="32" 
-                value="8" 
-                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer slider"
-              >
-              <p class="text-xs text-gray-500" data-lang="pixel.desc">Auto-converts as you adjust the slider</p>
-            </div>
-          </div>
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4" data-lang="tools.palette.title">Wplace Color Palette Explorer</h3>
+          <p class="text-gray-600" data-lang="tools.palette.desc">Browse and explore all 64 official Wplace colors with detailed information</p>
         </div>
-
-        <!-- Advanced Settings -->
-        <div class="flex-shrink-0">
-          <div class="bg-card rounded-lg shadow-sm border-border border p-6">
-            <div class="space-y-4">
-              <h3 class="text-sm font-medium text-gray-700" data-lang="advanced.title">Advanced Settings</h3>
-              
-              <!-- Dithering Option -->
-              <div class="flex items-center space-x-3">
-                <input type="checkbox" id="enableDithering" class="h-4 w-4 text-blue-600 rounded">
-                <label for="enableDithering" class="text-sm text-gray-700" data-lang="advanced.dithering">
-                  Enable Floyd-Steinberg Dithering
-                </label>
-              </div>
-              
-              <!-- Scaling Method -->
-              <div class="space-y-2">
-                <label for="scalingMethod" class="block text-xs font-medium text-gray-700" data-lang="advanced.scaling">
-                  Image Scaling Method:
-                </label>
-                <select id="scalingMethod" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-sm">
-                  <option value="nearest" data-lang="scaling.nearest">Nearest Neighbor</option>
-                  <option value="bilinear" data-lang="scaling.bilinear">Bilinear</option>
-                  <option value="lanczos" data-lang="scaling.lanczos">Lanczos</option>
-                </select>
-              </div>
-              
-              <!-- Grid Toggle -->
-              <div class="flex items-center space-x-3">
-                <input type="checkbox" id="showGrid" class="h-4 w-4 text-blue-600 rounded">
-                <label for="showGrid" class="text-sm text-gray-700" data-lang="advanced.grid">
-                  Show Pixel Grid
-                </label>
-              </div>
-            </div>
-          </div>
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4" data-lang="tools.analyzer.title">Color Analysis Tool</h3>
+          <p class="text-gray-600" data-lang="tools.analyzer.desc">Analyze images to see which Wplace colors will be used before conversion</p>
         </div>
-      </div>
-
-      <!-- Right Column: Preview Area -->
-      <div class="flex flex-col">
-        <div class="flex-1">
-          <div class="bg-card rounded-lg shadow-sm border-border border p-6 h-full flex flex-col">
-            <div class="flex justify-between items-center mb-2 flex-shrink-0">
-              <h2 class="text-lg font-semibold text-gray-900" data-lang="preview.title">Wplace Pixel Art Result</h2>
-            </div>
-            
-            <!-- Grid Info and Controls -->
-            <div id="gridInfoPanel" class="flex justify-between items-center mb-4 text-sm text-gray-600 hidden">
-              <div class="flex space-x-4">
-                <span>Horizontal: <span id="gridHorizontal">0</span></span>
-                <span>Vertical: <span id="gridVertical">0</span></span>
-                <span>Total: <span id="gridTotal">0</span></span>
-              </div>
-              <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-2">
-                  <span>Grid:</span>
-                  <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" id="gridToggle" class="sr-only peer">
-                    <div class="w-8 h-4 bg-gray-300 rounded-full peer peer-checked:bg-blue-600 transition-colors">
-                      <div class="absolute top-0.5 left-0.5 bg-white w-3 h-3 rounded-full transition-transform peer-checked:translate-x-4"></div>
-                    </div>
-                  </label>
-                </div>
-                <div class="flex items-center space-x-2">
-                  <span>Color:</span>
-                  <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" id="colorToggle" class="sr-only peer" checked>
-                    <div class="w-8 h-4 bg-blue-600 rounded-full peer peer-checked:bg-blue-600 transition-colors">
-                      <div class="absolute top-0.5 left-4 bg-white w-3 h-3 rounded-full transition-transform peer-checked:translate-x-0"></div>
-                    </div>
-                  </label>
-                </div>
-                <button id="shareBtn" class="text-gray-500 hover:text-gray-700 transition-colors">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            <!-- Control Buttons -->
-            <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
-                <!-- Title -->
-                <h2 class="text-lg font-semibold text-foreground" data-lang="preview.title">Wplace Pixel Art Result</h2>
-                
-                <!-- Controls & Buttons -->
-                <div class="flex flex-wrap items-center gap-2">
-                    <!-- Control Buttons -->
-                    <div class="flex items-center space-x-2">
-                        <button id="process-btn" class="px-3 py-1.5 text-xs bg-green-600 text-white rounded hover:bg-green-700 focus:outline-none focus:ring-1 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors" disabled>
-                            Process
-                        </button>
-                        <button id="reset-btn" class="px-3 py-1.5 text-xs bg-gray-600 text-white rounded hover:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-500 transition-colors">
-                            Reset
-                        </button>
-                        <button
-                            id="downloadWithGridBtn"
-                            class="px-3 py-1.5 text-xs bg-orange-600 text-white rounded hover:bg-orange-700 focus:outline-none focus:ring-1 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors hidden"
-                            disabled
-                        >
-                            Grid
-                        </button>
-              <button 
-                id="download-btn" 
-                            class="px-3 py-1.5 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors hidden"
-                disabled
-                data-lang="btn.download"
-              >
-                Download
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="previewContainer" class="flex-1 min-h-96 max-w-full border-2 border-dashed border-gray-200 rounded-lg flex flex-col overflow-auto relative">
-              <!-- Image preview area -->
-              <div class="flex-1 flex items-center justify-center p-4 relative">
-                <canvas id="preview-canvas" class="hidden border border-gray-300 rounded" style="max-width: 100%; max-height: 400px;"></canvas>
-                <canvas id="output-canvas" class="hidden border border-gray-300 rounded" style="max-width: 100%; max-height: 400px;"></canvas>
-                <p id="upload-prompt" class="text-gray-500" data-lang="preview.prompt">Please upload an image to start converting</p>
-                
-                <!-- Progress Bar -->
-                <div id="progress-bar" class="absolute bottom-2 left-2 right-2 bg-white bg-opacity-90 p-2 rounded hidden">
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div id="progress-indicator" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
-                  </div>
-                  <p id="progress-text" class="text-xs text-gray-600 mt-1 text-center">0%</p>
-                </div>
-                
-                <!-- Color Info Tooltip -->
-                <div id="colorTooltip" class="absolute bg-black text-white px-2 py-1 rounded text-xs pointer-events-none hidden z-10">
-                  <div id="colorInfo"></div>
-                </div>
-                
-                <!-- Zoom Controls -->
-                <div id="zoomControls" class="absolute top-2 right-2 flex flex-col space-y-1 hidden">
-                  <button id="zoomIn" class="bg-white shadow-md hover:bg-gray-50 p-2 rounded text-gray-700 text-xs">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
-                    </svg>
-                  </button>
-                  <button id="zoomOut" class="bg-white shadow-md hover:bg-gray-50 p-2 rounded text-gray-700 text-xs">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"></path>
-                    </svg>
-                  </button>
-                  <button id="zoomReset" class="bg-white shadow-md hover:bg-gray-50 p-2 rounded text-gray-700 text-xs">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4" data-lang="tools.generator.title">Custom Palette Generator</h3>
+          <p class="text-gray-600" data-lang="tools.generator.desc">Create custom color palettes based on Wplace colors for your projects</p>
         </div>
-
-        <!-- Used Colors Panel -->
-        <div id="usedColorsPanel" class="mt-4 hidden">
-          <div class="bg-card rounded-lg shadow-sm border-border border p-4">
-            <h3 class="text-sm font-medium text-gray-700 mb-3" data-lang="used.colors.title">Colors Used in This Image</h3>
-            <div id="usedColorsGrid" class="grid grid-cols-8 gap-2 mb-3"></div>
-            <div class="flex justify-between text-xs text-gray-500">
-              <span><span data-lang="used.colors.total">Total</span>: <span id="usedColorsTotal">0</span></span>
-              <span><span data-lang="used.colors.free">Free</span>: <span id="usedColorsFree">0</span></span>
-              <span><span data-lang="used.colors.premium">Premium</span>: <span id="usedColorsPremium">0</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Color Palette -->
-    <section class="mb-8">
-      <div class="bg-card rounded-lg shadow-sm border-border border p-4">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-          <h2 class="text-md font-semibold text-gray-900 mb-2 sm:mb-0">Official Wplace 64-color palette</h2>
-        </div>
-        
-        <div id="paletteDisplay" class="grid grid-cols-8 sm:grid-cols-16 md:grid-cols-32 gap-1">
-          <!-- Palette will be populated by JavaScript -->
-        </div>
-        <p class="text-xs text-gray-500 mt-2 text-center" data-lang="palette.info">Official Wplace 64-color palette</p>
       </div>
     </section>
 
-    <!-- Loading Indicator -->
-    <div id="loadingIndicator" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-40 hidden">
-      <div class="bg-white rounded-lg p-6 flex items-center space-x-3">
-        <div class="flex space-x-1">
-          <div class="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-          <div class="w-3 h-3 bg-primary rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
-          <div class="w-3 h-3 bg-primary rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
-        </div>
-        <span class="text-gray-700 font-medium" data-lang="loading">Processing...</span>
-      </div>
-    </div>
-  </main>
-
-  <!-- Features Section -->
-  <section class="bg-white py-16">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Why Choose Wplace Paint Tool?</h2>
-        <p class="text-xl text-gray-600">The ultimate image to pixel art converter for Wplace</p>
-      </div>
+    <!-- Features Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center" data-lang="features.title">Why Choose Our Wplace Color Converter?</h2>
+      <p class="text-xl text-gray-600 text-center mb-12" data-lang="features.subtitle">The most advanced and accurate pixel art conversion tool for Wplace players</p>
+      
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div class="text-center">
-          <div class="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold mb-2">100% Free Converter</h3>
-          <p class="text-gray-600">Wplace pixel art converter is completely free to use. No hidden costs, no subscriptions, no limitations - convert unlimited images</p>
-        </div>
         <div class="text-center">
           <div class="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
             <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 0h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="text-lg font-semibold mb-2">Privacy First</h3>
-          <p class="text-gray-600">All image conversion happens in your browser. Your images never leave your device - we never upload, store, or access your content.</p>
+          <h3 class="text-xl font-semibold mb-2" data-lang="features.accurate.title">100% Accurate Color Matching</h3>
+          <p class="text-gray-600" data-lang="features.accurate.desc">Our advanced algorithm ensures perfect color matching to the official Wplace palette</p>
+        </div>
+        <div class="text-center">
+          <div class="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-2" data-lang="features.fast.title">Lightning Fast Processing</h3>
+          <p class="text-gray-600" data-lang="features.fast.desc">Convert images instantly with our optimized processing engine</p>
         </div>
         <div class="text-center">
           <div class="mx-auto w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
             <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
             </svg>
           </div>
-          <h3 class="text-lg font-semibold mb-2">Easy Image Converter</h3>
-          <p class="text-gray-600">Intuitive interface makes image to pixel art conversion accessible to everyone. No technical skills required</p>
+          <h3 class="text-xl font-semibold mb-2" data-lang="features.free.title">Completely Free Forever</h3>
+          <p class="text-gray-600" data-lang="features.free.desc">Wplace pixel art converter is completely free to use. No hidden costs, no subscriptions, no limitations</p>
         </div>
         <div class="text-center">
-          <div class="mx-auto w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-4">
-            <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          <div class="mx-auto w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
             </svg>
           </div>
-          <h3 class="text-lg font-semibold mb-2">High Quality</h3>
-          <p class="text-gray-600">Perfect Wplace-compatible results with advanced color matching technology</p>
+          <h3 class="text-xl font-semibold mb-2" data-lang="features.privacy.title">Privacy Protected</h3>
+          <p class="text-gray-600" data-lang="features.privacy.desc">All processing happens in your browser. Your images never leave your device</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- How to Use Section -->
-  <section class="bg-gray-50 py-16">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">How to Use Wplace Paint Tool?</h2>
-        <p class="text-xl text-gray-600">Convert images to pixel art in 4 simple steps</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <!-- How to Use Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center" data-lang="howto.title">How to Use Wplace Color Converter</h2>
+      <p class="text-xl text-gray-600 text-center mb-12" data-lang="howto.subtitle">Convert your images to perfect Wplace pixel art in 3 simple steps</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="text-center">
-          <div class="mx-auto w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold mb-4">
-            1
-          </div>
-          <h3 class="text-lg font-semibold mb-3 text-gray-900">Upload Your Image</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">Click the upload area or drag and drop your PNG, JPG, or SVG file. Our converter supports all common image formats</p>
+          <div class="mx-auto w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center mb-4 text-2xl font-bold">1</div>
+          <h3 class="text-xl font-semibold mb-4" data-lang="howto.step1.title">Upload Your Image</h3>
+          <p class="text-gray-600" data-lang="howto.step1.desc">Drag and drop or click to upload any image (PNG, JPG, GIF supported)</p>
         </div>
         <div class="text-center">
-          <div class="mx-auto w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold mb-4">
-            2
-          </div>
-          <h3 class="text-lg font-semibold mb-3 text-gray-900">Adjust Pixel Size</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">Use the slider to control the pixel size. Smaller values create more detailed art, larger values produce chunky, abstract pixel art</p>
+          <div class="mx-auto w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center mb-4 text-2xl font-bold">2</div>
+          <h3 class="text-xl font-semibold mb-4" data-lang="howto.step2.title">Automatic Conversion</h3>
+          <p class="text-gray-600" data-lang="howto.step2.desc">Our AI instantly converts your image using the official Wplace color palette</p>
         </div>
         <div class="text-center">
-          <div class="mx-auto w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold mb-4">
-            3
-          </div>
-          <h3 class="text-lg font-semibold mb-3 text-gray-900">Convert to Pixel Art</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">Watch your image transform into stunning pixel art using our advanced converter technology. Preview updates in real-time</p>
-        </div>
-        <div class="text-center">
-          <div class="mx-auto w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-bold mb-4">
-            4
-          </div>
-          <h3 class="text-lg font-semibold mb-3 text-gray-900">Download Your Creation</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">Choose between small pixel perfect or large scale versions. Your pixel art is ready to use on Wplace!</p>
+          <div class="mx-auto w-16 h-16 bg-purple-600 text-white rounded-full flex items-center justify-center mb-4 text-2xl font-bold">3</div>
+          <h3 class="text-xl font-semibold mb-4" data-lang="howto.step3.title">Download & Use</h3>
+          <p class="text-gray-600" data-lang="howto.step3.desc">Download your pixel art and use it directly in Wplace or other projects</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- Palette Section -->
+    <section class="mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center" data-lang="palette.title">Official Wplace 64-Color Palette</h2>
+      <p class="text-xl text-gray-600 text-center mb-12" data-lang="palette.subtitle">Complete reference of all colors available in Wplace with hex codes</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h3 class="text-xl font-semibold text-green-600 mb-4" data-lang="palette.free">Free Colors</h3>
+          <p class="text-gray-600">32 colors available to all players without any cost</p>
+        </div>
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h3 class="text-xl font-semibold text-orange-600 mb-4" data-lang="palette.premium">Premium Colors</h3>
+          <p class="text-gray-600">32 premium colors that require purchase on the official platform</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <!-- Footer -->
   <footer class="bg-gray-900 text-white py-12">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
-        <h3 class="text-2xl font-bold mb-6">About Wplace Paint Tool</h3>
-        <p class="text-gray-400 text-sm">This is an unofficial, independent fan-made website created to address community pixel needs. We are not affiliated with or endorsed by the official Wplace platform. This converter was developed by fans, for fans to enhance the pixel art creation experience.</p>
-        <p class="text-gray-400 text-sm mt-4">© 2025 Wplace Paint Tool - Free to use, no ownership claimed on generated artwork<br>Client-side processing protects your privacy</p>
+        <h3 class="text-2xl font-bold mb-6" data-lang="footer.title">Wplace Color Converter</h3>
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8">
+          <a href="index.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.home">Home</a>
+          <a href="color-converter.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.converter">Converter</a>
+          <a href="about.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.about">About</a>
+          <a href="privacy.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.privacy">Privacy</a>
+          <a href="terms.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.terms">Terms</a>
+          <a href="blog.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.blog">Blog</a>
+        </div>
+        
+        <!-- Independent Fan Site Notice -->
+        <div class="bg-blue-900 rounded-lg p-4 mb-6 text-sm">
+          <div class="flex items-center justify-center mb-2">
+            <svg class="w-5 h-5 text-blue-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+            </svg>
+            <span class="font-semibold text-blue-400" data-lang="footer.disclaimer.title">Independent Fan Site</span>
+          </div>
+          <p class="text-gray-300" data-lang="footer.disclaimer.text">This is an unofficial, independent fan-made website created to serve the Wplace community. We are not affiliated with or endorsed by the official Wplace platform.</p>
+        </div>
+        
+        <p class="text-gray-400 text-sm" data-lang="footer.main">© 2025 Wplace Color Converter - Free to use, no ownership claimed on generated artwork<br><span data-lang="footer.privacy">Client-side processing protects your privacy</span></p>
       </div>
     </div>
   </footer>
 
   <!-- Core App Logic -->
   <script src="js/app-simple.js" defer></script>
+  
+  <!-- Universal Internationalization System -->
+  <script src="js/i18n.js"></script>
 </body>
 </html>

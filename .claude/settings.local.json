@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:happyship.app)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_install",
+      "Bash(node:*)",
+      "Bash(python3:*)",
+      "Bash(rm:*)",
+      "Bash(grep:*)",
+      "Bash(sed:*)",
+      "Bash(for file in index.html about.html blog.html privacy.html terms.html color-converter.html)",
+      "Bash(do echo -n \"$file: \")",
+      "Bash(done)",
+      "Bash(do echo -n \"$file 翻译系统: \")",
+      "Bash(if grep -q \"translatePage\\|initializeI18n\" \"$file\")",
+      "Bash(then echo \"✅ 有\")",
+      "Bash(else echo \"❌ 缺失\")",
+      "Bash(fi)",
+      "Bash(then echo \"✅ 有翻译系统\")",
+      "Bash(comm:*)",
+      "Bash(npm:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
