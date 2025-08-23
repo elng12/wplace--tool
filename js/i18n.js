@@ -7,9 +7,14 @@ class I18nManager {
         this.translations = {};
         this.isLoaded = false;
         
+        // Supported languages
+        this.supportedLanguages = [
+            'en', 'zh', 'pt', 'fr', 'de', 'es', 'ja', 'mi', 'tr', 'gn'
+        ];
+        
         // Get saved language preference
         const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-        this.currentLanguage = savedLang;
+        this.currentLanguage = this.supportedLanguages.includes(savedLang) ? savedLang : 'en';
     }
 
     async loadTranslations(language) {
@@ -21,7 +26,6 @@ class I18nManager {
             const response = await fetch(`lang/${language}.json`);
             
             if (!response.ok) {
-                console.warn(`Failed to load translations for ${language}, using fallback`);
                 return {};
             }
             
@@ -35,11 +39,18 @@ class I18nManager {
     }
 
     translateText(key, lang = this.currentLanguage) {
-        if (!this.translations[lang]) {
-            return key;
+        // Try current language first
+        if (this.translations[lang] && this.translations[lang][key]) {
+            return this.translations[lang][key];
         }
         
-        return this.translations[lang][key] || key;
+        // Fallback to English if available
+        if (lang !== 'en' && this.translations['en'] && this.translations['en'][key]) {
+            return this.translations['en'][key];
+        }
+        
+        // Return key as last resort
+        return key;
     }
 
     async translatePage(language = this.currentLanguage) {
@@ -97,10 +108,7 @@ class I18nManager {
         }
         
         // Load initial translations
-        console.log(`🎯 DEBUG: About to load initial translations for: ${this.currentLanguage}`);
         await this.translatePage(this.currentLanguage);
-        
-        console.log('🎯 DEBUG: I18n system initialized successfully');
     }
 }
 

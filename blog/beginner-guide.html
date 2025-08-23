@@ -38,6 +38,14 @@
             <select id="languageSelector" class="bg-transparent border-none focus:outline-none cursor-pointer text-sm font-medium px-2 py-1">
               <option value="en" selected>English</option>
               <option value="zh">中文</option>
+              <option value="pt">Português</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+              <option value="es">Español</option>
+              <option value="ja">日本語</option>
+              <option value="mi">Māori</option>
+              <option value="tr">Türkçe</option>
+              <option value="gn">Guaraní</option>
             </select>
           </div>
 
@@ -120,127 +128,6 @@
     </div>
   </footer>
 
-  <script>
-    // Translations for beginner guide
-    const translations = {
-      en: {
-        'brand.name': 'Wplace Paint Tool',
-        'nav.back_to_blog': 'Back to Blog',
-        'blog.beginner.title': 'Getting Started: Your Essential Guide to the Wplace Paint Tool',
-        'blog.beginner.intro': 'Welcome to the Wplace Paint Tool! This guide will walk you through everything you need to know to transform your images into stunning pixel art for the Wplace canvas. Whether you\'re a seasoned pixel artist or just starting, our tool makes the process simple and fun.',
-        'blog.beginner.upload.title': '1. Uploading Your Image',
-        'blog.beginner.upload.desc': 'To begin, simply drag and drop your image into the designated upload area, or click to select a file from your device. We support PNG, JPG, and JPEG formats. For best results, use a high-quality source image.',
-        'blog.beginner.upload.formats': 'Supported Formats: PNG, JPG, JPEG.',
-        'blog.beginner.upload.size': 'Maximum Size: While our tool handles various sizes, larger images may take slightly longer to process.',
-        'blog.beginner.pixel_size.title': '2. Adjusting Pixel Size',
-        'blog.beginner.pixel_size.desc': 'The pixel size slider is your primary control for defining the level of detail in your pixel art. A smaller pixel size will result in more detail and a larger image, while a larger pixel size will create a more abstract, blocky appearance.',
-        'blog.beginner.pixel_size.small': 'Smaller Pixel Size: More detail, larger output.',
-        'blog.beginner.pixel_size.large': 'Larger Pixel Size: More abstract, smaller output.',
-        'blog.beginner.pixel_size.experiment': 'Experiment with different values to find the perfect balance for your artwork.',
-        'blog.beginner.advanced.title': '3. Advanced Settings (Optional)',
-        'blog.beginner.advanced.desc': 'For more control over your pixel art, explore the advanced settings:',
-        'blog.beginner.advanced.dithering': 'Enable Floyd-Steinberg Dithering: This technique helps to smooth out color transitions and reduce banding, especially in images with limited color palettes.',
-        'blog.beginner.advanced.scaling': 'Image Scaling Method: Choose between Nearest Neighbor (sharpest, blocky), Bilinear (smoother, slightly blurry), and Lanczos (high-quality, good for downscaling).',
-        'blog.beginner.advanced.grid': 'Show Pixel Grid: Overlay a grid on your preview to visualize individual pixels, useful for precise placement on the Wplace canvas.',
-        'blog.beginner.palette.title': '4. Understanding the Wplace Color Palette',
-        'blog.beginner.palette.desc': 'Our tool automatically converts your image to the official Wplace 64-color palette, ensuring perfect compatibility with the platform. The preview area will show you exactly how your artwork will appear on the canvas, along with a breakdown of the colors used.',
-        'blog.beginner.download.title': '5. Downloading Your Pixel Art',
-        'blog.beginner.download.desc': 'Once you\'re satisfied with your pixel art, you can download it directly from the preview area. You\'ll have options to download with or without the pixel grid, depending on your needs for placement on the Wplace canvas.',
-        'blog.beginner.tips.title': 'Tips for Success',
-        'blog.beginner.tips.resolution': 'Start with high-resolution images for better detail retention.',
-        'blog.beginner.tips.experiment': 'Experiment with different pixel sizes and dithering settings.',
-        'blog.beginner.tips.grid': 'Utilize the pixel grid for precise placement on Wplace.',
-        'blog.beginner.tips.community': 'Join the Wplace community for more tips and inspiration!',
-        'blog.beginner.troubleshooting.title': 'Troubleshooting',
-        'blog.beginner.troubleshooting.desc': 'If you encounter any issues, try the following:',
-        'blog.beginner.troubleshooting.format': 'Ensure your image is in a supported format (PNG, JPG, JPEG).',
-        'blog.beginner.troubleshooting.connection': 'Check your internet connection if you\'re experiencing loading issues (though most processing is client-side).',
-        'blog.beginner.troubleshooting.processing': 'For complex images, a smaller pixel size might require more processing time.',
-        'blog.beginner.closing': 'Happy pixel painting on Wplace!',
-        'footer.main': '© 2025 Wplace Paint Tool - Independent Fan Site'
-      },
-      zh: {
-        'brand.name': 'Wplace画图工具',
-        'nav.back_to_blog': '返回博客',
-        'blog.beginner.title': '入门指南：Wplace画图工具完全使用教程',
-        'blog.beginner.intro': '欢迎使用Wplace画图工具！本指南将为您详细介绍如何将图像转换为适用于Wplace画布的精美像素艺术。无论您是经验丰富的像素艺术家还是初学者，我们的工具都让创作过程变得简单有趣。',
-        'blog.beginner.upload.title': '1. 上传您的图像',
-        'blog.beginner.upload.desc': '首先，只需将图像拖放到指定的上传区域，或点击从设备选择文件。我们支持PNG、JPG和JPEG格式。为获得最佳效果，请使用高质量的源图像。',
-        'blog.beginner.upload.formats': '支持格式：PNG、JPG、JPEG。',
-        'blog.beginner.upload.size': '最大尺寸：虽然我们的工具可以处理各种尺寸，但较大的图像可能需要稍长的处理时间。',
-        'blog.beginner.pixel_size.title': '2. 调整像素大小',
-        'blog.beginner.pixel_size.desc': '像素大小滑块是控制像素艺术细节程度的主要工具。较小的像素大小会产生更多细节和更大的图像，而较大的像素大小会创建更抽象、更块状的外观。',
-        'blog.beginner.pixel_size.small': '较小像素大小：更多细节，更大输出。',
-        'blog.beginner.pixel_size.large': '较大像素大小：更抽象，更小输出。',
-        'blog.beginner.pixel_size.experiment': '尝试不同的数值，找到作品的完美平衡。',
-        'blog.beginner.advanced.title': '3. 高级设置（可选）',
-        'blog.beginner.advanced.desc': '为了更好地控制您的像素艺术，请探索高级设置：',
-        'blog.beginner.advanced.dithering': '启用Floyd-Steinberg抖动：此技术有助于平滑颜色过渡并减少色带，特别适用于颜色有限的调色板图像。',
-        'blog.beginner.advanced.scaling': '图像缩放方法：选择最邻近算法（最锐利，块状）、双线性插值（更平滑，略微模糊）和Lanczos算法（高质量，适合缩小）。',
-        'blog.beginner.advanced.grid': '显示像素网格：在预览上叠加网格以可视化单个像素，对在Wplace画布上精确放置很有用。',
-        'blog.beginner.palette.title': '4. 了解Wplace调色板',
-        'blog.beginner.palette.desc': '我们的工具自动将您的图像转换为官方Wplace 64色调色板，确保与平台完美兼容。预览区域将准确显示您的作品在画布上的外观，并提供所用颜色的详细分析。',
-        'blog.beginner.download.title': '5. 下载您的像素艺术',
-        'blog.beginner.download.desc': '满意您的像素艺术后，您可以直接从预览区域下载。根据在Wplace画布上的放置需求，您可以选择下载带网格或不带网格的版本。',
-        'blog.beginner.tips.title': '成功秘诀',
-        'blog.beginner.tips.resolution': '从高分辨率图像开始，以获得更好的细节保持。',
-        'blog.beginner.tips.experiment': '尝试不同的像素大小和抖动设置。',
-        'blog.beginner.tips.grid': '利用像素网格在Wplace上进行精确放置。',
-        'blog.beginner.tips.community': '加入Wplace社区获取更多技巧和灵感！',
-        'blog.beginner.troubleshooting.title': '故障排除',
-        'blog.beginner.troubleshooting.desc': '如果遇到任何问题，请尝试以下方法：',
-        'blog.beginner.troubleshooting.format': '确保您的图像采用支持的格式（PNG、JPG、JPEG）。',
-        'blog.beginner.troubleshooting.connection': '如果遇到加载问题，请检查您的网络连接（尽管大部分处理都在客户端进行）。',
-        'blog.beginner.troubleshooting.processing': '对于复杂图像，较小的像素大小可能需要更多处理时间。',
-        'blog.beginner.closing': '在Wplace上愉快地进行像素绘画！',
-        'footer.main': '© 2025 Wplace画图工具 - 独立粉丝网站'
-      }
-    };
-
-    // Translation functions
-    function translatePage(lang) {
-      const elements = document.querySelectorAll('[data-lang]');
-      elements.forEach(el => {
-        const key = el.getAttribute('data-lang');
-        if (translations[lang] && translations[lang][key]) {
-          el.textContent = translations[lang][key];
-        }
-      });
-      
-      // Update page title
-      if (translations[lang]['blog.beginner.title']) {
-        document.title = translations[lang]['blog.beginner.title'] + ' | Wplace Paint Tool';
-      }
-      
-      // Save language preference
-      localStorage.setItem('preferredLanguage', lang);
-    }
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      const languageSelector = document.getElementById('languageSelector');
-      const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-      
-      // Set initial language
-      languageSelector.value = savedLang;
-      translatePage(savedLang);
-      
-      // Language change handler
-      languageSelector.addEventListener('change', function() {
-        translatePage(this.value);
-      });
-      
-      // Mobile menu toggle
-      const mobileMenuButton = document.getElementById('mobileMenuButton');
-      const mobileMenu = document.getElementById('mobileMenu');
-      
-      if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-          mobileMenu.classList.toggle('hidden');
-        });
-      }
-    });
-  </script>
   <!-- Translation System -->
   <script src="../js/i18n.js"></script>
 </body>
