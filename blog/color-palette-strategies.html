@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mastering Color: Advanced Palette Strategies for Wplace Artists</title>
   <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous"></script>
   <!-- Custom Styles -->
@@ -38,14 +38,15 @@
             <select id="languageSelector" class="bg-transparent border-none focus:outline-none cursor-pointer text-sm font-medium px-2 py-1">
               <option value="en" selected>English</option>
               <option value="zh">中文</option>
-              <option value="pt">Português</option>
+              <option value="ko">한국어</option>
+              <option value="ja">日本語</option>
+              <option value="es">Español</option>
               <option value="fr">Français</option>
               <option value="de">Deutsch</option>
-              <option value="es">Español</option>
-              <option value="ja">日本語</option>
-              <option value="mi">Māori</option>
+              <option value="pt">Português</option>
               <option value="tr">Türkçe</option>
               <option value="gn">Guaraní</option>
+              <option value="mi">Te Reo Māori</option>
             </select>
           </div>
 
@@ -120,116 +121,17 @@
     </div>
   </footer>
 
+  <!-- 内联完整词库（file:// 下生效；HTTP 下不影响） -->
+  <script src="../lang/all.inline.js"></script>
+  <!-- Translation System -->
+  <script src="../js/i18n.js"></script>
   <script>
-    // Translations for color palette strategies
-    const translations = {
-      en: {
-        'brand.name': 'Wplace Paint Tool',
-        'nav.back_to_blog': 'Back to Blog',
-        'blog.palette.title': 'Mastering Color: Advanced Palette Strategies for Wplace Artists',
-        'blog.palette.intro': 'Color is the soul of pixel art. In this guide, we\'ll delve into advanced strategies for selecting, customizing, and applying color palettes to make your Wplace pixel art truly shine. Moving beyond the basics, we\'ll explore techniques used by professional artists to achieve stunning visual harmony.',
-        'blog.palette.understanding.title': '1. Understanding the Wplace 64-Color Palette',
-        'blog.palette.understanding.desc': 'The Wplace platform utilizes a specific 64-color palette. Familiarizing yourself with these colors is the first step to mastering your artwork. Our tool automatically maps your images to this palette, but understanding its nuances allows for more intentional design.',
-        'blog.palette.understanding.premium': 'Free vs. Premium Colors: Differentiate between the publicly available and premium colors to plan your designs effectively.',
-        'blog.palette.understanding.relationships': 'Color Relationships: Observe how colors interact within the palette to create contrast, depth, and mood.',
-        'blog.palette.advanced.title': '2. Advanced Color Selection Techniques',
-        'blog.palette.advanced.desc': 'Beyond simply picking colors, consider these advanced techniques:',
-        'blog.palette.advanced.limited': 'Limited Palettes: Challenge yourself to create compelling art with a very small subset of colors. This forces creativity and strengthens your understanding of color value.',
-        'blog.palette.advanced.ramps': 'Color Ramps: Create smooth transitions between colors for shading and highlights. Even with a limited palette, effective ramps can add significant depth.',
-        'blog.palette.advanced.hue_shifting': 'Hue Shifting: Instead of just darkening or lightening a color, subtly shift its hue as you move from light to shadow. This adds vibrancy and realism.',
-        'blog.palette.customizing.title': '3. Customizing and Adapting Palettes',
-        'blog.palette.customizing.desc': 'While the Wplace palette is fixed, you can still customize your approach:',
-        'blog.palette.customizing.precomputation': 'Pre-computation: Use external tools or your own Wplace Paint Tool experiments to pre-determine which Wplace colors best represent your desired hues.',
-        'blog.palette.customizing.contextual': 'Contextual Application: The same color can appear different depending on the colors surrounding it. Use this optical illusion to your advantage.',
-        'blog.palette.harmony.title': '4. Achieving Color Harmony and Mood',
-        'blog.palette.harmony.desc': 'Color harmony isn\'t just about aesthetics; it\'s about conveying emotion and guiding the viewer\'s eye:',
-        'blog.palette.harmony.analogous': 'Analogous Colors: Colors next to each other on the color wheel create a sense of calm and unity.',
-        'blog.palette.harmony.complementary': 'Complementary Colors: Colors opposite each other create strong contrast and visual excitement.',
-        'blog.palette.harmony.monochromatic': 'Monochromatic Schemes: Using different shades and tints of a single color can create sophisticated and cohesive artwork.',
-        'blog.palette.tips.title': 'Tips for Effective Color Use',
-        'blog.palette.tips.less_is_more': 'Less is More: Often, a well-chosen limited palette is more impactful than a sprawling one.',
-        'blog.palette.tips.test_canvas': 'Test on Canvas: Always preview your pixel art on the Wplace canvas to see how colors render in the actual environment.',
-        'blog.palette.tips.study_masters': 'Study Masters: Analyze the color choices of renowned pixel artists for inspiration and learning.',
-        'blog.palette.closing': 'Unleash the power of color in your Wplace creations!',
-        'footer.main': '© 2025 Wplace Paint Tool - Independent Fan Site'
-      },
-      zh: {
-        'brand.name': 'Wplace画图工具',
-        'nav.back_to_blog': '返回博客',
-        'blog.palette.title': '掌握色彩：Wplace艺术家的高级调色板策略',
-        'blog.palette.intro': '色彩是像素艺术的灵魂。在本指南中，我们将深入探讨选择、定制和应用调色板的高级策略，让您的Wplace像素艺术真正闪闪发光。超越基础知识，我们将探索专业艺术家用来实现惊人视觉和谐的技巧。',
-        'blog.palette.understanding.title': '1. 理解Wplace 64色调色板',
-        'blog.palette.understanding.desc': 'Wplace平台使用特定的64色调色板。熟悉这些颜色是掌握您作品的第一步。我们的工具会自动将您的图像映射到此调色板，但了解其细节可以实现更有意图的设计。',
-        'blog.palette.understanding.premium': '免费vs付费颜色：区分公开可用和付费颜色，以有效规划您的设计。',
-        'blog.palette.understanding.relationships': '色彩关系：观察调色板内颜色如何相互作用，创造对比、深度和情绪。',
-        'blog.palette.advanced.title': '2. 高级色彩选择技巧',
-        'blog.palette.advanced.desc': '除了简单地选择颜色，考虑这些高级技巧：',
-        'blog.palette.advanced.limited': '有限调色板：挑战自己用极少的颜色子集创造引人注目的艺术。这会强制创造力并加强对色彩价值的理解。',
-        'blog.palette.advanced.ramps': '色彩渐变：为阴影和高光创建颜色间的平滑过渡。即使使用有限的调色板，有效的渐变也能增加显著的深度。',
-        'blog.palette.advanced.hue_shifting': '色调偏移：不只是加深或淡化颜色，在从光到影的过程中巧妙地改变色调。这增加了活力和现实感。',
-        'blog.palette.customizing.title': '3. 自定义和适应调色板',
-        'blog.palette.customizing.desc': '虽然Wplace调色板是固定的，您仍然可以自定义您的方法：',
-        'blog.palette.customizing.precomputation': '预计算：使用外部工具或您自己的Wplace画图工具实验来预先确定哪些Wplace颜色最能代表您想要的色调。',
-        'blog.palette.customizing.contextual': '上下文应用：相同的颜色在不同的周围颜色中会显得不同。利用这种视觉错觉为您带来优势。',
-        'blog.palette.harmony.title': '4. 实现色彩和谐与情绪',
-        'blog.palette.harmony.desc': '色彩和谐不仅仅关于美学；它关于传达情感和引导观众的目光：',
-        'blog.palette.harmony.analogous': '相邻色：色轮上彼此相邻的颜色创造平静和统一感。',
-        'blog.palette.harmony.complementary': '互补色：彼此相对的颜色创造强烈对比和视觉兴奋。',
-        'blog.palette.harmony.monochromatic': '单色方案：使用单一颜色的不同深浅和色调可以创造精致且协调的艺术作品。',
-        'blog.palette.tips.title': '有效使用色彩的技巧',
-        'blog.palette.tips.less_is_more': '少即是多：通常，精心选择的有限调色板比庞杂的调色板更有影响力。',
-        'blog.palette.tips.test_canvas': '在画布上测试：始终在Wplace画布上预览您的像素艺术，看颜色在实际环境中的呈现效果。',
-        'blog.palette.tips.study_masters': '研究大师：分析知名像素艺术家的色彩选择以获得灵感和学习。',
-        'blog.palette.closing': '在您的Wplace创作中释放色彩的力量！',
-        'footer.main': '© 2025 Wplace画图工具 - 独立粉丝网站'
-      }
-    };
-
-    // Translation functions
-    function translatePage(lang) {
-      const elements = document.querySelectorAll('[data-lang]');
-      elements.forEach(el => {
-        const key = el.getAttribute('data-lang');
-        if (translations[lang] && translations[lang][key]) {
-          el.textContent = translations[lang][key];
-        }
-      });
-      
-      // Update page title
-      if (translations[lang]['blog.palette.title']) {
-        document.title = translations[lang]['blog.palette.title'] + ' | Wplace Paint Tool';
-      }
-      
-      // Save language preference
-      localStorage.setItem('preferredLanguage', lang);
-    }
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      const languageSelector = document.getElementById('languageSelector');
-      const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-      
-      // Set initial language
-      languageSelector.value = savedLang;
-      translatePage(savedLang);
-      
-      // Language change handler
-      languageSelector.addEventListener('change', function() {
-        translatePage(this.value);
-      });
-      
-      // Mobile menu toggle
-      const mobileMenuButton = document.getElementById('mobileMenuButton');
-      const mobileMenu = document.getElementById('mobileMenu');
-      
-      if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-          mobileMenu.classList.toggle('hidden');
-        });
-      }
-    });
+    // Page-specific JS placeholder (global i18n handles translations)
   </script>
   <!-- Translation System -->
   <script src="../js/i18n.js"></script>
+
+  <!-- 错误处理系统 -->
+  <script src="../js/error-handler.js"></script>
 </body>
 </html>

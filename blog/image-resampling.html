@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pixel Perfect Scaling: A Deep Dive into Image Resampling</title>
   <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous"></script>
   <!-- Custom Styles -->
@@ -38,14 +38,15 @@
             <select id="languageSelector" class="bg-transparent border-none focus:outline-none cursor-pointer text-sm font-medium px-2 py-1">
               <option value="en" selected>English</option>
               <option value="zh">中文</option>
-              <option value="pt">Português</option>
+              <option value="ko">한국어</option>
+              <option value="ja">日本語</option>
+              <option value="es">Español</option>
               <option value="fr">Français</option>
               <option value="de">Deutsch</option>
-              <option value="es">Español</option>
-              <option value="ja">日本語</option>
-              <option value="mi">Māori</option>
+              <option value="pt">Português</option>
               <option value="tr">Türkçe</option>
               <option value="gn">Guaraní</option>
+              <option value="mi">Te Reo Māori</option>
             </select>
           </div>
 
@@ -113,40 +114,17 @@
     </div>
   </footer>
 
+  <!-- 内联完整词库（file:// 下生效；HTTP 下不影响） -->
+  <script src="../lang/all.inline.js"></script>
+  <!-- Translation System -->
+  <script src="../js/i18n.js"></script>
   <script>
-    // Translations for image resampling
-    const translations = {
-      en: {
-        'brand.name': 'Wplace Paint Tool',
-        'nav.back_to_blog': 'Back to Blog',
-        'blog.resampling.title': 'Pixel Perfect Scaling: A Deep Dive into Image Resampling',
-        'blog.resampling.intro': 'Image scaling is a crucial aspect of pixel art, especially when preparing your creations for platforms like Wplace. This guide will demystify the different resampling methods and help you choose the best one to maintain the integrity and crispness of your pixel art.',
-        'blog.resampling.understanding.title': 'Understanding Image Resampling',
-        'blog.resampling.understanding.desc': 'Resampling refers to the process of changing the dimensions of an image. When you scale a pixel art image, new pixels are either added or removed. The method used for this process significantly impacts the final look of your artwork.',
-        'blog.resampling.nearest.title': '1. Nearest Neighbor (The Pixel Artist\'s Choice)',
-        'blog.resampling.nearest.desc': 'Nearest Neighbor is the simplest and often preferred method for pixel art. It works by simply duplicating or removing pixels without any interpolation. This results in sharp, blocky edges, preserving the distinct pixelated look.',
-        'blog.resampling.nearest.pros': 'Pros: Maintains pixel crispness, no blurring, ideal for upscaling pixel art.',
-        'blog.resampling.nearest.cons': 'Cons: Can create jagged lines and "staircasing" effects if not used carefully, especially when downscaling.',
-        'blog.resampling.nearest.when_to_use': 'When to Use: Always for upscaling pixel art. Often for downscaling if maintaining sharp edges is paramount.',
-        'blog.resampling.bilinear.title': '2. Bilinear Interpolation (Smoother, but Blurry)',
-        'blog.resampling.bilinear.desc': 'Bilinear interpolation considers the four nearest pixels to determine the color of a new pixel. This results in a smoother, less pixelated appearance, but can introduce blurring, which is generally undesirable for pixel art.',
-        'blog.resampling.bilinear.pros': 'Pros: Smoother transitions, less jagged edges.',
-        'blog.resampling.bilinear.cons': 'Cons: Introduces blurring, destroys pixel crispness, not recommended for pixel art upscaling.',
-        'blog.resampling.bilinear.when_to_use': 'When to Use: Rarely for pixel art. More suitable for photographic images.',
-        'blog.resampling.lanczos.title': '3. Lanczos Resampling (High Quality, but Complex)',
-        'blog.resampling.lanczos.desc': 'Lanczos is a more complex resampling algorithm that produces high-quality results, especially for downscaling photographic images. It uses a sinc function to calculate the value of new pixels, leading to sharper results than bilinear, but still introduces some level of interpolation that can soften pixel art.',
-        'blog.resampling.lanczos.pros': 'Pros: Good for downscaling photographic images, sharper than bilinear.',
-        'blog.resampling.lanczos.cons': 'Cons: Can still soften pixel art, computationally more intensive.',
-        'blog.resampling.lanczos.when_to_use': 'When to Use: Generally not for pixel art, unless a slight softening is desired or for very specific downscaling scenarios.',
-        'blog.resampling.choosing.title': 'Choosing the Right Method for Wplace',
-        'blog.resampling.choosing.desc': 'For Wplace pixel art, Nearest Neighbor is almost always the recommended scaling method. It ensures that your pixels remain crisp and distinct, preserving the intended aesthetic. Our Wplace Paint Tool offers Nearest Neighbor as a primary option for this very reason.',
-        'blog.resampling.closing': 'Master your scaling for pixel-perfect Wplace creations!',
-        'footer.main': '© 2025 Wplace Paint Tool - Independent Fan Site'
-      },
-      zh: {
+    // Page-specific JS placeholder (global i18n handles translations)
+  </script>
+
         'brand.name': 'Wplace画图工具',
         'nav.back_to_blog': '返回博客',
-        'blog.resampling.title': '像素完美缩放：深入探讨图像重采样',
+        
         'blog.resampling.intro': '图像缩放是像素艺术的重要方面，特别是在为Wplace等平台准备创作时。本指南将揭开不同重采样方法的神秘面纱，帮助您选择最佳方法来保持像素艺术的完整性和清晰度。',
         'blog.resampling.understanding.title': '理解图像重采样',
         'blog.resampling.understanding.desc': '重采样是指改变图像尺寸的过程。当您缩放像素艺术图像时，新的像素要么被添加要么被移除。此过程使用的方法会显著影响您作品的最终效果。',
@@ -168,55 +146,7 @@
         'blog.resampling.choosing.title': '为Wplace选择合适的方法',
         'blog.resampling.choosing.desc': '对于Wplace像素艺术，最邻近算法几乎总是推荐的缩放方法。它确保您的像素保持清晰和独特，保留预期的美学效果。我们的Wplace画图工具正是基于这个原因将最邻近算法作为主要选项。',
         'blog.resampling.closing': '掌握缩放技术，创造像素完美的Wplace作品！',
-        'footer.main': '© 2025 Wplace画图工具 - 独立粉丝网站'
-      }
-    };
-
-    // Translation functions
-    function translatePage(lang) {
-      const elements = document.querySelectorAll('[data-lang]');
-      elements.forEach(el => {
-        const key = el.getAttribute('data-lang');
-        if (translations[lang] && translations[lang][key]) {
-          el.textContent = translations[lang][key];
-        }
-      });
-      
-      // Update page title
-      if (translations[lang]['blog.resampling.title']) {
-        document.title = translations[lang]['blog.resampling.title'] + ' | Wplace Paint Tool';
-      }
-      
-      // Save language preference
-      localStorage.setItem('preferredLanguage', lang);
-    }
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      const languageSelector = document.getElementById('languageSelector');
-      const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-      
-      // Set initial language
-      languageSelector.value = savedLang;
-      translatePage(savedLang);
-      
-      // Language change handler
-      languageSelector.addEventListener('change', function() {
-        translatePage(this.value);
-      });
-      
-      // Mobile menu toggle
-      const mobileMenuButton = document.getElementById('mobileMenuButton');
-      const mobileMenu = document.getElementById('mobileMenu');
-      
-      if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-          mobileMenu.classList.toggle('hidden');
-        });
-      }
-    });
-  </script>
-  <!-- Translation System -->
-  <script src="../js/i18n.js"></script>
+  <!-- 错误处理系统 -->
+  <script src="../js/error-handler.js"></script>
 </body>
 </html>

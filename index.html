@@ -6,23 +6,48 @@
   <meta name="description" content="Easily create pixel art for Wplace with the Wplace Paint Tool! Our pixel art maker and converter transform any image into a Wplace-compatible pixel grid. The built-in generator automatically matches the official color palette, ensuring perfect results every time. Whether you're a beginner or a pro, this tool makes pixel art creation fun and simple. Turn your ideas into pixel masterpieces effortlessly!" />
   <title>Wplace Paint Tool & Color Converter - Ultimate Pixel Art Toolkit for Wplace Players</title>
   <link rel="canonical" href="https://wplacetool.app/" />
-  <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS - 开发环境 -->
+  <!-- 注意：生产环境请安装Tailwind CSS作为PostCSS插件 -->
+
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous"></script>
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/main.css" />
-  
+
+  <!-- Development Environment Detector -->
+  <script src="js/dev-detector.js"></script>
+
+  <!-- 统一翻译系统 -->
+
+  <!-- 内联翻译（file:// 下使用；HTTP 下仍从 lang/*.json 加载） -->
+  <script>
+    (function(){
+      // 仅在 file:// 下提供内联对象，HTTP 下不污染全局
+      if (location.protocol === 'file:') {
+        window.__INLINE_I18N__ = {};
+      }
+    })();
+  </script>
+
+  <!-- 在 file:// 下优先加载内联完整词库（脚本内部有 file: 检测保护） -->
+  <script src="lang/all.inline.js"></script>
+
+  <!-- 外部 i18n 逻辑脚本 -->
+  <script src="js/i18n.js"></script>
+
+  <!-- 错误处理系统 -->
+  <script src="js/error-handler.js"></script>
+
   <!-- Simple Version Script - No Modules Required -->
   <script src="js/app-simple.js" defer></script>
-  
+
   <!-- Avatar Styles -->
   <style>
     .avatar-gradient {
       position: relative;
       overflow: hidden;
     }
-    
+
     .avatar-gradient::before {
       content: '';
       position: absolute;
@@ -34,12 +59,12 @@
       border-radius: inherit;
       pointer-events: none;
     }
-    
+
     .avatar-gradient:hover {
       transform: scale(1.05);
       transition: transform 0.2s ease;
     }
-    
+
     /* 修复页面布局问题 */
     body {
       margin: 0;
@@ -47,12 +72,12 @@
       font-size: 16px;
       line-height: 1.5;
     }
-    
+
     /* 确保容器不会过大 */
     .max-w-6xl {
       max-width: 72rem;
     }
-    
+
     /* 修复响应式布局 */
     @media (max-width: 768px) {
       .text-4xl {
@@ -99,20 +124,21 @@
             <select id="languageSelector" class="bg-transparent border-none focus:outline-none cursor-pointer text-sm font-medium px-2 py-1">
               <option value="en" selected>English</option>
               <option value="zh">中文</option>
+              <option value="ko">한국어</option>
+              <option value="ja">日本語</option>
               <option value="pt">Português</option>
               <option value="fr">Français</option>
               <option value="de">Deutsch</option>
               <option value="es">Español</option>
-              <option value="ja">日本語</option>
-              <option value="mi">Te Reo Māori</option>
               <option value="tr">Türkçe</option>
               <option value="gn">Guaraní</option>
+              <option value="mi">Te Reo Māori</option>
             </select>
           </div>
         </div>
       </div>
     </div>
-    
+
     <!-- Mobile Navigation Menu -->
     <div id="mobileMenu" class="md:hidden bg-white border-t border-gray-200 hidden">
       <div class="px-4 py-3 space-y-2">
@@ -154,13 +180,15 @@
                 <div>
                   <p class="text-lg font-medium text-gray-900" data-lang="upload.main">Click to upload or drag image here</p>
                   <p class="text-sm text-gray-500" data-lang="upload.sub">Supports PNG, JPG formats (max 4MB)</p>
-                  <p class="text-xs text-gray-400 mt-1">支持多选批量处理</p>
+                  <p class="text-xs text-gray-400 mt-1" data-lang="upload.batch">支持多选批量处理</p>
                 </div>
               </div>
               <input type="file" id="fileInput" accept=".png,.jpg,.jpeg" multiple class="hidden">
             </div>
           </div>
         </div>
+
+        <!-- 智能预设功能已移除，简化界面 -->
 
         <!-- Pixel Size Control -->
         <div class="flex-shrink-0">
@@ -172,12 +200,12 @@
               </label>
                 <span id="size-value" class="font-bold text-primary">8</span>
               </div>
-              <input 
-                type="range" 
-                id="size-slider" 
-                min="1" 
-                max="32" 
-                value="8" 
+              <input
+                type="range"
+                id="size-slider"
+                min="1"
+                max="32"
+                value="8"
                 class="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer custom-slider"
               >
               <p class="text-xs text-muted-foreground text-center" data-lang="pixel.desc">Real-time preview as you adjust the slider</p>
@@ -195,11 +223,11 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </button>
-            
+
             <!-- Accordion Content (Initially Hidden) -->
             <div id="advancedSettingsContent" class="hidden px-6 pb-6">
                 <div class="space-y-4 border-t border-border pt-4">
-              
+
               <!-- Quality Slider -->
               <div class="space-y-2">
                 <div class="flex justify-between items-center">
@@ -208,7 +236,7 @@
                 </div>
                 <input type="range" id="quality-slider" min="1" max="100" value="80" class="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer">
               </div>
-              
+
               <!-- Brightness Slider -->
               <div class="space-y-2">
                 <div class="flex justify-between items-center">
@@ -217,7 +245,7 @@
                 </div>
                 <input type="range" id="brightness-slider" min="-100" max="100" value="0" class="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer">
               </div>
-              
+
               <!-- Contrast Slider -->
               <div class="space-y-2">
                 <div class="flex justify-between items-center">
@@ -226,7 +254,7 @@
                 </div>
                 <input type="range" id="contrast-slider" min="-100" max="100" value="0" class="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer">
               </div>
-              
+
               <!-- Saturation Slider -->
               <div class="space-y-2">
                 <div class="flex justify-between items-center">
@@ -235,7 +263,7 @@
                 </div>
                 <input type="range" id="saturation-slider" min="-100" max="100" value="0" class="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer">
               </div>
-              
+
               <!-- Dithering Option -->
               <div class="flex items-center space-x-3">
                       <input type="checkbox" id="dithering-checkbox" class="h-4 w-4 text-primary rounded focus:ring-ring">
@@ -243,7 +271,7 @@
                   Enable Floyd-Steinberg Dithering
                 </label>
               </div>
-              
+
               <!-- Palette Selection -->
               <div class="space-y-2">
                 <label for="palette-select" class="block text-xs font-medium text-muted-foreground" data-lang="controls.color_palette">Color Palette:</label>
@@ -252,7 +280,7 @@
                   <option value="standard">Standard Palette</option>
                 </select>
               </div>
-              
+
               <!-- Scaling Method -->
               <div class="space-y-2">
                       <label for="scalingMethod" class="block text-xs font-medium text-muted-foreground" data-lang="advanced.scaling">
@@ -264,7 +292,7 @@
                   <option value="lanczos" data-lang="scaling.lanczos">Lanczos</option>
                 </select>
               </div>
-              
+
               <!-- Grid Toggle -->
               <div class="flex items-center space-x-3">
                       <input type="checkbox" id="showGrid" class="h-4 w-4 text-primary rounded focus:ring-ring">
@@ -273,6 +301,23 @@
                 </label>
                     </div>
               </div>
+
+                  <!-- Grid Style Controls -->
+                  <div class="grid grid-cols-3 gap-3 mt-2 text-xs">
+                    <div class="flex items-center space-x-2">
+                      <label for="gridColor" class="text-muted-foreground whitespace-nowrap">Color</label>
+                      <input type="color" id="gridColor" value="#000000" class="h-6 w-10 p-0 border rounded">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <label for="gridOpacity" class="text-muted-foreground whitespace-nowrap">Opacity</label>
+                      <input type="range" id="gridOpacity" min="5" max="100" value="30" class="w-full">
+                    </div>
+                    <div class="flex items-center space-x-2">
+                      <label for="gridThickness" class="text-muted-foreground whitespace-nowrap">Line</label>
+                      <input type="range" id="gridThickness" min="1" max="3" value="1" class="w-full">
+                    </div>
+                  </div>
+
             </div>
           </div>
         </div>
@@ -286,7 +331,7 @@
             <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
                 <!-- Title -->
                 <h2 class="text-lg font-semibold text-foreground" data-lang="preview.title">Wplace Pixel Art Result</h2>
-                
+
                 <!-- Controls & Buttons -->
                 <div class="flex flex-wrap items-center gap-2">
                     <!-- Grid Info Panel -->
@@ -295,24 +340,25 @@
                         <span>V: <span id="gridVertical">0</span></span>
                         <span>Total: <span id="gridTotal">0</span></span>
             </div>
-            
+
                     <!-- Control Buttons -->
                     <div class="flex items-center space-x-2">
-                        <button id="process-btn" class="px-3 py-1.5 text-xs bg-green-600 text-white rounded hover:bg-green-700 focus:outline-none focus:ring-1 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors" disabled>
+                        <button id="process-btn" class="px-3 py-1.5 text-xs bg-green-600 text-white rounded hover:bg-green-700 focus:outline-none focus:ring-1 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors" disabled data-lang="btn.process">
                             Process
                         </button>
-                        <button id="reset-btn" class="px-3 py-1.5 text-xs bg-gray-600 text-white rounded hover:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-500 transition-colors">
+                        <button id="reset-btn" class="px-3 py-1.5 text-xs bg-gray-600 text-white rounded hover:bg-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-500 transition-colors" data-lang="btn.reset">
                             Reset
                         </button>
                         <button
                             id="downloadWithGridBtn"
                             class="px-3 py-1.5 text-xs bg-orange-600 text-white rounded hover:bg-orange-700 focus:outline-none focus:ring-1 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors hidden"
                             disabled
+                            data-lang="btn.download.grid"
                         >
                             Grid
                         </button>
-              <button 
-                id="download-btn" 
+              <button
+                id="download-btn"
                             class="px-3 py-1.5 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors hidden"
                 disabled
                 data-lang="btn.download"
@@ -322,7 +368,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Toggle Controls -->
             <div id="toggleControls" class="flex items-center justify-end space-x-4 mb-4 text-xs hidden">
                 <div class="flex items-center space-x-2">
@@ -349,16 +395,16 @@
                     </svg>
               </button>
             </div>
-            
+
             <div id="previewContainer" class="flex-1 min-h-96 max-w-full border-2 border-dashed border-border rounded-lg flex flex-col overflow-auto relative">
               <!-- Image preview area -->
               <div class="flex-1 flex items-center justify-center p-4 relative">
                 <canvas id="preview-canvas" class="hidden border border-gray-300 rounded" style="max-width: 100%; max-height: 400px;"></canvas>
                 <canvas id="output-canvas" class="hidden border border-gray-300 rounded" style="max-width: 100%; max-height: 400px;"></canvas>
                 <p id="upload-prompt" class="text-muted-foreground" data-lang="preview.prompt">Please upload an image to start</p>
-                
+
                 <div id="image-info" class="absolute top-2 left-2 bg-white bg-opacity-90 p-2 rounded text-sm hidden"></div>
-                
+
                 <!-- Progress Bar -->
                 <div id="progress-bar" class="absolute bottom-2 left-2 right-2 bg-white bg-opacity-90 p-2 rounded hidden">
                   <div class="w-full bg-gray-200 rounded-full h-2">
@@ -366,12 +412,12 @@
                   </div>
                   <p id="progress-text" class="text-xs text-gray-600 mt-1 text-center">0%</p>
                 </div>
-                
+
                 <!-- Color Info Tooltip -->
                 <div id="colorTooltip" class="absolute bg-black text-white px-2 py-1 rounded text-xs pointer-events-none hidden z-10">
                   <div id="colorInfo"></div>
                 </div>
-                
+
                 <!-- Zoom Controls -->
                 <div id="zoomControls" class="absolute top-2 right-2 flex flex-col space-y-1 hidden">
                   <button id="zoomIn" class="bg-white shadow-md hover:bg-gray-50 p-2 rounded text-gray-700 text-xs">
@@ -428,7 +474,7 @@
             </div>
           </div>
         </div>
-        
+
         <div id="paletteDisplay" class="grid grid-cols-8 sm:grid-cols-16 md:grid-cols-32 gap-1">
           <!-- Palette will be populated by JavaScript -->
         </div>
@@ -544,7 +590,7 @@
         <h2 class="text-3xl font-bold text-gray-900 mb-4" data-lang="faq.title">Frequently Asked Questions</h2>
         <p class="text-xl text-gray-600" data-lang="faq.subtitle">Everything you need to know about our Wplace Paint Tool</p>
       </div>
-      
+
       <div class="max-w-4xl mx-auto space-y-8">
         <!-- FAQ Item 1 -->
         <div class="bg-gray-50 rounded-lg p-6">
@@ -592,14 +638,13 @@
         <h2 class="text-3xl font-bold text-gray-900 mb-4" data-lang="testimonials.title">What Users Say About Wplace Paint Tool</h2>
         <p class="text-xl text-gray-600" data-lang="testimonials.subtitle">Real feedback from creators using Wplace Paint Tool</p>
       </div>
-      
+
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Testimonial 1 -->
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div class="flex items-center mb-4">
             <div class="relative w-12 h-12">
-              <img src="avatars/alex_pixels.jpg" alt="Alex_Pixels avatar" class="w-12 h-12 rounded-full object-cover ring-2 ring-blue-100 avatar-img" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md avatar-gradient hidden">A</div>
+              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md avatar-gradient ring-2 ring-blue-100">A</div>
             </div>
             <div class="ml-4">
               <h4 class="font-semibold text-gray-900" data-lang="testimonials.user1.name">Alex_Pixels</h4>
@@ -620,8 +665,7 @@
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div class="flex items-center mb-4">
             <div class="relative w-12 h-12">
-              <img src="avatars/maya_artist.jpg" alt="Maya_Artist avatar" class="w-12 h-12 rounded-full object-cover ring-2 ring-emerald-100 avatar-img" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-              <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md avatar-gradient hidden">M</div>
+              <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md avatar-gradient ring-2 ring-emerald-100">M</div>
             </div>
             <div class="ml-4">
               <h4 class="font-semibold text-gray-900" data-lang="testimonials.user2.name">Maya_Artist</h4>
@@ -642,8 +686,7 @@
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div class="flex items-center mb-4">
             <div class="relative w-12 h-12">
-              <img src="avatars/rocket_builder.jpg" alt="RocketBuilder avatar" class="w-12 h-12 rounded-full object-cover ring-2 ring-purple-100 avatar-img" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-              <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md avatar-gradient hidden">R</div>
+              <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md avatar-gradient ring-2 ring-purple-100">R</div>
             </div>
             <div class="ml-4">
               <h4 class="font-semibold text-gray-900" data-lang="testimonials.user3.name">RocketBuilder</h4>
@@ -663,8 +706,7 @@
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div class="flex items-center mb-4">
             <div class="relative w-12 h-12">
-              <img src="avatars/pixel_sarah.jpg" alt="PixelSarah avatar" class="w-12 h-12 rounded-full object-cover ring-2 ring-orange-100 avatar-img" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-              <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md avatar-gradient hidden">S</div>
+              <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-500 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md avatar-gradient ring-2 ring-orange-100">S</div>
             </div>
             <div class="ml-4">
               <h4 class="font-semibold text-gray-900" data-lang="testimonials.user4.name">PixelSarah</h4>
@@ -685,8 +727,7 @@
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div class="flex items-center mb-4">
             <div class="relative w-12 h-12">
-              <img src="avatars/digital_dave.jpg" alt="DigitalDave avatar" class="w-12 h-12 rounded-full object-cover ring-2 ring-red-100 avatar-img" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-              <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md avatar-gradient hidden">D</div>
+              <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md avatar-gradient ring-2 ring-red-100">D</div>
             </div>
             <div class="ml-4">
               <h4 class="font-semibold text-gray-900" data-lang="testimonials.user2.name">DigitalDave</h4>
@@ -707,8 +748,7 @@
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div class="flex items-center mb-4">
             <div class="relative w-12 h-12">
-              <img src="avatars/luna_creative.jpg" alt="Luna_Creative avatar" class="w-12 h-12 rounded-full object-cover ring-2 ring-teal-100 avatar-img" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');">
-              <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md avatar-gradient hidden">L</div>
+              <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md avatar-gradient ring-2 ring-teal-100">L</div>
             </div>
             <div class="ml-4">
               <h4 class="font-semibold text-gray-900" data-lang="testimonials.user3.name">Luna_Creative</h4>
@@ -758,7 +798,7 @@
           <a href="index.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.home">Home</a>
           <a href="color-converter.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.converter">Wplace Color Converter</a>
         </div>
-        
+
         <!-- Independent Fan Site Notice -->
         <div class="bg-blue-900 rounded-lg p-4 mb-6 text-sm">
           <div class="flex items-center justify-center mb-2">
@@ -769,13 +809,13 @@
           </div>
           <p class="text-gray-300" data-lang="footer.independent.desc">This website is an independent, fan-run project built to serve the community's pixel art needs. We are not connected with, sponsored by, or approved by the official Wplace platform. Made by fans for fans, this Wplace Tool aims to make pixel creation easier and more enjoyable.</p>
         </div>
-        
+
         <p class="text-gray-400 text-sm" data-lang="footer.copyright">© 2025 Wplace Paint Tool - Help Wplace Player Paint Easily - Free to use, no ownership claimed on generated artwork<br>Client-side processing protects your privacy</p>
       </div>
     </div>
   </footer>
 
-  
+
 
   <!-- Progress Indicator -->
   <div id="progressContainer" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
@@ -797,14 +837,13 @@
     </div>
   </div>
 
-  <!-- Universal Internationalization System -->
-  <script src="js/i18n.js"></script>
+  <!-- 翻译系统已统一处理 -->
   <script>
     // Mobile menu toggle
     document.addEventListener('DOMContentLoaded', () => {
       const mobileMenuButton = document.getElementById('mobileMenuButton');
       const mobileMenu = document.getElementById('mobileMenu');
-      
+
       if (mobileMenuButton && mobileMenu) {
         mobileMenuButton.addEventListener('click', () => {
           mobileMenu.classList.toggle('hidden');

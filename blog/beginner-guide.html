@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Getting Started: Your Essential Guide to the Wplace Paint Tool</title>
   <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous"></script>
   <!-- Custom Styles -->
@@ -38,14 +38,15 @@
             <select id="languageSelector" class="bg-transparent border-none focus:outline-none cursor-pointer text-sm font-medium px-2 py-1">
               <option value="en" selected>English</option>
               <option value="zh">中文</option>
-              <option value="pt">Português</option>
+              <option value="ko">한국어</option>
+              <option value="ja">日本語</option>
+              <option value="es">Español</option>
               <option value="fr">Français</option>
               <option value="de">Deutsch</option>
-              <option value="es">Español</option>
-              <option value="ja">日本語</option>
-              <option value="mi">Māori</option>
+              <option value="pt">Português</option>
               <option value="tr">Türkçe</option>
               <option value="gn">Guaraní</option>
+              <option value="mi">Te Reo Māori</option>
             </select>
           </div>
 
@@ -128,7 +129,12 @@
     </div>
   </footer>
 
+  <!-- 内联完整词库（file:// 下生效；HTTP 下不影响） -->
+  <script src="../lang/all.inline.js"></script>
   <!-- Translation System -->
   <script src="../js/i18n.js"></script>
+
+  <!-- 错误处理系统 -->
+  <script src="../js/error-handler.js"></script>
 </body>
 </html>

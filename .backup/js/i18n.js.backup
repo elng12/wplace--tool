@@ -1,0 +1,453 @@
+/**
+ * 动态翻译系统 - Wplace Paint Tool
+ * 从JSON文件动态加载翻译数据
+ */
+
+class I18nSystem {
+    constructor() {
+        this.currentLang = 'en';
+        this.supportedLangs = ['en', 'zh', 'ko', 'ja', 'es', 'fr', 'de', 'pt', 'tr', 'gn', 'mi'];
+        this.translations = {};
+        this.loadingPromise = null;
+        this.isFileProtocol = window.location.protocol === 'file:';
+        
+        // 获取保存的语言偏好
+        const savedLang = localStorage.getItem('preferredLanguage') || 'en';
+        this.currentLang = this.supportedLangs.includes(savedLang) ? savedLang : 'en';
+        
+        // 如果是file协议，直接使用内嵌翻译
+        if (this.isFileProtocol) {
+            console.log('🔧 检测到file协议，使用内嵌翻译数据');
+            this.initEmbeddedTranslations();
+        }
+    }
+    
+    // 初始化内嵌翻译数据（用于file协议）
+    initEmbeddedTranslations() {
+        this.translations = {
+            en: {
+                "brand.name": "Wplace Paint Tool",
+                "nav.home": "Home",
+                "nav.converter": "Converter",
+                "nav.blog": "Blog", 
+                "nav.about": "About",
+                "nav.privacy": "Privacy",
+                "nav.terms": "Terms",
+                "hero.title": "Wplace Paint Tool: The Ultimate Pixel Toolkit",
+                "hero.description": "Transform any image into stunning pixel art with our advanced converter",
+                "upload.main": "Click to upload or drag image here",
+                "upload.sub": "Supports PNG, JPG formats (max 4MB)",
+                "upload.batch": "Supports multiple file batch processing",
+                "pixel.size": "Pixel Size",
+                "pixel.desc": "Auto-converts as you adjust the slider",
+                "advanced.title": "Advanced Settings",
+                "advanced.dithering": "Enable Floyd-Steinberg Dithering",
+                "advanced.scaling": "Image Scaling Method:",
+                "advanced.grid": "Show Pixel Grid",
+                "scaling.nearest": "Nearest Neighbor",
+                "scaling.bilinear": "Bilinear",
+                "scaling.lanczos": "Lanczos",
+                "preview.title": "Wplace Pixel Art Result",
+                "preview.prompt": "Please upload an image to start",
+                "btn.download": "Download",
+                "btn.process": "Process",
+                "btn.reset": "Reset",
+                "btn.download.grid": "Grid",
+                "loading": "Processing...",
+                "controls.quality": "Quality",
+                "controls.brightness": "Brightness",
+                "controls.contrast": "Contrast",
+                "controls.saturation": "Saturation",
+                "controls.color_palette": "Color Palette:",
+                "palette.title": "Wplace 64-Color Palette",
+                "palette.info": "Official Wplace color palette",
+                "used.colors.title": "Colors Used in This Image",
+                "used.colors.total": "Total",
+                "used.colors.free": "Free",
+                "used.colors.premium": "Premium",
+                "footer.copyright": "© 2025 Wplace Paint Tool - Free to use",
+                "footer.privacy": "Client-side processing protects your privacy",
+                
+                // 添加更多翻译条目
+                "terms.title": "Terms of Service",
+                "terms.subtitle": "Simple, fair terms for using Wplace Tool",
+                "privacy.title": "Privacy Policy",
+                "about.title": "About Wplace Paint Tool",
+                "hero.wplace.text": "Visit Wplace Official Site",
+                "hero.wplace.btn.label": "Visit Wplace Official Site",
+                "upload.label": "Upload image area",
+                "pixel.slider": "Pixel size slider",
+                "dither.enable": "Enable Floyd-Steinberg Dithering",
+                "dither.desc": "Improves color transitions and detail preservation",
+                "scaling.method": "Image Scaling Method",
+                "scaling.desc": "Choose how images are resized before pixelization",
+                "preview.guide": "Hover over the image to get the corresponding color palette information",
+                "btn.share.title": "Share to social media",
+                "share.twitter": "Share to Twitter",
+                "share.facebook": "Share to Facebook",
+                "share.reddit": "Share to Reddit",
+                "share.copy": "Copy Link",
+                "share.copied": "Copied!",
+                "grid.horizontal": "Horizontal",
+                "grid.vertical": "Vertical",
+                "grid.total": "Total",
+                "zoom.dragHint": "Hold and drag the image with mouse or finger to move",
+                "color.info": "Hover over pixels to view color information",
+                "used.colors.desc": "These are all the colors from the Wplace palette used in your generated image",
+                "palette.official": "Official Palette",
+                "palette.custom": "Custom Palette",
+                "palette.select.free": "Choose all free colors",
+                "palette.select.all": "Select All",
+                "palette.clear": "Clear",
+                "palette.selected": "Selected",
+                "palette.colors": "colors",
+                "palette.help": "Click to select/deselect colors. Locked colors are premium paid colors.",
+                "palette.default": "Official Wplace 64-color palette",
+                "palette.wplace": "Official Wplace 64-color palette",
+                "palette.custom.title": "Custom Palette",
+                "feedback.welcome": "Players are welcome to share their suggestions at",
+                "btn.download.label": "Download button",
+                "btn.download.grid.label": "Download image with grid overlay",
+                "error.file.type": "Invalid file type. Please upload PNG, JPG, or SVG files.",
+                "error.image.load": "Failed to load image. Please try another file.",
+                "error.convert": "Error converting image: "
+            },
+            zh: {
+                "brand.name": "Wplace画图工具",
+                "nav.home": "首页",
+                "nav.converter": "转换器",
+                "nav.blog": "博客",
+                "nav.about": "关于",
+                "nav.privacy": "隐私政策",
+                "nav.terms": "服务条款",
+                "hero.title": "Wplace画图工具：终极像素工具包",
+                "hero.description": "使用我们的高级转换器将任何图像转换为惊艳的像素艺术",
+                "upload.main": "点击上传或拖拽图片至此",
+                "upload.sub": "支持 PNG, JPG 格式（最大 4MB）",
+                "upload.batch": "支持多选批量处理",
+                "pixel.size": "像素尺寸",
+                "pixel.desc": "调整滑块时自动转换",
+                "advanced.title": "高级设置",
+                "advanced.dithering": "启用Floyd-Steinberg抖动算法",
+                "advanced.scaling": "图像缩放方法：",
+                "advanced.grid": "显示像素网格",
+                "scaling.nearest": "最近邻",
+                "scaling.bilinear": "双线性",
+                "scaling.lanczos": "Lanczos",
+                "preview.title": "Wplace 像素画预览",
+                "preview.prompt": "请上传一张图片开始",
+                "btn.download": "下载",
+                "btn.process": "处理",
+                "btn.reset": "重置",
+                "btn.download.grid": "网格",
+                "loading": "处理中...",
+                "controls.quality": "质量",
+                "controls.brightness": "亮度",
+                "controls.contrast": "对比度",
+                "controls.saturation": "饱和度",
+                "controls.color_palette": "调色板：",
+                "palette.title": "Wplace 64 色调色板",
+                "palette.info": "官方 Wplace 调色板",
+                "used.colors.title": "此图像使用的颜色",
+                "used.colors.total": "总计",
+                "used.colors.free": "免费",
+                "used.colors.premium": "付费",
+                "footer.copyright": "© 2025 Wplace画图工具 - 免费使用",
+                "footer.privacy": "客户端处理保护您的隐私",
+                
+                // 添加更多中文翻译
+                "terms.title": "服务条款",
+                "terms.subtitle": "使用Wplace工具的简单公平条款",
+                "privacy.title": "隐私政策",
+                "about.title": "关于Wplace画图工具",
+                "hero.wplace.text": "访问Wplace官方网站",
+                "hero.wplace.btn.label": "访问Wplace官方网站",
+                "upload.label": "上传图片区域",
+                "pixel.slider": "像素尺寸滑块",
+                "dither.enable": "启用Floyd-Steinberg抖动算法",
+                "dither.desc": "改善颜色过渡和细节保留",
+                "scaling.method": "图像缩放方法",
+                "scaling.desc": "选择像素化前如何调整图像大小",
+                "preview.guide": "将鼠标悬停在图像上获取相应的调色板信息",
+                "btn.share.title": "分享到社交媒体",
+                "error.file.type": "无效的文件类型。请上传PNG、JPG或SVG文件。",
+                "error.image.load": "加载图像失败。请尝试其他文件。",
+                "error.convert": "转换图像时出错："
+            },
+            ja: {
+                "brand.name": "Wplace描画ツール",
+                "nav.home": "ホーム",
+                "nav.converter": "変換ツール",
+                "nav.blog": "ブログ",
+                "nav.about": "概要",
+                "nav.privacy": "プライバシー",
+                "nav.terms": "利用規約",
+                "hero.title": "Wplace描画ツール：究極のピクセルツールキット",
+                "hero.description": "高度な変換器で任意の画像を素晴らしいピクセルアートに変換",
+                "upload.main": "クリックしてアップロードするか画像をドラッグ",
+                "upload.sub": "PNG、JPG形式をサポート（最大4MB）",
+                "upload.batch": "複数ファイルの一括処理をサポート",
+                "pixel.size": "ピクセルサイズ",
+                "pixel.desc": "スライダーを調整すると自動変換",
+                "advanced.title": "高度な設定",
+                "advanced.dithering": "Floyd-Steinbergディザリングを有効化",
+                "advanced.scaling": "画像スケーリング方法:",
+                "advanced.grid": "ピクセルグリッドを表示",
+                "scaling.nearest": "最近傍",
+                "scaling.bilinear": "バイリニア",
+                "scaling.lanczos": "Lanczos",
+                "preview.title": "Wplaceピクセルアート結果",
+                "preview.prompt": "開始するには画像をアップロードしてください",
+                "btn.download": "ダウンロード",
+                "btn.process": "処理",
+                "btn.reset": "リセット",
+                "btn.download.grid": "グリッド",
+                "loading": "処理中...",
+                "controls.quality": "品質",
+                "controls.brightness": "明度",
+                "controls.contrast": "コントラスト",
+                "controls.saturation": "彩度",
+                "controls.color_palette": "カラーパレット:",
+                "palette.title": "Wplace 64色パレット",
+                "palette.info": "公式Wplaceパレット",
+                "used.colors.title": "この画像で使用された色",
+                "used.colors.total": "合計",
+                "used.colors.free": "無料",
+                "used.colors.premium": "プレミアム",
+                "footer.copyright": "© 2025 Wplace描画ツール - 無料使用",
+                "footer.privacy": "クライアント側処理でプライバシーを保護",
+                
+                // 追加の日本語翻訳
+                "terms.title": "利用規約",
+                "terms.subtitle": "Wplaceツール使用のためのシンプルで公正な規約",
+                "privacy.title": "プライバシーポリシー",
+                "about.title": "Wplace描画ツールについて",
+                "hero.wplace.text": "Wplace公式サイトを訪問",
+                "hero.wplace.btn.label": "Wplace公式サイトを訪問",
+                "upload.label": "画像アップロード領域",
+                "pixel.slider": "ピクセルサイズスライダー",
+                "dither.enable": "Floyd-Steinbergディザリングを有効化",
+                "dither.desc": "色の遷移と詳細の保持を改善",
+                "scaling.method": "画像スケーリング方法",
+                "scaling.desc": "ピクセル化前の画像リサイズ方法を選択",
+                "preview.guide": "画像にマウスオーバーして対応するカラーパレット情報を取得",
+                "btn.share.title": "ソーシャルメディアで共有",
+                "error.file.type": "無効なファイルタイプ。PNG、JPG、またはSVGファイルをアップロードしてください。",
+                "error.image.load": "画像の読み込みに失敗しました。他のファイルを試してください。",
+                "error.convert": "画像変換エラー："
+            }
+        };
+        
+        // 为其他语言创建英文回退
+        ['ko', 'es', 'fr', 'de', 'pt', 'tr', 'gn', 'mi'].forEach(lang => {
+            this.translations[lang] = { ...this.translations.en };
+        });
+    }
+    
+    // 异步加载翻译文件
+    // 异步加载翻译文件
+    async loadTranslations(lang) {
+        // 如果是file协议，直接返回内嵌翻译
+        if (this.isFileProtocol) {
+            if (this.translations[lang]) {
+                console.log(`✅ 使用内嵌翻译: ${lang} (共 ${Object.keys(this.translations[lang]).length} 条)`);
+                return this.translations[lang];
+            } else {
+                console.log(`⚠️ ${lang} 翻译不可用，使用英文回退`);
+                return this.translations.en || {};
+            }
+        }
+        
+        if (this.translations[lang]) {
+            return this.translations[lang];
+        }
+
+        try {
+            console.log(`💾 尝试加载翻译文件: ${lang}.json`);
+            const response = await fetch(`lang/${lang}.json`);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: Failed to load ${lang}.json`);
+            }
+            const translations = await response.json();
+            this.translations[lang] = translations;
+            console.log(`✅ 翻译文件已加载: ${lang}.json (共 ${Object.keys(translations).length} 条)`);
+            return translations;
+        } catch (error) {
+            console.error(`❌ 无法加载翻译文件 ${lang}.json:`, error);
+            
+            // 如果是非英语语言，使用基本的英文翻译作为回退
+            if (lang !== 'en') {
+                const fallbackTranslations = this.getFallbackTranslations();
+                this.translations[lang] = fallbackTranslations;
+                console.warn(`⚠️ 使用基本英文翻译作为 ${lang} 的回退`);
+                return fallbackTranslations;
+            }
+            
+            return {};
+        }
+    }
+    
+    // 获取基本的英文翻译作为回退
+    getFallbackTranslations() {
+        return {
+            "brand.name": "Wplace Paint Tool",
+            "nav.home": "Home",
+            "nav.converter": "Converter", 
+            "nav.blog": "Blog",
+            "nav.about": "About",
+            "nav.privacy": "Privacy",
+            "nav.terms": "Terms",
+            "hero.title": "Wplace Paint Tool: The Ultimate Pixel Toolkit",
+            "hero.description": "Transform any image into stunning pixel art with our advanced converter",
+            "upload.main": "Click to upload or drag image here",
+            "upload.sub": "Supports PNG, JPG formats (max 4MB)",
+            "upload.batch": "Supports multiple file batch processing",
+            "pixel.size": "Pixel Size",
+            "pixel.desc": "Auto-converts as you adjust the slider",
+            "advanced.title": "Advanced Settings",
+            "btn.download": "Download",
+            "btn.process": "Process",
+            "btn.reset": "Reset",
+            "loading": "Processing...",
+            "palette.title": "Wplace 64-Color Palette"
+        };
+    }
+
+    // 获取翻译
+    t(key, fallback = null) {
+        const translation = this.translations[this.currentLang]?.[key] || 
+                          this.translations.en?.[key] || 
+                          fallback || 
+                          key;
+        return translation;
+    }
+    
+    // 切换语言（异步）
+    async setLanguage(lang) {
+        if (this.supportedLangs.includes(lang)) {
+            console.log(`🔄 切换语言到: ${lang}`);
+            
+            // 加载翻译文件
+            await this.loadTranslations(lang);
+            
+            this.currentLang = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            this.updatePage();
+            return true;
+        }
+        return false;
+    }
+    
+    // 更新页面翻译
+    updatePage() {
+        const elements = document.querySelectorAll('[data-lang]');
+        let translatedCount = 0;
+        
+        elements.forEach(el => {
+            const key = el.getAttribute('data-lang');
+            const translation = this.t(key);
+            
+            if (translation !== key) {
+                if (el.innerHTML.includes('<br>') || translation.includes('\n')) {
+                    el.innerHTML = translation.replace(/\n/g, '<br>');
+                } else {
+                    el.textContent = translation;
+                }
+                translatedCount++;
+            }
+        });
+        
+        // 更新语言选择器
+        const selector = document.getElementById('languageSelector');
+        if (selector && selector.value !== this.currentLang) {
+            selector.value = this.currentLang;
+        }
+        
+        // 更新文档语言属性
+        document.documentElement.lang = this.currentLang;
+        
+        console.log(`✅ 翻译完成: ${translatedCount}/${elements.length} 个元素`);
+    }
+    
+    // 初始化（异步）
+    async init() {
+        console.log('🌍 翻译系统初始化 - Wplace Paint Tool');
+        console.log('🌍 当前语言:', this.currentLang);
+        console.log('🌍 支持语言:', this.supportedLangs);
+        console.log('🌍 运行环境:', this.isFileProtocol ? 'file协议 (本地文件)' : 'HTTP服务器');
+        
+        try {
+            // 预加载当前语言和英语翻译
+            if (this.isFileProtocol) {
+                console.log('✅ 内嵌翻译已准备就绪');
+            } else {
+                console.log('💾 开始加载翻译文件...');
+                this.loadingPromise = Promise.all([
+                    this.loadTranslations('en'), // 始终加载英语作为回退
+                    this.currentLang !== 'en' ? this.loadTranslations(this.currentLang) : Promise.resolve()
+                ]);
+                
+                await this.loadingPromise;
+            }
+            
+            // 绑定语言选择器
+            const selector = document.getElementById('languageSelector');
+            if (selector) {
+                selector.value = this.currentLang;
+                selector.addEventListener('change', async (e) => {
+                    console.log(`🔄 用户选择语言: ${e.target.value}`);
+                    await this.setLanguage(e.target.value);
+                });
+                console.log('✅ 语言选择器已绑定');
+            } else {
+                console.warn('⚠️ 找不到语言选择器 #languageSelector');
+            }
+            
+            // 绑定移动菜单
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // 初始翻译
+            this.updatePage();
+            
+            console.log('✅ 翻译系统初始化完成');
+            
+        } catch (error) {
+            console.error('❌ 翻译系统初始化失败:', error);
+            // 即使初始化失败，也尝试更新页面
+            this.updatePage();
+        }
+    }
+}
+
+// 创建全局实例
+let i18n = null;
+
+// 初始化函数（异步）
+async function initI18n() {
+    if (!i18n) {
+        i18n = new I18nSystem();
+    }
+    await i18n.init();
+    
+    // 导出全局函数
+    window.t = i18n.t.bind(i18n);
+    window.i18n = i18n;
+}
+
+// 自动初始化
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initI18n);
+} else {
+    initI18n();
+}
+
+// 导出
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { I18nSystem, initI18n };
+}

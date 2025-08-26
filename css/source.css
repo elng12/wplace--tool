@@ -1,0 +1,401 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Wplace Paint Tool - Custom Styles */
+
+/* Tailwind v4 CSS Variables Theme */
+:root {
+    --radius: 0.65rem;
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.141 0.005 285.823);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.141 0.005 285.823);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.141 0.005 285.823);
+    --primary: oklch(0.623 0.214 259.815);
+    --primary-foreground: oklch(0.97 0.014 254.604);
+    --secondary: oklch(0.967 0.001 286.375);
+    --secondary-foreground: oklch(0.21 0.006 285.885);
+    --muted: oklch(0.967 0.001 286.375);
+    --muted-foreground: oklch(0.552 0.016 285.938);
+    --accent: oklch(0.967 0.001 286.375);
+    --accent-foreground: oklch(0.21 0.006 285.885);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.92 0.004 286.32);
+    --input: oklch(0.92 0.004 286.32);
+    --ring: var(--primary);
+    --chart-1: oklch(0.646 0.222 41.116);
+    --chart-2: oklch(0.6 0.118 184.704);
+    --chart-3: oklch(0.398 0.07 227.392);
+    --chart-4: oklch(0.828 0.189 84.429);
+    --chart-5: oklch(0.769 0.188 70.08);
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.141 0.005 285.823);
+    --sidebar-primary: oklch(0.623 0.214 259.815);
+    --sidebar-primary-foreground: oklch(0.97 0.014 254.604);
+    --sidebar-accent: oklch(0.967 0.001 286.375);
+    --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
+    --sidebar-border: oklch(0.92 0.004 286.32);
+    --sidebar-ring: oklch(0.623 0.214 259.815);
+    --tooltip-background: oklch(0.141 0.005 285.823 / 90%);
+    --tooltip-foreground: oklch(1 0 0);
+    --primary-shadow-lg: oklch(0.623 0.214 259.815 / 40%);
+    --glass-background: oklch(1 0 0 / 80%);
+    --glass-border: oklch(1 0 0 / 20%);
+    --black-alpha-30: oklch(0.141 0.005 285.823 / 30%);
+    --shimmer-color: oklch(1 0 0 / 60%);
+}
+
+.dark {
+    --background: oklch(0.141 0.005 285.823);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.21 0.006 285.885);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.21 0.006 285.885);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.546 0.245 262.881);
+    --primary-foreground: oklch(0.379 0.146 265.522);
+    --secondary: oklch(0.274 0.006 286.033);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.274 0.006 286.033);
+    --muted-foreground: oklch(0.705 0.015 286.067);
+    --accent: oklch(0.274 0.006 286.033);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.488 0.243 264.376);
+    --chart-1: oklch(0.488 0.243 264.376);
+    --chart-2: oklch(0.696 0.17 162.48);
+    --chart-3: oklch(0.769 0.188 70.08);
+    --chart-4: oklch(0.627 0.265 303.9);
+    --chart-5: oklch(0.645 0.246 16.439);
+    --sidebar: oklch(0.21 0.006 285.885);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.546 0.245 262.881);
+    --sidebar-primary-foreground: oklch(0.379 0.146 265.522);
+    --sidebar-accent: oklch(0.274 0.006 286.033);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.488 0.243 264.376);
+    --primary-shadow-lg: oklch(0.546 0.245 262.881 / 40%);
+    --glass-background: oklch(0.21 0.006 285.885 / 80%);
+    --glass-border: oklch(1 0 0 / 10%);
+    --black-alpha-30: oklch(0.141 0.005 285.823 / 30%);
+    --shimmer-color: oklch(0.985 0 0 / 60%);
+}
+
+/* Utility classes using CSS variables */
+.bg-background { background-color: var(--background); }
+.text-foreground { color: var(--foreground); }
+.bg-card { background-color: var(--card); }
+.text-card-foreground { color: var(--card-foreground); }
+.bg-primary { background-color: var(--primary); }
+.text-primary-foreground { color: var(--primary-foreground); }
+.bg-secondary { background-color: var(--secondary); }
+.text-secondary-foreground { color: var(--secondary-foreground); }
+.bg-muted { background-color: var(--muted); }
+.text-muted-foreground { color: var(--muted-foreground); }
+.bg-accent { background-color: var(--accent); }
+.text-accent-foreground { color: var(--accent-foreground); }
+.bg-destructive { background-color: var(--destructive); }
+.border-border { border-color: var(--border); }
+.bg-input { background-color: var(--input); }
+.ring-ring { --tw-ring-color: var(--ring); }
+
+/* Custom styles for Paint pixel-like palette */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip:hover::before,
+.tooltip[data-tip]:hover::before {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--tooltip-background);
+    color: var(--tooltip-foreground);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 50;
+    margin-bottom: 4px;
+}
+
+.tooltip:hover::after,
+.tooltip[data-tip]:hover::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: var(--tooltip-background);
+    z-index: 50;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+    min-height: 24px;
+    min-width: 24px;
+}
+
+.btn:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.border-base-content\/20 {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.ring-primary {
+    --tw-ring-color: #3b82f6;
+}
+
+/* Ensure proper sizing for color palette */
+#paletteDisplay .btn {
+    aspect-ratio: 1;
+    width: 100%;
+}
+
+/* Mobile-first palette optimization */
+@media (max-width: 640px) {
+    .tooltip:hover::before {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+    
+    #paletteDisplay {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 24px);
+        gap: 2px;
+        justify-content: start;
+    }
+    
+    #paletteDisplay .btn {
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        min-height: 24px;
+        aspect-ratio: 1;
+        border-radius: 2px;
+    }
+}
+
+/* Force 2 rows on larger screens */
+@media (min-width: 640px) {
+    #paletteDisplay {
+        grid-template-columns: repeat(32, 1fr) !important;
+    }
+}
+
+/* Loading animations */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Enhanced button styles */
+.btn-download {
+  background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 100%);
+  transition: all 0.3s ease;
+    box-shadow: 0 4px 12px var(--primary-shadow-lg);
+}
+
+.btn-download:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}
+
+.btn-download:active {
+  transform: translateY(0);
+}
+
+/* Enhanced zoom controls */
+.zoom-control {
+  backdrop-filter: blur(10px);
+  background: var(--glass-background);
+  border: 1px solid var(--glass-border);
+  transition: all 0.2s ease;
+}
+
+.zoom-control:hover {
+  background: var(--card);
+  transform: scale(1.05);
+}
+
+/* Color tooltip enhancements */
+#colorTooltip {
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* Used colors grid enhancements */
+.used-color-item {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.used-color-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px var(--black-alpha-30);
+  z-index: 10;
+  position: relative;
+}
+
+/* Enhanced error notifications */
+.error-notification {
+  animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Modal animations */
+.modal-backdrop {
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-content {
+  animation: slideInUp 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Enhanced slider styles */
+input[type="range"]::-webkit-slider-thumb {
+  background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 100%);
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+  transition: all 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px var(--primary-shadow-lg);
+}
+
+/* Enhanced palette colors */
+.palette-color {
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.palette-color::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--shimmer-color), transparent);
+  transition: left 0.5s ease;
+}
+
+.palette-color:hover::before {
+  left: 100%;
+}
+
+.palette-color:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px var(--black-alpha-30);
+  z-index: 10;
+}
+
+/* Responsive enhancements */
+@media (max-width: 768px) {
+  .zoom-control {
+    padding: 8px;
+  }
+  
+  #colorTooltip {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+}
+
+/* Accessibility enhancements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Custom Slider Styles */
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--primary);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var(--card);
+  transition: background 0.2s ease;
+}
+
+.custom-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--primary);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var(--card);
+  transition: background 0.2s ease;
+}
+
+.custom-slider::-webkit-slider-thumb:hover {
+  background: oklch(from var(--primary) calc(l + 0.1) c h);
+}
+
+.custom-slider::-moz-range-thumb:hover {
+  background: oklch(from var(--primary) calc(l + 0.1) c h);
+}

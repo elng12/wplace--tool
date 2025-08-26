@@ -7,7 +7,7 @@
   <meta name="description" content="Easily create pixel art for Wplace with the Wplace Paint Tool! Our pixel art maker and converter transform any image into a Wplace-compatible pixel grid. The built-in generator automatically matches the official color palette, ensuring perfect results every time. Whether you're a beginner or a pro, this tool makes pixel art creation fun and simple. Turn your ideas into pixel masterpieces effortlessly!" />
   <link rel="canonical" href="https://wplacetool.app/privacy.html" />
   <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous"></script>
   <!-- Custom Styles -->
@@ -44,18 +44,27 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
           </button>
-          
+
           <!-- Language Selector -->
           <div class="bg-muted rounded-lg border-border border p-1">
             <select id="languageSelector" class="bg-transparent border-none focus:outline-none cursor-pointer text-sm font-medium px-2 py-1">
               <option value="en" selected>English</option>
               <option value="zh">中文</option>
+              <option value="ko">한국어</option>
+              <option value="ja">日本語</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+              <option value="pt">Português</option>
+              <option value="tr">Türkçe</option>
+              <option value="gn">Guaraní</option>
+              <option value="mi">Te Reo Māori</option>
             </select>
           </div>
         </div>
       </div>
     </div>
-    
+
     <!-- Mobile Navigation Menu -->
     <div id="mobileMenu" class="md:hidden bg-white border-t border-gray-200 hidden">
       <div class="px-4 py-3 space-y-2">
@@ -88,7 +97,7 @@
   </section>
 
   <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    
+
     <!-- Privacy Promise Box -->
     <section class="mb-16">
       <div class="bg-gradient-to-r from-green-500 to-blue-600 rounded-2xl p-8 text-white text-center">
@@ -124,7 +133,7 @@
     <section class="mb-12">
       <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center" data-lang="privacy.protect.title">How We Protect Your Privacy</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
+
         <!-- Client-Side Processing -->
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <div class="flex items-center mb-4">
@@ -322,7 +331,7 @@
     <section class="mb-12">
       <h2 class="text-2xl font-bold text-gray-900 mb-6" data-lang="privacy.highlights.title">Privacy Highlights</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
+
         <!-- Zero Data Collection -->
         <div class="bg-green-50 rounded-lg p-6 border border-green-200">
           <div class="flex items-center mb-3">
@@ -403,175 +412,12 @@
     </div>
   </footer>
 
-  <!-- Internationalization Script -->
-  <script>
-    // Translation data  
-    const translations = {
-      en: {
-        'nav.home': 'Home',
-        'nav.converter': 'Converter', 
-        'nav.blog': 'Blog',
-        'nav.about': 'About',
-        'nav.privacy': 'Privacy',
-        'nav.terms': 'Terms',
-        'privacy.title': 'Privacy Policy',
-        'privacy.subtitle': 'Your privacy is our priority. All image processing happens locally in your browser - we never see, store, or access your images.',
-        'privacy.lastupdated': 'Last updated: August 1, 2025',
-        'privacy.promise.title': 'Our Privacy Promise',
-        'privacy.promise.subtitle': 'Your images never leave your device. Everything happens locally in your browser.',
-        'privacy.promise.images': 'Images uploaded to servers',
-        'privacy.promise.data': 'Data stored about you',
-        'privacy.promise.local': 'Local processing',
-        'privacy.protect.title': 'How We Protect Your Privacy',
-        'privacy.client.title': 'Client-Side Processing',
-        'privacy.client.desc': 'All image conversion happens entirely within your web browser using JavaScript. Your images are processed locally on your device and never sent to any server.',
-        'privacy.nodata.title': 'No Data Collection',
-        'privacy.nodata.desc': 'We don\'t collect, store, or analyze any of your personal images or data. We have no database, no user accounts, and no tracking systems.',
-        'privacy.noreg.title': 'No Registration Required',
-        'privacy.noreg.desc': 'Use our tool without creating accounts, providing email addresses, or sharing any personal information. Anonymous usage is our default.',
-        'privacy.opensource.title': 'Open Source Transparency',
-        'privacy.opensource.desc': 'Our code is transparent and can be inspected. You can verify that we do exactly what we claim - local processing with no data transmission.',
-        'privacy.notcollect.title': 'Information We Do NOT Collect',
-        'privacy.notcollect.desc': 'To be completely transparent, here\'s what we specifically do NOT collect:',
-        'privacy.tech.title': 'Limited Technical Information',
-        'privacy.tech.desc': 'The only information we might collect is basic technical data necessary to operate the website:',
-        'privacy.tech.note': 'Important: Even this minimal technical data is not connected to your images, your identity, or your specific usage patterns.',
-        'privacy.storage.title': 'Local Storage',
-        'privacy.storage.desc': 'We may use your browser\'s local storage to:',
-        'privacy.storage.note': 'Note: Local storage data remains on your device and is not transmitted to our servers. You can clear this data anytime through your browser settings.',
-        'privacy.thirdparty.title': 'Third-Party Services',
-        'privacy.thirdparty.desc': 'Our website uses minimal third-party services:',
-        'privacy.rights.title': 'Your Rights',
-        'privacy.rights.desc': 'Since we don\'t collect personal data, most traditional privacy rights don\'t apply. However:',
-        'privacy.security.title': 'Security',
-        'privacy.security.desc': 'Since your images never leave your device, they\'re as secure as your own computer. We use HTTPS to protect the website itself, but your actual image data never travels over the internet. This makes our approach inherently more secure than cloud-based image processors.',
-        'privacy.children.title': 'Children\'s Privacy',
-        'privacy.children.desc': 'Our service is safe for children because we don\'t collect any personal information. Parents can feel confident that their children\'s privacy is protected when using our tool.',
-        'privacy.changes.title': 'Changes to Privacy Policy',
-        'privacy.changes.desc': 'If we ever change our privacy practices, we\'ll update this policy and clearly mark the changes. Since we don\'t collect contact information, we can\'t notify users directly, so please check this page occasionally for updates.',
-        'privacy.contact.title': 'Contact Us',
-        'privacy.contact.desc': 'If you have questions about our privacy practices or concerns about your data:',
-        'privacy.highlights.title': 'Privacy Highlights',
-        'privacy.highlights.zero.title': 'Zero Data Collection',
-        'privacy.highlights.zero.desc': 'We literally cannot see your images. Everything happens in your browser, not on our servers.',
-        'privacy.highlights.tracking.title': 'No Tracking',
-        'privacy.highlights.tracking.desc': 'No analytics, no cookies, no user profiles. We don\'t know who you are or what you convert.',
-        'privacy.highlights.anonymous.title': 'Anonymous Usage',
-        'privacy.highlights.anonymous.desc': 'No registration, no accounts, no personal information required. Use our tool completely anonymously.',
-        'privacy.highlights.transparent.title': 'Transparent Process',
-        'privacy.highlights.transparent.desc': 'Our code is open for inspection. Verify that we do exactly what we claim to do.',
-        'footer.title': 'About Wplace Paint Tool',
-        'footer.disclaimer.title': 'Independent Fan Site',
-        'footer.disclaimer.text': 'This is an unofficial, independent fan-made website created to address community pixel needs. We are not affiliated with or endorsed by the official Wplace platform. This tool was developed by fans, for fans, to enhance the pixel art creation experience.',
-        'footer.main': '© 2025 Wplace Paint Tool - Help Wplace Player Paint Easily - Free to use, no ownership claimed on generated artwork',
-        'footer.privacy': 'Client-side processing protects your privacy'
-      },
-      zh: {
-        'nav.home': '首页',
-        'nav.converter': '转换器',
-        'nav.blog': '博客',
-        'nav.about': '关于',
-        'nav.privacy': '隐私',
-        'nav.terms': '条款',
-        'privacy.title': '隐私政策',
-        'privacy.subtitle': '您的隐私是我们的首要任务。所有图像处理都在您的浏览器本地进行 - 我们从不查看、存储或访问您的图像。',
-        'privacy.lastupdated': '最后更新：2025年8月1日',
-        'privacy.promise.title': '我们的隐私承诺',
-        'privacy.promise.subtitle': '您的图像永远不会离开您的设备。一切都在您的浏览器中本地进行。',
-        'privacy.promise.images': '上传到服务器的图像',
-        'privacy.promise.data': '存储的您的数据',
-        'privacy.promise.local': '本地处理',
-        'privacy.protect.title': '我们如何保护您的隐私',
-        'privacy.client.title': '客户端处理',
-        'privacy.client.desc': '所有图像转换完全在您的网页浏览器中使用JavaScript进行。您的图像在您的设备上本地处理，从不发送到任何服务器。',
-        'privacy.nodata.title': '不收集数据',
-        'privacy.nodata.desc': '我们不收集、存储或分析您的个人图像或数据。我们没有数据库、没有用户账户、没有跟踪系统。',
-        'privacy.noreg.title': '无需注册',
-        'privacy.noreg.desc': '使用我们的工具无需创建账户、提供电子邮件地址或分享任何个人信息。匿名使用是我们的默认方式。',
-        'privacy.opensource.title': '开源透明',
-        'privacy.opensource.desc': '我们的代码是透明的，可以检查。您可以验证我们确实做了我们声称的事情 - 本地处理，无数据传输。',
-        'privacy.notcollect.title': '我们不收集的信息',
-        'privacy.notcollect.desc': '为了完全透明，以下是我们明确不收集的内容：',
-        'privacy.tech.title': '有限的技术信息',
-        'privacy.tech.desc': '我们可能收集的唯一信息是运营网站所需的基本技术数据：',
-        'privacy.tech.note': '重要提示：即使这些最少的技术数据也不会与您的图像、身份或具体使用模式相关联。',
-        'privacy.storage.title': '本地存储',
-        'privacy.storage.desc': '我们可能使用您浏览器的本地存储来：',
-        'privacy.storage.note': '注意：本地存储数据保留在您的设备上，不会传输到我们的服务器。您可以随时通过浏览器设置清除这些数据。',
-        'privacy.thirdparty.title': '第三方服务',
-        'privacy.thirdparty.desc': '我们的网站使用最少的第三方服务：',
-        'privacy.rights.title': '您的权利',
-        'privacy.rights.desc': '由于我们不收集个人数据，大多数传统隐私权利不适用。但是：',
-        'privacy.security.title': '安全性',
-        'privacy.security.desc': '由于您的图像永远不会离开您的设备，它们与您自己的电脑一样安全。我们使用HTTPS来保护网站本身，但您的实际图像数据永远不会通过互联网传输。这使我们的方法比基于云的图像处理器更加安全。',
-        'privacy.children.title': '儿童隐私',
-        'privacy.children.desc': '我们的服务对儿童是安全的，因为我们不收集任何个人信息。家长可以放心，他们的孩子在使用我们的工具时隐私受到保护。',
-        'privacy.changes.title': '隐私政策变更',
-        'privacy.changes.desc': '如果我们改变隐私做法，我们将更新此政策并明确标记变更。由于我们不收集联系信息，无法直接通知用户，所以请偶尔查看此页面的更新。',
-        'privacy.contact.title': '联系我们',
-        'privacy.contact.desc': '如果您对我们的隐私做法有疑问或对数据有担忧：',
-        'privacy.highlights.title': '隐私要点',
-        'privacy.highlights.zero.title': '零数据收集',
-        'privacy.highlights.zero.desc': '我们真的看不到您的图像。一切都在您的浏览器中进行，而不是在我们的服务器上。',
-        'privacy.highlights.tracking.title': '无跟踪',
-        'privacy.highlights.tracking.desc': '无分析、无cookies、无用户档案。我们不知道您是谁或您转换了什么。',
-        'privacy.highlights.anonymous.title': '匿名使用',
-        'privacy.highlights.anonymous.desc': '无需注册、无需账户、无需个人信息。完全匿名使用我们的工具。',
-        'privacy.highlights.transparent.title': '透明过程',
-        'privacy.highlights.transparent.desc': '我们的代码可供检查。验证我们确实做了我们声称要做的事情。',
-        'footer.title': '关于Wplace画图工具',
-        'footer.disclaimer.title': '独立粉丝网站',
-        'footer.disclaimer.text': '这是一个非官方的、独立的粉丝制作网站，旨在解决社区像素需求。我们与官方Wplace平台无关，也未获得其认可。此工具由粉丝开发，为粉丝服务，旨在增强像素艺术创作体验。',
-        'footer.main': '© 2025 Wplace画图工具 - 帮助Wplace玩家轻松绘画 - 免费使用，不声明对生成作品的所有权',
-        'footer.privacy': '客户端处理保护您的隐私'
-      }
-    };
-
-    // Translation functions
-    function translatePage(lang) {
-      const elements = document.querySelectorAll('[data-lang]');
-      elements.forEach(el => {
-        const key = el.getAttribute('data-lang');
-        if (translations[lang] && translations[lang][key]) {
-          el.textContent = translations[lang][key];
-        }
-      });
-      
-      // Update page title
-      if (translations[lang]['privacy.title']) {
-        document.title = translations[lang]['privacy.title'] + ' | Wplace Paint Tool';
-      }
-      
-      // Save language preference
-      localStorage.setItem('preferredLanguage', lang);
-    }
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      const languageSelector = document.getElementById('languageSelector');
-      const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-      
-      // Set initial language
-      languageSelector.value = savedLang;
-      translatePage(savedLang);
-      
-      // Language change handler
-      languageSelector.addEventListener('change', function() {
-        translatePage(this.value);
-      });
-      
-      // Mobile menu toggle
-      const mobileMenuButton = document.getElementById('mobileMenuButton');
-      const mobileMenu = document.getElementById('mobileMenu');
-      
-      if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-          mobileMenu.classList.toggle('hidden');
-        });
-      }
-    });
-  </script>
-  <!-- Universal Internationalization System -->
+  <!-- 内联完整词库（file:// 下生效；HTTP 下不影响） -->
+  <script src="lang/all.inline.js"></script>
+  <!-- 统一翻译系统 -->
   <script src="js/i18n.js"></script>
+
+  <!-- 错误处理系统 -->
+  <script src="js/error-handler.js"></script>
 </body>
 </html>

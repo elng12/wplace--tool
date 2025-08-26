@@ -7,7 +7,7 @@
   <meta name="description" content="Easily create pixel art for Wplace with the Wplace Paint Tool! Our pixel art maker and converter transform any image into a Wplace-compatible pixel grid. The built-in generator automatically matches the official color palette, ensuring perfect results every time. Whether you're a beginner or a pro, this tool makes pixel art creation fun and simple. Turn your ideas into pixel masterpieces effortlessly!" />
   <link rel="canonical" href="https://wplacetool.app/blog.html" />
   <!-- Tailwind CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous"></script>
   <!-- Custom Styles -->
@@ -50,6 +50,15 @@
             <select id="languageSelector" class="bg-transparent border-none focus:outline-none cursor-pointer text-sm font-medium px-2 py-1">
               <option value="en" selected>English</option>
               <option value="zh">中文</option>
+              <option value="ko">한국어</option>
+              <option value="ja">日本語</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+              <option value="pt">Português</option>
+              <option value="tr">Türkçe</option>
+              <option value="gn">Guaraní</option>
+              <option value="mi">Te Reo Māori</option>
             </select>
           </div>
         </div>
@@ -196,109 +205,12 @@
     </div>
   </footer>
 
-  <!-- Internationalization Script -->
-  <script>
-    // Translation data
-    const translations = {
-      en: {
-        'nav.home': 'Home',
-        'nav.converter': 'Converter', 
-        'nav.blog': 'Blog',
-        'nav.about': 'About',
-        'nav.privacy': 'Privacy',
-        'nav.terms': 'Terms',
-        'brand.name': 'Wplace Paint Tool',
-        'blog.title': 'Blog',
-        'blog.subtitle': 'Unlock your creative potential on the Wplace canvas. Our blog is your go-to resource for mastering pixel art techniques, enhancing your Wplace painting skills, and making the most of our powerful tools through in-depth guides and inspiring tutorials.',
-        'blog.readmore': 'Read more',
-        'blog.minread': 'min read',
-        'blog.article1.title': 'Getting Started: Your Essential Guide to the Wplace Tool',
-        'blog.article1.desc': 'Embark on your pixel art journey with our comprehensive beginner\'s guide. Learn to effortlessly transform any image into stunning Wplace-compatible pixel art, covering everything from initial uploads to advanced color palette matching and optimization techniques.',
-        'blog.article2.title': 'Mastering Color: Advanced Palette Strategies for Wplace Artists',
-        'blog.article2.desc': 'Elevate your pixel art with expert insights into color theory and palette customization. Discover professional strategies to achieve perfect color harmony, create vibrant compositions, and make your artwork truly stand out on the Wplace canvas.',
-        'blog.article3.title': 'Pixel Perfect Scaling: A Deep Dive into Image Resampling',
-        'blog.article3.desc': 'Demystify image scaling with our detailed explanation of Nearest Neighbor, Bilinear, and Lanczos methods. Understand their practical implications for pixel art, ensuring you choose the optimal technique to preserve quality and achieve crisp results.',
-        'blog.article4.title': 'Enhancing Detail: The Art and Science of Dithering in Pixel Art',
-        'blog.article4.desc': 'Uncover the power of dithering, including Floyd-Steinberg, to achieve smoother color gradients and richer textures in your pixel art. Learn how these techniques can enhance detail, reduce banding, and contribute to an authentic retro aesthetic.',
-        'footer.title': 'About Wplace Paint Tool',
-        'footer.disclaimer.title': 'Independent Fan Site',
-        'footer.disclaimer.text': 'This is an unofficial, independent fan-made website created to address community pixel needs. We are not affiliated with or endorsed by the official Wplace platform. This tool was developed by fans, for fans, to enhance the pixel art creation experience.',
-        'footer.main': '© 2025 Wplace Paint Tool - Help Wplace Player Paint Easily - Free to use, no ownership claimed on generated artwork',
-        'footer.privacy': 'Client-side processing protects your privacy'
-      },
-      zh: {
-        'nav.home': '首页',
-        'nav.converter': '转换器',
-        'nav.blog': '博客',
-        'nav.about': '关于',
-        'nav.privacy': '隐私',
-        'nav.terms': '条款',
-        'brand.name': 'Wplace画笔工具',
-        'blog.title': '博客',
-        'blog.subtitle': '在Wplace画布上释放您的创作潜力。我们的博客是您掌握像素艺术技巧、提升Wplace绘画技能的首选资源，通过深入指南和启发性教程，充分利用我们强大的工具。',
-        'blog.readmore': '阅读更多',
-        'blog.minread': '分钟阅读',
-        'blog.article1.title': '入门指南：Wplace工具的必备指南',
-        'blog.article1.desc': '通过我们全面的初学者指南开启您的像素艺术之旅。学习如何轻松地将任何图像转换为令人惊叹的Wplace兼容像素艺术，涵盖从初始上传到高级调色板匹配和优化技术的所有内容。',
-        'blog.article2.title': '色彩掌握：Wplace艺术家的高级调色板策略',
-        'blog.article2.desc': '通过色彩理论和调色板定制的专家见解提升您的像素艺术。发现实现完美色彩和谐、创建生动构图的专业策略，让您的作品在Wplace画布上真正脱颖而出。',
-        'blog.article3.title': '像素完美缩放：图像重采样的深入探讨',
-        'blog.article3.desc': '通过我们对最近邻、双线性和Lanczos方法的详细解释来解密图像缩放。了解它们对像素艺术的实际影响，确保您选择最佳技术来保持质量并获得清晰的结果。',
-        'blog.article4.title': '增强细节：像素艺术中抖动的艺术与科学',
-        'blog.article4.desc': '揭示抖动的力量，包括Floyd-Steinberg，在您的像素艺术中实现更平滑的颜色渐变和更丰富的纹理。了解这些技术如何增强细节、减少色带并有助于真实的复古美学。',
-        'footer.title': '关于Wplace画图工具',
-        'footer.disclaimer.title': '独立粉丝网站',
-        'footer.disclaimer.text': '这是一个非官方的、独立的粉丝制作网站，旨在解决社区像素需求。我们与官方Wplace平台无关，也未获得其认可。此工具由粉丝开发，为粉丝服务，旨在增强像素艺术创作体验。',
-        'footer.main': '© 2025 Wplace画图工具 - 帮助Wplace玩家轻松绘画 - 免费使用，不声明对生成作品的所有权',
-        'footer.privacy': '客户端处理保护您的隐私'
-      }
-    };
-
-    // Translation functions
-    function translatePage(lang) {
-      const elements = document.querySelectorAll('[data-lang]');
-      elements.forEach(el => {
-        const key = el.getAttribute('data-lang');
-        if (translations[lang] && translations[lang][key]) {
-          el.textContent = translations[lang][key];
-        }
-      });
-      
-      // Update page title
-      if (translations[lang]['blog.title']) {
-        document.title = translations[lang]['blog.title'] + ' | Wplace Paint Tool';
-      }
-      
-      // Save language preference
-      localStorage.setItem('preferredLanguage', lang);
-    }
-
-    // Initialize
-    document.addEventListener('DOMContentLoaded', function() {
-      const languageSelector = document.getElementById('languageSelector');
-      const savedLang = localStorage.getItem('preferredLanguage') || 'en';
-      
-      // Set initial language
-      languageSelector.value = savedLang;
-      translatePage(savedLang);
-      
-      // Language change handler
-      languageSelector.addEventListener('change', function() {
-        translatePage(this.value);
-      });
-      
-      // Mobile menu toggle
-      const mobileMenuButton = document.getElementById('mobileMenuButton');
-      const mobileMenu = document.getElementById('mobileMenu');
-      
-      if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function() {
-          mobileMenu.classList.toggle('hidden');
-        });
-      }
-    });
-  </script>
-  <!-- Universal Internationalization System -->
+  <!-- 内联完整词库（file:// 下生效；HTTP 下不影响） -->
+  <script src="lang/all.inline.js"></script>
+  <!-- 统一翻译系统 -->
   <script src="js/i18n.js"></script>
+
+  <!-- 错误处理系统 -->
+  <script src="js/error-handler.js"></script>
 </body>
 </html>
