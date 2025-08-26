@@ -364,7 +364,7 @@
   "blog.resampling.lanczos.when_to_use": "<strong>使いどころ：</strong>基本は非推奨。軟化を狙う場合や特殊な縮小でのみ。",
   "blog.resampling.choosing.title": "Wplace に最適な方法を選ぶ",
   "blog.resampling.choosing.desc": "Wplace のピクセルアートでは、<strong>Nearest Neighbor</strong> がほぼ常に推奨です。シャープさを保ち、意図したピクセル感を維持します。",
-  "blog.resampling.closing": "最適なスケーリングで、Wplace でもピクセルパーフェクトに。"}
+  "blog.resampling.closing": "最適なスケーリングで、Wplace でもピクセルパーフェクトに。",
   "privacy.highlights.zero.title": "データ収集ゼロ",
   "privacy.highlights.zero.desc": "画像を見ることはできません。すべてはあなたのブラウザ内で処理され、サーバー側では実行されません。",
   "privacy.highlights.tracking.title": "トラッキングなし",

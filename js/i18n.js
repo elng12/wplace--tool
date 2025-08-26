@@ -10,58 +10,62 @@ class OptimizedI18nSystem {
         this.translations = new Map();
         this.loadingPromises = new Map();
         this.isFileProtocol = window.location.protocol === 'file:';
-        
+
         // 获取保存的语言偏好
         const savedLang = localStorage.getItem('preferredLanguage') || this.detectBrowserLanguage();
         this.currentLang = this.supportedLangs.includes(savedLang) ? savedLang : 'en';
+        console.log('🧭 I18N ctor: savedLang=', savedLang, 'chosen=', this.currentLang, 'isFileProtocol=', this.isFileProtocol);
     }
-    
+
+
     // 检测浏览器语言
     detectBrowserLanguage() {
         const browserLang = navigator.language || navigator.userLanguage;
         const langCode = browserLang.split('-')[0];
         return this.supportedLangs.includes(langCode) ? langCode : 'en';
     }
-    
+
     // 异步加载翻译文件
     async loadTranslations(lang) {
         // 如果已经加载，直接返回
         if (this.translations.has(lang)) {
             return this.translations.get(lang);
         }
-        
+
         // 如果正在加载，返回现有的Promise
         if (this.loadingPromises.has(lang)) {
             return await this.loadingPromises.get(lang);
         }
-        
+
         // 开始新的加载过程
+        console.log('🧭 loadTranslations: start lang=', lang, 'cache=', this.translations.has(lang), 'loading=', this.loadingPromises.has(lang));
         const loadingPromise = this._fetchTranslations(lang);
         this.loadingPromises.set(lang, loadingPromise);
-        
+
         try {
             const translations = await loadingPromise;
+            console.log('✅ loadTranslations: loaded lang=', lang, 'keys=', Object.keys(translations || {}).length);
             this.translations.set(lang, translations);
             this.loadingPromises.delete(lang);
             return translations;
         } catch (error) {
             this.loadingPromises.delete(lang);
             console.error(`❌ 加载翻译文件失败 ${lang}:`, error);
-            
+
             // 如果不是英语，尝试加载英语作为回退
             if (lang !== 'en') {
                 return await this.loadTranslations('en');
             }
-            
+
             // 如果英语也失败了，返回空对象
             return {};
         }
     }
-    
+
     // 实际的文件获取逻辑（在 file:// 下优先使用内联对象，其次再尝试本地 JSON）
     async _fetchTranslations(lang) {
         const url = `lang/${lang}.json`;
-        console.log(`💾 尝试加载翻译文件: ${url}`);
+        console.log(`💾 尝试加载翻译文件: ${url}`, '(isFileProtocol=', this.isFileProtocol, ')');
 
         // 1) file:// 下优先读取我们注入的 window.__INLINE_I18N__
         if (this.isFileProtocol && window.__INLINE_I18N__ && window.__INLINE_I18N__[lang]) {
@@ -72,8 +76,10 @@ class OptimizedI18nSystem {
 
         try {
             const response = await fetch(url, { cache: 'no-cache' });
+            console.log('📡 fetch done:', { ok: response.ok, status: response.status, url: response.url });
             // 某些浏览器在 file:// 下返回 status=0/ok=false，但依然可读 body
             const text = await response.text();
+            console.log('📦 response text length=', text.length);
             const data = JSON.parse(text);
             console.log(`✅ 翻译文件已加载: ${lang}.json (${Object.keys(data).length} 条)`);
             return data;
@@ -83,6 +89,8 @@ class OptimizedI18nSystem {
                 const data = window.__INLINE_I18N__[lang];
                 console.log(`✅ 使用内联词库(兜底): ${lang} (${Object.keys(data).length} 条)`);
                 return data;
+            } else if (this.isFileProtocol) {
+                console.log('🧪 兜底内联检查: window.__INLINE_I18N__ 存在吗?', !!window.__INLINE_I18N__, '包含目标语言?', !!(window.__INLINE_I18N__ && window.__INLINE_I18N__[lang]));
             }
 
             // 3) 再尝试从 <script type="application/json" data-i18n-source="xx"> 读取
@@ -104,7 +112,7 @@ class OptimizedI18nSystem {
             throw new Error(`加载 ${url} 失败: ${err?.message || err}`);
         }
     }
-    
+
     // 基本回退翻译（用于文件协议或紧急情况）
     getBasicFallbackTranslations(lang) {
         const basic = {
@@ -310,60 +318,62 @@ class OptimizedI18nSystem {
 
         return basic;
     }
-    
+
     // 获取翻译
     t(key, fallback = null) {
         const currentTranslations = this.translations.get(this.currentLang);
         if (currentTranslations && currentTranslations[key]) {
             return currentTranslations[key];
         }
-        
+
         // 尝试英语回退
         const englishTranslations = this.translations.get('en');
         if (englishTranslations && englishTranslations[key]) {
             return englishTranslations[key];
         }
-        
+
         // 返回回退值或键名
         return fallback || key;
     }
-    
+
     // 切换语言（异步）
     async setLanguage(lang) {
         if (!this.supportedLangs.includes(lang)) {
             console.warn(`⚠️ 不支持的语言: ${lang}`);
             return false;
         }
-        
+
         console.log(`🔄 切换语言到: ${lang}`);
-        
+
         try {
             // 预加载目标语言
+            console.log('🧭 setLanguage: preloading', lang);
             await this.loadTranslations(lang);
-            
+            console.log('🧭 setLanguage: preload done', lang, 'keys=', this.translations.get(lang) ? Object.keys(this.translations.get(lang)).length : 0);
+
             this.currentLang = lang;
             localStorage.setItem('preferredLanguage', lang);
             this.updatePage();
-            
+
             // 预加载英语（如果不是英语）
             if (lang !== 'en') {
                 this.loadTranslations('en').catch(() => {
                     // 静默失败，不影响用户体验
                 });
             }
-            
+
             return true;
         } catch (error) {
             console.error(`❌ 切换语言失败:`, error);
             return false;
         }
     }
-    
+
     // 更新页面翻译
     updatePage() {
         const elements = document.querySelectorAll('[data-lang]');
         let translatedCount = 0;
-        
+
         elements.forEach(el => {
             const key = el.getAttribute('data-lang');
             const translation = this.t(key);
@@ -378,49 +388,51 @@ class OptimizedI18nSystem {
                 translatedCount++;
             }
         });
-        
+
         // 更新语言选择器
         const selector = document.getElementById('languageSelector');
         if (selector && selector.value !== this.currentLang) {
             selector.value = this.currentLang;
         }
-        
+
         // 更新文档语言属性
         document.documentElement.lang = this.currentLang;
-        
+
         console.log(`✅ 页面翻译完成: ${translatedCount}/${elements.length} 个元素`);
     }
-    
+
     // 获取当前语言
     getCurrentLanguage() {
         return this.currentLang;
     }
-    
+
     // 获取支持的语言列表
     getSupportedLanguages() {
         return [...this.supportedLangs];
     }
-    
+
     // 初始化系统
     async init() {
         console.log('🌍 优化版翻译系统初始化 - Wplace Paint Tool');
         console.log('🌍 当前语言:', this.currentLang);
         console.log('🌍 支持语言:', this.supportedLangs.join(', '));
         console.log('🌍 运行环境:', this.isFileProtocol ? 'File协议' : 'HTTP服务器');
-        
+
         try {
             // 预加载当前语言
+            console.log('🧭 init: preloading currentLang=', this.currentLang);
             await this.loadTranslations(this.currentLang);
-            
+            console.log('🧭 init: preload done for', this.currentLang, 'hasKeys=', this.translations.get(this.currentLang) ? Object.keys(this.translations.get(this.currentLang)).length : 0);
+
             // 绑定语言选择器
             this.bindLanguageSelector();
-            
+
             // 绑定移动菜单
             this.bindMobileMenu();
-            
+
             // 初始化页面翻译
             this.updatePage();
-            
+
             console.log('✅ 翻译系统初始化完成');
         } catch (error) {
             console.error('❌ 翻译系统初始化失败:', error);
@@ -428,16 +440,16 @@ class OptimizedI18nSystem {
             this.updatePage();
         }
     }
-    
+
     // 绑定语言选择器
     bindLanguageSelector() {
         const selector = document.getElementById('languageSelector');
         if (selector) {
             selector.value = this.currentLang;
-            
+
             // 移除旧的事件监听器（如果存在）
             selector.removeEventListener('change', this._languageChangeHandler);
-            
+
             // 创建新的事件处理器
             this._languageChangeHandler = async (e) => {
                 console.log(`🔄 用户选择语言: ${e.target.value}`);
@@ -447,19 +459,19 @@ class OptimizedI18nSystem {
                     e.target.value = this.currentLang;
                 }
             };
-            
+
             selector.addEventListener('change', this._languageChangeHandler);
             console.log('✅ 语言选择器已绑定');
         } else {
             console.warn('⚠️ 找不到语言选择器 #languageSelector');
         }
     }
-    
+
     // 绑定移动菜单
     bindMobileMenu() {
         const mobileMenuButton = document.getElementById('mobileMenuButton');
         const mobileMenu = document.getElementById('mobileMenu');
-        
+
         if (mobileMenuButton && mobileMenu) {
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
@@ -467,7 +479,7 @@ class OptimizedI18nSystem {
             console.log('✅ 移动菜单已绑定');
         }
     }
-    
+
     // 销毁系统（清理资源）
     destroy() {
         // 清理事件监听器
@@ -475,11 +487,11 @@ class OptimizedI18nSystem {
         if (selector && this._languageChangeHandler) {
             selector.removeEventListener('change', this._languageChangeHandler);
         }
-        
+
         // 清理内存
         this.translations.clear();
         this.loadingPromises.clear();
-        
+
         console.log('🧹 翻译系统已销毁');
     }
 }
@@ -492,13 +504,13 @@ async function initOptimizedI18n() {
     if (!optimizedI18n) {
         optimizedI18n = new OptimizedI18nSystem();
     }
-    
+
     await optimizedI18n.init();
-    
+
     // 导出全局函数
     window.t = optimizedI18n.t.bind(optimizedI18n);
     window.i18n = optimizedI18n;
-    
+
     return optimizedI18n;
 }
 

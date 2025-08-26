@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint:i18n": "node scripts/validate-i18n.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "tailwindcss -i css/source.css -o css/main.css",
     "dev:css": "tailwindcss -i css/source.css -o css/main.css --watch"

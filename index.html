@@ -14,25 +14,7 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/main.css" />
 
-  <!-- Development Environment Detector -->
-  <script src="js/dev-detector.js"></script>
-
-  <!-- 统一翻译系统 -->
-
-  <!-- 内联翻译（file:// 下使用；HTTP 下仍从 lang/*.json 加载） -->
-  <script>
-    (function(){
-      // 仅在 file:// 下提供内联对象，HTTP 下不污染全局
-      if (location.protocol === 'file:') {
-        window.__INLINE_I18N__ = {};
-      }
-    })();
-  </script>
-
-  <!-- 在 file:// 下优先加载内联完整词库（脚本内部有 file: 检测保护） -->
-  <script src="lang/all.inline.js"></script>
-
-  <!-- 外部 i18n 逻辑脚本 -->
+  <!-- 统一翻译系统（生产环境） -->
   <script src="js/i18n.js"></script>
 
   <!-- 错误处理系统 -->
