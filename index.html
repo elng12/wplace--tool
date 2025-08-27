@@ -34,20 +34,7 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/main.css" />
 
-  <!-- 内联翻译数据（优先加载，避免file://协议CORS问题） -->
-  <script src="js/inline-translations.js"></script>
-  
-  <!-- 统一翻译系统（生产环境） -->
-  <script src="js/i18n.js"></script>
-
-  <!-- 懒加载翻译优化器 -->
-  <script src="js/lazy-translation-optimizer.js"></script>
-  
-  <!-- 备用翻译脚本（仅在统一系统失效时使用） -->
-  <!-- <script src="fix-dom-attributes.js"></script> -->
-  <!-- <script src="fix-translation-simple.js"></script> -->
-  <!-- <script src="force-chinese.js"></script> -->
-  <!-- <script src="brutal-translate.js"></script> -->
+  <!-- 翻译系统由统一的 js/i18n.js 处理 -->
 
   <!-- 错误处理系统 -->
   <script src="js/error-handler.js"></script>
@@ -68,15 +55,16 @@
   <script src="js/accessibility.js"></script>
 
   <!-- Simple Version Script - No Modules Required -->
+  <script src="js/i18n.js" defer></script>
   <script src="js/app-simple.js" defer></script>
-
+  
   <!-- Avatar Styles -->
   <style>
     .avatar-gradient {
       position: relative;
       overflow: hidden;
     }
-
+    
     .avatar-gradient::before {
       content: '';
       position: absolute;
@@ -88,7 +76,7 @@
       border-radius: inherit;
       pointer-events: none;
     }
-
+    
     .avatar-gradient:hover {
       transform: scale(1.05);
       transition: transform 0.2s ease;
@@ -192,7 +180,7 @@
         </div>
       </div>
     </div>
-
+    
     <!-- Mobile Navigation Menu -->
     <div id="mobileMenu" class="md:hidden bg-white border-t border-gray-200 hidden" role="navigation" aria-label="移动端导航菜单">
       <div class="px-4 py-3 space-y-2">
@@ -254,12 +242,12 @@
               </label>
                 <span id="size-value" class="font-bold text-primary">8</span>
               </div>
-              <input
-                type="range"
+              <input 
+                type="range" 
                 id="size-slider"
-                min="1"
-                max="32"
-                value="8"
+                min="1" 
+                max="32" 
+                value="8" 
                 class="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer custom-slider"
                 aria-labelledby="size-slider-label"
                 aria-describedby="size-value"
@@ -279,7 +267,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
               </svg>
             </button>
-
+            
             <!-- Accordion Content (Initially Hidden) -->
             <div id="advancedSettingsContent" class="hidden px-6 pb-6">
                 <div class="space-y-4 border-t border-border pt-4">
@@ -336,7 +324,7 @@
                   <option value="standard">Standard Palette</option>
                 </select>
               </div>
-
+              
               <!-- Scaling Method -->
               <div class="space-y-2">
                       <label for="scalingMethod" class="block text-xs font-medium text-muted-foreground" data-lang="advanced.scaling">
@@ -348,7 +336,7 @@
                   <option value="lanczos" data-lang="scaling.lanczos">Lanczos</option>
                 </select>
               </div>
-
+              
               <!-- Grid Toggle -->
               <div class="flex items-center space-x-3">
                       <input type="checkbox" id="showGrid" class="h-4 w-4 text-primary rounded focus:ring-ring">
@@ -363,7 +351,7 @@
                     <div class="flex items-center space-x-2">
                       <label for="gridColor" class="text-muted-foreground whitespace-nowrap">Color</label>
                       <input type="color" id="gridColor" value="#000000" class="h-6 w-10 p-0 border rounded">
-                    </div>
+            </div>
                     <div class="flex items-center space-x-2">
                       <label for="gridOpacity" class="text-muted-foreground whitespace-nowrap">Opacity</label>
                       <input type="range" id="gridOpacity" min="5" max="100" value="30" class="w-full">
@@ -387,7 +375,7 @@
             <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
                 <!-- Title -->
                 <h2 class="text-lg font-semibold text-foreground" data-lang="preview.title">Wplace Pixel Art Result</h2>
-
+                
                 <!-- Controls & Buttons -->
                 <div class="flex flex-wrap items-center gap-2">
                     <!-- Grid Info Panel -->
@@ -396,7 +384,7 @@
                         <span>V: <span id="gridVertical">0</span></span>
                         <span>Total: <span id="gridTotal">0</span></span>
             </div>
-
+            
                     <!-- Control Buttons -->
                     <div class="flex items-center space-x-2">
                         <button id="process-btn" class="px-3 py-1.5 text-xs bg-green-600 text-white rounded hover:bg-green-700 focus:outline-none focus:ring-1 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors" disabled data-lang="btn.process" aria-describedby="process-btn-desc">
@@ -414,7 +402,7 @@
                         >
                             Grid
                         </button>
-              <button
+              <button 
                 id="download-btn"
                             class="px-3 py-1.5 text-xs bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors hidden"
                 disabled
@@ -425,7 +413,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <!-- Toggle Controls -->
             <div id="toggleControls" class="flex items-center justify-end space-x-4 mb-4 text-xs hidden">
                 <div class="flex items-center space-x-2">
@@ -452,7 +440,7 @@
                     </svg>
               </button>
             </div>
-
+            
             <div id="previewContainer" class="flex-1 min-h-96 max-w-full border-2 border-dashed border-border rounded-lg flex flex-col overflow-auto relative">
               <!-- Image preview area -->
               <div class="flex-1 flex items-center justify-center p-4 relative">
@@ -469,12 +457,12 @@
                   </div>
                   <p id="progress-text" class="text-xs text-gray-600 mt-1 text-center">0%</p>
                 </div>
-
+                
                 <!-- Color Info Tooltip -->
                 <div id="colorTooltip" class="absolute bg-black text-white px-2 py-1 rounded text-xs pointer-events-none hidden z-10">
                   <div id="colorInfo"></div>
                 </div>
-
+                
                 <!-- Zoom Controls -->
                 <div id="zoomControls" class="absolute top-2 right-2 flex flex-col space-y-1 hidden">
                   <button id="zoomIn" class="bg-white shadow-md hover:bg-gray-50 p-2 rounded text-gray-700 text-xs">
@@ -531,7 +519,7 @@
             </div>
           </div>
         </div>
-
+        
         <div id="paletteDisplay" class="grid grid-cols-8 sm:grid-cols-16 md:grid-cols-32 gap-1" role="grid" aria-label="Wplace 64色调色板">
           <!-- Palette will be populated by JavaScript -->
         </div>
@@ -647,7 +635,7 @@
         <h2 class="text-3xl font-bold text-gray-900 mb-4" data-lang="faq.title">Frequently Asked Questions</h2>
         <p class="text-xl text-gray-600" data-lang="faq.subtitle">Everything you need to know about our Wplace Paint Tool</p>
       </div>
-
+      
       <div class="max-w-4xl mx-auto space-y-8">
         <!-- FAQ Item 1 -->
         <div class="bg-gray-50 rounded-lg p-6">
@@ -692,10 +680,10 @@
   <section class="bg-gray-50 py-16">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4" data-lang="testimonials.title">What Users Say About Wplace Pixel Art Converter</h2>
+        <h2 class="text-3xl font-bold text-gray-900 mb-4" data-lang="testimonials.title">What Users Say About Wplace Paint Tool</h2>
         <p class="text-xl text-gray-600" data-lang="testimonials.subtitle">Real feedback from creators using Wplace Paint Tool</p>
       </div>
-
+      
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Testimonial 1 -->
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -855,7 +843,7 @@
           <a href="index.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.home">Home</a>
           <a href="color-converter.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.converter">Wplace Color Converter</a>
         </div>
-
+        
         <!-- Independent Fan Site Notice -->
         <div class="bg-blue-900 rounded-lg p-4 mb-6 text-sm">
           <div class="flex items-center justify-center mb-2">
@@ -866,7 +854,7 @@
           </div>
           <p class="text-gray-300" data-lang="footer.independent.desc">This website is an independent, fan-run project built to serve the community's pixel art needs. We are not connected with, sponsored by, or approved by the official Wplace platform. Made by fans for fans, this Wplace Tool aims to make pixel creation easier and more enjoyable.</p>
         </div>
-
+        
         <p class="text-gray-400 text-sm" data-lang="footer.copyright">© 2025 Wplace Paint Tool - Help Wplace Player Paint Easily - Free to use, no ownership claimed on generated artwork<br>Client-side processing protects your privacy</p>
       </div>
     </div>
@@ -1053,9 +1041,9 @@
             </button>
             <button onclick="this.closest('.ui-modal-overlay').remove()" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors">
               关闭
-            </button>
-          </div>
-        </div>
+        </button>
+      </div>
+      </div>
       `;
       
       document.getElementById('progress-container').appendChild(progress.element);
@@ -1073,7 +1061,7 @@
             clearInterval(interval);
             showToast('图片处理完成！', 'success');
             setTimeout(() => modal.remove(), 1500);
-          } else {
+            } else {
             progress.setValue(Math.floor(value));
           }
         }, 200);

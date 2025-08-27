@@ -79,7 +79,7 @@
   ],
   "shortcuts": [
     {
-      "name": "Pixel Art Converter",
+      "name": "Paint Tool Converter",
       "short_name": "Converter", 
       "description": "Convert images to pixel art",
       "url": "/",

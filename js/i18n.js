@@ -67,7 +67,13 @@ class OptimizedI18nSystem {
 
     // 实际的文件获取逻辑（在 file:// 下优先使用内联对象，其次再尝试本地 JSON）
     async _fetchTranslations(lang) {
-        const url = `lang/${lang}.json`;
+        // 根据当前页面路径动态确定lang目录的相对路径
+        const isInSubdir = window.location.pathname.includes('/blog/') || 
+                          window.location.pathname.includes('/icons/') ||
+                          window.location.pathname.includes('blog/') ||
+                          window.location.pathname.includes('icons/');
+        const basePath = isInSubdir ? '../lang' : 'lang';
+        const url = `${basePath}/${lang}.json`;
         console.log(`💾 尝试加载翻译文件: ${url}`, '(isFileProtocol=', this.isFileProtocol, ')');
 
         // 1) file:// 下优先读取我们注入的 window.__INLINE_I18N__
@@ -450,7 +456,7 @@ class OptimizedI18nSystem {
         const forceTranslateMap = {
             'en': {
                 'Frequently Asked Questions': 'faq.title',
-                'What Users Say About Wplace Pixel Art Converter': 'testimonials.title',
+                'What Users Say About Wplace Paint Tool': 'testimonials.title',
                 'What Users Say About Wplace Paint Tool': 'testimonials.title',
                 'Real feedback from creators using Wplace Paint Tool': 'testimonials.subtitle',
                 'Independent Fan Site': 'footer.independent.title',

@@ -1,6 +1,6 @@
 /**
  * DOM属性修复脚本
- * 修复被brutal-translate.js污染的data-lang属性
+ * 修复data-lang属性（brutal-translate.js已删除）
  */
 
 console.log('🔧 DOM属性修复脚本启动...');
