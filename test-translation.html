@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translation Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-item { 
+            margin: 10px 0; 
+            padding: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px;
+        }
+        .lang-selector { margin: 20px 0; }
+        select { padding: 5px; margin: 0 5px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 翻译系统测试</h1>
+    
+    <div class="lang-selector">
+        <label>选择语言: </label>
+        <select id="languageSelector">
+            <option value="en">English</option>
+            <option value="zh">中文</option>
+            <option value="ko">한국어</option>
+            <option value="ja">日本語</option>
+        </select>
+    </div>
+    
+    <h2>测试项目：</h2>
+    
+    <div class="test-item">
+        <strong>FAQ 标题:</strong>
+        <p data-lang="faq.title">Frequently Asked Questions</p>
+    </div>
+    
+    <div class="test-item">
+        <strong>用户评价标题:</strong>
+        <p data-lang="testimonials.title">What Users Say About Wplace Pixel Art Converter</p>
+    </div>
+    
+    <div class="test-item">
+        <strong>用户评价副标题:</strong>
+        <p data-lang="testimonials.subtitle">Real feedback from creators using Wplace Paint Tool</p>
+    </div>
+    
+    <div class="test-item">
+        <strong>Hero 标题:</strong>
+        <p data-lang="hero.title">Wplace Paint Tool: The Ultimate Pixel Toolkit to Dominate the Canvas</p>
+    </div>
+
+    <div class="test-item">
+        <strong>功能特性标题:</strong>
+        <p data-lang="features.special.title">What Makes Our Wplace Image Converter Special?</p>
+    </div>
+
+    <div id="status" style="margin: 20px 0; padding: 10px; background: #f0f0f0; border-radius: 4px;">
+        <strong>状态:</strong> <span id="statusText">正在加载翻译系统...</span>
+    </div>
+
+    <!-- 翻译系统 -->
+    <script src="js/inline-translations.js"></script>
+    <script src="js/i18n.js"></script>
+    
+    <script>
+        // 等待翻译系统加载
+        document.addEventListener('DOMContentLoaded', function() {
+            // 等待 i18n 系统初始化
+            setTimeout(function() {
+                if (window.i18n) {
+                    document.getElementById('statusText').textContent = '翻译系统已加载';
+                    document.getElementById('status').style.background = '#d4edda';
+                    
+                    // 设置语言选择器事件
+                    const selector = document.getElementById('languageSelector');
+                    selector.addEventListener('change', function() {
+                        const lang = this.value;
+                        console.log('切换语言到:', lang);
+                        if (window.i18n && window.i18n.setLanguage) {
+                            window.i18n.setLanguage(lang);
+                        }
+                    });
+                    
+                    // 显示当前语言
+                    if (window.i18n.currentLang) {
+                        selector.value = window.i18n.currentLang;
+                        document.getElementById('statusText').textContent = `翻译系统已加载 - 当前语言: ${window.i18n.currentLang}`;
+                    }
+                } else {
+                    document.getElementById('statusText').textContent = '翻译系统加载失败';
+                    document.getElementById('status').style.background = '#f8d7da';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

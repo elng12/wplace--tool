@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单翻译测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        button { margin: 5px; padding: 10px 20px; background: #007cba; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #005a87; }
+        .status { margin: 10px 0; padding: 10px; background: #f0f0f0; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>🧪 简单翻译功能测试</h1>
+    
+    <div class="status" id="status">
+        等待脚本加载...
+    </div>
+    
+    <button onclick="testForceTranslate()">🔄 测试强制翻译</button>
+    <button onclick="toggleLanguage()">🌍 切换语言</button>
+    <button onclick="checkStatus()">📊 检查状态</button>
+    
+    <h2>测试文本：</h2>
+    
+    <div class="test">
+        <strong>测试1:</strong>
+        <p>Frequently Asked Questions</p>
+    </div>
+    
+    <div class="test">
+        <strong>测试2:</strong>
+        <p>What Users Say About Wplace Pixel Art Converter</p>
+    </div>
+    
+    <div class="test">
+        <strong>测试3:</strong>
+        <p>About Wplace Paint Tool</p>
+    </div>
+    
+    <div class="test">
+        <strong>测试4:</strong>
+        <p>How to Use Wplace Paint Tool</p>
+    </div>
+
+    <!-- 只加载强制翻译脚本 -->
+    <script src="fix-translation-simple.js"></script>
+    
+    <script>
+        let isChineseMode = false;
+        
+        function updateStatus(msg) {
+            document.getElementById('status').textContent = msg;
+            console.log('📝 状态:', msg);
+        }
+        
+        function testForceTranslate() {
+            if (window.simpleForceTranslate) {
+                updateStatus('正在执行强制翻译...');
+                window.simpleForceTranslate();
+                setTimeout(() => {
+                    updateStatus('强制翻译执行完成 ✅');
+                }, 1000);
+            } else {
+                updateStatus('❌ 强制翻译功能未找到');
+            }
+        }
+        
+        function toggleLanguage() {
+            isChineseMode = !isChineseMode;
+            const lang = isChineseMode ? 'zh' : 'en';
+            
+            // 模拟语言切换
+            localStorage.setItem('preferredLanguage', lang);
+            updateStatus(`语言已切换到: ${lang}`);
+            
+            // 触发强制翻译
+            setTimeout(testForceTranslate, 500);
+        }
+        
+        function checkStatus() {
+            const hasFunction = window.simpleForceTranslate ? '✅ 已加载' : '❌ 未加载';
+            const currentLang = localStorage.getItem('preferredLanguage') || 'en';
+            updateStatus(`强制翻译功能: ${hasFunction}, 当前语言: ${currentLang}`);
+        }
+        
+        // 页面加载完成后检查
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                checkStatus();
+                updateStatus('页面加载完成，可以开始测试 🚀');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

@@ -6,8 +6,28 @@
   "scripts": {
     "lint:i18n": "node scripts/validate-i18n.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "tailwindcss -i css/source.css -o css/main.css",
-    "dev:css": "tailwindcss -i css/source.css -o css/main.css --watch"
+    "build:css": "tailwindcss -i css/source.css -o css/main.css --minify",
+    "build:css:dev": "tailwindcss -i css/source.css -o css/main.css",
+    "dev:css": "tailwindcss -i css/source.css -o css/main.css --watch",
+    "build:i18n": "node generate-inline-translations.js",
+    "build:i18n:watch": "nodemon --watch lang/*.json --exec \"npm run build:i18n\"",
+    "build:all": "npm run build:i18n && npm run build:css",
+    "build:prod": "npm run clean && npm run build:all",
+    "dev": "npm run build:i18n && npm run dev:css",
+    "dev:full": "concurrently \"npm run build:i18n:watch\" \"npm run dev:css\" \"npm run serve:node\"",
+    "serve": "python -m http.server 8000",
+    "serve:node": "npx http-server -p 8000 -c-1 --cors",
+    "serve:dev": "npx http-server -p 8000 -c-1 --cors -o",
+    "clean": "rm -f js/inline-translations.js css/main.css",
+    "clean:translations": "node clean-translations.js",
+    "analyze:translations": "node temp-analysis.js",
+    "validate": "npm run lint:i18n && npm run analyze:translations",
+    "pwa:icons": "echo '请在浏览器中打开 icons/icon-generator.html 生成PWA图标'",
+    "pwa:validate": "node scripts/validate-pwa.js",
+    "prebuild": "npm run validate",
+    "postinstall": "npm run build:i18n",
+    "watch:lang": "nodemon --watch lang/*.json --exec \"npm run build:i18n && echo 翻译已更新\"",
+    "start": "npm run build:all && npm run serve:dev"
   },
   "repository": {
     "type": "git",
@@ -22,7 +42,10 @@
   "homepage": "https://github.com/elng12/wplace--tool#readme",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6"
+    "postcss": "^8.5.6",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2",
+    "http-server": "^14.1.1"
   },
   "dependencies": {
     "playwright": "^1.55.0",

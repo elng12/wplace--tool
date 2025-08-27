@@ -39,7 +39,13 @@
       "Bash(jq:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "mcp__playwright__playwright_navigate"
+      "mcp__playwright__playwright_navigate",
+      "Bash(findstr:*)",
+      "Bash(dir:*)",
+      "Bash(if grep -q \"brutal-translate.js\" \"$file\")",
+      "Bash(then echo \"✅ 已有\")",
+      "Bash(do sed -i 's|</body>|  <script src=\"\"brutal-translate.js\"\"></script>\\n</body>|g' \"$file\")",
+      "Bash(echo:*)"
     ],
     "deny": [],
     "ask": []
