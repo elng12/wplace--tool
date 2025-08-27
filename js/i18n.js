@@ -89,13 +89,14 @@ class OptimizedI18nSystem {
                 const data = window.__INLINE_I18N__[lang];
                 console.log(`✅ 使用内联词库(兜底): ${lang} (${Object.keys(data).length} 条)`);
                 return data;
-            } else if (this.isFileProtocol) {
-                console.log('🧪 兜底内联检查: window.__INLINE_I18N__ 存在吗?', !!window.__INLINE_I18N__, '包含目标语言?', !!(window.__INLINE_I18N__ && window.__INLINE_I18N__[lang]));
             }
 
             // 3) 再尝试从 <script type="application/json" data-i18n-source="xx"> 读取
             if (this.isFileProtocol) {
-                console.warn('⚠️ file:// 加载翻译失败，尝试使用内联脚本或基础回退翻译', err);
+                // 只有在没有内联翻译时才显示错误信息
+                if (!window.__INLINE_I18N__ || !window.__INLINE_I18N__[lang]) {
+                    console.warn('⚠️ file:// 加载翻译失败，且无内联翻译数据', err);
+                }
                 try {
                     const inline = document.querySelector(`script[type="application/json"][data-i18n-source="${lang}"]`);
                     if (inline && inline.textContent) {
