@@ -184,6 +184,45 @@ class PerformanceMonitor {
 
         return suggestions;
     }
+
+    // 添加缺失的startMeasure方法
+    startMeasure(measureName) {
+        if (!this.activeMeasures) {
+            this.activeMeasures = new Map();
+        }
+        
+        this.activeMeasures.set(measureName, {
+            startTime: performance.now(),
+            startTimestamp: Date.now()
+        });
+        
+        console.log(`📊 开始测量: ${measureName}`);
+    }
+
+    // 添加缺失的endMeasure方法
+    endMeasure(measureName) {
+        if (!this.activeMeasures || !this.activeMeasures.has(measureName)) {
+            console.warn(`⚠️ 没有找到测量: ${measureName}`);
+            return null;
+        }
+        
+        const measure = this.activeMeasures.get(measureName);
+        const duration = performance.now() - measure.startTime;
+        
+        // 根据测量类型记录到相应的metrics中
+        if (measureName.includes('imageLoad') || measureName.includes('imageProcess')) {
+            this.metrics.imageProcessing.push({
+                name: measureName,
+                duration: duration,
+                timestamp: Date.now()
+            });
+        }
+        
+        console.log(`📊 完成测量: ${measureName}, 耗时: ${duration.toFixed(2)}ms`);
+        
+        this.activeMeasures.delete(measureName);
+        return duration;
+    }
 }
 
 // 全局初始化

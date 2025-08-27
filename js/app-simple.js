@@ -342,6 +342,10 @@ function handleFileUpload(files) {
             ctx.drawImage(img, 0, 0);
 
             currentImage = canvas;
+            
+            // 确保全局变量设置成功
+            window.currentImage = currentImage;
+            console.log('📝 设置 currentImage:', currentImage ? 'success' : 'failed');
 
             // 显示预览
             const previewCanvas = $('preview-canvas');
@@ -403,6 +407,9 @@ function handleFileUpload(files) {
             if (processBtn) {
                 processBtn.disabled = false;
                 processBtn.textContent = 'Process';
+                console.log('✅ Process 按钮已启用');
+            } else {
+                console.error('❌ 未找到 Process 按钮元素');
             }
 
             setProgress(100, '上传完成');
