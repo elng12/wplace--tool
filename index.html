@@ -9,8 +9,9 @@
   <!-- Tailwind CSS - 开发环境 -->
   <!-- 注意：生产环境请安装Tailwind CSS作为PostCSS插件 -->
 
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous"></script>
+  <!-- Google AdSense with error handling -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous" 
+          onerror="console.log('AdSense脚本加载失败，这在本地开发环境中是正常的')"></script>
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/main.css" />
 
