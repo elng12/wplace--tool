@@ -45,7 +45,8 @@
       "Bash(if grep -q \"brutal-translate.js\" \"$file\")",
       "Bash(then echo \"✅ 已有\")",
       "Bash(do sed -i 's|</body>|  <script src=\"\"brutal-translate.js\"\"></script>\\n</body>|g' \"$file\")",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(mv:*)"
     ],
     "deny": [],
     "ask": []
