@@ -1,0 +1,65 @@
+User-agent: *
+Allow: /
+
+# 允许访问主要页面
+Allow: /index.html
+Allow: /about.html
+Allow: /blog.html
+Allow: /color-converter.html
+Allow: /privacy.html
+Allow: /terms.html
+Allow: /favicon.html
+Allow: /convert-icons.html
+
+# 允许访问博客文章
+Allow: /blog/
+Allow: /blog/beginner-guide.html
+Allow: /blog/color-palette-strategies.html
+Allow: /blog/dithering-techniques.html
+Allow: /blog/image-resampling.html
+
+# 允许访问静态资源
+Allow: /css/
+Allow: /js/
+Allow: /icons/
+Allow: /favicon/
+Allow: /avatars/
+
+# 禁止访问的目录和文件
+Disallow: /node_modules/
+Disallow: /lang_backup*/
+Disallow: /scripts/
+Disallow: /.git/
+Disallow: /docs/
+Disallow: /*.md$
+Disallow: /*.js$
+Disallow: /*.json$
+Disallow: /*.msi$
+Disallow: /*.conf$
+Disallow: /add-keys.js
+Disallow: /analyze-missing-translations.js
+Disallow: /clean-translations.js
+Disallow: /extract-html-keys.js
+Disallow: /fix-dom-attributes.js
+Disallow: /fix-missing-keys.js
+Disallow: /generate-icons.js
+Disallow: /generate-inline-translations.js
+Disallow: /unified-translation.js
+
+# 允许访问重要文件
+Allow: /sitemap.xml
+Allow: /manifest.json
+Allow: /sw.js
+Allow: /ads.txt
+
+# 特殊爬虫设置
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# 网站地图位置
+Sitemap: https://wplacetool.app/sitemap.xml
