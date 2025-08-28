@@ -393,9 +393,13 @@ function handleFileUpload(files) {
                     const currentPixelSize = parseInt(document.getElementById('size-slider')?.value || 8);
                     const suggestions = window.performanceMonitor.getOptimizationSuggestions(imageSize, currentPixelSize);
 
-                    suggestions.forEach(suggestion => {
-                        window.performanceMonitor.showRecommendation(suggestion);
-                    });
+                    if (typeof window.performanceMonitor.showRecommendation === 'function') {
+                        suggestions.forEach(suggestion => {
+                            window.performanceMonitor.showRecommendation(suggestion);
+                        });
+                    } else {
+                        console.warn('performanceMonitor.showRecommendation 未定义，跳过推荐显示');
+                    }
                 }
 
                 // 智能分析和推荐
