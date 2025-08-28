@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="384" height="384" viewBox="0 0 384 384" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="384" height="384" rx="76.80000000000001" ry="76.80000000000001" fill="url(#bg-gradient)"/>
+  <text x="192" y="230.4" text-anchor="middle" font-family="Arial, sans-serif" font-size="230.39999999999998" font-weight="bold" fill="white">W</text>
+</svg>

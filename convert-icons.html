@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG to PNG Icon Converter</title>
+    <style>
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px;
+        }
+        .icon-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        canvas {
+            border: 1px solid #eee;
+            margin: 10px 0;
+        }
+        button {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #059669;
+        }
+        #download-all {
+            background: #3b82f6;
+            padding: 12px 24px;
+            margin: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>PWA图标转换器</h1>
+    <p>将SVG图标转换为PNG格式</p>
+    
+    <button id="generate-all">生成所有图标</button>
+    <button id="download-all" style="display:none;">下载所有PNG图标</button>
+    
+    <div id="icon-grid" class="icon-grid"></div>
+
+    <script>
+        const sizes = [16, 32, 72, 96, 128, 144, 152, 192, 384, 512];
+        const iconData = [];
+
+        // 生成图标的SVG内容
+        function generateIconSVG(size) {
+            return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="bg-gradient-${size}" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <rect width="${size}" height="${size}" rx="${size * 0.2}" ry="${size * 0.2}" fill="url(#bg-gradient-${size})"/>
+                <text x="${size/2}" y="${size/2 + size * 0.1}" text-anchor="middle" font-family="Arial, sans-serif" font-size="${size * 0.6}" font-weight="bold" fill="white">W</text>
+            </svg>`;
+        }
+
+        // 将SVG转换为PNG
+        function svgToPng(svgContent, size, callback) {
+            const img = new Image();
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0);
+                canvas.toBlob(callback, 'image/png');
+            };
+
+            const blob = new Blob([svgContent], { type: 'image/svg+xml' });
+            img.src = URL.createObjectURL(blob);
+        }
+
+        // 生成单个图标
+        function generateIcon(size) {
+            const svgContent = generateIconSVG(size);
+            
+            svgToPng(svgContent, size, (blob) => {
+                iconData.push({
+                    filename: `icon-${size}x${size}.png`,
+                    blob: blob,
+                    size: size
+                });
+
+                // 创建预览和下载链接
+                const iconDiv = document.createElement('div');
+                iconDiv.className = 'icon-item';
+                
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+                
+                const img = new Image();
+                img.onload = function() {
+                    ctx.drawImage(img, 0, 0);
+                    
+                    iconDiv.innerHTML = `
+                        <h3>icon-${size}x${size}.png</h3>
+                        <div>${canvas.outerHTML}</div>
+                        <button onclick="downloadIcon(${iconData.length - 1})">下载此图标</button>
+                    `;
+                };
+                
+                img.src = URL.createObjectURL(blob);
+                document.getElementById('icon-grid').appendChild(iconDiv);
+                
+                // 检查是否生成完成
+                if (iconData.length === sizes.length) {
+                    document.getElementById('download-all').style.display = 'inline-block';
+                }
+            });
+        }
+
+        // 下载单个图标
+        function downloadIcon(index) {
+            const icon = iconData[index];
+            const url = URL.createObjectURL(icon.blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = icon.filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // 下载所有图标
+        function downloadAllIcons() {
+            iconData.forEach((icon, index) => {
+                setTimeout(() => {
+                    downloadIcon(index);
+                }, index * 500); // 500ms间隔
+            });
+        }
+
+        // 事件绑定
+        document.getElementById('generate-all').addEventListener('click', () => {
+            document.getElementById('icon-grid').innerHTML = '';
+            iconData.length = 0;
+            sizes.forEach(size => generateIcon(size));
+        });
+
+        document.getElementById('download-all').addEventListener('click', downloadAllIcons);
+
+        // 页面加载时自动生成图标
+        document.addEventListener('DOMContentLoaded', () => {
+            sizes.forEach(size => generateIcon(size));
+        });
+    </script>
+</body>
+</html>

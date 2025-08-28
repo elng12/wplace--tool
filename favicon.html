@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator</title>
+</head>
+<body>
+    <h2>Favicon生成器</h2>
+    <canvas id="favicon-canvas" width="32" height="32" style="border: 1px solid #ccc; image-rendering: pixelated;"></canvas>
+    <br>
+    <button onclick="generateFavicon()">生成并下载 favicon.png</button>
+    
+    <script>
+        function generateFavicon() {
+            const canvas = document.getElementById('favicon-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 清除画布
+            ctx.clearRect(0, 0, 32, 32);
+            
+            // 绘制背景渐变
+            const gradient = ctx.createLinearGradient(0, 0, 32, 32);
+            gradient.addColorStop(0, '#10b981');
+            gradient.addColorStop(1, '#059669');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 32, 32);
+            
+            // 绘制白色字母W
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('W', 16, 18);
+            
+            // 生成下载链接
+            canvas.toBlob(blob => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'favicon.png';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }, 'image/png');
+        }
+        
+        // 页面加载时生成预览
+        window.addEventListener('load', () => {
+            generateFavicon();
+        });
+    </script>
+</body>
+</html>
