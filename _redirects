@@ -1,0 +1,10 @@
+# 确保所有 HTML 页面都能正确访问
+/color-converter.html /color-converter.html 200
+/about.html /about.html 200
+/blog.html /blog.html 200
+/privacy.html /privacy.html 200
+/terms.html /terms.html 200
+/simple.html /simple.html 200
+
+# 处理不存在的页面
+/* /404.html 404
