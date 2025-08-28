@@ -1,0 +1,10 @@
+# 完全最小化的.htaccess文件
+# 如果网站仍无法访问，请用此文件替换.htaccess
+
+# 仅404错误页面
+ErrorDocument 404 /404.html
+
+# 基本MIME类型（确保HTML文件正确处理）
+AddType text/html .html
+AddType text/css .css
+AddType application/javascript .js
