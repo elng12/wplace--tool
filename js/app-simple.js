@@ -819,32 +819,37 @@ async function processSingleFileForBatch(file, index) {
             const img = new Image();
 
             img.onload = function() {
-                // 创建画布
-                const canvas = document.createElement('canvas');
-                canvas.width = img.width;
-                canvas.height = img.height;
+                // Ensure this image is from the user upload, not a stray element
+                if (img.src.startsWith('data:')) {
+                    // 创建画布
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
 
-                const ctx = canvas.getContext('2d', { willReadFrequently: true });
-                ctx.drawImage(img, 0, 0);
+                    const ctx = canvas.getContext('2d', { willReadFrequently: true });
+                    ctx.drawImage(img, 0, 0);
 
-                // 获取处理参数
-                const options = getProcessingOptions();
+                    // 获取处理参数
+                    const options = getProcessingOptions();
 
-                // 处理图片
-                processImageToPixelArt(canvas, options).then(result => {
-                    resolve({
-                        originalIndex: index,
-                        filename: file.name,
-                        success: true,
-                        canvas: result,
-                        processedCanvas: createScaledCanvas(result, options.pixelSize || 8)
+                    // 处理图片
+                    processImageToPixelArt(canvas, options).then(result => {
+                        resolve({
+                            originalIndex: index,
+                            filename: file.name,
+                            success: true,
+                            canvas: result,
+                            processedCanvas: createScaledCanvas(result, options.pixelSize || 8)
+                        });
+                    }).catch(error => {
+                        reject(error);
                     });
-                }).catch(error => {
-                    reject(error);
-                });
+                } else {
+                    reject(new Error(`图片加载失败: ${file.name} (不是来自用户上传)`));
+                }
             };
 
-            img.onerror = () => reject(new Error(`图片加载失败: ${file.name}`));
+            img.onerror = () => reject(new Error(`图片加载失败: ${file.name} (不是来自用户上传)`));
             img.src = e.target.result;
         };
 
