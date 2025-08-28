@@ -1,7 +1,7 @@
-// Wplace Pixel Art Converter - 简化版本
+// Wplace Paint Tool - 简化版本
 // 无ES模块依赖，直接可用
 
-console.log('🎨 Wplace 像素画转换器 - 简化版本加载中...');
+console.log('🎨 Wplace Paint Tool - 简化版本加载中...');
 
 // 全局变量
 let currentImage = null;
@@ -342,6 +342,10 @@ function handleFileUpload(files) {
             ctx.drawImage(img, 0, 0);
 
             currentImage = canvas;
+            
+            // 确保全局变量设置成功
+            window.currentImage = currentImage;
+            console.log('📝 设置 currentImage:', currentImage ? 'success' : 'failed');
 
             // 显示预览
             const previewCanvas = $('preview-canvas');
@@ -361,6 +365,24 @@ function handleFileUpload(files) {
                 }
 
                 console.log('✅ 图片预览已显示，尺寸:', img.width, 'x', img.height);
+
+                // 确保UI状态正确更新
+                setTimeout(() => {
+                    // 强制更新UI状态
+                    const uploadPrompt = document.getElementById('upload-prompt');
+                    if (uploadPrompt) {
+                        uploadPrompt.style.display = 'none';
+                        uploadPrompt.classList.add('hidden');
+                    }
+                    
+                    // 确保预览画布显示
+                    if (previewCanvas) {
+                        previewCanvas.style.display = 'block';
+                        previewCanvas.classList.remove('hidden');
+                    }
+                    
+                    console.log('🎯 UI状态强制更新完成');
+                }, 100);
 
                 // 结束图片加载性能监控
                 if (window.performanceMonitor) {
@@ -403,9 +425,20 @@ function handleFileUpload(files) {
             if (processBtn) {
                 processBtn.disabled = false;
                 processBtn.textContent = 'Process';
+                console.log('✅ Process 按钮已启用');
+            } else {
+                console.error('❌ 未找到 Process 按钮元素');
             }
 
             setProgress(100, '上传完成');
+            
+            // 详细的状态检查和日志
+            console.log('🔍 最终状态检查:');
+            console.log('   currentImage:', !!currentImage);
+            console.log('   previewCanvas显示:', previewCanvas && !previewCanvas.classList.contains('hidden'));
+            console.log('   uploadPrompt隐藏:', document.getElementById('upload-prompt')?.classList.contains('hidden'));
+            console.log('   processBtn启用:', !document.getElementById('process-btn')?.disabled);
+            
             showToast('图片上传成功！', 'success');
             console.log('✅ 图片上传处理完成');
         };

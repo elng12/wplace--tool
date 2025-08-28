@@ -10,9 +10,12 @@ class OptimizedI18nSystem {
         this.translations = new Map();
         this.loadingPromises = new Map();
         this.isFileProtocol = window.location.protocol === 'file:';
+        this.updateDebounceTimer = null;
+        this.lastUpdateHash = null;
 
         // 获取保存的语言偏好
         const savedLang = localStorage.getItem('preferredLanguage') || this.detectBrowserLanguage();
+        // 优先使用保存的语言，如果没有则使用英文作为默认
         this.currentLang = this.supportedLangs.includes(savedLang) ? savedLang : 'en';
         console.log('🧭 I18N ctor: savedLang=', savedLang, 'chosen=', this.currentLang, 'isFileProtocol=', this.isFileProtocol);
     }
@@ -64,14 +67,28 @@ class OptimizedI18nSystem {
 
     // 实际的文件获取逻辑（在 file:// 下优先使用内联对象，其次再尝试本地 JSON）
     async _fetchTranslations(lang) {
-        const url = `lang/${lang}.json`;
+        // 根据当前页面路径动态确定lang目录的相对路径
+        const isInSubdir = window.location.pathname.includes('/blog/') || 
+                          window.location.pathname.includes('/icons/') ||
+                          window.location.pathname.includes('blog/') ||
+                          window.location.pathname.includes('icons/');
+        const basePath = isInSubdir ? '../lang' : 'lang';
+        const url = `${basePath}/${lang}.json`;
         console.log(`💾 尝试加载翻译文件: ${url}`, '(isFileProtocol=', this.isFileProtocol, ')');
 
         // 1) file:// 下优先读取我们注入的 window.__INLINE_I18N__
-        if (this.isFileProtocol && window.__INLINE_I18N__ && window.__INLINE_I18N__[lang]) {
-            const data = window.__INLINE_I18N__[lang];
-            console.log(`✅ 使用内联词库: ${lang} (${Object.keys(data).length} 条)`);
-            return data;
+        if (this.isFileProtocol && window.__INLINE_I18N__) {
+            // 如果存在懒加载优化器，先尝试加载语言
+            if (window.lazyTranslationOptimizer && !window.__INLINE_I18N__[lang]) {
+                console.log(`🔄 通过懒加载优化器加载: ${lang}`);
+                await window.lazyTranslationOptimizer.loadLanguage(lang);
+            }
+            
+            if (window.__INLINE_I18N__[lang]) {
+                const data = window.__INLINE_I18N__[lang];
+                console.log(`✅ 使用内联词库: ${lang} (${Object.keys(data).length} 条)`);
+                return data;
+            }
         }
 
         try {
@@ -89,13 +106,14 @@ class OptimizedI18nSystem {
                 const data = window.__INLINE_I18N__[lang];
                 console.log(`✅ 使用内联词库(兜底): ${lang} (${Object.keys(data).length} 条)`);
                 return data;
-            } else if (this.isFileProtocol) {
-                console.log('🧪 兜底内联检查: window.__INLINE_I18N__ 存在吗?', !!window.__INLINE_I18N__, '包含目标语言?', !!(window.__INLINE_I18N__ && window.__INLINE_I18N__[lang]));
             }
 
             // 3) 再尝试从 <script type="application/json" data-i18n-source="xx"> 读取
             if (this.isFileProtocol) {
-                console.warn('⚠️ file:// 加载翻译失败，尝试使用内联脚本或基础回退翻译', err);
+                // 只有在没有内联翻译时才显示错误信息
+                if (!window.__INLINE_I18N__ || !window.__INLINE_I18N__[lang]) {
+                    console.warn('⚠️ file:// 加载翻译失败，且无内联翻译数据', err);
+                }
                 try {
                     const inline = document.querySelector(`script[type="application/json"][data-i18n-source="${lang}"]`);
                     if (inline && inline.textContent) {
@@ -369,16 +387,38 @@ class OptimizedI18nSystem {
         }
     }
 
-    // 更新页面翻译
+    // 防抖更新页面翻译
     updatePage() {
+        if (this.updateDebounceTimer) {
+            clearTimeout(this.updateDebounceTimer);
+        }
+
+        this.updateDebounceTimer = setTimeout(() => {
+            this._performUpdate();
+        }, 100);
+    }
+
+    // 实际执行更新
+    _performUpdate() {
         const elements = document.querySelectorAll('[data-lang]');
         let translatedCount = 0;
+
+        // 计算更新哈希以避免重复更新 - 包含内容签名确保准确性
+        const contentSignature = Array.from(elements).slice(0, 5).map(el => 
+            el.getAttribute('data-lang') + ':' + (el.textContent || '').substring(0, 20)
+        ).join('|');
+        const updateHash = `${this.currentLang}_${elements.length}_${contentSignature}`;
+        if (this.lastUpdateHash === updateHash) {
+            console.log('⚡ 跳过重复翻译更新');
+            return;
+        }
 
         elements.forEach(el => {
             const key = el.getAttribute('data-lang');
             const translation = this.t(key);
 
-            if (translation !== key) {
+            // 始终应用翻译，即使翻译和键相同
+            if (translation) {
                 // 如果翻译中包含 HTML 标签或换行，使用 innerHTML
                 if (/[<>&]/.test(translation) || translation.includes('\n')) {
                     el.innerHTML = translation.replace(/\n/g, '<br>');
@@ -389,6 +429,9 @@ class OptimizedI18nSystem {
             }
         });
 
+        // 强制翻译一些没有 data-lang 属性的重要文本
+        this.forceTranslateCommonTexts();
+
         // 更新语言选择器
         const selector = document.getElementById('languageSelector');
         if (selector && selector.value !== this.currentLang) {
@@ -398,7 +441,55 @@ class OptimizedI18nSystem {
         // 更新文档语言属性
         document.documentElement.lang = this.currentLang;
 
+        this.lastUpdateHash = updateHash;
         console.log(`✅ 页面翻译完成: ${translatedCount}/${elements.length} 个元素`);
+    }
+
+    // 强制翻译一些常见的固定文本（优化版本）
+    forceTranslateCommonTexts() {
+        if (this.currentLang === 'en') return;
+
+        const translations = this.translations.get(this.currentLang);
+        if (!translations) return;
+
+        // 常见的需要强制翻译的文本映射
+        const forceTranslateMap = {
+            'en': {
+                'Frequently Asked Questions': 'faq.title',
+                'What Users Say About Wplace Paint Tool': 'testimonials.title',
+                'What Users Say About Wplace Paint Tool': 'testimonials.title',
+                'Real feedback from creators using Wplace Paint Tool': 'testimonials.subtitle',
+                'Independent Fan Site': 'footer.independent.title',
+                'Everything you need to know about our Wplace Paint Tool': 'faq.subtitle'
+            }
+        };
+
+        const textMap = forceTranslateMap['en'] || {};
+        let forceCount = 0;
+
+        // 批量处理文本节点，减少DOM遍历次数
+        Object.keys(textMap).forEach(englishText => {
+            const translationKey = textMap[englishText];
+            const translation = translations[translationKey];
+            
+            if (translation && translation !== englishText) {
+                // 使用xpath查询提高效率
+                const xpath = `//text()[normalize-space(.)='${englishText}']`;
+                const result = document.evaluate(xpath, document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+                
+                for (let i = 0; i < result.snapshotLength; i++) {
+                    const textNode = result.snapshotItem(i);
+                    if (textNode && textNode.textContent.trim() === englishText) {
+                        textNode.textContent = translation;
+                        forceCount++;
+                    }
+                }
+            }
+        });
+
+        if (forceCount > 0) {
+            console.log(`✅ 强制翻译完成: ${forceCount} 个文本`);
+        }
     }
 
     // 获取当前语言

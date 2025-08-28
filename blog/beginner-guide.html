@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Getting Started: Your Essential Guide to the Wplace Paint Tool</title>
   <!-- Tailwind CDN -->
-  
+  <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous"></script>
   <!-- Custom Styles -->
@@ -130,11 +130,82 @@
   </footer>
 
   <!-- 内联完整词库（file:// 下生效；HTTP 下不影响） -->
-  <script src="../lang/all.inline.js"></script>
-  <!-- Translation System -->
-  <script src="../js/i18n.js"></script>
+  <script src="../js/inline-translations.js"></script>
+  <!-- 统一翻译系统 -->
+  <script src="../js/i18n.js" defer></script>
 
   <!-- 错误处理系统 -->
   <script src="../js/error-handler.js"></script>
+  
+  <!-- 移动端菜单和翻译系统初始化 -->
+  <script>
+    // 移动端菜单功能
+    document.addEventListener('DOMContentLoaded', () => {
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+
+      // 确保翻译系统正常工作
+      console.log('🔍 Beginner Guide翻译系统检查...');
+      
+      // 立即检查一次
+      setTimeout(() => {
+        console.log('第一次检查...');
+        applyTranslations();
+      }, 100);
+      
+      // 延迟再检查一次
+      setTimeout(() => {
+        console.log('第二次检查...');
+        applyTranslations();
+      }, 1000);
+      
+      function applyTranslations() {
+        if (window.i18n && typeof window.i18n.updatePage === 'function') {
+          console.log('✅ i18n系统可用，更新翻译');
+          window.i18n.updatePage();
+        } else if (window.optimizedI18n && typeof window.optimizedI18n.updatePage === 'function') {
+          console.log('✅ optimizedI18n系统可用，更新翻译');
+          window.optimizedI18n.updatePage();
+        } else {
+          console.log('❌ 翻译系统未找到或方法不存在，使用强制翻译...');
+          console.log('当前window.i18n:', window.i18n);
+          forceApplyTranslations();
+        }
+      }
+      
+      function forceApplyTranslations() {
+        // 强制应用翻译 - 使用内联翻译数据
+        const lang = localStorage.getItem('preferredLanguage') || 'en';
+        console.log('当前语言:', lang);
+        
+        // 检查是否有内联翻译数据
+        if (typeof translations !== 'undefined') {
+          console.log('✅ 发现内联翻译数据');
+          const t = translations[lang] || translations['en'];
+          let translatedCount = 0;
+          
+          document.querySelectorAll('[data-lang]').forEach(element => {
+            const key = element.getAttribute('data-lang');
+            if (t && t[key]) {
+              element.textContent = t[key];
+              translatedCount++;
+            } else {
+              console.warn('缺失翻译键:', key);
+            }
+          });
+          
+          console.log(`✅ 强制翻译完成，共翻译 ${translatedCount} 个元素`);
+        } else {
+          console.error('❌ 未找到翻译数据');
+        }
+      }
+    });
+  </script>
 </body>
 </html>

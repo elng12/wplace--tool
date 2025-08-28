@@ -7,6 +7,7 @@
   <meta name="description" content="Easily create pixel art for Wplace with the Wplace Paint Tool! Our pixel art maker and converter transform any image into a Wplace-compatible pixel grid. The built-in generator automatically matches the official color palette, ensuring perfect results every time. Whether you're a beginner or a pro, this tool makes pixel art creation fun and simple. Turn your ideas into pixel masterpieces effortlessly!" />
   <link rel="canonical" href="https://wplacetool.app/blog.html" />
   <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous"></script>
@@ -206,11 +207,51 @@
   </footer>
 
   <!-- 内联完整词库（file:// 下生效；HTTP 下不影响） -->
-  <script src="lang/all.inline.js"></script>
+  <script src="js/inline-translations.js"></script>
   <!-- 统一翻译系统 -->
-  <script src="js/i18n.js"></script>
+  <script src="js/i18n.js" defer></script>
 
   <!-- 错误处理系统 -->
   <script src="js/error-handler.js"></script>
+  
+  <!-- 移动端菜单和翻译系统初始化 -->
+  <script>
+    // 移动端菜单功能
+    document.addEventListener('DOMContentLoaded', () => {
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+
+      // 确保翻译系统正常工作
+      console.log('🔍 Blog页面翻译系统检查...');
+      const languageSelector = document.getElementById('languageSelector');
+      if (languageSelector) {
+        console.log('✅ languageSelector找到');
+        // 延迟检查翻译系统，等待js/i18n.js加载完成
+        setTimeout(() => {
+          if (window.i18n) {
+            console.log('✅ i18n系统可用');
+            window.i18n.updatePageTranslations();
+          } else if (window.optimizedI18n) {
+            console.log('✅ optimizedI18n系统可用');
+            window.optimizedI18n.updatePageTranslations();
+          } else {
+            console.log('❌ 翻译系统未找到，尝试手动初始化...');
+            // 手动初始化翻译系统
+            if (typeof initOptimizedI18n === 'function') {
+              initOptimizedI18n();
+            }
+          }
+        }, 500);
+      } else {
+        console.log('❌ languageSelector未找到');
+      }
+    });
+  </script>
 </body>
 </html>

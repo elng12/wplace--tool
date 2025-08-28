@@ -41,12 +41,33 @@ class EnhancedErrorHandler {
         // 处理资源加载错误
         window.addEventListener('error', (event) => {
             if (event.target && event.target !== window) {
-                this.handleError({
-                    type: 'resource',
-                    element: event.target.tagName,
-                    source: event.target.src || event.target.href,
-                    message: `资源加载失败: ${event.target.tagName}`
-                });
+                const source = event.target.src || event.target.href;
+                
+                // 过滤掉外部服务的预期错误
+                const ignoredDomains = [
+                    'googlesyndication.com',
+                    'adtrafficquality.google',
+                    'google.com/recaptcha',
+                    'googletagmanager.com'
+                ];
+                
+                const shouldIgnore = ignoredDomains.some(domain => 
+                    source && source.includes(domain)
+                );
+                
+                if (!shouldIgnore) {
+                    this.handleError({
+                        type: 'resource',
+                        element: event.target.tagName,
+                        source: source,
+                        message: `资源加载失败: ${event.target.tagName}`
+                    });
+                } else {
+                    // 对于外部服务，仅在开发模式下输出简化信息
+                    if (this.isDevMode()) {
+                        console.log(`🌐 外部服务连接失败（正常）: ${source}`);
+                    }
+                }
             }
         }, true);
     }
