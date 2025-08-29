@@ -176,11 +176,21 @@ class AdvancedAnalytics {
         window.addEventListener('load', () => {
             const navigation = performance.getEntriesByType('navigation')[0];
             if (navigation) {
+                // 修复负数时间计算问题
+                const domContentLoaded = navigation.domContentLoadedEventEnd > 0 && navigation.domContentLoadedEventStart > 0 ?
+                    navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart : 0;
+                const loadComplete = navigation.loadEventEnd > 0 && navigation.loadEventStart > 0 ?
+                    navigation.loadEventEnd - navigation.loadEventStart : 0;
+                const domInteractive = navigation.domInteractive > 0 && navigation.fetchStart > 0 ?
+                    navigation.domInteractive - navigation.fetchStart : 0;
+                const totalLoadTime = navigation.loadEventEnd > 0 && navigation.fetchStart > 0 ?
+                    navigation.loadEventEnd - navigation.fetchStart : Date.now() - navigation.fetchStart;
+                
                 this.trackEvent('navigation_timing', {
-                    domContentLoaded: navigation.domContentLoadedEventEnd - navigation.domContentLoadedEventStart,
-                    loadComplete: navigation.loadEventEnd - navigation.loadEventStart,
-                    domInteractive: navigation.domInteractive - navigation.fetchStart,
-                    totalLoadTime: navigation.loadEventEnd - navigation.fetchStart
+                    domContentLoaded: Math.max(0, domContentLoaded),
+                    loadComplete: Math.max(0, loadComplete),  
+                    domInteractive: Math.max(0, domInteractive),
+                    totalLoadTime: Math.max(0, totalLoadTime)
                 });
             }
         });

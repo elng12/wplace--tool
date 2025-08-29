@@ -38,18 +38,25 @@ class PerformanceMonitor {
         if (performance && performance.timing) {
             window.addEventListener('load', () => {
                 const timing = performance.timing;
-                const pageLoadTime = timing.loadEventEnd - timing.navigationStart;
+                // 修复负数时间计算问题
+                const pageLoadTime = timing.loadEventEnd > 0 ? 
+                    timing.loadEventEnd - timing.navigationStart : 
+                    Date.now() - timing.navigationStart;
+                
+                const domReadyTime = timing.domContentLoadedEventEnd > 0 ?
+                    timing.domContentLoadedEventEnd - timing.navigationStart :
+                    Date.now() - timing.navigationStart;
                 
                 this.metrics.pageLoad = {
                     total: pageLoadTime,
-                    domReady: timing.domContentLoadedEventEnd - timing.navigationStart,
+                    domReady: domReadyTime,
                     timestamp: Date.now()
                 };
                 
                 if (pageLoadTime > this.thresholds.pageLoadWarning) {
-                    console.warn(`⚠️ 页面加载较慢: ${pageLoadTime}ms`);
+                    console.warn(`⚠️ 页面加载较慢: ${pageLoadTime.toFixed(2)}ms`);
                 } else {
-                    console.log(`✅ 页面加载: ${pageLoadTime}ms`);
+                    console.log(`✅ 页面加载: ${pageLoadTime.toFixed(2)}ms`);
                 }
             });
         }

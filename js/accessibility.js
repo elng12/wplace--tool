@@ -334,7 +334,7 @@ class AccessibilityManager {
         this.enhanceFocusIndicators();
         
         // 管理焦点顺序
-        this.manageFocusOrder();
+        // this.manageFocusOrder(); // 这是一个未实现的功能，暂时禁用以避免错误
     }
     
     // 设置焦点陷阱

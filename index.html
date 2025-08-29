@@ -38,13 +38,13 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous" 
           onerror="console.log('AdSense脚本加载失败，这在本地开发环境中是正常的')"></script>
   <!-- Custom Styles -->
-  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/main.css?v=20250828-fix2" />
 
   <!-- Core App Logic -->
   <script src="js/logger.js" defer></script>
   <script src="js/error-handler.js" defer></script>
   <script src="js/i18n.js" defer></script>
-  <script src="js/app-simple.js" defer></script>
+  <script src="js/app-simple.js?v=20250828-fix2" defer></script>
 
   <!-- Feature Modules -->
   <script src="js/ui-components.js" defer></script>
@@ -52,30 +52,10 @@
   <script src="js/image-optimizer.js" defer></script>
   <script src="js/analytics.js" defer></script>
   <script src="js/accessibility.js" defer></script>
-
   <!-- 翻译系统由统一的 js/i18n.js 处理 -->
 
-  <!-- 错误处理系统 -->
-  <script src="js/error-handler.js"></script>
-  
-  <!-- UI组件库 -->
-  <script src="js/ui-components.js"></script>
-
-  <!-- 性能监控系统 -->
-  <script src="js/performance-monitor.js"></script>
-
-  <!-- 图像优化系统 -->
-  <script src="js/image-optimizer.js"></script>
-
-  <!-- 高级分析系统 -->
-  <script src="js/analytics.js"></script>
-
-  <!-- 无障碍访问系统 -->
-  <script src="js/accessibility.js"></script>
-
   <!-- Simple Version Script - No Modules Required -->
-  <script src="js/i18n.js" defer></script>
-  <script src="js/app-simple.js" defer></script>
+  <!-- 注意：所有JS文件已在上面统一defer加载，避免重复加载导致类重复声明错误 -->
   
   <!-- Avatar Styles -->
   <style>
@@ -146,6 +126,37 @@
       overflow: visible;
       clip: auto;
       white-space: normal;
+    }
+  </style>
+  <style>
+    /* 预览画布脱离 flex 收缩，确保可见 */
+    #preview-canvas, #output-canvas {
+      flex: none !important;
+      width: auto !important;
+      height: auto !important;
+      object-fit: contain !important;
+      max-width: 100% !important;
+      max-height: 400px !important;
+    }
+
+    /* 让包裹 canvas 的那一层也不被 flex 压缩 */
+    #previewContainer > div {
+      flex: none !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-height: 200px !important;
+    }
+
+    /* 当只显示输出结果时，让它更突出 */
+    #output-canvas:not(.hidden) {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+      border: 2px solid #007bff !important;
+    }
+
+    /* 隐藏预览画布时的过渡效果 */
+    #preview-canvas, #output-canvas {
+      transition: all 0.3s ease !important;
     }
   </style>
 </head>
@@ -462,9 +473,9 @@
             
             <div id="previewContainer" class="flex-1 min-h-96 max-w-full border-2 border-dashed border-border rounded-lg flex flex-col overflow-auto relative">
               <!-- Image preview area -->
-              <div class="flex-1 flex items-center justify-center p-4 relative">
-                <canvas id="preview-canvas" class="hidden border border-gray-300 rounded" style="max-width: 100%; max-height: 400px;" role="img" aria-label="图片预览画布"></canvas>
-                <canvas id="output-canvas" class="hidden border border-gray-300 rounded" style="max-width: 100%; max-height: 400px;" role="img" aria-label="像素艺术输出画布"></canvas>
+              <div class="flex-1 flex items-start justify-center p-4 relative" style="align-items: flex-start !important; min-height: fit-content !important;">
+                <canvas id="preview-canvas" class="border border-gray-300 rounded" style="max-width: 100%; max-height: 300px; width: auto; height: auto; object-fit: contain; z-index: 2; background-image: repeating-conic-gradient(#f0f0f0 0% 25%, #ffffff 0% 50%); background-size: 16px 16px; display: none;" role="img" aria-label="图片预览画布"></canvas>
+                <canvas id="output-canvas" class="border border-gray-300 rounded" style="max-width: 100%; max-height: 300px; width: auto; height: auto; object-fit: contain; z-index: 2; background-image: repeating-conic-gradient(#f0f0f0 0% 25%, #ffffff 0% 50%); background-size: 16px 16px; display: none;" role="img" aria-label="像素艺术输出画布"></canvas>
                 <p id="upload-prompt" class="text-muted-foreground" data-lang="preview.prompt">Please upload an image to start</p>
 
                 <div id="image-info" class="absolute top-2 left-2 bg-white bg-opacity-90 p-2 rounded text-sm hidden"></div>

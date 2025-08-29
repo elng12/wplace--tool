@@ -37,12 +37,50 @@ function $(id) {
 
 function showElement(id) {
     const el = $(id);
-    if (el) el.classList.remove('hidden');
+    if (!el) {
+        console.error(`❌ showElement: 找不到元素 ${id}`);
+        return false;
+    }
+
+    console.log(`[Debug] showElement -> ${id}`);
+
+    // 移除hidden类
+    el.classList.remove('hidden');
+    
+    // 简化显示逻辑，直接设置为可见
+    el.style.display = 'block';
+    el.style.visibility = 'visible';
+    el.style.opacity = '1';
+    
+    // 确保canvas元素正确显示
+    if (el.tagName === 'CANVAS') {
+        el.style.maxWidth = '100%';
+        el.style.height = 'auto';
+        // 确保canvas有最小尺寸
+        if (el.width === 0 || el.height === 0) {
+            console.warn(`⚠️ Canvas ${id} 尺寸为0，可能需要重新设置`);
+        }
+    }
+    
+    console.log(`✅ Element '${id}' 已显示`);
+    return true;
 }
 
 function hideElement(id) {
     const el = $(id);
-    if (el) el.classList.add('hidden');
+    if (!el) return;
+
+    console.log('[Debug] hideElement ->', id, {
+        beforeDisplay: getComputedStyle(el).display,
+        beforeClasses: [...el.classList]
+    });
+
+    el.classList.add('hidden');
+
+    console.log('[Debug] hideElement <-', id, {
+        afterDisplay: getComputedStyle(el).display,
+        afterClasses: [...el.classList]
+    });
 }
 
 function setProgress(value, text) {
@@ -50,8 +88,16 @@ function setProgress(value, text) {
     const indicator = $('progress-indicator');
     const textEl = $('progress-text');
 
-    if (value > 0 && container) {
+    if (value > 0 && value < 100 && container) {
+        // 显示进度条（0 < value < 100）
         container.classList.remove('hidden');
+        container.style.display = 'block';
+    } else if (container) {
+        // 隐藏进度条（value = 0 或 value >= 100）
+        setTimeout(() => {
+            container.classList.add('hidden');
+            container.style.display = 'none';
+        }, value >= 100 ? 1000 : 0); // 100%时延迟1秒隐藏，0%时立即隐藏
     }
 
     if (indicator) {
@@ -62,11 +108,7 @@ function setProgress(value, text) {
         textEl.textContent = text || Math.round(value) + '%';
     }
 
-    if (value >= 100) {
-        setTimeout(() => {
-            if (container) container.classList.add('hidden');
-        }, 2000);
-    }
+
 }
 
 function showToast(message, type = 'info') {
@@ -233,6 +275,24 @@ function processImageToPixelArt(canvas, options = {}) {
     });
 }
 
+// 文件名清理函数
+function sanitizeFileName(fileName) {
+    // 保留原始文件名用于显示
+    const originalName = fileName;
+    
+    // 移除特殊Unicode字符，保留基本字符、数字、下划线、连字符和点
+    const cleaned = fileName
+        .replace(/[^\w\-\.\u4e00-\u9fa5]/g, '_') // 保留中文字符
+        .replace(/_{2,}/g, '_') // 合并多个下划线
+        .replace(/^_+|_+$/g, ''); // 移除开头结尾的下划线
+    
+    if (cleaned !== originalName) {
+        console.log(`📝 文件名已清理: "${originalName}" -> "${cleaned}"`);
+    }
+    
+    return { original: originalName, cleaned: cleaned };
+}
+
 // 文件上传处理 - 支持单个或批量
 function handleFileUpload(files) {
     console.log('📤 handleFileUpload被调用');
@@ -250,45 +310,39 @@ function handleFileUpload(files) {
     console.log('🔍 开始验证文件');
     const validFiles = [];
     for (const file of files) {
-        console.log(`   验证文件: ${file.name}`);
+        // 清理文件名
+        const fileName = sanitizeFileName(file.name);
+        console.log(`   验证文件: ${fileName.original}`);
+        if (fileName.cleaned !== fileName.original) {
+            console.log(`     清理后: ${fileName.cleaned}`);
+        }
         console.log(`     类型: ${file.type}`);
         console.log(`     大小: ${file.size} bytes`);
 
-        // 使用格式检测器分析文件
-        if (typeof FormatDetector !== 'undefined') {
-            const analysis = FormatDetector.analyzeFile(file);
-            console.log(`     📊 格式分析:`, analysis);
-
-            if (!analysis.isSupported) {
-                console.warn(`     ⚠️ 不支持的格式: ${file.name}`);
-                showToast(`不支持的格式: ${file.name}`, 'warning');
-                continue;
-            }
-
-            // 显示建议
-            analysis.recommendations.forEach(rec => {
-                if (rec.type === 'warning') {
-                    showToast(`${file.name}: ${rec.message}`, 'warning');
-                } else if (rec.type === 'info') {
-                    console.info(`💡 ${file.name}: ${rec.message}`);
-                }
-            });
-        } else {
-            // 回退到基本验证
-            if (!file.type.startsWith('image/')) {
-                console.warn(`     ⚠️ 跳过非图片文件: ${file.name}`);
-                showToast(`跳过非图片文件: ${file.name}`, 'warning');
-                continue;
-            }
-        }
-
-        if (file.size > 4 * 1024 * 1024) { // 4MB
-            console.warn(`     ⚠️ 文件过大，跳过: ${file.name} (超过4MB)`);
-            showToast(`文件过大，跳过: ${file.name} (超过4MB)`, 'warning');
+        // 基本文件类型验证
+        if (!file.type.startsWith('image/')) {
+            console.warn(`     ⚠️ 跳过非图片文件: ${fileName.original}`);
+            showToast(`跳过非图片文件: ${fileName.cleaned}`, 'warning');
             continue;
         }
 
-        console.log(`     ✅ 文件验证通过: ${file.name}`);
+        // 检查空文件
+        if (file.size === 0) {
+            console.warn(`     ⚠️ 空文件，跳过: ${fileName.original}`);
+            showToast(`空文件无法处理: ${fileName.cleaned}`, 'error');
+            continue;
+        }
+
+        if (file.size > 4 * 1024 * 1024) { // 4MB
+            console.warn(`     ⚠️ 文件过大，跳过: ${fileName.original} (超过4MB)`);
+            showToast(`文件过大，跳过: ${fileName.cleaned} (超过4MB)`, 'warning');
+            continue;
+        }
+
+        console.log(`     ✅ 文件验证通过: ${fileName.original}`);
+        // 为文件添加清理后的文件名信息
+        file._cleanedName = fileName.cleaned;
+        file._originalName = fileName.original;
         validFiles.push(file);
     }
 
@@ -310,6 +364,22 @@ function handleFileUpload(files) {
     // 单个文件处理
     const file = validFiles[0];
     console.log('📄 处理单个文件:', file.name);
+    
+    // 清理uploadArea中可能存在的图片元素
+    const uploadArea = document.getElementById('uploadArea');
+    if (uploadArea) {
+        const existingImages = uploadArea.querySelectorAll('img');
+        existingImages.forEach(img => {
+            console.warn('🧹 清理uploadArea中的图片元素');
+            img.remove();
+        });
+        
+        // 恢复上传区域原始内容的可见性
+        const uploadContent = uploadArea.querySelector('.space-y-4');
+        if (uploadContent) {
+            uploadContent.style.display = 'block';
+        }
+    }
 
     setProgress(10, '读取图片...');
 
@@ -319,17 +389,51 @@ function handleFileUpload(files) {
         console.log('   结果类型:', typeof e.target.result);
         console.log('   结果长度:', e.target.result ? e.target.result.length : 'null');
 
-        // 开始性能监控
-        if (window.performanceMonitor) {
-            window.performanceMonitor.startMeasure('imageLoad');
-        }
+        // 性能监控功能已移除
 
+        // 创建一个隐藏的容器来放置图片，避免图片显示在页面上
+        const hiddenContainer = document.createElement('div');
+        hiddenContainer.style.cssText = 'position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden;';
+        hiddenContainer.id = 'hidden-img-container-' + Date.now();
+        document.body.appendChild(hiddenContainer);
+        
         const img = new Image();
         console.log('🏋️ 创建Image对象');
+        
+        // 防止img元素被意外添加到DOM
+        img.style.cssText = 'display: none !important; visibility: hidden !important; position: absolute !important; left: -9999px !important; top: -9999px !important;';
+        
+        // 立即将图片放入隐藏容器
+        hiddenContainer.appendChild(img);
+        
+        // 添加调试：检测img是否被添加到DOM
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node === img) {
+                        console.warn('⚠️ 警告：Image元素被添加到DOM！父元素:', node.parentElement);
+                        // 立即移除
+                        if (node.parentElement) {
+                            node.parentElement.removeChild(node);
+                        }
+                    }
+                });
+            });
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
 
         img.onload = function() {
             console.log('🌆 Image.onload触发');
             console.log('   图片尺寸:', img.width, 'x', img.height);
+            
+            // 清理观察器
+            observer.disconnect();
+            
+            // 清理隐藏容器
+            if (hiddenContainer && hiddenContainer.parentElement) {
+                hiddenContainer.remove();
+                console.log('🧹 清理隐藏容器');
+            }
 
             setProgress(30, '加载图片...');
 
@@ -349,15 +453,68 @@ function handleFileUpload(files) {
 
             // 显示预览
             const previewCanvas = $('preview-canvas');
+            const outputCanvas = $('output-canvas');
 
             if (previewCanvas) {
+                // 确保输出画布隐藏，避免干扰
+                if (outputCanvas) {
+                    hideElement('output-canvas');
+                }
+
+                // 设置画布尺寸
                 previewCanvas.width = img.width;
                 previewCanvas.height = img.height;
+                
+                // 智能设置CSS显示尺寸，确保大图片能够合理显示
+                const maxDisplayWidth = 600;  // 最大显示宽度
+                const maxDisplayHeight = 300; // 最大显示高度
+                
+                let displayWidth = img.width;
+                let displayHeight = img.height;
+                
+                // 如果图片太大，按比例缩放显示尺寸
+                if (img.width > maxDisplayWidth || img.height > maxDisplayHeight) {
+                    const widthRatio = maxDisplayWidth / img.width;
+                    const heightRatio = maxDisplayHeight / img.height;
+                    const ratio = Math.min(widthRatio, heightRatio);
+                    
+                    displayWidth = Math.round(img.width * ratio);
+                    displayHeight = Math.round(img.height * ratio);
+                }
+                
+                previewCanvas.style.width = displayWidth + 'px';
+                previewCanvas.style.height = displayHeight + 'px';
+                previewCanvas.style.maxWidth = '100%';
+                previewCanvas.style.maxHeight = '300px';
+                
+                console.log(`📏 图片尺寸: ${img.width}×${img.height}, 显示尺寸: ${displayWidth}×${displayHeight}`);
+                
+                // 绘制图片
                 const previewCtx = previewCanvas.getContext('2d');
+                previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
                 previewCtx.drawImage(img, 0, 0);
 
-                showElement('preview-canvas');
+                // 显示预览画布 - 使用更直接的方式
+                console.log('🎯 开始显示预览画布');
+                previewCanvas.style.display = 'block';
+                previewCanvas.style.visibility = 'visible';
+                previewCanvas.classList.remove('hidden');
+                
+                // 隐藏上传提示
                 hideElement('upload-prompt');
+                
+                console.log('✅ 预览画布显示状态已更新');
+                
+                // 额外检查：确保canvas在正确的容器中
+                const previewContainer = document.getElementById('previewContainer');
+                if (previewContainer && !previewContainer.contains(previewCanvas)) {
+                    console.warn('⚠️ Canvas不在预览容器中，尝试移动');
+                    const canvasParent = previewContainer.querySelector('.flex-1.flex.items-center.justify-center.p-4');
+                    if (canvasParent) {
+                        canvasParent.appendChild(previewCanvas);
+                    }
+                }
+                
                 // 若网格已开启，贴合预览画布
                 const showGridCheckbox = document.getElementById('showGrid');
                 if (showGridCheckbox?.checked) {
@@ -368,6 +525,8 @@ function handleFileUpload(files) {
 
                 // 确保UI状态正确更新
                 setTimeout(() => {
+                    console.log('🔄 执行UI状态强制更新');
+                    
                     // 强制更新UI状态
                     const uploadPrompt = document.getElementById('upload-prompt');
                     if (uploadPrompt) {
@@ -375,49 +534,48 @@ function handleFileUpload(files) {
                         uploadPrompt.classList.add('hidden');
                     }
                     
-                    // 确保预览画布显示
+                    // 确保预览画布显示且输出画布隐藏
                     if (previewCanvas) {
+                        // 强制显示预览画布
+                        previewCanvas.style.cssText = previewCanvas.style.cssText.replace(/display\s*:\s*none/gi, '');
                         previewCanvas.style.display = 'block';
+                        previewCanvas.style.visibility = 'visible';
                         previewCanvas.classList.remove('hidden');
+                        
+                        // 验证canvas是否真的可见
+                        const rect = previewCanvas.getBoundingClientRect();
+                        console.log('📏 Canvas位置和尺寸:', {
+                            width: rect.width,
+                            height: rect.height,
+                            top: rect.top,
+                            left: rect.left,
+                            display: getComputedStyle(previewCanvas).display
+                        });
+                    }
+                    
+                    if (outputCanvas) {
+                        outputCanvas.style.display = 'none';
+                        outputCanvas.classList.add('hidden');
+                    }
+                    
+                    // 确保进度条隐藏
+                    const progressBar = document.getElementById('progress-bar');
+                    if (progressBar) {
+                        progressBar.style.display = 'none';
+                        progressBar.classList.add('hidden');
+                        progressBar.style.visibility = 'hidden';
                     }
                     
                     console.log('🎯 UI状态强制更新完成');
+                    console.log('🔍 最终canvas状态检查:');
+                    console.log('   preview-canvas display:', previewCanvas.style.display);
+                    console.log('   preview-canvas visibility:', previewCanvas.style.visibility);
+                    console.log('   preview-canvas hidden class:', previewCanvas.classList.contains('hidden'));
                 }, 100);
 
-                // 结束图片加载性能监控
-                if (window.performanceMonitor) {
-                    window.performanceMonitor.endMeasure('imageLoad');
+                // 性能监控功能已移除
 
-                    // 获取优化建议
-                    const imageSize = img.width * img.height;
-                    const currentPixelSize = parseInt(document.getElementById('size-slider')?.value || 8);
-                    const suggestions = window.performanceMonitor.getOptimizationSuggestions(imageSize, currentPixelSize);
-
-                    if (typeof window.performanceMonitor.showRecommendation === 'function') {
-                        suggestions.forEach(suggestion => {
-                            window.performanceMonitor.showRecommendation(suggestion);
-                        });
-                    } else {
-                        console.warn('performanceMonitor.showRecommendation 未定义，跳过推荐显示');
-                    }
-                }
-
-                // 智能分析和推荐
-                if (typeof SmartPresets !== 'undefined') {
-                    try {
-                        const imageData = ctx.getImageData(0, 0, img.width, img.height);
-                        SmartPresets.analyzeImage(imageData).then(analysis => {
-                            const recommendation = SmartPresets.recommendPreset(analysis);
-                            SmartPresets.showRecommendation(recommendation);
-                            console.log('🧠 智能分析完成:', analysis);
-                            console.log('💡 推荐预设:', recommendation.preset.name);
-                        }).catch(error => {
-                            console.warn('⚠️ 智能分析失败:', error);
-                        });
-                    } catch (error) {
-                        console.warn('⚠️ 智能分析失败:', error);
-                    }
-                }
+                // 智能分析功能已移除
             } else {
                 console.error('❌ 找不到预览画布元素 preview-canvas');
             }
@@ -445,12 +603,29 @@ function handleFileUpload(files) {
             
             showToast('图片上传成功！', 'success');
             console.log('✅ 图片上传处理完成');
+            
+            // 自动触发第一次处理，隐藏原图显示处理结果
+            console.log('🚀 自动触发像素艺术处理...');
+            setTimeout(() => {
+                console.log('🎯 开始自动处理，将隐藏预览显示结果');
+                debouncePreview();
+            }, 300); // 减少延迟，更快响应
         };
 
         img.onerror = function(err) {
             console.error('❌ Image加载失败:', err);
-            showToast('图片加载失败', 'error');
+            showToast('图片加载失败，请选择有效的图片文件', 'error');
             setProgress(0, '');
+            
+            // 重置UI状态
+            resetUIAfterError();
+            
+            // 禁用处理按钮
+            const processBtn = document.querySelector('#process-btn');
+            if (processBtn) {
+                processBtn.disabled = true;
+                processBtn.textContent = 'Process';
+            }
         };
 
         console.log('🔗 设置Image.src');
@@ -466,6 +641,44 @@ function handleFileUpload(files) {
     console.log('📖 开始读取文件:', file.name, 'size:', file.size, 'type:', file.type);
     reader.readAsDataURL(file);
     console.log('📖 readAsDataURL已调用');
+}
+
+// 错误后重置UI状态
+function resetUIAfterError() {
+    console.log('🔄 重置UI状态 - 错误恢复');
+    
+    // 清除全局图片对象
+    if (typeof window.currentImage !== 'undefined') {
+        window.currentImage = null;
+    }
+    
+    // 隐藏canvas元素
+    const previewCanvas = document.querySelector('#preview-canvas');
+    if (previewCanvas) {
+        previewCanvas.style.display = 'none';
+        previewCanvas.classList.add('hidden');
+    }
+    
+    const outputCanvas = document.querySelector('#output-canvas');
+    if (outputCanvas) {
+        outputCanvas.style.display = 'none';
+        outputCanvas.classList.add('hidden');
+    }
+    
+    // 显示上传提示
+    const uploadPrompt = document.querySelector('#upload-prompt');
+    if (uploadPrompt) {
+        uploadPrompt.style.display = 'block';
+        uploadPrompt.classList.remove('hidden');
+    }
+    
+    // 重置文件输入
+    const fileInput = document.querySelector('#fileInput');
+    if (fileInput) {
+        fileInput.value = '';
+    }
+    
+    console.log('✅ UI状态重置完成');
 }
 
 // 处理图片
@@ -497,6 +710,8 @@ function processImage() {
 
             // 显示结果
             const outputCanvas = $('output-canvas');
+            const previewCanvas = $('preview-canvas');
+            
             if (outputCanvas) {
                 const pixelSize = options.pixelSize || 8;
                 outputCanvas.width = result.width * pixelSize;
@@ -506,13 +721,25 @@ function processImage() {
                 ctx.imageSmoothingEnabled = false;
                 ctx.drawImage(result, 0, 0, outputCanvas.width, outputCanvas.height);
 
-                hideElement('preview-canvas');
-                showElement('output-canvas');
+                // 隐藏预览画布，显示输出画布
+                if (previewCanvas) {
+                    previewCanvas.style.display = 'none';
+                    previewCanvas.classList.add('hidden');
+                }
+                
+                outputCanvas.style.display = 'block';
+                outputCanvas.style.visibility = 'visible';
+                outputCanvas.classList.remove('hidden');
+                
                 // 若网格已开启，贴合输出画布
                 const showGridCheckbox = document.getElementById('showGrid');
                 if (showGridCheckbox?.checked) {
                     showGridOnCanvas(outputCanvas);
                 }
+                
+                console.log('🔍 处理后canvas状态:');
+                console.log('   preview-canvas hidden:', previewCanvas?.classList.contains('hidden'));
+                console.log('   output-canvas visible:', !outputCanvas.classList.contains('hidden'));
             }
 
             // 启用下载按钮
@@ -631,10 +858,15 @@ let previewTimeout;
 function debouncePreview() {
     clearTimeout(previewTimeout);
     previewTimeout = setTimeout(() => {
-        if (currentImage) {
+        if (currentImage && !isProcessing) {
+            console.log('🎯 开始自动处理像素艺术...');
+            isProcessing = true;
             const options = getProcessingOptions();
+            
             processImageToPixelArt(currentImage, options).then(result => {
                 const outputCanvas = $('output-canvas');
+                const previewCanvas = $('preview-canvas');
+                
                 if (outputCanvas) {
                     const pixelSize = options.pixelSize || 8;
                     outputCanvas.width = result.width * pixelSize;
@@ -644,13 +876,59 @@ function debouncePreview() {
                     ctx.imageSmoothingEnabled = false;
                     ctx.drawImage(result, 0, 0, outputCanvas.width, outputCanvas.height);
 
-                    hideElement('preview-canvas');
-                    showElement('output-canvas');
+                    // 确保原图预览完全隐藏
+                    if (previewCanvas) {
+                        previewCanvas.style.display = 'none';
+                        previewCanvas.style.visibility = 'hidden';
+                        previewCanvas.classList.add('hidden');
+                        console.log('🙈 原图预览已隐藏');
+                    }
+                    
+                    // 确保处理结果显示
+                    outputCanvas.style.display = 'block';
+                    outputCanvas.style.visibility = 'visible';
+                    outputCanvas.classList.remove('hidden');
+                    
+                    // 优化输出画布的显示尺寸
+                    const maxDisplayWidth = 600;
+                    const maxDisplayHeight = 400;
+                    
+                    let displayWidth = outputCanvas.width;
+                    let displayHeight = outputCanvas.height;
+                    
+                    // 如果处理后的图片太大，按比例缩放显示尺寸
+                    if (outputCanvas.width > maxDisplayWidth || outputCanvas.height > maxDisplayHeight) {
+                        const widthRatio = maxDisplayWidth / outputCanvas.width;
+                        const heightRatio = maxDisplayHeight / outputCanvas.height;
+                        const ratio = Math.min(widthRatio, heightRatio);
+                        
+                        displayWidth = Math.round(outputCanvas.width * ratio);
+                        displayHeight = Math.round(outputCanvas.height * ratio);
+                    }
+                    
+                    outputCanvas.style.width = displayWidth + 'px';
+                    outputCanvas.style.height = displayHeight + 'px';
+                    outputCanvas.style.maxWidth = '100%';
+                    outputCanvas.style.maxHeight = '400px';
+                    
+                    console.log(`🎨 像素艺术结果显示: ${outputCanvas.width}×${outputCanvas.height} → ${displayWidth}×${displayHeight}`);
+                    
+                    // 添加处理完成的视觉提示
+                    outputCanvas.style.boxShadow = '0 4px 12px rgba(0, 123, 255, 0.3)';
+                    outputCanvas.style.border = '2px solid #007bff';
+                    
                     // 若网格已开启，贴合输出画布
                     const showGridCheckbox = document.getElementById('showGrid');
                     if (showGridCheckbox?.checked) {
                         showGridOnCanvas(outputCanvas);
                     }
+                    
+                    // 显示处理完成提示（避免重复提示）
+                    if (!processedImage) {
+                        showToast('🎨 像素艺术处理完成！', 'success');
+                    }
+                    
+                    console.log('✅ 像素艺术自动处理完成，原图已隐藏，只显示处理结果');
                 }
 
                 // 更新处理结果
@@ -667,6 +945,13 @@ function debouncePreview() {
                     downloadWithGridBtn.disabled = false;
                     downloadWithGridBtn.classList.remove('hidden');
                 }
+                
+                // 重置处理状态
+                isProcessing = false;
+            }).catch(error => {
+                console.error('❌ 自动处理失败:', error);
+                showToast('处理失败，请重试', 'error');
+                isProcessing = false;
             });
         }
     }, 300); // 300ms防抖延迟
@@ -966,19 +1251,32 @@ function resetApp() {
     const fileInput = $('file-input');
     const processBtn = $('process-btn');
     const downloadBtn = $('download-btn');
+    const downloadWithGridBtn = $('downloadWithGridBtn');
+    
+    // 清除并隐藏预览画布
     if (previewCanvas) {
         const ctx = previewCanvas.getContext('2d');
         ctx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
-        hideElement('preview-canvas');
+        previewCanvas.style.display = 'none';
+        previewCanvas.classList.add('hidden');
     }
 
+    // 清除并隐藏输出画布
     if (outputCanvas) {
         const ctx = outputCanvas.getContext('2d');
         ctx.clearRect(0, 0, outputCanvas.width, outputCanvas.height);
-        hideElement('output-canvas');
+        outputCanvas.style.display = 'none';
+        outputCanvas.classList.add('hidden');
+        
+        // 移除处理完成后的特殊样式
+        outputCanvas.style.boxShadow = '';
+        outputCanvas.style.border = '1px solid #dee2e6';
     }
 
+    // 重置文件输入
     if (fileInput) fileInput.value = '';
+    
+    // 重置按钮状态
     if (processBtn) {
         processBtn.disabled = true;
         processBtn.textContent = 'Process';
@@ -987,10 +1285,21 @@ function resetApp() {
         downloadBtn.disabled = true;
         downloadBtn.classList.add('hidden');
     }
+    if (downloadWithGridBtn) {
+        downloadWithGridBtn.disabled = true;
+        downloadWithGridBtn.classList.add('hidden');
+    }
 
+    // 隐藏控制按钮
+    hideElement('toggleControls');
+    hideElement('usedColorsPanel');
+
+    // 显示上传提示
     showElement('upload-prompt');
     setProgress(0, '');
     showToast('已重置', 'info');
+    
+    console.log('🔄 应用已重置，所有canvas已清除并隐藏');
 }
 
 // 初始化调色板显示
@@ -1038,10 +1347,7 @@ function initializePaletteDisplay() {
     console.log('调色板容器子元素数量:', paletteContainer.children.length);
 }
 
-// 智能预设功能已移除，简化代码
-function initializeSmartPresets() {
-    // 功能已移除
-}
+// 智能预设功能已移除
 
 // 初始化应用
 function initApp() {

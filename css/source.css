@@ -4,6 +4,18 @@
 
 /* Wplace Paint Tool - Custom Styles */
 
+/* 防止图片显示在uploadArea中 */
+#uploadArea img {
+    display: none !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+    top: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+}
+
 /* Tailwind v4 CSS Variables Theme */
 :root {
     --radius: 0.65rem;

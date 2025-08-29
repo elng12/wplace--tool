@@ -46,7 +46,12 @@
       "Bash(then echo \"✅ 已有\")",
       "Bash(do sed -i 's|</body>|  <script src=\"\"brutal-translate.js\"\"></script>\\n</body>|g' \"$file\")",
       "Bash(echo:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(cd:*)",
+      "mcp__playwright__playwright_upload_file",
+      "mcp__playwright__playwright_screenshot",
+      "Bash(start test-page.html)",
+      "Bash(cmd /c:*)"
     ],
     "deny": [],
     "ask": []
