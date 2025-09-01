@@ -606,10 +606,20 @@ function handleFileUpload(files) {
             
             // 自动触发第一次处理，隐藏原图显示处理结果
             console.log('🚀 自动触发像素艺术处理...');
+            
+            // 立即隐藏预览画布，避免用户看到原图
+            if (previewCanvas) {
+                previewCanvas.style.display = 'none !important';
+                previewCanvas.style.visibility = 'hidden !important';
+                previewCanvas.style.opacity = '0';
+                previewCanvas.classList.add('hidden');
+                console.log('🙈 立即隐藏原图预览');
+            }
+            
             setTimeout(() => {
-                console.log('🎯 开始自动处理，将隐藏预览显示结果');
+                console.log('🎯 开始自动处理，将显示像素艺术结果');
                 debouncePreview();
-            }, 300); // 减少延迟，更快响应
+            }, 100); // 减少延迟，更快响应
         };
 
         img.onerror = function(err) {
@@ -878,10 +888,14 @@ function debouncePreview() {
 
                     // 确保原图预览完全隐藏
                     if (previewCanvas) {
-                        previewCanvas.style.display = 'none';
-                        previewCanvas.style.visibility = 'hidden';
+                        previewCanvas.style.display = 'none !important';
+                        previewCanvas.style.visibility = 'hidden !important';
+                        previewCanvas.style.opacity = '0';
+                        previewCanvas.style.position = 'absolute';
+                        previewCanvas.style.left = '-9999px';
+                        previewCanvas.style.top = '-9999px';
                         previewCanvas.classList.add('hidden');
-                        console.log('🙈 原图预览已隐藏');
+                        console.log('🙈 原图预览已完全隐藏');
                     }
                     
                     // 确保处理结果显示
