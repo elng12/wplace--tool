@@ -15,8 +15,8 @@ class OptimizedI18nSystem {
 
         // 获取保存的语言偏好
         const savedLang = localStorage.getItem('preferredLanguage') || this.detectBrowserLanguage();
-        // 优先使用保存的语言，如果没有则使用英文作为默认
-        this.currentLang = this.supportedLangs.includes(savedLang) ? savedLang : 'en';
+        // 优先使用保存的语言，如果没有则使用检测到的浏览器语言
+        this.currentLang = this.supportedLangs.includes(savedLang) ? savedLang : this.detectBrowserLanguage();
         console.log('🧭 I18N ctor: savedLang=', savedLang, 'chosen=', this.currentLang, 'isFileProtocol=', this.isFileProtocol);
     }
 
@@ -436,6 +436,7 @@ class OptimizedI18nSystem {
         const selector = document.getElementById('languageSelector');
         if (selector && selector.value !== this.currentLang) {
             selector.value = this.currentLang;
+            console.log(`🔄 语言选择器已同步到: ${this.currentLang}`);
         }
 
         // 更新文档语言属性
@@ -536,7 +537,9 @@ class OptimizedI18nSystem {
     bindLanguageSelector() {
         const selector = document.getElementById('languageSelector');
         if (selector) {
+            // 确保选择器显示当前语言
             selector.value = this.currentLang;
+            console.log(`🔄 语言选择器设置为: ${this.currentLang}`);
 
             // 移除旧的事件监听器（如果存在）
             selector.removeEventListener('change', this._languageChangeHandler);
@@ -552,7 +555,7 @@ class OptimizedI18nSystem {
             };
 
             selector.addEventListener('change', this._languageChangeHandler);
-            console.log('✅ 语言选择器已绑定');
+            console.log('✅ 语言选择器已绑定，当前值:', selector.value);
         } else {
             console.warn('⚠️ 找不到语言选择器 #languageSelector');
         }
