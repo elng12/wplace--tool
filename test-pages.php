@@ -63,6 +63,19 @@ echo '<!DOCTYPE html>
     <div class="header">
         <h1>🧪 页面访问测试</h1>
         <p>检测网站各页面的HTTP状态和重定向情况</p>
+    </div>
+
+    <!-- 广告位 -->
+    <div style="text-align: center; margin: 20px 0;">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-3219924658522446"
+             data-ad-slot="7465121423"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     </div>';
 
 // 要测试的页面列表
