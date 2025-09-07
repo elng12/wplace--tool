@@ -26,6 +26,7 @@
   "advanced.dithering": "启用 Floyd-Steinberg 抖动算法",
   "advanced.grid": "显示像素网格",
   "advanced.scaling": "图像缩放方式：",
+  "advanced.showOriginal": "显示原始图片",
   "advanced.title": "高级设置",
   "blog.article1.desc": "通过我们全面的初学者指南开始您的像素艺术之旅。学习如何轻松地将任何图像转换为令人惊叹的 Wplace 兼容像素艺术，涵盖从初始上传到高级调色板匹配和优化技术的所有内容。",
   "blog.article1.title": "入门指南：Wplace 工具必备指南",

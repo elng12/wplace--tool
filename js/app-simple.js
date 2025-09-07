@@ -612,14 +612,18 @@ function handleFileUpload(files) {
                 previewCanvas.style.display = 'none !important';
                 previewCanvas.style.visibility = 'hidden !important';
                 previewCanvas.style.opacity = '0';
+                previewCanvas.style.position = 'absolute';
+                previewCanvas.style.left = '-9999px';
+                previewCanvas.style.top = '-9999px';
                 previewCanvas.classList.add('hidden');
-                console.log('🙈 立即隐藏原图预览');
+                console.log('🙈 立即完全隐藏原图预览');
             }
             
+            // 立即开始处理，不等待用户操作
             setTimeout(() => {
                 console.log('🎯 开始自动处理，将显示像素艺术结果');
                 debouncePreview();
-            }, 100); // 减少延迟，更快响应
+            }, 50); // 更快的响应时间
         };
 
         img.onerror = function(err) {
@@ -888,14 +892,20 @@ function debouncePreview() {
 
                     // 确保原图预览完全隐藏
                     if (previewCanvas) {
-                        previewCanvas.style.display = 'none !important';
-                        previewCanvas.style.visibility = 'hidden !important';
-                        previewCanvas.style.opacity = '0';
-                        previewCanvas.style.position = 'absolute';
-                        previewCanvas.style.left = '-9999px';
-                        previewCanvas.style.top = '-9999px';
-                        previewCanvas.classList.add('hidden');
-                        console.log('🙈 原图预览已完全隐藏');
+                        const showOriginalCheckbox = document.getElementById('showOriginal');
+                        if (!showOriginalCheckbox || !showOriginalCheckbox.checked) {
+                            // 只有在未选择显示原图时才隐藏
+                            previewCanvas.style.display = 'none !important';
+                            previewCanvas.style.visibility = 'hidden !important';
+                            previewCanvas.style.opacity = '0';
+                            previewCanvas.style.position = 'absolute';
+                            previewCanvas.style.left = '-9999px';
+                            previewCanvas.style.top = '-9999px';
+                            previewCanvas.classList.add('hidden');
+                            console.log('🙈 原图预览已完全隐藏');
+                        } else {
+                            console.log('👁️ 用户选择显示原图，保持原图可见');
+                        }
                     }
                     
                     // 确保处理结果显示
@@ -1694,6 +1704,63 @@ document.addEventListener('DOMContentLoaded', function() {
             showGridOnCanvas(outputCanvas);
         }
     });
+
+    // 显示模式控制
+    const showOriginalCheckbox = document.getElementById('showOriginal');
+    if (showOriginalCheckbox) {
+        showOriginalCheckbox.addEventListener('change', function() {
+            toggleOriginalImageDisplay(this.checked);
+        });
+    }
 });
 
-console.log('📱 简化版本加载完成！');
+// 切换原图显示
+function toggleOriginalImageDisplay(showOriginal) {
+    console.log(`📷 切换原图显示: ${showOriginal ? '开启' : '关闭'}`);
+    const previewCanvas = document.getElementById('preview-canvas');
+    const outputCanvas = document.getElementById('output-canvas');
+    
+    if (showOriginal) {
+        // 显示原图和像素化结果（并排显示）
+        if (previewCanvas && currentImage) {
+            previewCanvas.style.display = 'block';
+            previewCanvas.style.visibility = 'visible';
+            previewCanvas.style.opacity = '1';
+            previewCanvas.style.position = 'relative';
+            previewCanvas.style.left = 'auto';
+            previewCanvas.style.top = 'auto';
+            previewCanvas.classList.remove('hidden');
+            console.log('👁️ 原图预览已显示');
+        }
+        
+        if (outputCanvas && processedImage) {
+            outputCanvas.style.display = 'block';
+            outputCanvas.style.visibility = 'visible';
+            outputCanvas.classList.remove('hidden');
+        }
+    } else {
+        // 只显示像素化结果，隐藏原图
+        if (previewCanvas) {
+            previewCanvas.style.display = 'none !important';
+            previewCanvas.style.visibility = 'hidden !important';
+            previewCanvas.style.opacity = '0';
+            previewCanvas.style.position = 'absolute';
+            previewCanvas.style.left = '-9999px';
+            previewCanvas.style.top = '-9999px';
+            previewCanvas.classList.add('hidden');
+            console.log('� 原图预览已隐藏');
+        }
+        
+        if (outputCanvas && processedImage) {
+            outputCanvas.style.display = 'block';
+            outputCanvas.style.visibility = 'visible';
+            outputCanvas.classList.remove('hidden');
+            console.log('🎨 只显示像素化结果');
+        }
+    }
+}
+
+console.log('�📱 简化版本加载完成！');
+console.log('✅ Wplace Paint Tool - 功能更新完成');
+console.log('🎯 新功能: 默认只显示像素化结果，可选显示原图');
+console.log('💡 上传图片后将自动处理并显示像素艺术结果！');
