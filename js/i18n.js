@@ -13,19 +13,31 @@ class OptimizedI18nSystem {
         this.updateDebounceTimer = null;
         this.lastUpdateHash = null;
 
-        // 获取保存的语言偏好
-        const savedLang = localStorage.getItem('preferredLanguage') || this.detectBrowserLanguage();
-        // 优先使用保存的语言，如果没有则使用检测到的浏览器语言
-        this.currentLang = this.supportedLangs.includes(savedLang) ? savedLang : this.detectBrowserLanguage();
+        // 获取保存的语言偏好，如果没有保存则默认使用英语
+        const savedLang = localStorage.getItem('preferredLanguage');
+        // 只有用户明确选择了语言才使用，否则默认英语
+        this.currentLang = savedLang && this.supportedLangs.includes(savedLang) ? savedLang : 'en';
         console.log('🧭 I18N ctor: savedLang=', savedLang, 'chosen=', this.currentLang, 'isFileProtocol=', this.isFileProtocol);
     }
 
 
-    // 检测浏览器语言
+    // 检测浏览器语言（仅在需要时使用）
     detectBrowserLanguage() {
         const browserLang = navigator.language || navigator.userLanguage;
         const langCode = browserLang.split('-')[0];
         return this.supportedLangs.includes(langCode) ? langCode : 'en';
+    }
+
+    // 重置语言偏好到默认英语（调试用）
+    resetToEnglish() {
+        console.log('🔄 重置语言偏好到英语');
+        localStorage.removeItem('preferredLanguage');
+        this.currentLang = 'en';
+        this.updatePage();
+        const selector = document.getElementById('languageSelector');
+        if (selector) {
+            selector.value = 'en';
+        }
     }
 
     // 异步加载翻译文件
