@@ -37,6 +37,12 @@
   <!-- Google AdSense with error handling -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous" 
           onerror="console.log('AdSense脚本加载失败，这在本地开发环境中是正常的')"></script>
+  
+  <!-- AMP Auto Ads Script -->
+  <script async custom-element="amp-auto-ads"
+          src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+  
   <!-- Custom Styles -->
   <link rel="stylesheet" href="css/main.css?v=20250828-fix2" />
 
@@ -161,6 +167,11 @@
   </style>
 </head>
 <body class="bg-background text-foreground min-h-screen">
+  <!-- AMP Auto Ads -->
+  <amp-auto-ads type="adsense"
+          data-ad-client="ca-pub-3219924658522446">
+  </amp-auto-ads>
+  
   <!-- Header Navigation -->
   <header class="bg-card shadow-sm border-border border-b sticky top-0 z-50" role="banner">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
