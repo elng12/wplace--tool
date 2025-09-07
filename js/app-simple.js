@@ -534,22 +534,39 @@ function handleFileUpload(files) {
                         uploadPrompt.classList.add('hidden');
                     }
                     
-                    // 确保预览画布显示且输出画布隐藏
+                    // 检查是否应该显示原图
+                    const showOriginalCheckbox = document.getElementById('showOriginal');
+                    const shouldShowOriginal = showOriginalCheckbox && showOriginalCheckbox.checked;
+                    
                     if (previewCanvas) {
-                        // 强制显示预览画布
-                        previewCanvas.style.cssText = previewCanvas.style.cssText.replace(/display\s*:\s*none/gi, '');
-                        previewCanvas.style.display = 'block';
-                        previewCanvas.style.visibility = 'visible';
-                        previewCanvas.classList.remove('hidden');
+                        if (shouldShowOriginal) {
+                            // 用户选择显示原图时才显示
+                            previewCanvas.style.cssText = previewCanvas.style.cssText.replace(/display\s*:\s*none/gi, '');
+                            previewCanvas.style.display = 'block';
+                            previewCanvas.style.visibility = 'visible';
+                            previewCanvas.classList.remove('hidden');
+                            console.log('👁️ 用户选择显示原图，保持原图可见');
+                        } else {
+                            // 默认情况下隐藏原图
+                            previewCanvas.style.display = 'none !important';
+                            previewCanvas.style.visibility = 'hidden !important';
+                            previewCanvas.style.opacity = '0';
+                            previewCanvas.style.position = 'absolute';
+                            previewCanvas.style.left = '-9999px';
+                            previewCanvas.style.top = '-9999px';
+                            previewCanvas.classList.add('hidden');
+                            console.log('🙈 默认隐藏原图预览');
+                        }
                         
-                        // 验证canvas是否真的可见
+                        // 验证canvas状态
                         const rect = previewCanvas.getBoundingClientRect();
                         console.log('📏 Canvas位置和尺寸:', {
                             width: rect.width,
                             height: rect.height,
                             top: rect.top,
                             left: rect.left,
-                            display: getComputedStyle(previewCanvas).display
+                            display: getComputedStyle(previewCanvas).display,
+                            shouldShow: shouldShowOriginal
                         });
                     }
                     
