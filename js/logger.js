@@ -38,7 +38,7 @@ class Logger {
 
     debug(...args) {
         if (this.isDevelopment) {
-            console.debug(...args);
+            console.log('[DEBUG]', ...args);
         }
     }
 

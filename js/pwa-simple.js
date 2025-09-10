@@ -5,21 +5,21 @@
 (function() {
     'use strict';
     
-    console.log('🚀 开始加载PWA功能...');
+    window.logger?.log('🚀 开始加载PWA功能...');
     
     // 检查环境
     if (location.protocol === 'file:') {
-        console.log('📁 当前在file://协议下，PWA功能受限');
+        window.logger?.log('📁 当前在file://协议下，PWA功能受限');
         return;
     }
     
     // 检查浏览器支持
     if (!('serviceWorker' in navigator)) {
-        console.log('❌ 当前浏览器不支持Service Worker');
+        window.logger?.log('❌ 当前浏览器不支持Service Worker');
         return;
     }
     
-    console.log('✅ PWA环境检查通过');
+    window.logger?.log('✅ PWA环境检查通过');
     
     // 简单的PWA管理器
     const SimplePWAManager = {
@@ -27,7 +27,7 @@
         isInstalled: false,
         
         async init() {
-            console.log('🔧 初始化PWA功能...');
+            window.logger?.log('🔧 初始化PWA功能...');
             
             try {
                 // 注册Service Worker
@@ -39,26 +39,26 @@
                 // 检查是否已安装
                 this.checkIfInstalled();
                 
-                console.log('✅ PWA功能初始化成功');
+                window.logger?.log('✅ PWA功能初始化成功');
             } catch (error) {
-                console.error('❌ PWA初始化失败:', error);
+                window.logger?.error('❌ PWA初始化失败:', error);
             }
         },
         
         async registerServiceWorker() {
             try {
                 const registration = await navigator.serviceWorker.register('/sw.js');
-                console.log('✅ Service Worker注册成功:', registration.scope);
+                window.logger?.log('✅ Service Worker注册成功:', registration.scope);
                 return registration;
             } catch (error) {
-                console.error('❌ Service Worker注册失败:', error);
+                window.logger?.error('❌ Service Worker注册失败:', error);
                 throw error;
             }
         },
         
         setupInstallPrompt() {
             window.addEventListener('beforeinstallprompt', (e) => {
-                console.log('💾 PWA安装提示事件');
+                window.logger?.log('💾 PWA安装提示事件');
                 e.preventDefault();
                 this.deferredPrompt = e;
                 this.showInstallButton();
@@ -89,7 +89,7 @@
             btn.addEventListener('click', () => this.promptInstall());
             document.body.appendChild(btn);
             
-            console.log('📱 安装按钮已显示');
+            window.logger?.log('📱 安装按钮已显示');
         },
         
         async promptInstall() {
@@ -98,14 +98,14 @@
             try {
                 this.deferredPrompt.prompt();
                 const result = await this.deferredPrompt.userChoice;
-                console.log('用户安装选择:', result.outcome);
+                window.logger?.log('用户安装选择:', result.outcome);
                 
                 this.deferredPrompt = null;
                 const btn = document.getElementById('pwa-install-btn');
                 if (btn) btn.remove();
                 
             } catch (error) {
-                console.error('安装提示失败:', error);
+                window.logger?.error('安装提示失败:', error);
             }
         },
         
@@ -115,9 +115,9 @@
             
             if (isStandalone) {
                 this.isInstalled = true;
-                console.log('✅ 应用运行在独立模式');
+                window.logger?.log('✅ 应用运行在独立模式');
             } else {
-                console.log('📱 应用运行在浏览器中');
+                window.logger?.log('📱 应用运行在浏览器中');
             }
         }
     };
@@ -134,6 +134,6 @@
     // 导出到全局
     window.simplePWA = SimplePWAManager;
     
-    console.log('📦 简化版PWA管理器加载完成');
+    window.logger?.log('📦 简化版PWA管理器加载完成');
     
 })();

@@ -395,5 +395,11 @@
   "used.colors.free": "無料",
   "used.colors.premium": "プレミアム",
   "used.colors.title": "この画像で使用された色",
-  "used.colors.total": "合計"
+  "used.colors.total": "合計",
+  "advanced.showOriginal": "Show Original Image",
+  "error.404.title": "404 - Page Not Found",
+  "error.404.message": "The page you are looking for does not exist.",
+  "error.404.home": "Go Home",
+  "error.404.back": "Go Back",
+  "error.404.popular": "Popular Pages"
 }

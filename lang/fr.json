@@ -395,5 +395,11 @@
   "used.colors.free": "Gratuit",
   "used.colors.premium": "Premium",
   "used.colors.title": "Couleurs utilisées dans cette image",
-  "used.colors.total": "Total"
+  "used.colors.total": "Total",
+  "advanced.showOriginal": "Show Original Image",
+  "error.404.title": "404 - Page Not Found",
+  "error.404.message": "The page you are looking for does not exist.",
+  "error.404.home": "Go Home",
+  "error.404.back": "Go Back",
+  "error.404.popular": "Popular Pages"
 }

@@ -14,11 +14,11 @@ class PWAManager {
     }
     
     async init() {
-        console.log('🚀 初始化PWA功能...');
+        window.logger?.log('🚀 初始化PWA功能...');
         
         // 检查PWA支持
         if (!this.isPWASupported()) {
-            console.log('❌ 当前浏览器不支持PWA功能');
+            window.logger?.log('❌ 当前浏览器不支持PWA功能');
             return;
         }
         
@@ -40,14 +40,14 @@ class PWAManager {
         // 监听网络状态
         this.setupNetworkMonitoring();
         
-        console.log('✅ PWA功能初始化完成');
+        window.logger?.log('✅ PWA功能初始化完成');
     }
     
     // 检查PWA支持
     isPWASupported() {
         // file:// 协议下Service Worker不工作
         if (location.protocol === 'file:') {
-            console.log('📁 检测到file://协议，Service Worker功能已禁用');
+            window.logger?.log('📁 检测到file://协议，Service Worker功能已禁用');
             return false;
         }
         
@@ -67,11 +67,11 @@ class PWAManager {
                 scope: '/'
             });
             
-            console.log('✅ Service Worker注册成功:', this.swRegistration.scope);
+            window.logger?.log('✅ Service Worker注册成功:', this.swRegistration.scope);
             
             // 监听Service Worker状态变化
             this.swRegistration.addEventListener('updatefound', () => {
-                console.log('🔄 发现Service Worker更新');
+                window.logger?.log('🔄 发现Service Worker更新');
                 this.handleServiceWorkerUpdate();
             });
             
@@ -81,7 +81,7 @@ class PWAManager {
             }
             
         } catch (error) {
-            console.error('❌ Service Worker注册失败:', error);
+            window.logger?.error('❌ Service Worker注册失败:', error);
         }
     }
     
@@ -159,7 +159,7 @@ class PWAManager {
     // 设置安装提示
     setupInstallPrompt() {
         window.addEventListener('beforeinstallprompt', (e) => {
-            console.log('💾 PWA安装提示事件触发');
+            window.logger?.log('💾 PWA安装提示事件触发');
             
             // 阻止默认的安装横幅
             e.preventDefault();
@@ -210,12 +210,12 @@ class PWAManager {
         // 等待用户响应
         const choiceResult = await this.deferredPrompt.userChoice;
         
-        console.log('用户选择:', choiceResult.outcome);
+        window.logger?.log('用户选择:', choiceResult.outcome);
         
         if (choiceResult.outcome === 'accepted') {
-            console.log('✅ 用户接受安装');
+            window.logger?.log('✅ 用户接受安装');
         } else {
-            console.log('❌ 用户拒绝安装');
+            window.logger?.log('❌ 用户拒绝安装');
         }
         
         // 清除引用
@@ -237,7 +237,7 @@ class PWAManager {
     // 设置应用已安装监听
     setupAppInstalled() {
         window.addEventListener('appinstalled', () => {
-            console.log('✅ PWA应用已安装');
+            window.logger?.log('✅ PWA应用已安装');
             this.isInstalled = true;
             this.hideInstallButton();
             
@@ -276,18 +276,18 @@ class PWAManager {
         // 检查是否在独立模式下运行
         if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) {
             this.isInstalled = true;
-            console.log('✅ 应用运行在独立模式下');
+            window.logger?.log('✅ 应用运行在独立模式下');
             return;
         }
         
         // 检查是否从主屏幕启动
         if (window.navigator.standalone === true) {
             this.isInstalled = true;
-            console.log('✅ 应用从主屏幕启动');
+            window.logger?.log('✅ 应用从主屏幕启动');
             return;
         }
         
-        console.log('📱 应用运行在浏览器中');
+        window.logger?.log('📱 应用运行在浏览器中');
     }
     
     // 设置更新检查器
@@ -311,21 +311,21 @@ class PWAManager {
         
         try {
             await this.swRegistration.update();
-            console.log('🔍 检查更新完成');
+            window.logger?.log('🔍 检查更新完成');
         } catch (error) {
-            console.error('❌ 检查更新失败:', error);
+            window.logger?.error('❌ 检查更新失败:', error);
         }
     }
     
     // 设置网络监控
     setupNetworkMonitoring() {
         window.addEventListener('online', () => {
-            console.log('🌐 网络已连接');
+            window.logger?.log('🌐 网络已连接');
             this.showNetworkStatus('online');
         });
         
         window.addEventListener('offline', () => {
-            console.log('📴 网络已断开');
+            window.logger?.log('📴 网络已断开');
             this.showNetworkStatus('offline');
         });
     }

@@ -41,13 +41,13 @@ const CDN_ASSETS = [
 
 // 安装事件 - 预缓存关键资源
 self.addEventListener('install', event => {
-  console.log('[SW] 🚀 安装Service Worker...');
+  window.logger?.log('[SW] 🚀 安装Service Worker...');
   
   event.waitUntil(
     Promise.all([
       // 缓存静态资源
       caches.open(STATIC_CACHE_NAME).then(cache => {
-        console.log('[SW] 📦 缓存静态资源...');
+        window.logger?.log('[SW] 📦 缓存静态资源...');
         return cache.addAll([...STATIC_ASSETS, ...BLOG_ASSETS]);
       }),
       
@@ -59,7 +59,7 @@ self.addEventListener('install', event => {
 
 // 激活事件 - 清理旧缓存
 self.addEventListener('activate', event => {
-  console.log('[SW] ✅ 激活Service Worker...');
+  window.logger?.log('[SW] ✅ 激活Service Worker...');
   
   event.waitUntil(
     Promise.all([
@@ -73,7 +73,7 @@ self.addEventListener('activate', event => {
               cacheName !== DYNAMIC_CACHE_NAME
             )
             .map(cacheName => {
-              console.log('[SW] 🗑️ 删除旧缓存:', cacheName);
+              window.logger?.log('[SW] 🗑️ 删除旧缓存:', cacheName);
               return caches.delete(cacheName);
             })
         );
@@ -130,7 +130,7 @@ async function handleFetch(request, url) {
     return await networkFirst(request, DYNAMIC_CACHE_NAME);
     
   } catch (error) {
-    console.error('[SW] ❌ 请求处理失败:', error);
+    window.logger?.error('[SW] ❌ 请求处理失败:', error);
     
     // 如果是HTML页面请求失败，返回离线页面
     if (isHTMLPage(url.pathname)) {
@@ -264,7 +264,7 @@ function isImageResource(pathname) {
 
 // 后台同步事件
 self.addEventListener('sync', event => {
-  console.log('[SW] 🔄 后台同步:', event.tag);
+  window.logger?.log('[SW] 🔄 后台同步:', event.tag);
   
   if (event.tag === 'background-sync') {
     event.waitUntil(doBackgroundSync());
@@ -275,9 +275,9 @@ self.addEventListener('sync', event => {
 async function doBackgroundSync() {
   try {
     // 这里可以添加后台数据同步逻辑
-    console.log('[SW] ✅ 后台同步完成');
+    window.logger?.log('[SW] ✅ 后台同步完成');
   } catch (error) {
-    console.error('[SW] ❌ 后台同步失败:', error);
+    window.logger?.error('[SW] ❌ 后台同步失败:', error);
   }
 }
 
@@ -328,4 +328,4 @@ async function cacheUrls(urls) {
   return cache.addAll(urls);
 }
 
-console.log('[SW] 📱 Wplace Tool Service Worker 已加载');
+window.logger?.log('[SW] 📱 Wplace Tool Service Worker 已加载');

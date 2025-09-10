@@ -21,7 +21,7 @@ class AccessibilityManager {
     }
     
     init() {
-        console.log('♿ 初始化无障碍访问系统...');
+        window.logger?.log('♿ 初始化无障碍访问系统...');
         
         // 检测用户系统偏好
         this.detectSystemPreferences();
@@ -44,7 +44,7 @@ class AccessibilityManager {
         // 监听动态内容变化
         this.setupMutationObserver();
         
-        console.log('✅ 无障碍访问系统初始化完成');
+        window.logger?.log('✅ 无障碍访问系统初始化完成');
     }
     
     // 检测系统偏好
@@ -67,7 +67,7 @@ class AccessibilityManager {
             this.applyLargeText();
         }
         
-        console.log('🔍 系统偏好检测完成:', this.settings);
+        window.logger?.log('🔍 系统偏好检测完成:', this.settings);
     }
     
     // 设置键盘导航
@@ -156,7 +156,7 @@ class AccessibilityManager {
         } else if (document.body) {
             document.body.appendChild(skipLinks);
         } else {
-            console.warn('⚠️ 无法创建跳转链接：document.body 不存在');
+            window.logger?.warn('⚠️ 无法创建跳转链接：document.body 不存在');
             return;
         }
         
@@ -245,7 +245,7 @@ class AccessibilityManager {
             timestamp: Date.now()
         });
         
-        console.log(`📢 [Screen Reader] ${message}`);
+        window.logger?.log(`📢 [Screen Reader] ${message}`);
     }
     
     // 增强ARIA属性
@@ -314,11 +314,11 @@ class AccessibilityManager {
             const level = parseInt(heading.tagName.charAt(1));
             
             if (index === 0 && level !== 1) {
-                console.warn('⚠️ 页面应该从h1标题开始');
+                window.logger?.warn('⚠️ 页面应该从h1标题开始');
             }
             
             if (level > expectedLevel + 1) {
-                console.warn(`⚠️ 标题层级跳跃: ${heading.textContent}`);
+                window.logger?.warn(`⚠️ 标题层级跳跃: ${heading.textContent}`);
             }
             
             expectedLevel = Math.max(expectedLevel, level);
@@ -877,7 +877,7 @@ class AccessibilityManager {
         try {
             localStorage.setItem('accessibility-settings', JSON.stringify(this.settings));
         } catch (error) {
-            console.error('保存无障碍设置失败:', error);
+            window.logger?.error('保存无障碍设置失败:', error);
         }
     }
     
@@ -890,7 +890,7 @@ class AccessibilityManager {
                 this.applyLoadedSettings();
             }
         } catch (error) {
-            console.error('加载无障碍设置失败:', error);
+            window.logger?.error('加载无障碍设置失败:', error);
         }
     }
     
@@ -1061,4 +1061,4 @@ window.announce = (message, priority = 'polite') => {
     AccessibilityManager_instance.announce(message, priority);
 };
 
-console.log('♿ 无障碍访问系统已加载');
+window.logger?.log('♿ 无障碍访问系统已加载');

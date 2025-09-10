@@ -5,7 +5,7 @@ const path = require('path');
 const en = JSON.parse(fs.readFileSync('./lang/en.json', 'utf8'));
 const enKeys = new Set(Object.keys(en));
 
-console.log('📊 英文基准文件键值数:', enKeys.size);
+window.logger?.log('📊 英文基准文件键值数:', enKeys.size);
 
 // 需要清理的语言文件
 const langFiles = ['de.json', 'es.json', 'fr.json', 'gn.json', 'ja.json', 'ko.json', 'mi.json', 'pt.json', 'tr.json', 'zh.json'];
@@ -34,8 +34,8 @@ langFiles.forEach(filename => {
         fs.writeFileSync(filePath, JSON.stringify(sortedData, null, 2) + '\n');
         
         const removedCount = originalKeys.length - Object.keys(cleanedData).length;
-        console.log(`✅ ${filename}: 清理完成 (移除 ${removedCount} 个多余键值, 保留 ${Object.keys(cleanedData).length} 个)`);
+        window.logger?.log(`✅ ${filename}: 清理完成 (移除 ${removedCount} 个多余键值, 保留 ${Object.keys(cleanedData);.length} 个)`);
     }
 });
 
-console.log('\n🎯 翻译文件清理完成！');
+window.logger?.log('\n🎯 翻译文件清理完成！');

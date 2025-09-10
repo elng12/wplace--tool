@@ -65,7 +65,7 @@ class EnhancedErrorHandler {
                 } else {
                     // 对于外部服务，仅在开发模式下输出简化信息
                     if (this.isDevMode()) {
-                        console.log(`🌐 外部服务连接失败（正常）: ${source}`);
+                        window.logger?.log(`🌐 外部服务连接失败（正常）: ${source}`);
                     }
                 }
             }
@@ -92,13 +92,13 @@ class EnhancedErrorHandler {
         // 控制台输出（开发模式）
         if (this.isDevMode()) {
             console.group(`❌ 错误 [${errorEntry.id}]`);
-            console.error('消息:', errorEntry.message);
-            console.error('类型:', errorEntry.type);
-            console.error('时间:', errorEntry.timestamp);
+            window.logger?.error('消息:', errorEntry.message);
+            window.logger?.error('类型:', errorEntry.type);
+            window.logger?.error('时间:', errorEntry.timestamp);
             if (errorEntry.stack) {
-                console.error('堆栈:', errorEntry.stack);
+                window.logger?.error('堆栈:', errorEntry.stack);
             }
-            console.error('详细信息:', errorEntry);
+            window.logger?.error('详细信息:', errorEntry);
             console.groupEnd();
         }
     }
@@ -206,7 +206,7 @@ class EnhancedErrorHandler {
             showToast(message, toastType);
         } else {
             // 后备方案：简单的alert
-            console.error('错误:', message);
+            window.logger?.error('错误:', message);
             if (options.showAlert) {
                 alert(`错误: ${message}`);
             }
@@ -244,7 +244,7 @@ class EnhancedErrorHandler {
             try {
                 callback(errorEntry);
             } catch (err) {
-                console.error('错误回调执行失败:', err);
+                window.logger?.error('错误回调执行失败:', err);
             }
         });
     }
@@ -340,4 +340,4 @@ window.showUserError = (error, context = {}) => {
 // 导出错误处理器实例（用于高级用法）
 window.errorHandler = globalErrorHandler;
 
-console.log('✅ 增强的错误处理系统已初始化');
+window.logger?.log('✅ 增强的错误处理系统已初始化');

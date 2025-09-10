@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<link rel="preload" href="js/logger.js" as="script">
+<link rel="preload" href="js/lazy-translations-optimized.js" as="script">
+<link rel="preload" href="js/app-simple.js" as="script">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- HTTPS安全设置 -->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+  
+  <title>Wplace Paint Tool Blog | Pixel Art Tips & Tutorials</title>
+  
+  
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3219924658522446" crossorigin="anonymous"></script>
+  
+  <!-- AMP Auto Ads Script -->
+  <script async custom-element="amp-auto-ads"
+          src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+  </script>
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/main.css" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="shortcut icon" href="/favicon.ico">
+<style>
+/* Critical CSS - 立即加载的关键样式 */
+.hidden { display: none !important; }
+.sr-only { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+#uploadArea { min-height: 200px; border: 2px dashed #e5e7eb; transition: all 0.3s; }
+#uploadArea:hover { border-color: #3b82f6; background-color: #f8fafc; }
+.progress-bar { height: 4px; background: linear-gradient(90deg, #3b82f6, #10b981); }
+canvas { max-width: 100%; height: auto; image-rendering: pixelated; }
+</style>
+<link rel="preload" href="css/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="css/main.css"></noscript>
+    <meta name="description" content="Master pixel art creation with our comprehensive guides, tutorials, and tips for Wplace artists. Learn advanced techniques and best practices.">
+    <meta name="keywords" content="pixel art blog, wplace tutorials, pixel art tips, digital art guides">
+    <meta name="author" content="Wplace Paint Tool Team">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://wplace.vercel.app/jahttps://wplace.vercel.app/blog.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Wplace Paint Tool Blog | Pixel Art Tips & Tutorials">
+    <meta property="og:description" content="Master pixel art creation with our comprehensive guides, tutorials, and tips for Wplace artists. Learn advanced techniques and best practices.">
+    <meta property="og:image" content="https://wplace.vercel.app/screenshots/desktop-wide.png">
+    <meta property="og:url" content="https://wplace.vercel.app/jahttps://wplace.vercel.app/blog.html">
+    <meta property="og:site_name" content="Wplace Paint Tool">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Wplace Paint Tool Blog | Pixel Art Tips & Tutorials">
+    <meta name="twitter:description" content="Master pixel art creation with our comprehensive guides, tutorials, and tips for Wplace artists. Learn advanced techniques and best practices.">
+    <meta name="twitter:image" content="https://wplace.vercel.app/screenshots/desktop-wide.png">
+    
+    <!-- Mobile/App -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Wplace Tool">
+    <meta name="application-name" content="Wplace Paint Tool">
+    
+    <!-- Performance Hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Hreflang for international SEO -->
+    <link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/blog.html">
+    <link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/blog.html">
+    <link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/blog.html">
+    <link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/blog.html">
+    <link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/blog.html">
+    <link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/blog.html">
+    <link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/blog.html">
+    <link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/blog.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/blog.html">
+    <link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/blog.html">
+    <link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/blog.html">
+    <link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/blog.html">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Wplace Paint Tool",
+  "alternateName": "Wplace Pixel Art Converter",
+  "description": "Ultimate Wplace Paint Tool - Convert any image to stunning pixel art compatible with Wplace. Free online tool with official 64-color palette matching.",
+  "url": "https://wplace.vercel.app",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://wplace.vercel.app/?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Wplace Paint Tool",
+    "url": "https://wplace.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wplace.vercel.app/favicon-32x32.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Wplace Paint Tool",
+  "description": "Free online pixel art converter for Wplace. Transform any image into stunning pixel art with official color palette matching.",
+  "url": "https://wplace.vercel.app",
+  "applicationCategory": "GraphicsApplication",
+  "operatingSystem": "Web Browser",
+  "softwareVersion": "2.0",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Image to pixel art conversion",
+    "Official Wplace color palette matching",
+    "Batch processing support",
+    "Multiple export formats",
+    "Privacy-focused client-side processing"
+  ],
+  "screenshot": "https://wplace.vercel.app/screenshots/desktop-wide.png",
+  "author": {
+    "@type": "Organization",
+    "name": "Wplace Paint Tool Team"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Wplace Paint Tool",
+  "applicationCategory": "GraphicsApplication",
+  "operatingSystem": "Web Browser",
+  "description": "Professional pixel art converter for Wplace with advanced color matching and processing capabilities.",
+  "softwareVersion": "2.0",
+  "datePublished": "2024-01-01",
+  "downloadUrl": "https://wplace.vercel.app",
+  "featureList": [
+    "Instant image conversion",
+    "64-color Wplace palette support",
+    "High-quality pixel art generation",
+    "Batch processing capabilities",
+    "No registration required"
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "1247",
+    "bestRating": "5"
+  }
+}
+</script></head>
+<body class="bg-background text-foreground min-h-screen">
+  <!-- AMP Auto Ads -->
+  <amp-auto-ads type="adsense"
+          data-ad-client="ca-pub-3219924658522446">
+  </amp-auto-ads>
+  
+  <!-- Header Navigation -->
+  <header class="bg-card shadow-sm border-border border-b sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 relative">
+        <!-- Logo and Brand -->
+        <div class="flex items-center space-x-3">
+          <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-sm">W</span>
+          </div>
+          <h2 class="text-xl font-bold text-card-foreground" data-lang="brand.name">Wplace Paint Tool</h2>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="hidden md:flex items-center space-x-6 ml-auto">
+          <a href="index.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.home">Home</a>
+          <a href="color-converter.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.converter">Converter</a>
+          <a href="blog.html" class="text-blue-600 px-3 py-2 text-sm font-medium border-b-2 border-blue-600" data-lang="nav.blog">Blog</a>
+          <a href="about.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.about">About</a>
+          <a href="privacy.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.privacy">Privacy</a>
+          <a href="terms.html" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium" data-lang="nav.terms">Terms</a>
+        </nav>
+
+        <!-- Mobile Menu Button & Language Selector -->
+        <div class="flex items-center space-x-3">
+          <!-- Mobile menu button -->
+          <button id="mobileMenuButton" class="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+          
+          <!-- Language Selector -->
+          <div class="bg-muted rounded-lg border-border border p-1">
+            <select id="languageSelector" class="bg-transparent border-none focus:outline-none cursor-pointer text-sm font-medium px-2 py-1">
+              <option value="en" selected>English</option>
+              <option value="zh">中文</option>
+              <option value="ko">한국어</option>
+              <option value="ja">日本語</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+              <option value="pt">Português</option>
+              <option value="tr">Türkçe</option>
+              <option value="gn">Guaraní</option>
+              <option value="mi">Te Reo Māori</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Navigation Menu -->
+    <div id="mobileMenu" class="md:hidden bg-white border-t border-gray-200 hidden">
+      <div class="px-4 py-3 space-y-2">
+        <a href="index.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.home">Home</a>
+        <a href="color-converter.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.converter">Converter</a>
+        <a href="blog.html" class="block px-3 py-2 text-blue-600 text-sm font-medium" data-lang="nav.blog">Blog</a>
+        <a href="about.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.about">About</a>
+        <a href="privacy.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.privacy">Privacy</a>
+        <a href="terms.html" class="block px-3 py-2 text-gray-600 hover:text-gray-900 text-sm font-medium" data-lang="nav.terms">Terms</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-white py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6" data-lang="blog.title">Blog</h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto" data-lang="blog.subtitle">Unlock your creative potential on the Wplace canvas. Our blog is your go-to resource for mastering pixel art techniques, enhancing your Wplace painting skills, and making the most of our powerful tools through in-depth guides and inspiring tutorials.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Articles -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="space-y-12">
+      
+      <!-- Article 1 -->
+      <article class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div class="p-8">
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <time datetime="2024-12-15">December 15, 2024</time>
+            <span class="mx-2">•</span>
+            <span>5 <span data-lang="blog.minread">min read</span></span>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.article1.title">Getting Started: Your Essential Guide to the Wplace Tool</h2>
+          <p class="text-gray-600 mb-6 leading-relaxed" data-lang="blog.article1.desc">Embark on your pixel art journey with our comprehensive beginner's guide. Learn to effortlessly transform any image into stunning Wplace-compatible pixel art, covering everything from initial uploads to advanced color palette matching and optimization techniques.</p>
+          <a href="blog/beginner-guide.html" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+            <span data-lang="blog.readmore">Read more</span>
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          
+        </div>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div class="p-8">
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <time datetime="2024-12-10">December 10, 2024</time>
+            <span class="mx-2">•</span>
+            <span>7 <span data-lang="blog.minread">min read</span></span>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.article2.title">Mastering Color: Advanced Palette Strategies for Wplace Artists</h2>
+          <p class="text-gray-600 mb-6 leading-relaxed" data-lang="blog.article2.desc">Elevate your pixel art with expert insights into color theory and palette customization. Discover professional strategies to achieve perfect color harmony, create vibrant compositions, and make your artwork truly stand out on the Wplace canvas.</p>
+          <a href="blog/color-palette-strategies.html" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+            <span data-lang="blog.readmore">Read more</span>
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          
+        </div>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div class="p-8">
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <time datetime="2024-12-05">December 5, 2024</time>
+            <span class="mx-2">•</span>
+            <span>4 <span data-lang="blog.minread">min read</span></span>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.article3.title">Pixel Perfect Scaling: A Deep Dive into Image Resampling</h2>
+          <p class="text-gray-600 mb-6 leading-relaxed" data-lang="blog.article3.desc">Demystify image scaling with our detailed explanation of Nearest Neighbor, Bilinear, and Lanczos methods. Understand their practical implications for pixel art, ensuring you choose the optimal technique to preserve quality and achieve crisp results.</p>
+          <a href="blog/image-resampling.html" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+            <span data-lang="blog.readmore">Read more</span>
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          
+        </div>
+      </article>
+
+      <!-- Article 4 -->
+      <article class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+        <div class="p-8">
+          <div class="flex items-center text-sm text-gray-500 mb-4">
+            <time datetime="2024-11-28">November 28, 2024</time>
+            <span class="mx-2">•</span>
+            <span>6 <span data-lang="blog.minread">min read</span></span>
+          </div>
+          <h2 class="text-2xl font-bold text-gray-900 mb-4" data-lang="blog.article4.title">Enhancing Detail: The Art and Science of Dithering in Pixel Art</h2>
+          <p class="text-gray-600 mb-6 leading-relaxed" data-lang="blog.article4.desc">Uncover the power of dithering, including Floyd-Steinberg, to achieve smoother color gradients and richer textures in your pixel art. Learn how these techniques can enhance detail, reduce banding, and contribute to an authentic retro aesthetic.</p>
+          <a href="blog/dithering-techniques.html" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+            <span data-lang="blog.readmore">Read more</span>
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h3 class="text-2xl font-bold mb-6" data-lang="footer.title">About Wplace Paint Tool</h3>
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-4 mb-8">
+          <a href="about.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.about">About</a>
+          <a href="privacy.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.privacy">Privacy</a>
+          <a href="terms.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.terms">Terms</a>
+          <a href="blog.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.blog">Blog</a>
+          <a href="index.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.home">Home</a>
+          <a href="color-converter.html" class="text-gray-400 hover:text-white text-sm" data-lang="nav.converter">Wplace Color Converter</a>
+        </div>
+        
+        <!-- Independent Fan Site Notice -->
+        <div class="bg-blue-900 rounded-lg p-4 mb-6 text-sm">
+          <div class="flex items-center justify-center mb-2">
+            <svg class="w-5 h-5 text-blue-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+            </svg>
+            <span class="font-semibold text-blue-400" data-lang="footer.disclaimer.title">Independent Fan Site</span>
+          </div>
+          <p class="text-gray-300" data-lang="footer.disclaimer.text">This is an unofficial, independent fan-made website created to address community pixel needs. We are not affiliated with or endorsed by the official Wplace platform. This tool was developed by fans, for fans, to enhance the pixel art creation experience.</p>
+        </div>
+        
+        <p class="text-gray-400 text-sm"><span data-lang="footer.main">© 2025 Wplace Paint Tool - Help Wplace Player Paint Easily - Free to use, no ownership claimed on generated artwork</span><br><span data-lang="footer.privacy">Client-side processing protects your privacy</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 内联完整词库（file:// 下生效；HTTP 下不影响） -->
+  
+  <!-- 统一翻译系统 -->
+  <script src="js/i18n.js" defer></script>
+
+  <!-- 错误处理系统 -->
+  <script src="js/error-handler.js"></script>
+  
+  <!-- 移动端菜单和翻译系统初始化 -->
+  <script>
+    // 移动端菜单功能
+    document.addEventListener('DOMContentLoaded', () => {
+      const mobileMenuButton = document.getElementById('mobileMenuButton');
+      const mobileMenu = document.getElementById('mobileMenu');
+
+      if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
+
+      // 确保翻译系统正常工作
+      console.log('🔍 Blog页面翻译系统检查...');
+      const languageSelector = document.getElementById('languageSelector');
+      if (languageSelector) {
+        console.log('✅ languageSelector找到');
+        // 延迟检查翻译系统，等待js/i18n.js加载完成
+        setTimeout(() => {
+          if (window.i18n) {
+            console.log('✅ i18n系统可用');
+            window.i18n.updatePageTranslations();
+          } else if (window.optimizedI18n) {
+            console.log('✅ optimizedI18n系统可用');
+            window.optimizedI18n.updatePageTranslations();
+          } else {
+            console.log('❌ 翻译系统未找到，尝试手动初始化...');
+            // 手动初始化翻译系统
+            if (typeof initOptimizedI18n === 'function') {
+              initOptimizedI18n();
+            }
+          }
+        }, 500);
+      } else {
+        console.log('❌ languageSelector未找到');
+      }
+    });
+  </script>
+
+<script>
+// Core Web Vitals 监控
+if ('web-vital' in window) {
+    import('https://unpkg.com/web-vitals@3/dist/web-vitals.js').then(({onCLS, onFID, onLCP}) => {
+        onCLS(console.log);
+        onFID(console.log);  
+        onLCP(console.log);
+    });
+}
+
+// 资源加载优化
+document.addEventListener('DOMContentLoaded', function() {
+    // 预加载下一页面的资源
+    const preloadNextPage = () => {
+        const links = document.querySelectorAll('a[href*=".html"]');
+        links.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                const href = this.getAttribute('href');
+                if (href && !document.querySelector(`link[rel="prefetch"][href="${href}"]`)) {
+                    const prefetch = document.createElement('link');
+                    prefetch.rel = 'prefetch';
+                    prefetch.href = href;
+                    document.head.appendChild(prefetch);
+                }
+            }, {once: true});
+        });
+    };
+    
+    setTimeout(preloadNextPage, 1000);
+});
+</script></body>
+</html>

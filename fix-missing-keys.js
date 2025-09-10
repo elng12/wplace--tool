@@ -43,7 +43,7 @@ const missingKeys = {
 };
 
 function addMissingKeys() {
-  console.log('🔧 修复缺失的翻译键...\n');
+  window.logger?.log('🔧 修复缺失的翻译键...\n');
   
   const languages = ['de', 'es', 'fr', 'gn', 'ja', 'ko', 'mi', 'pt', 'tr'];
   
@@ -51,7 +51,7 @@ function addMissingKeys() {
     const filePath = path.join(langDir, `${lang}.json`);
     
     try {
-      console.log(`📝 修复 ${lang}.json...`);
+      window.logger?.log(`📝 修复 ${lang}.json...`);
       
       // 读取现有数据
       const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -68,14 +68,14 @@ function addMissingKeys() {
       // 写回文件
       fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
       
-      console.log(`   ✅ 添加了 ${addedCount} 个键`);
+      window.logger?.log(`   ✅ 添加了 ${addedCount} 个键`);
       
     } catch (error) {
-      console.error(`   ❌ 处理 ${lang}.json 时出错:`, error.message);
+      window.logger?.error(`   ❌ 处理 ${lang}.json 时出错:`, error.message);
     }
   });
   
-  console.log('\n🎉 修复完成！');
+  window.logger?.log('\n🎉 修复完成！');
 }
 
 addMissingKeys();

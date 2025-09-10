@@ -186,8 +186,8 @@ window.__INLINE_I18N__.${lang} = ${JSON.stringify(essentialData, null, 2)};
     
     jsContent += `
 // 日志输出
-console.log('🚀 内联翻译数据已加载，支持语言:', Object.keys(window.__INLINE_I18N__));
-console.log('📊 内联翻译统计:', Object.fromEntries(
+window.logger?.log('🚀 内联翻译数据已加载，支持语言:', Object.keys(window.__INLINE_I18N__));
+window.logger?.log('📊 内联翻译统计:', Object.fromEntries(
     Object.entries(window.__INLINE_I18N__).map(([lang, data]) => [lang, Object.keys(data).length])
 ));`;
 

@@ -10,7 +10,7 @@ class ImageOptimizer {
         this.processing = false;
         
         this.initWorkerPool();
-        console.log(`🚀 图像优化器初始化完成，工作线程池大小: ${this.maxWorkers}`);
+        window.logger?.log(`🚀 图像优化器初始化完成，工作线程池大小: ${this.maxWorkers}`);
     }
 
     initWorkerPool() {
@@ -218,10 +218,10 @@ class ImageOptimizer {
         const threshold = 500000; // 50万像素
         
         if (pixelCount > threshold) {
-            console.log(`🔄 使用异步处理 (${pixelCount} 像素)`);
+            window.logger?.log(`🔄 使用异步处理 (${pixelCount} 像素);`);
             return await this.processImageAsync(imageData, pixelSize, method);
         } else {
-            console.log(`⚡ 使用同步处理 (${pixelCount} 像素)`);
+            window.logger?.log(`⚡ 使用同步处理 (${pixelCount} 像素);`);
             return this.processImageSync(imageData, pixelSize, method);
         }
     }
@@ -252,6 +252,58 @@ class ImageOptimizer {
         return canvas;
     }
 
+    
+    // Performance optimizations for Core Web Vitals
+    processWithProgressiveLoading(imageData, pixelSize, method = 'average') {
+        return new Promise((resolve, reject) => {
+            // 使用 requestIdleCallback 在空闲时处理
+            const processChunk = (deadline) => {
+                const startTime = performance.now();
+                
+                // 分块处理图像数据
+                const chunkSize = Math.min(1000, deadline.timeRemaining() * 100);
+                
+                if (deadline.timeRemaining() > 0 || deadline.didTimeout) {
+                    // 处理一个块
+                    try {
+                        const result = this.processImageSync(imageData, pixelSize, method);
+                        resolve(result);
+                    } catch (error) {
+                        reject(error);
+                    }
+                } else {
+                    // 继续在下一个空闲期处理
+                    requestIdleCallback(processChunk, { timeout: 1000 });
+                }
+            };
+            
+            requestIdleCallback(processChunk, { timeout: 1000 });
+        });
+    }
+
+    // 智能处理策略 - 根据性能自动选择
+    async smartProcess(imageData, pixelSize, method = 'average') {
+        const pixelCount = imageData.width * imageData.height;
+        const deviceMemory = navigator.deviceMemory || 4;
+        const connectionSpeed = navigator.connection?.effectiveType || '4g';
+        
+        // 性能评分
+        let performanceScore = deviceMemory * 2;
+        if (connectionSpeed === 'slow-2g') performanceScore *= 0.3;
+        else if (connectionSpeed === '2g') performanceScore *= 0.5;
+        else if (connectionSpeed === '3g') performanceScore *= 0.7;
+        
+        const threshold = performanceScore > 6 ? 1000000 : 500000;
+        
+        if (pixelCount > threshold) {
+            window.logger?.log('🚀 使用Web Worker处理大图像');
+            return await this.processImageAsync(imageData, pixelSize, method);
+        } else {
+            window.logger?.log('⚡ 使用渐进式处理');
+            return await this.processWithProgressiveLoading(imageData, pixelSize, method);
+        }
+    }
+
     cleanup() {
         // 清理Worker池
         this.workerPool.forEach(worker => worker.terminate());
@@ -262,7 +314,7 @@ class ImageOptimizer {
             URL.revokeObjectURL(this.workerUrl);
         }
         
-        console.log('🧹 图像优化器已清理');
+        window.logger?.log('🧹 图像优化器已清理');
     }
 }
 

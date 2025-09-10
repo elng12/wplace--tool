@@ -11,10 +11,10 @@ class UIComponents {
     }
     
     init() {
-        console.log('🎨 初始化UI组件库...');
+        window.logger?.log('🎨 初始化UI组件库...');
         this.setupGlobalStyles();
         this.initializeComponents();
-        console.log('✅ UI组件库初始化完成');
+        window.logger?.log('✅ UI组件库初始化完成');
     }
     
     // 设置全局样式
@@ -593,4 +593,4 @@ window.showLoading = (overlay = true) => {
     return UI.createLoading({ overlay });
 };
 
-console.log('🎨 UI组件库已加载');
+window.logger?.log('🎨 UI组件库已加载');

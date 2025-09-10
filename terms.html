@@ -27,6 +27,16 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
   <link rel="shortcut icon" href="/favicon.ico">
+  
+  <style>
+  /* 修复导航栏响应式显示 */
+  @media (min-width: 768px) {
+    .md\:flex { display: flex !important; }
+  }
+  @media (max-width: 767px) {
+    .md\:hidden { display: none !important; }
+  }
+  </style>
 </head>
 <body class="bg-background text-foreground min-h-screen">
   <!-- Header Navigation -->

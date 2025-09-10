@@ -31,7 +31,7 @@ class PerformanceMonitor {
         // 定期输出性能报告
         setInterval(() => this.generateReport(), 30000); // 每30秒
         
-        console.log('📊 性能监控系统已启动');
+        window.logger?.log('📊 性能监控系统已启动');
     }
 
     monitorPageLoad() {
@@ -54,9 +54,9 @@ class PerformanceMonitor {
                 };
                 
                 if (pageLoadTime > this.thresholds.pageLoadWarning) {
-                    console.warn(`⚠️ 页面加载较慢: ${pageLoadTime.toFixed(2)}ms`);
+                    window.logger?.warn(`⚠️ 页面加载较慢: ${pageLoadTime.toFixed(2)}ms`);
                 } else {
-                    console.log(`✅ 页面加载: ${pageLoadTime.toFixed(2)}ms`);
+                    window.logger?.log(`✅ 页面加载: ${pageLoadTime.toFixed(2)}ms`);
                 }
             });
         }
@@ -73,7 +73,7 @@ class PerformanceMonitor {
             });
             
             if (switchTime > this.thresholds.translationSwitchWarning) {
-                console.warn(`⚠️ 语言切换较慢: ${switchTime}ms`);
+                window.logger?.warn(`⚠️ 语言切换较慢: ${switchTime}ms`);
             }
         });
 
@@ -93,9 +93,9 @@ class PerformanceMonitor {
                 });
                 
                 if (duration > this.thresholds.imageProcessingWarning) {
-                    console.warn(`⚠️ 图像处理较慢: ${duration.toFixed(2)}ms`);
+                    window.logger?.warn(`⚠️ 图像处理较慢: ${duration.toFixed(2)}ms`);
                 } else {
-                    console.log(`✅ 图像处理: ${duration.toFixed(2)}ms`);
+                    window.logger?.log(`✅ 图像处理: ${duration.toFixed(2)}ms`);
                 }
                 
                 this.imageProcessStartTime = null;
@@ -147,7 +147,7 @@ class PerformanceMonitor {
             console.group('📊 性能报告');
             console.table(report.stats);
             if (report.stats.errors.count > 0) {
-                console.warn('最近错误:', report.stats.errors.recent);
+                window.logger?.warn('最近错误:', report.stats.errors.recent);
             }
             console.groupEnd();
         }
@@ -203,13 +203,13 @@ class PerformanceMonitor {
             startTimestamp: Date.now()
         });
         
-        console.log(`📊 开始测量: ${measureName}`);
+        window.logger?.log(`📊 开始测量: ${measureName}`);
     }
 
     // 添加缺失的endMeasure方法
     endMeasure(measureName) {
         if (!this.activeMeasures || !this.activeMeasures.has(measureName)) {
-            console.warn(`⚠️ 没有找到测量: ${measureName}`);
+            window.logger?.warn(`⚠️ 没有找到测量: ${measureName}`);
             return null;
         }
         
@@ -225,7 +225,7 @@ class PerformanceMonitor {
             });
         }
         
-        console.log(`📊 完成测量: ${measureName}, 耗时: ${duration.toFixed(2)}ms`);
+        window.logger?.log(`📊 完成测量: ${measureName}, 耗时: ${duration.toFixed(2)}ms`);
         
         this.activeMeasures.delete(measureName);
         return duration;

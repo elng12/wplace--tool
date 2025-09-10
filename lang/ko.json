@@ -395,5 +395,11 @@
   "used.colors.free": "무료",
   "used.colors.premium": "프리미엄",
   "used.colors.title": "이 이미지에 사용된 색상",
-  "used.colors.total": "총계"
+  "used.colors.total": "총계",
+  "advanced.showOriginal": "Show Original Image",
+  "error.404.title": "404 - Page Not Found",
+  "error.404.message": "The page you are looking for does not exist.",
+  "error.404.home": "Go Home",
+  "error.404.back": "Go Back",
+  "error.404.popular": "Popular Pages"
 }

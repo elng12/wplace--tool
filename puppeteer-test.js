@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs');
 
 async function testImageUpload() {
-    console.log('🚀 启动 Puppeteer 自动化测试...');
+    window.logger?.log('🚀 启动 Puppeteer 自动化测试...');
     
     let browser;
     try {
@@ -22,26 +22,26 @@ async function testImageUpload() {
         
         // 监听控制台输出
         page.on('console', msg => {
-            console.log('🖥️  浏览器控制台:', msg.text());
+            window.logger?.log('🖥️  浏览器控制台:', msg.text(););
         });
         
         // 监听错误
         page.on('error', err => {
-            console.error('❌ 页面错误:', err.message);
+            window.logger?.error('❌ 页面错误:', err.message);
         });
         
-        console.log('📂 导航到 localhost:8000...');
+        window.logger?.log('📂 导航到 localhost:8000...');
         await page.goto('http://localhost:8000', { 
             waitUntil: 'networkidle2',
             timeout: 30000 
         });
         
-        console.log('⏳ 等待页面完全加载...');
+        window.logger?.log('⏳ 等待页面完全加载...');
         await page.waitForSelector('#uploadArea', { timeout: 10000 });
         await page.waitForSelector('#preview-canvas', { timeout: 10000 });
         
         // 截图 - 初始状态
-        console.log('📸 截图：初始状态');
+        window.logger?.log('📸 截图：初始状态');
         await page.screenshot({ 
             path: 'test-screenshot-1-initial.png',
             fullPage: true 
@@ -60,11 +60,11 @@ async function testImageUpload() {
             };
         });
         
-        console.log('🔍 初始canvas状态:', initialCanvasState);
+        window.logger?.log('🔍 初始canvas状态:', initialCanvasState);
         
         // 准备上传文件
         const validTestPath = path.join(__dirname, 'valid-test.png');
-        console.log('📁 准备上传文件:', validTestPath);
+        window.logger?.log('📁 准备上传文件:', validTestPath);
         
         // 确保文件存在
         if (!fs.existsSync(validTestPath)) {
@@ -72,33 +72,33 @@ async function testImageUpload() {
         }
         
         // 点击上传区域
-        console.log('🖱️  点击上传区域...');
+        window.logger?.log('🖱️  点击上传区域...');
         await page.click('#uploadArea');
         
         // 上传文件
-        console.log('📤 上传文件...');
+        window.logger?.log('📤 上传文件...');
         const fileInput = await page.$('#fileInput');
         await fileInput.uploadFile(validTestPath);
         
         // 等待文件处理
-        console.log('⏳ 等待文件处理...');
+        window.logger?.log('⏳ 等待文件处理...');
         await page.waitForTimeout(2000);
         
         // 等待canvas显示
-        console.log('⏳ 等待canvas显示...');
+        window.logger?.log('⏳ 等待canvas显示...');
         try {
             await page.waitForFunction(() => {
                 const canvas = document.getElementById('preview-canvas');
                 const computedStyle = getComputedStyle(canvas);
                 return computedStyle.display !== 'none' && canvas.width > 0;
             }, { timeout: 10000 });
-            console.log('✅ Canvas已显示');
+            window.logger?.log('✅ Canvas已显示');
         } catch (error) {
-            console.log('⚠️  Canvas显示检测超时，继续检查状态...');
+            window.logger?.log('⚠️  Canvas显示检测超时，继续检查状态...');
         }
         
         // 截图 - 上传后状态
-        console.log('📸 截图：上传后状态');
+        window.logger?.log('📸 截图：上传后状态');
         await page.screenshot({ 
             path: 'test-screenshot-2-after-upload.png',
             fullPage: true 
@@ -133,24 +133,24 @@ async function testImageUpload() {
             };
         });
         
-        console.log('🔍 上传后状态:', JSON.stringify(uploadedCanvasState, null, 2));
+        window.logger?.log('🔍 上传后状态:', JSON.stringify(uploadedCanvasState, null, 2););
         
         // 检查Process按钮是否可用
         const processButton = await page.$('#process-btn');
         if (processButton) {
             const isDisabled = await page.evaluate(btn => btn.disabled, processButton);
-            console.log('🔘 Process按钮状态:', isDisabled ? '禁用' : '可用');
+            window.logger?.log('🔘 Process按钮状态:', isDisabled ? '禁用' : '可用');
             
             if (!isDisabled) {
-                console.log('🖱️  点击Process按钮...');
+                window.logger?.log('🖱️  点击Process按钮...');
                 await processButton.click();
                 
                 // 等待处理完成
-                console.log('⏳ 等待图片处理...');
+                window.logger?.log('⏳ 等待图片处理...');
                 await page.waitForTimeout(3000);
                 
                 // 截图 - 处理后状态
-                console.log('📸 截图：处理后状态');
+                window.logger?.log('📸 截图：处理后状态');
                 await page.screenshot({ 
                     path: 'test-screenshot-3-after-process.png',
                     fullPage: true 
@@ -175,7 +175,7 @@ async function testImageUpload() {
                     };
                 });
                 
-                console.log('🔍 处理后状态:', JSON.stringify(outputCanvasState, null, 2));
+                window.logger?.log('🔍 处理后状态:', JSON.stringify(outputCanvasState, null, 2););
             }
         }
         
@@ -197,12 +197,12 @@ async function testImageUpload() {
         };
         
         fs.writeFileSync('puppeteer-test-report.json', JSON.stringify(testReport, null, 2));
-        console.log('📋 测试报告已保存到 puppeteer-test-report.json');
+        window.logger?.log('📋 测试报告已保存到 puppeteer-test-report.json');
         
-        console.log('✅ 自动化测试完成！');
+        window.logger?.log('✅ 自动化测试完成！');
         
     } catch (error) {
-        console.error('❌ 测试失败:', error);
+        window.logger?.error('❌ 测试失败:', error);
         
         if (browser) {
             const page = (await browser.pages())[0];
@@ -211,7 +211,7 @@ async function testImageUpload() {
                     path: 'test-error-screenshot.png',
                     fullPage: true 
                 });
-                console.log('📸 错误截图已保存');
+                window.logger?.log('📸 错误截图已保存');
             }
         }
         
@@ -225,10 +225,10 @@ async function testImageUpload() {
 // 检查Puppeteer是否已安装
 try {
     require.resolve('puppeteer');
-    console.log('✅ 检测到Puppeteer，开始测试...');
+    window.logger?.log('✅ 检测到Puppeteer，开始测试...');
     testImageUpload();
 } catch (error) {
-    console.log('❌ Puppeteer未安装');
-    console.log('💡 安装命令: npm install puppeteer');
-    console.log('⚠️  如果不想安装Puppeteer，请使用手动测试方式');
+    window.logger?.log('❌ Puppeteer未安装');
+    window.logger?.log('💡 安装命令: npm install puppeteer');
+    window.logger?.log('⚠️  如果不想安装Puppeteer，请使用手动测试方式');
 }

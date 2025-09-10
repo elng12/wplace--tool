@@ -57,28 +57,28 @@ function processFile(filePath) {
         // 如果内容有变化，保存文件
         if (modifiedContent !== content) {
             fs.writeFileSync(filePath, modifiedContent, 'utf8');
-            console.log(`✅ 已处理文件: ${filePath}`);
+            window.logger?.log(`✅ 已处理文件: ${filePath}`);
         } else {
-            console.log(`ℹ️  文件无需修改: ${filePath}`);
+            window.logger?.log(`ℹ️  文件无需修改: ${filePath}`);
         }
     } catch (error) {
-        console.error(`❌ 处理文件 ${filePath} 时出错:`, error.message);
+        window.logger?.error(`❌ 处理文件 ${filePath} 时出错:`, error.message);
     }
 }
 
 function main() {
-    console.log('🧹 开始清理JavaScript调试代码...\n');
+    window.logger?.log('🧹 开始清理JavaScript调试代码...\n');
     
     filesToProcess.forEach(file => {
         const fullPath = path.resolve(file);
         if (fs.existsSync(fullPath)) {
             processFile(fullPath);
         } else {
-            console.warn(`⚠️  文件不存在: ${fullPath}`);
+            window.logger?.warn(`⚠️  文件不存在: ${fullPath}`);
         }
     });
     
-    console.log('\n✅ 调试代码清理完成');
+    window.logger?.log('\n✅ 调试代码清理完成');
 }
 
 if (require.main === module) {

@@ -34,13 +34,13 @@ sizes.forEach(size => {
     const svg = generateIconSVG(size);
     const filename = path.join(iconsDir, `icon-${size}x${size}.svg`);
     fs.writeFileSync(filename, svg);
-    console.log(`生成 ${filename}`);
+    window.logger?.log(`生成 ${filename}`);
 });
 
 // 生成favicon.ico的SVG版本
 const faviconSvg = generateIconSVG(32);
 fs.writeFileSync(path.join(__dirname, 'favicon.svg'), faviconSvg);
-console.log('生成 favicon.svg');
+window.logger?.log('生成 favicon.svg');
 
 // 创建快捷方式图标
 const shortcutIcons = [
@@ -64,10 +64,10 @@ shortcutIcons.forEach(icon => {
     
     const filename = path.join(iconsDir, icon.name);
     fs.writeFileSync(filename, svg);
-    console.log(`生成 ${filename}`);
+    window.logger?.log(`生成 ${filename}`);
 });
 
-console.log('\n✅ 所有图标生成完成！');
-console.log('\n📝 注意: 生成的是SVG格式图标。对于PWA最佳兼容性，建议将SVG转换为PNG格式。');
-console.log('可以使用在线工具或imagemagick转换：');
-console.log('例如：convert icon-192x192.svg icon-192x192.png');
+window.logger?.log('\n✅ 所有图标生成完成！');
+window.logger?.log('\n📝 注意: 生成的是SVG格式图标。对于PWA最佳兼容性，建议将SVG转换为PNG格式。');
+window.logger?.log('可以使用在线工具或imagemagick转换：');
+window.logger?.log('例如：convert icon-192x192.svg icon-192x192.png');

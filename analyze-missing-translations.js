@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 function analyzeHtmlTranslations(filePath) {
-    console.log(`🔍 分析文件: ${path.basename(filePath)}`);
+    window.logger?.log(`🔍 分析文件: ${path.basename(filePath);}`);
     
     const content = fs.readFileSync(filePath, 'utf8');
     
@@ -34,7 +34,7 @@ function analyzeHtmlTranslations(filePath) {
         match.match(/data-lang="([^"]+)"/)[1]
     );
     
-    console.log(`📊 已标记翻译的元素数量: ${translatedElements.length}`);
+    window.logger?.log(`📊 已标记翻译的元素数量: ${translatedElements.length}`);
     
     // 分析缺少翻译的文本
     const missingTranslations = [];
@@ -86,15 +86,15 @@ function analyzeHtmlTranslations(filePath) {
         grouped[item.tag].push(item);
     });
     
-    console.log(`\n❌ 发现 ${uniqueMissing.length} 个可能缺少翻译的元素:\n`);
+    window.logger?.log(`\n❌ 发现 ${uniqueMissing.length} 个可能缺少翻译的元素:\n`);
     
     Object.keys(grouped).forEach(tag => {
-        console.log(`📝 ${tag.toUpperCase()} 标签 (${grouped[tag].length} 个):`);
+        window.logger?.log(`📝 ${tag.toUpperCase();} 标签 (${grouped[tag].length} 个):`);
         grouped[tag].slice(0, 5).forEach((item, i) => {
-            console.log(`   ${i + 1}. "${item.text}"`);
+            window.logger?.log(`   ${i + 1}. "${item.text}"`);
         });
         if (grouped[tag].length > 5) {
-            console.log(`   ... 还有 ${grouped[tag].length - 5} 个`);
+            window.logger?.log(`   ... 还有 ${grouped[tag].length - 5} 个`);
         }
         console.log();
     });
@@ -107,7 +107,7 @@ function analyzeHtmlTranslations(filePath) {
 }
 
 function analyzeAllHtmlFiles() {
-    console.log('🚀 开始分析HTML翻译覆盖情况...\n');
+    window.logger?.log('🚀 开始分析HTML翻译覆盖情况...\n');
     
     const htmlFiles = [
         './index.html',
@@ -124,19 +124,19 @@ function analyzeAllHtmlFiles() {
         const result = analyzeHtmlTranslations(file);
         totalMissing += result.total;
         totalTranslated += result.translated;
-        console.log('='.repeat(60) + '\n');
+        window.logger?.log('='.repeat(60); + '\n');
     });
     
-    console.log('📊 总体统计:');
-    console.log(`✅ 已翻译元素: ${totalTranslated}`);
-    console.log(`❌ 缺少翻译元素: ${totalMissing}`);
-    console.log(`📈 翻译覆盖率: ${(totalTranslated / (totalTranslated + totalMissing) * 100).toFixed(1)}%`);
+    window.logger?.log('📊 总体统计:');
+    window.logger?.log(`✅ 已翻译元素: ${totalTranslated}`);
+    window.logger?.log(`❌ 缺少翻译元素: ${totalMissing}`);
+    window.logger?.log(`📈 翻译覆盖率: ${(totalTranslated / (totalTranslated + totalMissing); * 100).toFixed(1)}%`);
     
-    console.log('\n💡 解决方案建议:');
-    console.log('1. 为缺失的HTML元素添加 data-lang 属性');
-    console.log('2. 在相应的翻译文件中添加对应的翻译键值');
-    console.log('3. 重新生成内联翻译文件包含更多键');
-    console.log('4. 检查JavaScript动态生成的内容是否调用了翻译函数');
+    window.logger?.log('\n💡 解决方案建议:');
+    window.logger?.log('1. 为缺失的HTML元素添加 data-lang 属性');
+    window.logger?.log('2. 在相应的翻译文件中添加对应的翻译键值');
+    window.logger?.log('3. 重新生成内联翻译文件包含更多键');
+    window.logger?.log('4. 检查JavaScript动态生成的内容是否调用了翻译函数');
 }
 
 if (require.main === module) {

@@ -3,7 +3,7 @@
  * 修复data-lang属性（brutal-translate.js已删除）
  */
 
-console.log('🔧 DOM属性修复脚本启动...');
+window.logger?.log('🔧 DOM属性修复脚本启动...');
 
 // 中英文键名映射表
 const keyMapping = {
@@ -45,7 +45,7 @@ const keyMapping = {
 };
 
 function fixDOMAttributes() {
-  console.log('🔧 开始修复DOM属性...');
+  window.logger?.log('🔧 开始修复DOM属性...');
   
   let fixedCount = 0;
   
@@ -60,11 +60,11 @@ function fixDOMAttributes() {
       const correctKey = keyMapping[currentDataLang];
       element.setAttribute('data-lang', correctKey);
       fixedCount++;
-      console.log(`✅ 修复属性: "${currentDataLang}" → "${correctKey}"`);
+      window.logger?.log(`✅ 修复属性: "${currentDataLang}" → "${correctKey}"`);
     }
   });
   
-  console.log(`🎉 DOM属性修复完成！共修复 ${fixedCount} 个属性`);
+  window.logger?.log(`🎉 DOM属性修复完成！共修复 ${fixedCount} 个属性`);
   return fixedCount;
 }
 
@@ -78,4 +78,4 @@ if (document.readyState === 'loading') {
 // 导出函数供手动调用
 window.fixDOMAttributes = fixDOMAttributes;
 
-console.log('✅ DOM属性修复脚本就绪');
+window.logger?.log('✅ DOM属性修复脚本就绪');

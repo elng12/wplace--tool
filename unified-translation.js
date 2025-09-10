@@ -3,7 +3,7 @@
  * 整合了DOM修复、强制翻译、语言检测等功能
  */
 
-console.log('🚀 统一翻译系统启动...');
+window.logger?.log('🚀 统一翻译系统启动...');
 
 class UnifiedTranslationSystem {
   constructor() {
@@ -29,7 +29,7 @@ class UnifiedTranslationSystem {
   async init() {
     if (this.initialized) return;
     
-    console.log('🔧 初始化统一翻译系统...');
+    window.logger?.log('🔧 初始化统一翻译系统...');
     
     // 1. DOM属性修复
     this.fixDOMAttributes();
@@ -41,11 +41,11 @@ class UnifiedTranslationSystem {
     this.checkAndFillGaps();
     
     this.initialized = true;
-    console.log('✅ 统一翻译系统初始化完成');
+    window.logger?.log('✅ 统一翻译系统初始化完成');
   }
 
   fixDOMAttributes() {
-    console.log('🔧 修复DOM属性...');
+    window.logger?.log('🔧 修复DOM属性...');
     
     let fixedCount = 0;
     const elements = document.querySelectorAll('[data-lang]');
@@ -57,35 +57,35 @@ class UnifiedTranslationSystem {
         const correctKey = this.domFixMapping[currentDataLang];
         element.setAttribute('data-lang', correctKey);
         fixedCount++;
-        console.log(`✅ 修复属性: "${currentDataLang}" → "${correctKey}"`);
+        window.logger?.log(`✅ 修复属性: "${currentDataLang}" → "${correctKey}"`);
       }
     });
     
-    console.log(`🎉 DOM属性修复完成！共修复 ${fixedCount} 个属性`);
+    window.logger?.log(`🎉 DOM属性修复完成！共修复 ${fixedCount} 个属性`);
   }
 
   async waitForMainI18n(maxWait = 5000) {
-    console.log('⏳ 等待主翻译系统...');
+    window.logger?.log('⏳ 等待主翻译系统...');
     
     const startTime = Date.now();
     while (Date.now() - startTime < maxWait) {
       if (window.i18n && window.i18n.translate) {
-        console.log('✅ 主翻译系统已就绪');
+        window.logger?.log('✅ 主翻译系统已就绪');
         return true;
       }
       await new Promise(resolve => setTimeout(resolve, 100));
     }
     
-    console.log('⚠️ 主翻译系统超时，启用紧急模式');
+    window.logger?.log('⚠️ 主翻译系统超时，启用紧急模式');
     return false;
   }
 
   checkAndFillGaps() {
-    console.log('🔍 检查翻译缺口...');
+    window.logger?.log('🔍 检查翻译缺口...');
     
     const currentLang = localStorage.getItem('preferredLanguage') || 'en';
     if (currentLang === 'en') {
-      console.log('📝 英文模式，跳过缺口填充');
+      window.logger?.log('📝 英文模式，跳过缺口填充');
       return;
     }
 
@@ -102,20 +102,20 @@ class UnifiedTranslationSystem {
       if (this.emergencyTranslations[text] && currentLang !== 'en') {
         element.textContent = this.emergencyTranslations[text];
         filledCount++;
-        console.log(`🚑 紧急翻译: "${text}" → "${this.emergencyTranslations[text]}"`);
+        window.logger?.log(`🚑 紧急翻译: "${text}" → "${this.emergencyTranslations[text]}"`);
       }
     });
 
     if (filledCount > 0) {
-      console.log(`🎯 填充了 ${filledCount} 个翻译缺口`);
+      window.logger?.log(`🎯 填充了 ${filledCount} 个翻译缺口`);
     } else {
-      console.log('✅ 未发现翻译缺口');
+      window.logger?.log('✅ 未发现翻译缺口');
     }
   }
 
   // 语言切换监听
   onLanguageChange(newLang) {
-    console.log(`🌍 语言切换到: ${newLang}`);
+    window.logger?.log(`🌍 语言切换到: ${newLang}`);
     
     // 短暂延迟后检查翻译完整性
     setTimeout(() => {
@@ -125,7 +125,7 @@ class UnifiedTranslationSystem {
 
   // 公开方法供外部调用
   forceCheck() {
-    console.log('🔄 强制检查翻译状态...');
+    window.logger?.log('🔄 强制检查翻译状态...');
     this.checkAndFillGaps();
   }
 }
@@ -150,4 +150,4 @@ document.addEventListener('change', function(e) {
   }
 });
 
-console.log('✅ 统一翻译系统就绪');
+window.logger?.log('✅ 统一翻译系统就绪');

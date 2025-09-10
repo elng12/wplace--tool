@@ -48,7 +48,7 @@
         // 监听页面卸载
         window.addEventListener('beforeunload', function() {
             if (results.redirectChain.length > 0) {
-                console.warn('检测到JavaScript重定向:', results.redirectChain);
+                window.logger?.warn('检测到JavaScript重定向:', results.redirectChain);
             }
         });
         
@@ -102,13 +102,13 @@
         
         // 显示报告
         console.group('🔍 重定向诊断报告');
-        console.log('当前URL:', report.currentUrl);
-        console.log('来源页面:', report.referrer);
-        console.log('协议:', report.protocol);
-        console.log('重定向检测:', report.redirectDetected ? '是' : '否');
-        console.log('HTTPS重定向:', report.httpsRedirect ? '是' : '否');
-        console.log('重定向链:', report.redirectChain);
-        console.log('测试结果:', report.tests);
+        window.logger?.log('当前URL:', report.currentUrl);
+        window.logger?.log('来源页面:', report.referrer);
+        window.logger?.log('协议:', report.protocol);
+        window.logger?.log('重定向检测:', report.redirectDetected ? '是' : '否');
+        window.logger?.log('HTTPS重定向:', report.httpsRedirect ? '是' : '否');
+        window.logger?.log('重定向链:', report.redirectChain);
+        window.logger?.log('测试结果:', report.tests);
         console.groupEnd();
         
         return report;

@@ -30,6 +30,6 @@ Object.keys(en).sort().forEach(key => {
 // 保存更新后的英文文件
 fs.writeFileSync('./lang/en.json', JSON.stringify(sortedEn, null, 2) + '\n');
 
-console.log('✅ 英文基准文件已更新');
-console.log('📊 添加的键值数:', Object.keys(keysToAdd).length);
-console.log('📊 新的总键值数:', Object.keys(sortedEn).length);
+window.logger?.log('✅ 英文基准文件已更新');
+window.logger?.log('📊 添加的键值数:', Object.keys(keysToAdd);.length);
+window.logger?.log('📊 新的总键值数:', Object.keys(sortedEn);.length);

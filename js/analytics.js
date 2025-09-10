@@ -17,10 +17,10 @@ class AdvancedAnalytics {
     }
     
     init() {
-        console.log('📊 初始化分析系统...');
+        window.logger?.log('📊 初始化分析系统...');
         
         if (!this.isEnabled) {
-            console.log('🔒 用户未同意数据收集，分析功能已禁用');
+            window.logger?.log('🔒 用户未同意数据收集，分析功能已禁用');
             return;
         }
         
@@ -30,8 +30,8 @@ class AdvancedAnalytics {
         this.setupUserBehaviorTracking();
         this.startSessionTracking();
         
-        console.log('✅ 分析系统初始化完成');
-        console.log(`📍 会话ID: ${this.sessionId}`);
+        window.logger?.log('✅ 分析系统初始化完成');
+        window.logger?.log(`📍 会话ID: ${this.sessionId}`);
     }
     
     // 生成会话ID
@@ -330,7 +330,7 @@ class AdvancedAnalytics {
         // 本地存储（实际应用中应该发送到服务器）
         this.storeEvent(event);
         
-        console.log(`📊 [Analytics] ${eventName}:`, eventData);
+        window.logger?.log(`📊 [Analytics] ${eventName}:`, eventData);
     }
     
     // 错误跟踪
@@ -356,7 +356,7 @@ class AdvancedAnalytics {
             
             localStorage.setItem('analytics_events', JSON.stringify(existingEvents));
         } catch (error) {
-            console.error('存储分析事件失败:', error);
+            window.logger?.error('存储分析事件失败:', error);
         }
     }
     
@@ -394,7 +394,7 @@ class AdvancedAnalytics {
         const events = JSON.parse(localStorage.getItem('analytics_events') || '[]');
         
         if (events.length > 0) {
-            console.log(`📊 [Analytics] 准备发送 ${events.length} 个分析事件`);
+            window.logger?.log(`📊 [Analytics] 准备发送 ${events.length} 个分析事件`);
             
             // 实际应用中应该发送到分析服务器
             // fetch('/api/analytics', { method: 'POST', body: JSON.stringify(events) });
@@ -444,14 +444,14 @@ class AdvancedAnalytics {
     enableAnalytics() {
         localStorage.setItem('analytics_consent', 'true');
         this.isEnabled = true;
-        console.log('✅ 分析功能已启用');
+        window.logger?.log('✅ 分析功能已启用');
     }
     
     disableAnalytics() {
         localStorage.setItem('analytics_consent', 'false');
         this.isEnabled = false;
         localStorage.removeItem('analytics_events');
-        console.log('🔒 分析功能已禁用');
+        window.logger?.log('🔒 分析功能已禁用');
     }
 }
 
@@ -465,4 +465,4 @@ window.Analytics = Analytics;
 window.trackEvent = (name, data) => Analytics.trackEvent(name, data);
 window.trackConversion = (name, value, currency) => Analytics.trackConversion(name, value, currency);
 
-console.log('📊 高级分析系统已加载');
+window.logger?.log('📊 高级分析系统已加载');
