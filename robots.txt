@@ -30,7 +30,7 @@ Disallow: /*?debug=*
 Disallow: /*?test=*
 
 # Sitemaps
-Sitemap: https://wplace.vercel.app/sitemap.xml
+Sitemap: https://wplacetool.app/sitemap.xml
 
 # Crawl-delay for respect
 Crawl-delay: 1

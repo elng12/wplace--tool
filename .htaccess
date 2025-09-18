@@ -1,22 +1,59 @@
-# 修复HTML文件访问问题
-AddType text/html .html
-AddType text/html .htm
+# Wplace Paint Tool - SEO Optimized .htaccess
+# 强制HTTPS重定向
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# 确保HTML文件正确处理
-<Files "*.html">
-    Header set Content-Type "text/html; charset=utf-8"
-</Files>
+# 强制www到非www重定向（如果需要）
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
-# 允许访问所有HTML文件
-<FilesMatch "\.(html|htm)$">
+# 压缩静态资源
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# 缓存控制
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>
+
+# 安全头部
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# 错误页面
+ErrorDocument 404 /404.html
+
+# 禁止访问敏感文件
+<Files ".htaccess">
     Order allow,deny
-    Allow from all
-    Require all granted
-</FilesMatch>
-
-# 移除可能的执行限制
-<Files "*.html">
-    RemoveHandler .html
-    RemoveType .html
-    AddType text/html .html
+    Deny from all
 </Files>
+
+<Files "*.log">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# 移除服务器签名
+ServerTokens Prod
