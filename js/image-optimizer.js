@@ -2,6 +2,8 @@
  * 图像处理优化系统 - 提供高性能的图像处理功能
  */
 
+
+'use strict';
 class ImageOptimizer {
     constructor() {
         this.workerPool = [];

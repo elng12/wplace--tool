@@ -3,6 +3,8 @@
  * 实时监控和报警
  */
 
+'use strict';
+
 class ProductionPerformanceMonitor {
     constructor() {
         this.metrics = {

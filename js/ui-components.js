@@ -3,11 +3,48 @@
  * 提供可复用的UI组件和交互效果
  */
 
+'use strict';
+
+'use strict';
+
 class UIComponents {
     constructor() {
         this.components = new Map();
         this.animations = new Map();
         this.init();
+    }
+
+    // 安全转义HTML字符
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // 安全设置HTML内容，仅允许受信任的SVG
+    safeSetHtml(element, html) {
+        if (typeof html !== 'string') return;
+
+        // 仅允许SVG内容
+        if (html.includes('<svg') && html.includes('</svg>')) {
+            // 验证是否为有效的SVG片段
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            const svg = tempDiv.querySelector('svg');
+            if (svg) {
+                // 清除潜在的恶意属性
+                const dangerousAttrs = ['onload', 'onerror', 'onclick', 'onmouseover', 'javascript:', 'data:'];
+                dangerousAttrs.forEach(attr => {
+                    if (svg.getAttribute(attr)) {
+                        svg.removeAttribute(attr);
+                    }
+                });
+                element.innerHTML = '';
+                element.appendChild(svg);
+            }
+        } else {
+            element.textContent = html;
+        }
     }
     
     init() {
@@ -233,7 +270,7 @@ class UIComponents {
         
         // 图标
         const icon = document.createElement('div');
-        icon.innerHTML = this.getToastIcon(type);
+        this.safeSetHtml(icon, this.getToastIcon(type));
         content.appendChild(icon);
         
         // 消息
@@ -245,7 +282,7 @@ class UIComponents {
         // 关闭按钮
         if (closable) {
             const closeBtn = document.createElement('button');
-            closeBtn.innerHTML = '×';
+            closeBtn.textContent = '×';
             closeBtn.style.cssText = 'background:none;border:none;color:white;font-size:20px;cursor:pointer;padding:0;margin-left:8px;';
             closeBtn.onclick = () => this.removeToast(toast);
             content.appendChild(closeBtn);
@@ -323,7 +360,7 @@ class UIComponents {
         
         if (closable) {
             const closeBtn = document.createElement('button');
-            closeBtn.innerHTML = '×';
+            closeBtn.textContent = '×';
             closeBtn.style.cssText = 'background:none;border:none;font-size:24px;cursor:pointer;color:#6b7280;padding:0;';
             closeBtn.onclick = () => this.removeModal(overlay);
             header.appendChild(closeBtn);
@@ -334,9 +371,17 @@ class UIComponents {
         // 内容
         const body = document.createElement('div');
         body.style.cssText = 'padding:20px;';
-        
+
         if (typeof content === 'string') {
-            body.innerHTML = content;
+            // 安全处理字符串内容，防止XSS攻击
+            const tempDiv = document.createElement('div');
+            tempDiv.textContent = content;
+            // 如果内容包含HTML标签，需要进行安全转义
+            if (content.includes('<') || content.includes('>')) {
+                body.textContent = content;
+            } else {
+                body.textContent = content;
+            }
         } else {
             body.appendChild(content);
         }

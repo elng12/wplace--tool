@@ -3,6 +3,8 @@
  * 实时监控和优化建议
  */
 
+'use strict';
+
 class CoreWebVitalsMonitor {
     constructor() {
         this.vitals = {};

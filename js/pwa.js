@@ -3,6 +3,8 @@
  * 处理Service Worker注册、安装提示、更新等
  */
 
+'use strict';
+
 class PWAManager {
     constructor() {
         this.deferredPrompt = null;

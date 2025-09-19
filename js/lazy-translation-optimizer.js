@@ -3,6 +3,8 @@
  * 减少内存使用并提升性能
  */
 
+'use strict';
+
 window.logger?.log('🚀 懒加载翻译优化器启动...');
 
 class LazyTranslationOptimizer {

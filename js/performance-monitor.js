@@ -2,6 +2,8 @@
  * 性能监控系统 - 监控应用性能并提供优化建议
  */
 
+
+'use strict';
 class PerformanceMonitor {
     constructor() {
         this.metrics = {

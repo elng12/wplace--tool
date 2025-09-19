@@ -3,6 +3,10 @@
  * 提供完整的可访问性支持，符合WCAG 2.1 AA标准
  */
 
+'use strict';
+
+'use strict';
+
 class AccessibilityManager {
     constructor() {
         this.settings = {
@@ -42,6 +46,7 @@ class AccessibilityManager {
         this.enhanceExistingElements();
         
         // 监听动态内容变化
+        this.mutationObserver = null;
         this.setupMutationObserver();
         
         window.logger?.log('✅ 无障碍访问系统初始化完成');
@@ -934,22 +939,34 @@ class AccessibilityManager {
     
     // 设置内容变化监听
     setupMutationObserver() {
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach(mutation => {
-                if (mutation.type === 'childList') {
-                    mutation.addedNodes.forEach(node => {
-                        if (node.nodeType === 1) { // Element node
-                            this.enhanceNewElement(node);
-                        }
-                    });
-                }
+        try {
+            this.mutationObserver = new MutationObserver((mutations) => {
+                mutations.forEach(mutation => {
+                    if (mutation.type === 'childList') {
+                        mutation.addedNodes.forEach(node => {
+                            if (node.nodeType === 1) { // Element node
+                                this.enhanceNewElement(node);
+                            }
+                        });
+                    }
+                });
             });
-        });
-        
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
+
+            this.mutationObserver.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } catch (err) {
+            console.error('创建MutationObserver失败:', err);
+        }
+    }
+
+    // 清理资源
+    destroy() {
+        if (this.mutationObserver) {
+            this.mutationObserver.disconnect();
+            this.mutationObserver = null;
+        }
     }
     
     // 增强新添加的元素

@@ -7,7 +7,13 @@
       "Bash(node:*)",
       "Read(//mnt/c/Users/elng/Desktop/**)",
       "Bash(npm run build:css:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Read(//mnt/f/**)",
+      "Bash(npm run typecheck)",
+      "Bash(npm run)",
+      "Bash(npm run test:quality)",
+      "Bash(npm run build:all)",
+      "Bash(python3 -m http.server 8000)"
     ],
     "deny": [],
     "ask": []

@@ -3,6 +3,8 @@
  * 只加载必要的语言，显著减少初始加载时间
  */
 
+'use strict';
+
 class LazyTranslationLoader {
     constructor() {
         this.cache = new Map();

@@ -2,6 +2,8 @@
  * 安全的日志记录系统
  * 在生产环境中自动禁用日志输出
  */
+
+'use strict';
 class Logger {
     constructor() {
         // 检测是否为开发环境
@@ -21,7 +23,7 @@ class Logger {
 
     log(...args) {
         if (this.isDevelopment) {
-            console.log(...args);
+            console.debug(...args);
         }
     }
 
@@ -38,7 +40,7 @@ class Logger {
 
     debug(...args) {
         if (this.isDevelopment) {
-            console.log('[DEBUG]', ...args);
+            console.debug('[DEBUG]', ...args);
         }
     }
 

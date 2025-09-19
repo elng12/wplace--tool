@@ -2,6 +2,8 @@
  * 简化版PWA功能管理器 - 用于调试
  */
 
+
+'use strict';
 (function() {
     'use strict';
     

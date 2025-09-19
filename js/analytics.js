@@ -3,6 +3,8 @@
  * 收集用户行为数据和应用性能指标
  */
 
+'use strict';
+
 class AdvancedAnalytics {
     constructor() {
         this.sessionId = this.generateSessionId();

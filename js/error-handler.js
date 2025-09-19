@@ -3,6 +3,10 @@
  * 提供统一的错误管理、用户友好的错误消息和调试信息
  */
 
+'use strict';
+
+'use strict';
+
 class EnhancedErrorHandler {
     constructor() {
         this.errorQueue = [];
