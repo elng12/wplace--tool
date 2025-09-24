@@ -24,7 +24,7 @@
     "serve:python:8790": "python -m http.server 8790 --bind 127.0.0.1",
     "serve:node:8790": "http-server -p 8790 -c-1 --cors",
     "fix:canonical-og": "node scripts/fix-canonical-og.js",
-  "fix:domain": "node scripts/unify-domain.js",
+    "fix:domain": "node scripts/unify-domain.js",
   "fix:jsonld": "node scripts/fix-jsonld-urls.js",
   "check:seo": "node scripts/seo-regression-check.js",
     "clean": "rm -f js/inline-translations.js css/main.css",
