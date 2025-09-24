@@ -27,7 +27,7 @@
     "fix:domain": "node scripts/unify-domain.js",
     "fix:jsonld": "node scripts/fix-jsonld-urls.js",
     "check:seo": "node scripts/seo-regression-check.js",
-    "clean": "rm -f js/inline-translations.js css/main.css",
+    "clean": "if exist js\\inline-translations.js del js\\inline-translations.js && if exist css\\main.css del css\\main.css",
     "clean:translations": "node clean-translations.js",
     "analyze:translations": "node temp-analysis.js",
     "validate": "npm run lint:i18n && npm run analyze:translations",
