@@ -1,60 +1,26 @@
-// IndexNow自动提交脚本
+// IndexNow 客户端禁用占位实现
+// 说明：为避免在前端暴露凭据与不可控请求，客户端不再直接提交 IndexNow。
+// 请在受保护的服务端或 Serverless 函数中实现提交逻辑，并通过环境变量注入密钥。
+
 class IndexNowSubmitter {
-    constructor() {
-        this.apiKey = 'a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z6';
-        this.host = 'wplacetool.app';
-        this.keyLocation = `https://${this.host}/indexnow-key.txt`;
-        this.endpoints = [
-            'https://api.indexnow.org/indexnow',
-            'https://www.bing.com/indexnow',
-            'https://yandex.com/indexnow'
-        ];
-    }
+  constructor(host) {
+    this.host = host || (typeof location !== 'undefined' ? location.host : '');
+  }
 
-    async submitUrls(urls) {
-        const payload = {
-            host: this.host,
-            key: this.apiKey,
-            keyLocation: this.keyLocation,
-            urlList: urls
-        };
+  async submitUrls(urls) {
+    console.warn('[IndexNow] 客户端已禁用提交。请改用受保护的后端接口。', {
+      host: this.host,
+      count: Array.isArray(urls) ? urls.length : 0
+    });
+    return { ok: false, reason: 'client_disabled' };
+  }
 
-        for (const endpoint of this.endpoints) {
-            try {
-                const response = await fetch(endpoint, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(payload)
-                });
-
-                if (response.ok) {
-                    console.log(`✅ 成功提交到 ${endpoint}`);
-                } else {
-                    console.log(`❌ 提交失败到 ${endpoint}: ${response.status}`);
-                }
-            } catch (error) {
-                console.error(`❌ 提交错误到 ${endpoint}:`, error);
-            }
-        }
-    }
-
-    // 提交更新的页面
-    async submitUpdatedPages() {
-        const updatedUrls = [
-            `https://${this.host}/`,
-            `https://${this.host}/about.html`,
-            `https://${this.host}/color-converter.html`,
-            `https://${this.host}/blog.html`,
-            `https://${this.host}/privacy.html`,
-            `https://${this.host}/terms.html`
-        ];
-
-        await this.submitUrls(updatedUrls);
-    }
+  async submitUpdatedPages() {
+    console.warn('[IndexNow] 客户端示例方法已禁用，未执行。');
+    return { ok: false, reason: 'client_disabled' };
+  }
 }
 
-// 使用示例
+// 导出实例（可按需使用后端代理接口）
 const indexNow = new IndexNowSubmitter();
-// indexNow.submitUpdatedPages(); // 取消注释以执行提交
+export { IndexNowSubmitter, indexNow };

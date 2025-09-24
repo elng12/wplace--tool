@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 function analyzeHtmlTranslations(filePath) {
-    window.logger?.log(`🔍 分析文件: ${path.basename(filePath);}`);
+    window.logger?.log(`🔍 分析文件: ${path.basename(filePath)}`);
     
     const content = fs.readFileSync(filePath, 'utf8');
     
@@ -89,7 +89,7 @@ function analyzeHtmlTranslations(filePath) {
     window.logger?.log(`\n❌ 发现 ${uniqueMissing.length} 个可能缺少翻译的元素:\n`);
     
     Object.keys(grouped).forEach(tag => {
-        window.logger?.log(`📝 ${tag.toUpperCase();} 标签 (${grouped[tag].length} 个):`);
+        window.logger?.log(`📝 ${tag.toUpperCase()} 标签 (${grouped[tag].length} 个):`);
         grouped[tag].slice(0, 5).forEach((item, i) => {
             window.logger?.log(`   ${i + 1}. "${item.text}"`);
         });
@@ -124,13 +124,13 @@ function analyzeAllHtmlFiles() {
         const result = analyzeHtmlTranslations(file);
         totalMissing += result.total;
         totalTranslated += result.translated;
-        window.logger?.log('='.repeat(60); + '\n');
+        window.logger?.log('='.repeat(60) + '\n');
     });
     
     window.logger?.log('📊 总体统计:');
     window.logger?.log(`✅ 已翻译元素: ${totalTranslated}`);
     window.logger?.log(`❌ 缺少翻译元素: ${totalMissing}`);
-    window.logger?.log(`📈 翻译覆盖率: ${(totalTranslated / (totalTranslated + totalMissing); * 100).toFixed(1)}%`);
+    window.logger?.log(`📈 翻译覆盖率: ${((totalTranslated / (totalTranslated + totalMissing)) * 100).toFixed(1)}%`);
     
     window.logger?.log('\n💡 解决方案建议:');
     window.logger?.log('1. 为缺失的HTML元素添加 data-lang 属性');

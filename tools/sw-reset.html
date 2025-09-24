@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SW 与缓存清理工具</title>
+  <meta name="description" content="清理当前来源下的 Service Worker、Cache Storage 与本地存储键，帮助解决本地预览打不开、离线缓存干扰等问题。">
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji'; max-width: 720px; margin: 40px auto; padding: 0 16px; line-height: 1.6; }
+    header { margin-bottom: 24px; }
+    h1 { font-size: 22px; margin: 0 0 8px; }
+    .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+    .btn { display: inline-block; background: #10b981; color: #fff; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    .btn[disabled] { opacity: .6; cursor: not-allowed; }
+    .muted { color: #6b7280; font-size: 12px; }
+    .logs { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: #0b1020; color: #bfe1ff; padding: 12px; border-radius: 8px; height: 200px; overflow: auto; white-space: pre-wrap; }
+    .ok { color: #059669; }
+    .warn { color: #b45309; }
+    .err { color: #dc2626; }
+  </style>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline';">
+  <meta name="robots" content="noindex,nofollow">
+</head>
+<body>
+  <header>
+    <h1>SW 与缓存清理工具</h1>
+    <p class="muted">将注销当前来源下的 Service Worker，清空 Cache Storage，并移除与分析相关的本地存储键。</p>
+  </header>
+
+  <section class="card" aria-labelledby="actions">
+    <h2 id="actions" style="font-size:18px;margin:0 0 8px;">操作</h2>
+    <p>建议顺序：先点击“一键清理”，完成后返回首页验证；若仍异常，换用不同端口启动本地服务器。</p>
+    <div style="display:flex; gap:12px; align-items:center; flex-wrap: wrap;">
+      <button id="clearBtn" class="btn">🧹 一键清理</button>
+      <a class="btn" href="/" role="button">🏠 返回首页</a>
+    </div>
+    <p class="muted" style="margin-top:8px;">提示：此页面需通过 http://127.0.0.1:端口/ 访问，file:// 无法控制 SW。</p>
+  </section>
+
+  <section style="margin-top:16px;" class="card" aria-labelledby="logs">
+    <h2 id="logs" style="font-size:18px;margin:0 0 8px;">日志</h2>
+    <div id="log" class="logs" aria-live="polite" aria-atomic="false"></div>
+  </section>
+
+  <script>
+    const logEl = document.getElementById('log');
+    const btn = document.getElementById('clearBtn');
+    const log = (msg, cls) => {
+      const p = document.createElement('div');
+      if (cls) p.className = cls;
+      p.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+      logEl.appendChild(p);
+      logEl.scrollTop = logEl.scrollHeight;
+    };
+
+    async function unregisterSW() {
+      if (!('serviceWorker' in navigator)) { log('当前浏览器不支持 Service Worker', 'warn'); return 0; }
+      const regs = await navigator.serviceWorker.getRegistrations();
+      let n = 0;
+      for (const r of regs) {
+        try { await r.unregister(); n++; log(`注销 SW：${r.scope}`, 'ok'); } catch (e) { log(`注销失败：${e}`, 'err'); }
+      }
+      if (!n) log('未发现已注册的 SW', 'warn');
+      return n;
+    }
+
+    async function clearCaches() {
+      if (!('caches' in window)) { log('当前环境不支持 Cache Storage', 'warn'); return 0; }
+      const keys = await caches.keys();
+      let n = 0;
+      for (const k of keys) {
+        try { const ok = await caches.delete(k); if (ok) { n++; log(`删除缓存：${k}`, 'ok'); } }
+        catch (e) { log(`删除缓存失败 ${k}: ${e}`, 'err'); }
+      }
+      if (!n) log('未发现可删除的缓存', 'warn');
+      return n;
+    }
+
+    function clearLocalStorage() {
+      let n = 0; const keys = ['analytics_user_id','analytics_events'];
+      try {
+        for (const k of keys) { if (localStorage.getItem(k) != null) { localStorage.removeItem(k); n++; log(`移除本地键：${k}`, 'ok'); } }
+        // 保留 consent 选择，不强制清空；如需重置可手动：localStorage.removeItem('analytics_consent')
+        if (!n) log('未发现需要移除的本地键', 'warn');
+      } catch (e) { log(`移除本地键失败：${e}`, 'err'); }
+      return n;
+    }
+
+    async function run() {
+      btn.disabled = true; log('开始清理 ...');
+      try {
+        const sw = await unregisterSW();
+        const cs = await clearCaches();
+        const ls = clearLocalStorage();
+        log(`完成。SW: ${sw}，缓存: ${cs}，本地键: ${ls}`, 'ok');
+        log('建议：返回首页并刷新。如仍异常，换用新端口启动本地服务器以避免旧 SW 干扰。', 'warn');
+      } finally {
+        btn.disabled = false;
+      }
+    }
+    btn.addEventListener('click', run);
+  </script>
+</body>
+</html>
+

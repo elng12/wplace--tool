@@ -25,7 +25,7 @@ class LazyTranslationOptimizer {
     // 记录初始内存使用
     if (window.__INLINE_I18N__) {
       this.memoryStats.initialSize = JSON.stringify(window.__INLINE_I18N__).length;
-      window.logger?.log(`💾 初始翻译数据: ${Math.round(this.memoryStats.initialSize / 1024);}KB`);
+      window.logger?.log(`💾 初始翻译数据: ${Math.round(this.memoryStats.initialSize / 1024)}KB`);
       
       // 只保留英语和当前语言，其他语言懒加载
       this.optimizeInitialLoad();
@@ -89,7 +89,8 @@ class LazyTranslationOptimizer {
       window.__INLINE_I18N__[langCode] = this.fullTranslationData[langCode];
       this.loadedLanguages.add(langCode);
       
-      window.logger?.log(`✅ 懒加载完成: ${langCode} (${Object.keys(this.fullTranslationData[langCode]);.length} 键)`);
+const keyCount = Object.keys(this.fullTranslationData[langCode]).length;
+      window.logger?.log(`✅ 懒加载完成: ${langCode} (${keyCount} 键)`);
       
       // 更新内存统计
       this.memoryStats.currentSize = JSON.stringify(window.__INLINE_I18N__).length;

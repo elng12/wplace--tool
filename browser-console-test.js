@@ -52,7 +52,7 @@ window.wplaceTest = {
             
             // 监听文件选择
             fileInput.addEventListener('change', (e) => {
-                window.logger?.log('📁 文件已选择:', Array.from(e.target.files);.map(f => f.name));
+                window.logger?.log('📁 文件已选择:', Array.from(e.target.files).map(f => f.name));
                 
                 // 延迟检查状态
                 setTimeout(() => {

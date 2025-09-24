@@ -6,5 +6,56 @@
 /terms.html /terms.html 200
 /simple.html /simple.html 200
 
+# 多语言目录直链（目录与 index.html 都返回 200）
+/zh /zh/index.html 200
+/zh/index.html /zh/index.html 200
+/zh/about.html /zh/about.html 200
+/zh/blog.html /zh/blog.html 200
+
+/tr /tr/index.html 200
+/tr/index.html /tr/index.html 200
+/tr/about.html /tr/about.html 200
+/tr/blog.html /tr/blog.html 200
+
+/pt /pt/index.html 200
+/pt/index.html /pt/index.html 200
+/pt/about.html /pt/about.html 200
+/pt/blog.html /pt/blog.html 200
+
+/fr /fr/index.html 200
+/fr/index.html /fr/index.html 200
+/fr/about.html /fr/about.html 200
+/fr/blog.html /fr/blog.html 200
+
+/ja /ja/index.html 200
+/ja/index.html /ja/index.html 200
+/ja/about.html /ja/about.html 200
+/ja/blog.html /ja/blog.html 200
+
+/ko /ko/index.html 200
+/ko/index.html /ko/index.html 200
+/ko/about.html /ko/about.html 200
+/ko/blog.html /ko/blog.html 200
+
+/gn /gn/index.html 200
+/gn/index.html /gn/index.html 200
+/gn/about.html /gn/about.html 200
+/gn/blog.html /gn/blog.html 200
+
+/es /es/index.html 200
+/es/index.html /es/index.html 200
+/es/about.html /es/about.html 200
+/es/blog.html /es/blog.html 200
+
+/de /de/index.html 200
+/de/index.html /de/index.html 200
+/de/about.html /de/about.html 200
+/de/blog.html /de/blog.html 200
+
+/mi /mi/index.html 200
+/mi/index.html /mi/index.html 200
+/mi/about.html /mi/about.html 200
+/mi/blog.html /mi/blog.html 200
+
 # 处理不存在的页面
 /* /404.html 404

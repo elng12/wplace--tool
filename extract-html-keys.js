@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 function extractTranslationKeys(filePath) {
-    window.logger?.log(`🔍 提取 ${path.basename(filePath);} 中的翻译键...`);
+    window.logger?.log(`🔍 提取 ${path.basename(filePath)} 中的翻译键...`);
     
     const content = fs.readFileSync(filePath, 'utf8');
     
@@ -63,8 +63,8 @@ function extractAllHtmlKeys() {
     window.logger?.log(`\n📊 总计发现 ${sortedKeys.length} 个唯一翻译键`);
     
     // 输出为JavaScript数组格式，可直接复制到generate-inline-translations.js
-    window.logger?.log('\n📋 JavaScript数组格式 (可复制到generate-inline-translations.js);:');
-    window.logger?.log('='.repeat(60););
+    window.logger?.log('\n📋 JavaScript数组格式 (可复制到generate-inline-translations.js):');
+    window.logger?.log('='.repeat(60));
     window.logger?.log('const htmlUsedKeys = [');
     
     // 按类别分组输出
@@ -101,7 +101,7 @@ function extractAllHtmlKeys() {
     
     Object.keys(categories).forEach(category => {
         if (categories[category].length > 0) {
-            window.logger?.log(`    // ${category.toUpperCase();} section`);
+            window.logger?.log(`    // ${category.toUpperCase()} section`);
             categories[category].forEach(key => {
                 window.logger?.log(`    '${key}',`);
             });
@@ -110,7 +110,7 @@ function extractAllHtmlKeys() {
     });
     
     window.logger?.log('];');
-    window.logger?.log('='.repeat(60););
+    window.logger?.log('='.repeat(60));
     
     return sortedKeys;
 }

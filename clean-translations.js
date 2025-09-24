@@ -34,7 +34,7 @@ langFiles.forEach(filename => {
         fs.writeFileSync(filePath, JSON.stringify(sortedData, null, 2) + '\n');
         
         const removedCount = originalKeys.length - Object.keys(cleanedData).length;
-        window.logger?.log(`✅ ${filename}: 清理完成 (移除 ${removedCount} 个多余键值, 保留 ${Object.keys(cleanedData);.length} 个)`);
+        window.logger?.log(`✅ ${filename}: 清理完成 (移除 ${removedCount} 个多余键值, 保留 ${Object.keys(cleanedData).length} 个)`);
     }
 });
 

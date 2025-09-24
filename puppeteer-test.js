@@ -22,7 +22,7 @@ async function testImageUpload() {
         
         // 监听控制台输出
         page.on('console', msg => {
-            window.logger?.log('🖥️  浏览器控制台:', msg.text(););
+            window.logger?.log('🖥️  浏览器控制台:', msg.text());
         });
         
         // 监听错误
@@ -133,7 +133,7 @@ async function testImageUpload() {
             };
         });
         
-        window.logger?.log('🔍 上传后状态:', JSON.stringify(uploadedCanvasState, null, 2););
+        window.logger?.log('🔍 上传后状态:', JSON.stringify(uploadedCanvasState, null, 2));
         
         // 检查Process按钮是否可用
         const processButton = await page.$('#process-btn');
@@ -175,7 +175,7 @@ async function testImageUpload() {
                     };
                 });
                 
-                window.logger?.log('🔍 处理后状态:', JSON.stringify(outputCanvasState, null, 2););
+                window.logger?.log('🔍 处理后状态:', JSON.stringify(outputCanvasState, null, 2));
             }
         }
         

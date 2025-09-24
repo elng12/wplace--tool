@@ -95,15 +95,24 @@ self.addEventListener('fetch', event => {
 
 // 预加载策略
 self.addEventListener('message', event => {
-    if (event.data.type === 'PRELOAD_ROUTE') {
-        const urls = event.data.urls;
+    if (event && event.data && event.data.type === 'PRELOAD_ROUTE') {
+        const urls = Array.isArray(event.data.urls) ? event.data.urls.slice(0, 20) : [];
+        const origin = self.location.origin;
         event.waitUntil(
-            caches.open(CACHE_NAME).then(cache => {
-                return Promise.all(
-                    urls.map(url => 
-                        fetch(url).then(response => cache.put(url, response))
-                    )
-                );
+            caches.open(CACHE_NAME).then(async cache => {
+                for (const u of urls) {
+                    try {
+                        const full = new URL(u, origin);
+                        if (full.origin !== origin) continue; // 同源限制
+                        const req = new Request(full.toString(), { method: 'GET' });
+                        const res = await fetch(req);
+                        if (res && res.ok) {
+                            await cache.put(req, res.clone());
+                        }
+                    } catch (_) {
+                        // 忽略无效 URL 或网络错误
+                    }
+                }
             })
         );
     }

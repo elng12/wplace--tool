@@ -3,27 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Create stunning pixel art for Wplace with our free converter! Transform any image into Wplace-compatible pixel art using the official 64-color palette. Perfect for beginners and pros." />
-  
-  <!-- Open Graph Tags -->
-  <meta property="og:title" content="Wplace Paint Tool - Free Pixel Art Converter" />
-  <meta property="og:description" content="Transform any image into stunning Wplace pixel art with our free converter. Uses official 64-color palette for perfect results." />
-  <meta property="og:image" content="https://wplacetool.app/images/og-image.png" />
-  <meta property="og:url" content="https://wplacetool.app/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Wplace Paint Tool" />
-  
-  <!-- Twitter Card Tags -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Wplace Paint Tool - Free Pixel Art Converter" />
-  <meta name="twitter:description" content="Transform any image into stunning Wplace pixel art with our free converter." />
-  <meta name="twitter:image" content="https://wplacetool.app/images/twitter-card.png" />
+  <meta name="description" content="Easily create pixel art for Wplace with the Wplace Paint Tool! Our pixel art maker and converter transform any image into a Wplace-compatible pixel grid. The built-in generator automatically matches the official color palette, ensuring perfect results every time. Whether you're a beginner or a pro, this tool makes pixel art creation fun and simple. Turn your ideas into pixel masterpieces effortlessly!" />
   
   <!-- HTTPS安全设置 -->
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
   
-  <title>Wplace Paint Tool - Free Pixel Art Converter & Maker</title>
+  <title>Wplace Paint Tool & Color Converter - Ultimate Pixel Art Toolkit for Wplace Players</title>
   <link rel="canonical" href="https://wplacetool.app/" />
   
   <!-- PWA Meta Tags -->
@@ -193,7 +179,7 @@
         <!-- Logo and Brand -->
         <div class="flex items-center space-x-3">
           <div class="w-8 h-8 bg-blue-500 rounded-full"></div>
-          <div class="text-xl font-bold text-card-foreground" data-lang="brand.name">Wplace Paint Tool</div>
+          <h1 class="text-xl font-bold text-card-foreground" data-lang="brand.name">Wplace Paint Tool</h1>
         </div>
 
         <!-- Navigation Menu -->
@@ -371,6 +357,15 @@
                 </label>
               </div>
 
+              <!-- Dithering Strength -->
+              <div class="space-y-2">
+                <div class="flex justify-between items-center">
+                  <label for="dither-strength" class="block text-sm font-medium text-card-foreground">Dithering Strength</label>
+                  <span id="dither-strength-value" class="font-bold text-primary">70%</span>
+                </div>
+                <input type="range" id="dither-strength" min="0" max="100" value="70" class="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer">
+              </div>
+
               <!-- Palette Selection -->
               <div class="space-y-2">
                 <label for="palette-select" class="block text-xs font-medium text-muted-foreground" data-lang="controls.color_palette">Color Palette:</label>
@@ -378,6 +373,21 @@
                   <option value="place">Wplace Palette</option>
                   <option value="standard">Standard Palette</option>
                 </select>
+              </div>
+
+              <!-- Color Matching Space (for Wplace Palette) -->
+              <div class="space-y-2">
+                <label for="match-space" class="block text-xs font-medium text-muted-foreground">Color Matching Space:</label>
+                <select id="match-space" class="block w-full px-3 py-2 border-border bg-background rounded-md shadow-sm focus:outline-none focus:ring-ring focus:border-ring text-sm">
+                  <option value="srgb">sRGB (Fast)</option>
+                  <option value="oklab">OKLab (Perceptual)</option>
+                </select>
+              </div>
+
+              <!-- Palette Free-Only Toggle -->
+              <div class="flex items-center space-x-3">
+                <input type="checkbox" id="palette-free-only" class="h-4 w-4 text-primary rounded focus:ring-ring">
+                <label for="palette-free-only" class="text-sm text-card-foreground">Use Free Colors Only</label>
               </div>
               
               <!-- Scaling Method -->
@@ -389,6 +399,16 @@
                   <option value="nearest" data-lang="scaling.nearest">Nearest Neighbor</option>
                   <option value="bilinear" data-lang="scaling.bilinear">Bilinear</option>
                   <option value="lanczos" data-lang="scaling.lanczos">Lanczos</option>
+                </select>
+              </div>
+
+              <!-- Sampling Method -->
+              <div class="space-y-2">
+                <label for="sample-method" class="block text-xs font-medium text-muted-foreground">Sampling Method:</label>
+                <select id="sample-method" class="block w-full px-3 py-2 border-border bg-background rounded-md shadow-sm focus:outline-none focus:ring-ring focus:border-ring text-sm">
+                  <option value="average">Average (Block Mean)</option>
+                  <option value="nearest">Nearest (Block Center)</option>
+                  <option value="median">Median (5-point)</option>
                 </select>
               </div>
               
@@ -558,6 +578,9 @@
               <span><span data-lang="used.colors.total">Total</span>: <span id="usedColorsTotal">0</span></span>
               <span><span data-lang="used.colors.free">Free</span>: <span id="usedColorsFree">0</span></span>
               <span><span data-lang="used.colors.premium">Premium</span>: <span id="usedColorsPremium">0</span></span>
+            </div>
+            <div class="mt-3 flex justify-end">
+              <button id="exportColorsBtn" class="px-3 py-1 text-xs rounded bg-primary text-white">Export Colors (JSON)</button>
             </div>
           </div>
         </div>
@@ -922,117 +945,9 @@
         
         <!-- Startup Fame Badge -->
         <div class="mt-6 flex flex-wrap justify-center items-center gap-4">
-          <a href="https://twelve.tools" target="_blank"><img src="https://twelve.tools/badge0-white.svg" alt="Featured on Twelve Tools" width="200" height="54"></a>
           <a href="https://startupfa.me/s/wplace-paint-tool?utm_source=wplacetool.app" target="_blank"><img src="https://startupfa.me/badges/featured-badge.webp" alt="Featured on Startup Fame" width="171" height="54" /></a>
           <!-- Fazier Badge -->
-          <a href="https://fazier.com/launches/www.wplacetool.app" target="_blank"><img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=featured&theme=dark" width=250 alt="Fazier badge" /></a>
-          <!-- Turbo0 Badge -->
-          <a href="https://turbo0.com/item/wplace-paint-tool" target="_blank" rel="noopener noreferrer"><img src="https://img.turbo0.com/badge-listed-light.svg" alt="Listed on Turbo0" style="height: 54px; width: auto;" /></a>
-          <!-- Indie.Deals Badge -->
-          <a href="https://indie.deals?ref=https%3A%2F%2Fwww.wplacetool.app%2F" target="_blank" rel="noopener noreferrer">
-            <style>
-              .indie-deals-badge {
-                position: relative;
-                overflow: hidden;
-                display: inline-block;
-              }
-              .indie-deals-badge::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(45deg, 
-                  rgba(255,255,255,0) 0%, 
-                  rgba(255,255,255,0) 40%, 
-                  rgba(255,255,255,0.9) 50%, 
-                  rgba(255,255,255,0) 60%, 
-                  rgba(255,255,255,0) 100%);
-                transform: translateX(-100%) rotate(45deg);
-                pointer-events: none;
-                transition: transform 0.3s ease-out;
-              }
-              .indie-deals-badge:hover::after {
-                animation: indie-deals-shine 1s ease-out;
-              }
-              @keyframes indie-deals-shine {
-                0% { transform: translateX(-100%) rotate(45deg); }
-                50% { transform: translateX(0%) rotate(45deg); }
-                100% { transform: translateX(100%) rotate(45deg); }
-              }
-            </style>
-            <svg 
-              width="180" 
-              height="60" 
-              viewBox="0 0 180 60"
-              xmlns="http://www.w3.org/2000/svg"
-              class="indie-deals-badge"
-            >
-              <defs>
-                <linearGradient id="badgeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#ffffff" />
-                  <stop offset="100%" stop-color="#e6f0fc" />
-                </linearGradient>
-              </defs>
-              
-              <rect 
-                width="180" 
-                height="60" 
-                rx="10" 
-                fill="url(#badgeGradient)"
-              />
-              
-              <rect 
-                x="0.75" 
-                y="0.75" 
-                width="178.5" 
-                height="58.5" 
-                rx="9.25" 
-                fill="none"
-                stroke="#0070f3" 
-                stroke-width="1.5" 
-                stroke-opacity="0.3"
-              />
-              
-              <image 
-                href="https://indie.deals/logo_badge.png"
-                x="14.4"
-                y="12"
-                width="36"
-                height="36"
-                preserveAspectRatio="xMidYMid meet"
-                filter="drop-shadow(1px 1px 2px rgba(0,0,0,0.15))"
-              />
-              
-              <text 
-                x="120.60000000000001" 
-                y="22.8" 
-                text-anchor="middle" 
-                dominant-baseline="middle"
-                font-family="system-ui, -apple-system, sans-serif"
-                font-size="10.799999999999999"
-                font-weight="normal"
-                fill="#4b5563"
-                letter-spacing="0.01em"
-              >
-                Find us on
-              </text>
-              <text 
-                x="120.60000000000001" 
-                y="39" 
-                text-anchor="middle" 
-                dominant-baseline="middle"
-                font-family="system-ui, -apple-system, sans-serif"
-                font-size="13.2"
-                font-weight="bold"
-                fill="#0070f3"
-                letter-spacing="0.01em"
-              >
-                Indie.Deals
-              </text>
-            </svg>
-          </a>
+          <a href="https://fazier.com/launches/wplacetool.app" target="_blank"><img src="https://fazier.com/api/v1//public/badges/launch_badges.svg?badge_type=featured&theme=dark" width=250 alt="Fazier badge" /></a>
         </div>
       </div>
     </div>
@@ -1246,17 +1161,5 @@
       };
     }
   </script>
-
-  <!-- Quick Links: strengthen internal linking to key pages -->
-  <section aria-labelledby="quick-links-title" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 my-12">
-    <h2 id="quick-links-title" class="text-xl font-semibold text-gray-900 mb-4">Quick Links</h2>
-    <div class="flex flex-wrap items-center gap-4 text-sm text-blue-600">
-      <a href="/color-converter.html" class="hover:underline">Pixel Art Converter</a>
-      <a href="/about.html" class="hover:underline">About</a>
-      <a href="/blog.html" class="hover:underline">Blog</a>
-      <a href="/privacy.html" class="hover:underline">Privacy</a>
-      <a href="/terms.html" class="hover:underline">Terms</a>
-    </div>
-  </section>
 </body>
 </html>

@@ -17,7 +17,6 @@ const STATIC_ASSETS = [
   '/terms.html',
   '/color-converter.html',
   '/css/main.css',
-  '/js/app.js',
   '/js/app-simple.js',
   '/js/i18n.js',
   '/js/inline-translations.js',
@@ -41,13 +40,10 @@ const CDN_ASSETS = [
 
 // 安装事件 - 预缓存关键资源
 self.addEventListener('install', event => {
-  window.logger?.log('[SW] 🚀 安装Service Worker...');
-  
   event.waitUntil(
     Promise.all([
       // 缓存静态资源
       caches.open(STATIC_CACHE_NAME).then(cache => {
-        window.logger?.log('[SW] 📦 缓存静态资源...');
         return cache.addAll([...STATIC_ASSETS, ...BLOG_ASSETS]);
       }),
       
@@ -59,8 +55,6 @@ self.addEventListener('install', event => {
 
 // 激活事件 - 清理旧缓存
 self.addEventListener('activate', event => {
-  window.logger?.log('[SW] ✅ 激活Service Worker...');
-  
   event.waitUntil(
     Promise.all([
       // 清理旧缓存
@@ -73,7 +67,6 @@ self.addEventListener('activate', event => {
               cacheName !== DYNAMIC_CACHE_NAME
             )
             .map(cacheName => {
-              window.logger?.log('[SW] 🗑️ 删除旧缓存:', cacheName);
               return caches.delete(cacheName);
             })
         );
@@ -92,6 +85,11 @@ self.addEventListener('fetch', event => {
   
   // 跳过非HTTP请求
   if (!request.url.startsWith('http')) {
+    return;
+  }
+  
+  // 跨域请求不参与缓存，直接走网络
+  if (url.origin !== self.location.origin) {
     return;
   }
   
@@ -116,11 +114,6 @@ async function handleFetch(request, url) {
       return await networkFirstWithFallback(request, DYNAMIC_CACHE_NAME);
     }
     
-    // CDN资源 - 缓存优先，失败时网络
-    if (isCDNResource(url.href)) {
-      return await cacheFirst(request, DYNAMIC_CACHE_NAME);
-    }
-    
     // 图片资源 - 缓存优先
     if (isImageResource(url.pathname)) {
       return await cacheFirst(request, DYNAMIC_CACHE_NAME);
@@ -130,7 +123,6 @@ async function handleFetch(request, url) {
     return await networkFirst(request, DYNAMIC_CACHE_NAME);
     
   } catch (error) {
-    window.logger?.error('[SW] ❌ 请求处理失败:', error);
     
     // 如果是HTML页面请求失败，返回离线页面
     if (isHTMLPage(url.pathname)) {
@@ -250,13 +242,6 @@ function isHTMLPage(pathname) {
          pathname.endsWith('/');
 }
 
-// 判断是否为CDN资源
-function isCDNResource(url) {
-  return url.includes('cdn.tailwindcss.com') ||
-         url.includes('googleapis.com') ||
-         url.includes('pagead2.googlesyndication.com');
-}
-
 // 判断是否为图片资源
 function isImageResource(pathname) {
   return pathname.match(/\.(png|jpg|jpeg|gif|webp|svg|ico)$/i);
@@ -264,7 +249,6 @@ function isImageResource(pathname) {
 
 // 后台同步事件
 self.addEventListener('sync', event => {
-  window.logger?.log('[SW] 🔄 后台同步:', event.tag);
   
   if (event.tag === 'background-sync') {
     event.waitUntil(doBackgroundSync());
@@ -275,9 +259,7 @@ self.addEventListener('sync', event => {
 async function doBackgroundSync() {
   try {
     // 这里可以添加后台数据同步逻辑
-    window.logger?.log('[SW] ✅ 后台同步完成');
   } catch (error) {
-    window.logger?.error('[SW] ❌ 后台同步失败:', error);
   }
 }
 
@@ -324,8 +306,35 @@ self.addEventListener('message', event => {
 
 // 缓存指定URLs
 async function cacheUrls(urls) {
-  const cache = await caches.open(DYNAMIC_CACHE_NAME);
-  return cache.addAll(urls);
+  try {
+    if (!Array.isArray(urls)) return;
+    const safe = [];
+    const origin = self.location.origin;
+    const ALLOWED_PREFIXES = ['/','/css/','/js/','/lang/','/blog/'];
+    for (const u of urls.slice(0, 20)) {
+      try {
+        const full = new URL(u, origin);
+        if (full.origin !== origin) continue;
+        const p = full.pathname;
+        if (
+          ALLOWED_PREFIXES.some(pref => p === pref || p.startsWith(pref)) ||
+          p.endsWith('.html') || p === '/index.html'
+        ) {
+          safe.push(full.toString());
+        }
+      } catch (_) {
+        // ignore invalid URL
+      }
+    }
+    const cache = await caches.open(DYNAMIC_CACHE_NAME);
+    for (const s of safe) {
+      const req = new Request(s, { method: 'GET' });
+      const res = await fetch(req);
+      if (res && res.ok) {
+        await cache.put(req, res.clone());
+      }
+    }
+  } catch (_) {
+    // ignore errors
+  }
 }
-
-window.logger?.log('[SW] 📱 Wplace Tool Service Worker 已加载');

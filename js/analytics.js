@@ -8,12 +8,13 @@
 class AdvancedAnalytics {
     constructor() {
         this.sessionId = this.generateSessionId();
-        this.userId = this.getUserId();
+        this.userId = null; // 未同意前不创建本地ID
         this.events = [];
         this.pageLoadTime = Date.now();
         this.interactions = new Map();
         this.performanceMetrics = new Map();
         this.isEnabled = this.checkPrivacyConsent();
+        this.initialized = false;
         
         this.init();
     }
@@ -26,6 +27,11 @@ class AdvancedAnalytics {
             return;
         }
         
+        // 同意后再获取/生成匿名用户ID
+        if (!this.userId) {
+            this.userId = this.getUserId();
+        }
+
         this.setupEventListeners();
         this.trackPageView();
         this.setupPerformanceTracking();
@@ -34,6 +40,7 @@ class AdvancedAnalytics {
         
         window.logger?.log('✅ 分析系统初始化完成');
         window.logger?.log(`📍 会话ID: ${this.sessionId}`);
+        this.initialized = true;
     }
     
     // 生成会话ID
@@ -41,20 +48,26 @@ class AdvancedAnalytics {
         return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
     }
     
-    // 获取用户ID（匿名）
+    // 获取用户ID（匿名）- 未同意不创建
     getUserId() {
-        let userId = localStorage.getItem('analytics_user_id');
-        if (!userId) {
-            userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-            localStorage.setItem('analytics_user_id', userId);
+        try {
+            const existing = localStorage.getItem('analytics_user_id');
+            if (existing) return existing;
+            if (this.isEnabled) {
+                const userId = 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                localStorage.setItem('analytics_user_id', userId);
+                return userId;
+            }
+            return null;
+        } catch (e) {
+            return null;
         }
-        return userId;
     }
     
     // 检查隐私同意
     checkPrivacyConsent() {
-        // 默认启用，实际项目中应该有隐私同意流程
-        return localStorage.getItem('analytics_consent') !== 'false';
+        // 默认禁用：仅在显式同意('true')后启用
+        return localStorage.getItem('analytics_consent') === 'true';
     }
     
     // 设置事件监听器
@@ -446,6 +459,12 @@ class AdvancedAnalytics {
     enableAnalytics() {
         localStorage.setItem('analytics_consent', 'true');
         this.isEnabled = true;
+        if (!this.userId) {
+            this.userId = this.getUserId();
+        }
+        if (!this.initialized) {
+            this.init();
+        }
         window.logger?.log('✅ 分析功能已启用');
     }
     

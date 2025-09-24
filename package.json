@@ -18,6 +18,11 @@
     "serve": "python -m http.server 8000",
     "serve:node": "npx http-server -p 8000 -c-1 --cors",
     "serve:dev": "npx http-server -p 8000 -c-1 --cors -o",
+    "serve:node:8888": "http-server -p 8888 -c-1 --cors",
+    "dev:clean:unix": "bash scripts/dev-clean.sh",
+    "dev:clean:win": "scripts\\dev-clean.bat"
+    "serve:python:8790": "python -m http.server 8790 --bind 127.0.0.1",
+    "serve:node:8790": "http-server -p 8790 -c-1 --cors",
     "clean": "rm -f js/inline-translations.js css/main.css",
     "clean:translations": "node clean-translations.js",
     "analyze:translations": "node temp-analysis.js",
@@ -58,10 +63,13 @@
   "homepage": "https://github.com/elng12/wplace--tool#readme",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
     "concurrently": "^8.2.2",
+    "eslint": "^9.36.0",
+    "eslint-config-prettier": "^10.1.8",
+    "http-server": "^14.1.1",
     "nodemon": "^3.0.2",
-    "http-server": "^14.1.1"
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2"
   },
   "dependencies": {
     "playwright": "^1.55.0",

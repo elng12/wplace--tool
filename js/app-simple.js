@@ -13,6 +13,7 @@ let processedImage = null;
 let isProcessing = false;
 let batchQueue = [];
 let batchResults = [];
+let lastColorUsage = null; // 用于导出
 // 翻译功能由统一的i18n.js处理
 
 // 错误处理系统
@@ -360,30 +361,68 @@ function applyImageAdjustments(data, brightness, contrast, saturation) {
     }
 }
 
-// 颜色匹配函数
+// 颜色匹配辅助（预计算调色板 RGB，提高性能）
+function hexToRgb(hex) {
+    const h = hex.startsWith('#') ? hex.slice(1) : hex;
+    return {
+        r: parseInt(h.slice(0, 2), 16),
+        g: parseInt(h.slice(2, 4), 16),
+        b: parseInt(h.slice(4, 6), 16)
+    };
+}
+
+const WPLACE_PALETTE_RGB = WPLACE_PALETTE.map(c => ({ hex: c, ...hexToRgb(c) }));
+
+// sRGB -> linear helper
+function srgbToLinear(v) {
+    v = v / 255;
+    return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+}
+
+// sRGB (0..255) to OKLab (L,a,b)
+function srgbToOklab(r, g, b) {
+    const lr = srgbToLinear(r), lg = srgbToLinear(g), lb = srgbToLinear(b);
+    // Linear sRGB to LMS (perceptual)
+    const l = 0.4122214708 * lr + 0.5363325363 * lg + 0.0514459929 * lb;
+    const m = 0.2119034982 * lr + 0.6806995451 * lg + 0.1073969566 * lb;
+    const s = 0.0883024619 * lr + 0.2817188376 * lg + 0.6299787005 * lb;
+
+    const l13 = Math.cbrt(l);
+    const m13 = Math.cbrt(m);
+    const s13 = Math.cbrt(s);
+
+    return {
+        L: 0.2104542553 * l13 + 0.7936177850 * m13 - 0.0040720468 * s13,
+        a: 1.9779984951 * l13 - 2.4285922050 * m13 + 0.4505937099 * s13,
+        b: 0.0259040371 * l13 + 0.7827717662 * m13 - 0.8086757660 * s13
+    };
+}
+
+const WPLACE_PALETTE_OKLAB = WPLACE_PALETTE_RGB.map(p => ({ hex: p.hex, ...srgbToOklab(p.r, p.g, p.b) }));
+
+// 颜色匹配函数（使用平方距离，避免开方开销）
 function getClosestColor(r, g, b) {
-    let minDistance = Infinity;
-    let closestColor = WPLACE_PALETTE[0];
-
-    for (const color of WPLACE_PALETTE) {
-        const hex = color.slice(1);
-        const pr = parseInt(hex.slice(0, 2), 16);
-        const pg = parseInt(hex.slice(2, 4), 16);
-        const pb = parseInt(hex.slice(4, 6), 16);
-
-        const distance = Math.sqrt(
-            Math.pow(r - pr, 2) +
-            Math.pow(g - pg, 2) +
-            Math.pow(b - pb, 2)
-        );
-
-        if (distance < minDistance) {
-            minDistance = distance;
-            closestColor = color;
-        }
+    let min = Number.POSITIVE_INFINITY;
+    let chosen = WPLACE_PALETTE_RGB[0];
+    for (let i = 0; i < WPLACE_PALETTE_RGB.length; i++) {
+        const p = WPLACE_PALETTE_RGB[i];
+        const dr = r - p.r; const dg = g - p.g; const db = b - p.b;
+        const d2 = dr * dr + dg * dg + db * db;
+        if (d2 < min) { min = d2; chosen = p; }
     }
+    return chosen.hex;
+}
 
-    return closestColor;
+function getClosestColorRgb(r, g, b) {
+    let min = Number.POSITIVE_INFINITY;
+    let chosen = WPLACE_PALETTE_RGB[0];
+    for (let i = 0; i < WPLACE_PALETTE_RGB.length; i++) {
+        const p = WPLACE_PALETTE_RGB[i];
+        const dr = r - p.r; const dg = g - p.g; const db = b - p.b;
+        const d2 = dr * dr + dg * dg + db * db;
+        if (d2 < min) { min = d2; chosen = p; }
+    }
+    return { r: chosen.r, g: chosen.g, b: chosen.b };
 }
 
 // 图片处理函数 - 支持高级参数
@@ -392,59 +431,177 @@ function processImageToPixelArt(canvas, options = {}) {
     const brightness = options.brightness || 0;
     const contrast = options.contrast || 0;
     const saturation = options.saturation || 0;
-    const useDithering = options.dithering || false;
+    const paletteMode = options.paletteMode || 'place';
+    const useDithering = paletteMode === 'place' && (options.dithering || false);
+    const ditherStrength = Math.max(0, Math.min(1, (options.ditherStrength ?? 70) / 100));
+    const freeOnly = options.freeOnly || false;
+    const matchSpace = (options.matchSpace || 'srgb');
 
     return new Promise((resolve) => {
         const ctx = canvas.getContext('2d', { willReadFrequently: true });
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const data = imageData.data;
+        const src = imageData.data;
 
-        // 应用图像调整
-        applyImageAdjustments(data, brightness, contrast, saturation);
+        // 预处理：亮度/对比度/饱和度
+        applyImageAdjustments(src, brightness, contrast, saturation);
 
-        // 创建输出画布
-        const outputCanvas = document.createElement('canvas');
-        const outputCtx = outputCanvas.getContext('2d');
-
+        // 目标像素网格尺寸
         const newWidth = Math.ceil(canvas.width / pixelSize);
         const newHeight = Math.ceil(canvas.height / pixelSize);
 
-        outputCanvas.width = newWidth;
-        outputCanvas.height = newHeight;
+        // 先计算每个像素块的平均色作为源网格
+        const gridR = new Float32Array(newWidth * newHeight);
+        const gridG = new Float32Array(newWidth * newHeight);
+        const gridB = new Float32Array(newWidth * newHeight);
 
-        // 处理每个像素块
+        const sampleMethod = options.sampleMethod || 'average';
+        const readPixel = (px, py) => {
+            const i = (py * canvas.width + px) * 4;
+            return { r: src[i], g: src[i+1], b: src[i+2] };
+        };
         for (let y = 0; y < newHeight; y++) {
             for (let x = 0; x < newWidth; x++) {
-                let r = 0, g = 0, b = 0, count = 0;
+                const sx = x * pixelSize;
+                const sy = y * pixelSize;
+                const idx = y * newWidth + x;
 
-                // 计算平均颜色
-                for (let dy = 0; dy < pixelSize; dy++) {
-                    for (let dx = 0; dx < pixelSize; dx++) {
-                        const px = x * pixelSize + dx;
-                        const py = y * pixelSize + dy;
-
-                        if (px < canvas.width && py < canvas.height) {
+                if (sampleMethod === 'nearest') {
+                    const px = Math.min(canvas.width - 1, sx + Math.floor(pixelSize / 2));
+                    const py = Math.min(canvas.height - 1, sy + Math.floor(pixelSize / 2));
+                    const c = readPixel(px, py);
+                    gridR[idx] = c.r; gridG[idx] = c.g; gridB[idx] = c.b;
+                } else if (sampleMethod === 'median') {
+                    // 5点采样：中心 + 四角
+                    const pts = [
+                        {x: sx, y: sy},
+                        {x: Math.min(canvas.width - 1, sx + pixelSize - 1), y: sy},
+                        {x: sx, y: Math.min(canvas.height - 1, sy + pixelSize - 1)},
+                        {x: Math.min(canvas.width - 1, sx + pixelSize - 1), y: Math.min(canvas.height - 1, sy + pixelSize - 1)},
+                        {x: Math.min(canvas.width - 1, sx + Math.floor(pixelSize / 2)), y: Math.min(canvas.height - 1, sy + Math.floor(pixelSize / 2))}
+                    ];
+                    const rs = [], gs = [], bs = [];
+                    for (const p of pts) { const c = readPixel(p.x, p.y); rs.push(c.r); gs.push(c.g); bs.push(c.b); }
+                    const med = (arr) => arr.sort((a,b)=>a-b)[Math.floor(arr.length/2)];
+                    gridR[idx] = med(rs); gridG[idx] = med(gs); gridB[idx] = med(bs);
+                } else {
+                    // average（默认）
+                    let r = 0, g = 0, b = 0, count = 0;
+                    for (let dy = 0; dy < pixelSize; dy++) {
+                        const py = sy + dy;
+                        if (py >= canvas.height) break;
+                        for (let dx = 0; dx < pixelSize; dx++) {
+                            const px = sx + dx;
+                            if (px >= canvas.width) break;
                             const i = (py * canvas.width + px) * 4;
-                            r += data[i];
-                            g += data[i + 1];
-                            b += data[i + 2];
+                            r += src[i]; g += src[i + 1]; b += src[i + 2];
                             count++;
                         }
                     }
+                    if (count > 0) { gridR[idx] = r / count; gridG[idx] = g / count; gridB[idx] = b / count; }
                 }
+            }
+            if (y % 20 === 0) setProgress(Math.min(80, Math.round((y / newHeight) * 80)), '计算像素网格颜色...');
+        }
 
-                if (count > 0) {
-                    r = Math.round(r / count);
-                    g = Math.round(g / count);
-                    b = Math.round(b / count);
+        // 输出图像数据（新尺寸）
+        const outputCanvas = document.createElement('canvas');
+        outputCanvas.width = newWidth;
+        outputCanvas.height = newHeight;
+        const octx = outputCanvas.getContext('2d');
+        const outImage = octx.createImageData(newWidth, newHeight);
+        const out = outImage.data;
 
-                    const closestColor = getClosestColor(r, g, b);
-                    outputCtx.fillStyle = closestColor;
-                    outputCtx.fillRect(x, y, 1, 1);
+        // 选择调色板与匹配空间
+        const paletteRgb = freeOnly ? WPLACE_PALETTE_RGB.slice(0, 32) : WPLACE_PALETTE_RGB;
+        const paletteLab = freeOnly ? WPLACE_PALETTE_OKLAB.slice(0, 32) : WPLACE_PALETTE_OKLAB;
+        const closestBySpace = (r, g, b) => {
+            if (matchSpace === 'oklab') {
+                const t = srgbToOklab(r, g, b);
+                let min = Number.POSITIVE_INFINITY; let chosenIndex = 0;
+                for (let i = 0; i < paletteLab.length; i++) {
+                    const p = paletteLab[i];
+                    const dL = t.L - p.L, da = t.a - p.a, db = t.b - p.b;
+                    const d2 = dL * dL + da * da + db * db;
+                    if (d2 < min) { min = d2; chosenIndex = i; }
+                }
+                return paletteRgb[chosenIndex];
+            } else {
+                let min = Number.POSITIVE_INFINITY; let chosen = paletteRgb[0];
+                for (let i = 0; i < paletteRgb.length; i++) {
+                    const p = paletteRgb[i];
+                    const dr = r - p.r, dg = g - p.g, db = b - p.b;
+                    const d2 = dr * dr + dg * dg + db * db;
+                    if (d2 < min) { min = d2; chosen = p; }
+                }
+                return chosen;
+            }
+        };
+
+        if (paletteMode !== 'place') {
+            // 标准像素化：不量化到调色板，直接使用平均颜色
+            for (let y = 0; y < newHeight; y++) {
+                for (let x = 0; x < newWidth; x++) {
+                    const idx = y * newWidth + x;
+                    const oi = idx * 4;
+                    out[oi] = Math.max(0, Math.min(255, Math.round(gridR[idx])));
+                    out[oi + 1] = Math.max(0, Math.min(255, Math.round(gridG[idx])));
+                    out[oi + 2] = Math.max(0, Math.min(255, Math.round(gridB[idx])));
+                    out[oi + 3] = 255;
+                }
+                if (y % 20 === 0) setProgress(80 + Math.round((y / newHeight) * 20), '生成像素马赛克...');
+            }
+        } else if (useDithering) {
+            // Floyd–Steinberg 误差扩散抖动（在网格上进行）
+            const errR = new Float32Array(newWidth * newHeight);
+            const errG = new Float32Array(newWidth * newHeight);
+            const errB = new Float32Array(newWidth * newHeight);
+
+            for (let y = 0; y < newHeight; y++) {
+                for (let x = 0; x < newWidth; x++) {
+                    const idx = y * newWidth + x;
+                    let r = gridR[idx] + errR[idx];
+                    let g = gridG[idx] + errG[idx];
+                    let b = gridB[idx] + errB[idx];
+                    r = Math.max(0, Math.min(255, r));
+                    g = Math.max(0, Math.min(255, g));
+                    b = Math.max(0, Math.min(255, b));
+
+                    const q = closestBySpace(r, g, b);
+                    const eR = (r - q.r) * ditherStrength;
+                    const eG = (g - q.g) * ditherStrength;
+                    const eB = (b - q.b) * ditherStrength;
+
+                    // 写出像素
+                    const oi = idx * 4;
+                    out[oi] = q.r; out[oi + 1] = q.g; out[oi + 2] = q.b; out[oi + 3] = 255;
+
+                    // 误差扩散（右、左下、下、右下）
+                    const spread = (tx, ty, fr) => {
+                        if (tx >= 0 && tx < newWidth && ty >= 0 && ty < newHeight) {
+                            const j = ty * newWidth + tx;
+                            errR[j] += eR * fr; errG[j] += eG * fr; errB[j] += eB * fr;
+                        }
+                    };
+                    spread(x + 1, y, 7 / 16);
+                    spread(x - 1, y + 1, 3 / 16);
+                    spread(x, y + 1, 5 / 16);
+                    spread(x + 1, y + 1, 1 / 16);
+                }
+                if (y % 20 === 0) setProgress(80 + Math.round((y / newHeight) * 20), '应用抖动...');
+            }
+        } else {
+            // 直接量化到调色板
+            for (let y = 0; y < newHeight; y++) {
+                for (let x = 0; x < newWidth; x++) {
+                    const idx = y * newWidth + x;
+                    const q = closestBySpace(gridR[idx], gridG[idx], gridB[idx]);
+                    const oi = idx * 4;
+                    out[oi] = q.r; out[oi + 1] = q.g; out[oi + 2] = q.b; out[oi + 3] = 255;
                 }
             }
         }
 
+        octx.putImageData(outImage, 0, 0);
         resolve(outputCanvas);
     });
 }
@@ -928,7 +1085,11 @@ function processImage() {
                 outputCanvas.height = result.height * pixelSize;
 
                 const ctx = outputCanvas.getContext('2d');
-                ctx.imageSmoothingEnabled = false;
+                const method = options.scalingMethod || 'nearest';
+                ctx.imageSmoothingEnabled = method !== 'nearest';
+                if (ctx.imageSmoothingEnabled) {
+                    ctx.imageSmoothingQuality = method === 'lanczos' ? 'high' : 'medium';
+                }
                 ctx.drawImage(result, 0, 0, outputCanvas.width, outputCanvas.height);
 
                 // 隐藏预览画布，显示输出画布
@@ -951,6 +1112,9 @@ function processImage() {
                 console.debug('   preview-canvas hidden:', previewCanvas?.classList.contains('hidden'));
                 console.debug('   output-canvas visible:', !outputCanvas.classList.contains('hidden'));
             }
+
+            // 更新“使用到的颜色”面板（仅 Wplace 调色板模式）
+            updateUsedColorsFromCanvas(result, options);
 
             // 启用下载按钮
             const downloadBtn = $('download-btn');
@@ -998,8 +1162,113 @@ function getProcessingOptions() {
         brightness: parseInt($('brightness-slider')?.value || '0'),
         contrast: parseInt($('contrast-slider')?.value || '0'),
         saturation: parseInt($('saturation-slider')?.value || '0'),
-        dithering: $('dithering-checkbox')?.checked || false
+        dithering: $('dithering-checkbox')?.checked || false,
+        ditherStrength: parseInt(document.getElementById('dither-strength')?.value || '70'),
+        paletteMode: document.getElementById('palette-select')?.value || 'place',
+        freeOnly: document.getElementById('palette-free-only')?.checked || false,
+        scalingMethod: document.getElementById('scalingMethod')?.value || 'nearest',
+        sampleMethod: document.getElementById('sample-method')?.value || 'average',
+        matchSpace: document.getElementById('match-space')?.value || 'srgb'
     };
+}
+
+// 颜色转十六进制字符串
+function toHexColor(r, g, b) {
+    const h = (v) => ('0' + Math.max(0, Math.min(255, Math.round(v))).toString(16)).slice(-2).toUpperCase();
+    return '#' + h(r) + h(g) + h(b);
+}
+
+// 统计并展示使用到的调色板颜色（仅在 Wplace 调色板模式下显示）
+function updateUsedColorsFromCanvas(resultCanvas, options) {
+    const panel = document.getElementById('usedColorsPanel');
+    if (!panel) return;
+    const mode = options?.paletteMode || 'place';
+    if (mode !== 'place') {
+        panel.classList.add('hidden');
+        return;
+    }
+    try {
+        const grid = document.getElementById('usedColorsGrid');
+        const totalEl = document.getElementById('usedColorsTotal');
+        const freeEl = document.getElementById('usedColorsFree');
+        const premiumEl = document.getElementById('usedColorsPremium');
+        if (!grid || !totalEl || !freeEl || !premiumEl) return;
+
+        const ctx = resultCanvas.getContext('2d');
+        const img = ctx.getImageData(0, 0, resultCanvas.width, resultCanvas.height);
+        const data = img.data;
+        const counts = new Map();
+        for (let i = 0; i < data.length; i += 4) {
+            const hex = toHexColor(data[i], data[i + 1], data[i + 2]);
+            counts.set(hex, (counts.get(hex) || 0) + 1);
+        }
+
+        // 汇总统计
+        const freeSet = new Set(WPLACE_PALETTE.slice(0, 32));
+        let free = 0, premium = 0;
+        for (const key of counts.keys()) {
+            if (freeSet.has(key)) free++; else premium++;
+        }
+
+        // 渲染网格（按频次降序，最多显示64）
+        const top = Array.from(counts.entries()).sort((a, b) => b[1] - a[1]).slice(0, 64);
+        grid.innerHTML = '';
+        for (const [hex, n] of top) {
+            const el = document.createElement('div');
+            el.className = 'w-5 h-5 rounded-sm border border-gray-300';
+            el.style.backgroundColor = hex;
+            el.title = `${hex} × ${n}`;
+            grid.appendChild(el);
+        }
+
+        totalEl.textContent = String(counts.size);
+        freeEl.textContent = String(free);
+        premiumEl.textContent = String(premium);
+        panel.classList.remove('hidden');
+
+        // 保存供导出
+        lastColorUsage = {
+            totalColors: counts.size,
+            free,
+            premium,
+            colors: Array.from(counts.entries()).sort((a,b)=>b[1]-a[1]).map(([hex, pixels])=>({hex, pixels}))
+        };
+    } catch (e) {
+        // 出错不影响主流程
+        panel.classList.add('hidden');
+    }
+}
+
+function exportUsedColors() {
+    try {
+        // 优先使用上次统计结果
+        let payload = lastColorUsage;
+        if (!payload) {
+            const canvas = document.getElementById('output-canvas');
+            if (!canvas || canvas.classList.contains('hidden')) {
+                showToast('暂无可导出的颜色数据', 'warning');
+                return;
+            }
+            updateUsedColorsFromCanvas(canvas, getProcessingOptions());
+            payload = lastColorUsage;
+        }
+        if (!payload) {
+            showToast('暂无可导出的颜色数据', 'warning');
+            return;
+        }
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `wplace-colors-${Date.now()}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('已导出颜色使用数据', 'success');
+    } catch (e) {
+        showToast('导出失败', 'error');
+    }
 }
 
 // 下载图片（可选包含网格）
@@ -1015,7 +1284,9 @@ function downloadImage(withGrid = false) {
     canvas.height = processedImage.height * pixelSize;
 
     const ctx = canvas.getContext('2d');
-    ctx.imageSmoothingEnabled = false;
+    const method = options.scalingMethod || 'nearest';
+    ctx.imageSmoothingEnabled = method !== 'nearest';
+    if (ctx.imageSmoothingEnabled) ctx.imageSmoothingQuality = method === 'lanczos' ? 'high' : 'medium';
     ctx.drawImage(processedImage, 0, 0, canvas.width, canvas.height);
 
     if (withGrid) {
@@ -1085,6 +1356,9 @@ function debouncePreview() {
                     const ctx = outputCanvas.getContext('2d');
                     ctx.imageSmoothingEnabled = false;
                     ctx.drawImage(result, 0, 0, outputCanvas.width, outputCanvas.height);
+
+                    // 更新“使用到的颜色”面板
+                    updateUsedColorsFromCanvas(result, options);
 
                     // 确保原图预览完全隐藏
                     if (previewCanvas) {
@@ -1348,7 +1622,7 @@ async function processSingleFileForBatch(file, index) {
                             filename: file.name,
                             success: true,
                             canvas: result,
-                            processedCanvas: createScaledCanvas(result, options.pixelSize || 8)
+                            processedCanvas: createScaledCanvas(result, options.pixelSize || 8, options.scalingMethod || 'nearest')
                         });
                     }).catch(error => {
                         reject(error);
@@ -1367,13 +1641,14 @@ async function processSingleFileForBatch(file, index) {
     });
 }
 
-function createScaledCanvas(sourceCanvas, pixelSize) {
+function createScaledCanvas(sourceCanvas, pixelSize, scalingMethod = 'nearest') {
     const scaledCanvas = document.createElement('canvas');
     scaledCanvas.width = sourceCanvas.width * pixelSize;
     scaledCanvas.height = sourceCanvas.height * pixelSize;
 
     const ctx = scaledCanvas.getContext('2d');
-    ctx.imageSmoothingEnabled = false;
+    ctx.imageSmoothingEnabled = scalingMethod !== 'nearest';
+    if (ctx.imageSmoothingEnabled) ctx.imageSmoothingQuality = scalingMethod === 'lanczos' ? 'high' : 'medium';
     ctx.drawImage(sourceCanvas, 0, 0, scaledCanvas.width, scaledCanvas.height);
 
     return scaledCanvas;
@@ -1709,6 +1984,56 @@ function initApp() {
                 debouncePreview();
             }
         });
+    }
+
+    // 抖动强度滑块
+    const ditherStrength = document.getElementById('dither-strength');
+    const ditherStrengthValue = document.getElementById('dither-strength-value');
+    if (ditherStrength && ditherStrengthValue) {
+        ditherStrength.addEventListener('input', () => {
+            ditherStrengthValue.textContent = ditherStrength.value + '%';
+            if (currentImage) debouncePreview();
+        });
+    }
+
+    // 调色板模式切换时，实时预览
+    const paletteSelect = document.getElementById('palette-select');
+    if (paletteSelect) {
+        paletteSelect.addEventListener('change', () => {
+            if (currentImage) {
+                debouncePreview();
+            }
+        });
+    }
+
+    // 匹配空间切换（sRGB/OKLab）
+    const matchSpaceSelect = document.getElementById('match-space');
+    if (matchSpaceSelect) {
+        matchSpaceSelect.addEventListener('change', () => {
+            if (currentImage) debouncePreview();
+        });
+    }
+
+    // 缩放方法切换实时预览
+    const scalingSelect = document.getElementById('scalingMethod');
+    if (scalingSelect) {
+        scalingSelect.addEventListener('change', () => {
+            if (currentImage) debouncePreview();
+        });
+    }
+
+    // 仅免费颜色开关
+    const paletteFreeOnly = document.getElementById('palette-free-only');
+    if (paletteFreeOnly) {
+        paletteFreeOnly.addEventListener('change', () => {
+            if (currentImage) debouncePreview();
+        });
+    }
+
+    // 导出使用颜色按钮
+    const exportBtn = document.getElementById('exportColorsBtn');
+    if (exportBtn) {
+        exportBtn.addEventListener('click', exportUsedColors);
     }
 
     // 绑定Advanced Settings展开/收起
