@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.wplacetool.app" }],
+      "destination": "https://wplacetool.app/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "wplace-tool-eosin.vercel.app" }],
+      "destination": "https://wplacetool.app/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:locale(zh|tr|ko|ja|es|fr|de|pt|mi|gn)",
+      "destination": "/:locale/",
+      "permanent": true
+    }
+  ]
+}
