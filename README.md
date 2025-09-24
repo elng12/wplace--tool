@@ -52,5 +52,5 @@ http://127.0.0.1:8790/sitemap.xml
 
 ## 备注
 
-- sitemap.xml 中链接应保持为线上域名（https://wplace.vercel.app/），提交搜索引擎时以线上地址为准。
+- sitemap.xml 中链接应保持为线上域名（https://wplacetool.app/），提交搜索引擎时以线上地址为准。
 - 若需要改端口，可在 package.json 中调整脚本的端口号。

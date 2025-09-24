@@ -207,7 +207,7 @@ class ProductionOptimizer {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-lang="error.404.title">404 - Page Not Found | Wplace Paint Tool</title>
     <meta name="description" content="Page not found. Return to the best pixel art converter for Wplace with official color palette matching.">
-    <link rel="canonical" href="https://wplace.vercel.app/404.html">
+    <link rel="canonical" href="https://wplacetool.app/404.html">
     <link rel="stylesheet" href="css/main.css">
     <style>
         .error-container {

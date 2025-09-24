@@ -57,5 +57,9 @@
 /mi/about.html /mi/about.html 200
 /mi/blog.html /mi/blog.html 200
 
+# 强制 HTTPS 与主域
+http://* https://wplacetool.app/:splat 301!
+https://www.wplacetool.app/* https://wplacetool.app/:splat 301!
+
 # 处理不存在的页面
 /* /404.html 404

@@ -80,7 +80,7 @@ class CodeQualityChecker {
         
         if (matches) {
             matches.forEach(url => {
-                if (!url.includes('wplace.vercel.app') && !url.includes('localhost')) {
+                if (!url.includes('wplacetool.app') && !url.includes('localhost')) {
                     this.addWarning('HARDCODED_URL', file, `硬编码URL: ${url}`);
                 }
             });

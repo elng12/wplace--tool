@@ -11,7 +11,7 @@ const path = require('path');
 class SEOInternationalOptimizer {
     constructor() {
         this.languages = ['en', 'zh', 'ko', 'ja', 'es', 'fr', 'de', 'pt', 'tr', 'gn', 'mi'];
-        this.baseUrl = 'https://wplace.vercel.app';
+    this.baseUrl = 'https://wplacetool.app';
         this.stats = {
             pagesOptimized: 0,
             schemasAdded: 0,

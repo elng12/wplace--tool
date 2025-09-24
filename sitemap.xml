@@ -6,657 +6,657 @@
 
   <!-- INDEX cluster -->
   <url>
-    <loc>https://wplace.vercel.app/</loc>
+    <loc>https://wplacetool.app/</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/zh/</loc>
+    <loc>https://wplacetool.app/zh/</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/ko/</loc>
+    <loc>https://wplacetool.app/ko/</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/ja/</loc>
+    <loc>https://wplacetool.app/ja/</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/es/</loc>
+    <loc>https://wplacetool.app/es/</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/fr/</loc>
+    <loc>https://wplacetool.app/fr/</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/de/</loc>
+    <loc>https://wplacetool.app/de/</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/pt/</loc>
+    <loc>https://wplacetool.app/pt/</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/tr/</loc>
+    <loc>https://wplacetool.app/tr/</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/gn/</loc>
+    <loc>https://wplacetool.app/gn/</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/mi/</loc>
+    <loc>https://wplacetool.app/mi/</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/"/>
   </url>
 
   <!-- ABOUT cluster -->
   <url>
-    <loc>https://wplace.vercel.app/about.html</loc>
+    <loc>https://wplacetool.app/about.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/about.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/about.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/about.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/about.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/about.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/about.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/about.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/about.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/about.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/zh/about.html</loc>
+    <loc>https://wplacetool.app/zh/about.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/about.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/about.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/about.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/about.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/about.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/about.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/about.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/about.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/about.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/ko/about.html</loc>
+    <loc>https://wplacetool.app/ko/about.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/about.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/about.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/about.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/about.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/about.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/about.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/about.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/about.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/about.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/ja/about.html</loc>
+    <loc>https://wplacetool.app/ja/about.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/about.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/about.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/about.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/about.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/about.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/about.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/about.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/about.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/about.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/es/about.html</loc>
+    <loc>https://wplacetool.app/es/about.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/about.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/about.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/about.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/about.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/about.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/about.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/about.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/about.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/about.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/fr/about.html</loc>
+    <loc>https://wplacetool.app/fr/about.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/about.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/about.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/about.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/about.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/about.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/about.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/about.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/about.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/about.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/de/about.html</loc>
+    <loc>https://wplacetool.app/de/about.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/about.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/about.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/about.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/about.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/about.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/about.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/about.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/about.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/about.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/pt/about.html</loc>
+    <loc>https://wplacetool.app/pt/about.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/about.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/about.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/about.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/about.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/about.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/about.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/about.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/about.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/about.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/tr/about.html</loc>
+    <loc>https://wplacetool.app/tr/about.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/about.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/about.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/about.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/about.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/about.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/about.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/about.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/about.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/about.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/gn/about.html</loc>
+    <loc>https://wplacetool.app/gn/about.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/about.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/about.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/about.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/about.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/about.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/about.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/about.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/about.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/about.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/mi/about.html</loc>
+    <loc>https://wplacetool.app/mi/about.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/about.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/about.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/about.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/about.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/about.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/about.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/about.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/about.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/about.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/about.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/about.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/about.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/about.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/about.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/about.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/about.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/about.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/about.html"/>
   </url>
 
   <!-- BLOG cluster -->
   <url>
-    <loc>https://wplace.vercel.app/blog.html</loc>
+    <loc>https://wplacetool.app/blog.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/blog.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/zh/blog.html</loc>
+    <loc>https://wplacetool.app/zh/blog.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/blog.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/ko/blog.html</loc>
+    <loc>https://wplacetool.app/ko/blog.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/blog.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/ja/blog.html</loc>
+    <loc>https://wplacetool.app/ja/blog.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/blog.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/es/blog.html</loc>
+    <loc>https://wplacetool.app/es/blog.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/blog.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/fr/blog.html</loc>
+    <loc>https://wplacetool.app/fr/blog.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/blog.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/de/blog.html</loc>
+    <loc>https://wplacetool.app/de/blog.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/blog.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/pt/blog.html</loc>
+    <loc>https://wplacetool.app/pt/blog.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/blog.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/tr/blog.html</loc>
+    <loc>https://wplacetool.app/tr/blog.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/blog.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/gn/blog.html</loc>
+    <loc>https://wplacetool.app/gn/blog.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/blog.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/mi/blog.html</loc>
+    <loc>https://wplacetool.app/mi/blog.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/blog.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/blog.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/blog.html"/>
   </url>
 
   <!-- Utility pages (root only present today) -->
   <url>
-    <loc>https://wplace.vercel.app/color-converter.html</loc>
+    <loc>https://wplacetool.app/color-converter.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/color-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/color-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/color-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/color-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/color-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/color-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/color-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/color-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/color-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/color-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/color-converter.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/color-converter.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/color-converter.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/privacy.html</loc>
+    <loc>https://wplacetool.app/privacy.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/privacy.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/privacy.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/privacy.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/privacy.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/privacy.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/privacy.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/privacy.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/privacy.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/privacy.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/privacy.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/privacy.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/privacy.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/privacy.html"/>
   </url>
   <url>
-    <loc>https://wplace.vercel.app/terms.html</loc>
+    <loc>https://wplacetool.app/terms.html</loc>
     <lastmod>2025-09-18</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplace.vercel.app/terms.html"/>
-    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplace.vercel.app/terms.html"/>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplace.vercel.app/zh/terms.html"/>
-    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplace.vercel.app/ko/terms.html"/>
-    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplace.vercel.app/ja/terms.html"/>
-    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplace.vercel.app/es/terms.html"/>
-    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplace.vercel.app/fr/terms.html"/>
-    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplace.vercel.app/de/terms.html"/>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplace.vercel.app/pt/terms.html"/>
-    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplace.vercel.app/tr/terms.html"/>
-    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplace.vercel.app/gn/terms.html"/>
-    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplace.vercel.app/mi/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wplacetool.app/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="en-US" href="https://wplacetool.app/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://wplacetool.app/zh/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="ko-KR" href="https://wplacetool.app/ko/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="ja-JP" href="https://wplacetool.app/ja/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="es-ES" href="https://wplacetool.app/es/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="fr-FR" href="https://wplacetool.app/fr/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="de-DE" href="https://wplacetool.app/de/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://wplacetool.app/pt/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://wplacetool.app/tr/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="gn-PY" href="https://wplacetool.app/gn/terms.html"/>
+    <xhtml:link rel="alternate" hreflang="mi-NZ" href="https://wplacetool.app/mi/terms.html"/>
   </url>
 </urlset>

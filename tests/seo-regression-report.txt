@@ -1,0 +1,5 @@
+# SEO Regression Report
+Host: https://wplacetool.app
+Pages scanned: 35
+Pages with issues: 0
+Total issues: 0
